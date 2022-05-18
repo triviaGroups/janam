@@ -22,9 +22,10 @@ class _HomeState extends State<Home> {
               height: 155,
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
-                color: purple,
-                borderRadius: BorderRadius.only(topRight: Radius.circular(32),topLeft: Radius.circular(32))
-              ),
+                  color: purple,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(32),
+                      topLeft: Radius.circular(32))),
               child: Row(
                 children: [
                   Expanded(
@@ -36,28 +37,31 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Hello,",style: GoogleFonts.inter(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w600,
-                              color: orange
-                            ),),
-                            Text("Revathy!",style: GoogleFonts.inter(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w600,
-                              color: white
-                            ),)
+                            Text(
+                              "Hello,",
+                              style: GoogleFonts.inter(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w600,
+                                  color: orange),
+                            ),
+                            Text(
+                              "Revathy!",
+                              style: GoogleFonts.inter(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w600,
+                                  color: white),
+                            )
                           ],
                         ),
                       )),
-                  Expanded(child: Container(
+                  Expanded(
+                      child: Container(
                     alignment: Alignment.center,
                     height: 100,
                     width: 100,
                     padding: EdgeInsets.symmetric(horizontal: 32),
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white
-                    ),
+                        shape: BoxShape.circle, color: Colors.white),
                   ))
                 ],
               ),
@@ -69,19 +73,12 @@ class _HomeState extends State<Home> {
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
-
-
-
-
-
-
-
                     child: Text(
-                      "My Programs",style: GoogleFonts.inter(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                        color: orange
-                    ),
+                      "My Programs",
+                      style: GoogleFonts.inter(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600,
+                          color: orange),
                     ),
                   ),
                 ],
