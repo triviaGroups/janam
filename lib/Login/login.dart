@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Login/nurseDetails.dart';
 import 'package:janam/constants/color_constants.dart';
 
 class Login extends StatefulWidget {
@@ -13,6 +14,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: appBg,
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
@@ -73,16 +75,15 @@ class _LoginState extends State<Login> {
                 height: 50,
                 width: double.infinity,
                 child: TextField(
-                  style:  GoogleFonts.inter(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 18,
-                          color: purple),
+                  style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w400, fontSize: 14, color: purple),
                   decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Phone Number",
                       hintStyle: GoogleFonts.inter(
                           fontWeight: FontWeight.w400,
-                          fontSize: 18,
+                          fontSize: 14,
                           color: purple)),
                 ),
               ),
@@ -90,54 +91,62 @@ class _LoginState extends State<Login> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32),
               child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
                 margin: EdgeInsets.only(top: 10),
                 height: 50,
                 width: double.infinity,
                 child: TextField(
-                  style:  GoogleFonts.inter(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 18,
-                          color: purple),
+                  style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w400, fontSize: 14, color: purple),
                   decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "PIN",
                       hintStyle: GoogleFonts.inter(
                           fontWeight: FontWeight.w400,
-                          fontSize: 18,
+                          fontSize: 14,
                           color: purple)),
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 80, vertical: 50),
-              decoration: BoxDecoration(
-                  color: purple,
-                  borderRadius: BorderRadius.circular(8)),
-              height: 60,
-              alignment: Alignment.center,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 25,
-                    ),
-                    Text(
-                      "Get started",
-                      style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(
-                      Icons.chevron_right,
-                      color: Colors.white,
-                      size: 30,
-                    )
-                  ]),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => nurseDetails()));
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 80, vertical: 50),
+                decoration: BoxDecoration(
+                    color: purple, borderRadius: BorderRadius.circular(8)),
+                height: 50,
+                alignment: Alignment.center,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 25,
+                      ),
+                      Text(
+                        "Get started",
+                        style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.chevron_right,
+                        color: Colors.white,
+                        size: 30,
+                      )
+                    ]),
+              ),
             ),
           ]),
         ),

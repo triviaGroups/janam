@@ -68,7 +68,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return const Home();
+                        return const Login();
                       }
 
                       return Scaffold(
