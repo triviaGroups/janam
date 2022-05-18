@@ -38,8 +38,8 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        systemNavigationBarColor: colorWhite,
-        statusBarColor: colorWhite,
+        systemNavigationBarColor: white,
+        statusBarColor: white,
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
