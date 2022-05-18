@@ -10,6 +10,7 @@ const Color btn = Color(0xffFF6A9C);
 const Color fBtn = Color(0xff13D7BC);
 const Color txt = Color(0xff3E4554);
 const Color heading = Color(0xff645DB1);
+const Color hTxt = Color(0xff36474F);
 
 const Color purple = Color(0xff453993);
 const Color orange = Color(0xffF99321);

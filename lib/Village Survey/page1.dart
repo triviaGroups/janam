@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Widgets/dropdown.dart';
 import 'package:janam/constants/color_constants.dart';
 
 class vpage1 extends StatefulWidget {
@@ -10,6 +11,7 @@ class vpage1 extends StatefulWidget {
 }
 
 class _vpage1State extends State<vpage1> {
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
@@ -50,19 +52,16 @@ class _vpage1State extends State<vpage1> {
                 Expanded(child: Container()),
               ],
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 56,vertical: 16),
-                  child: Container(
-                    height: 50,
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 24,
             ),
+            DropDown("Select village","Village name"),
+            DropDown("Add new","Select"),
           ],
         ),
       ),
     ));
   }
+
+
 }

@@ -24,6 +24,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          backgroundColor: appBg,
       body: SingleChildScrollView(
         child: Column(
           children: [
