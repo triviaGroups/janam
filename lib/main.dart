@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class FireBaseInitialization extends StatefulWidget {
   const FireBaseInitialization({Key? key}) : super(key: key);
 
@@ -32,7 +31,6 @@ class FireBaseInitialization extends StatefulWidget {
 }
 
 class _FireBaseInitializationState extends State<FireBaseInitialization> {
-
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
@@ -93,4 +91,3 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
     );
   }
 }
-
