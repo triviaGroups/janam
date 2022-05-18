@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/constants/color_constants.dart';
@@ -20,7 +21,10 @@ class _HomeState extends State<Home> {
             Container(
               height: 155,
               width: MediaQuery.of(context).size.width,
-              color: purple,
+              decoration: const BoxDecoration(
+                color: purple,
+                borderRadius: BorderRadius.only(topRight: Radius.circular(32),topLeft: Radius.circular(32))
+              ),
               child: Row(
                 children: [
                   Expanded(
