@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:janam/Home/home.dart';
+import 'package:janam/Login/login.dart';
 import 'package:janam/constants/color_constants.dart';
 
 void main() {
@@ -69,7 +70,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return const Home();
+                        return const Login();
                       }
 
                       return Scaffold(
