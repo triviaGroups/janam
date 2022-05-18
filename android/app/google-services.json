@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "683360805215",
+    "firebase_url": "https://janam-fa468-default-rtdb.firebaseio.com",
+    "project_id": "janam-fa468",
+    "storage_bucket": "janam-fa468.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683360805215:android:b0cf3adacfbe27ce3496ea",
+        "android_client_info": {
+          "package_name": "com.example.janam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683360805215-u19n2ab63gala0juh3pe912vp4orba38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbeanfYeyk7XvLUn5qiR196iXVflOqQIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683360805215-u19n2ab63gala0juh3pe912vp4orba38.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
