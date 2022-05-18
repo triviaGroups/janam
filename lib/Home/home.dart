@@ -61,7 +61,32 @@ class _HomeState extends State<Home> {
                   ))
                 ],
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+
+
+
+
+
+
+
+                    child: Text(
+                      "My Programs",style: GoogleFonts.inter(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                        color: orange
+                    ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
