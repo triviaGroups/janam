@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Village%20Survey/page1.dart';
 import 'package:janam/constants/color_constants.dart';
 
 class Home extends StatefulWidget {
@@ -11,7 +12,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<String> rmnca = ["Eligible couple","Pregnant women","Antenatal checkup","Postnatal checkup","Immunization","Close the case"];
+  List<String> rmnca = [
+    "Eligible couple",
+    "Pregnant women",
+    "Antenatal checkup",
+    "Postnatal checkup",
+    "Immunization",
+    "Close the case"
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,9 +32,7 @@ class _HomeState extends State<Home> {
               width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                   color: purple,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(32),
-                      topLeft: Radius.circular(32))),
+                 ),
               child: Row(
                 children: [
                   Expanded(
@@ -59,21 +65,27 @@ class _HomeState extends State<Home> {
                       child: Container(
                     alignment: Alignment.center,
                     height: 100,
-                    width: 100,
-                    padding: EdgeInsets.symmetric(horizontal: 32),
+                    width: 80,
+                    padding: EdgeInsets.symmetric(horizontal: 40),
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.white),
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/nurse.png"),
+                          fit: BoxFit.fill),
+                    ),
                   ))
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(32),
+              padding: const EdgeInsets.symmetric(vertical: 32,horizontal: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       "My Programs",
                       style: GoogleFonts.inter(
@@ -97,26 +109,31 @@ class _HomeState extends State<Home> {
                         itemCount: 6,
                         itemBuilder: (BuildContext ctx, index) {
                           return Container(
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: orange,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    blurRadius: 5,
-                                    spreadRadius: 1,
-                                    offset: Offset(1, 2),
-                                  ),
-                                ],
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              color: orange,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade300,
+                                  blurRadius: 5,
+                                  spreadRadius: 1,
+                                  offset: Offset(1, 2),
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                              child: Text(
+                                rmnca[index],
+                                style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: white),
+                                softWrap: true,
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
                               ),
-                            child: Text(
-                              rmnca[index],
-                              style: GoogleFonts.inter(
-                                  fontSize: 12, fontWeight: FontWeight.w600, color: white),
-                              softWrap: true,
-                              maxLines: 2,
-                              textAlign: TextAlign.center,
                             ),
                           );
                         }),
@@ -143,37 +160,43 @@ class _HomeState extends State<Home> {
   Padding programs(String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Container(
-        height: 130,
-        alignment: Alignment.topCenter,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(32),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade300,
-              blurRadius: 5,
-              spreadRadius: 1,
-              offset: Offset(1, 2),
-            ),
-          ],
-        ),
+      child: GestureDetector(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>vpage1()));
+        },
+
         child: Container(
-          height: 80,
-          alignment: Alignment.centerLeft,
-          decoration: const BoxDecoration(
-            color: purple,
-            borderRadius: BorderRadius.only(
-                topRight: Radius.circular(32), topLeft: Radius.circular(32)),
+          height: 150,
+          alignment: Alignment.topCenter,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(32),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 5,
+                spreadRadius: 1,
+                offset: Offset(1, 2),
+              ),
+            ],
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Text(
-              text,
-              style: GoogleFonts.inter(
-                  fontSize: 18, fontWeight: FontWeight.w600, color: white),
-              softWrap: true,
-              maxLines: 2,
+          child: Container(
+            height: 100,
+            alignment: Alignment.centerLeft,
+            decoration: const BoxDecoration(
+              color: purple,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(32), topLeft: Radius.circular(32)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Text(
+                text,
+                style: GoogleFonts.inter(
+                    fontSize: 18, fontWeight: FontWeight.w600, color: white),
+                softWrap: true,
+                maxLines: 2,
+              ),
             ),
           ),
         ),
