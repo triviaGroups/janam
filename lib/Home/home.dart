@@ -81,7 +81,23 @@ class _HomeState extends State<Home> {
                           color: orange),
                     ),
                   ),
-
+                  Container(
+                    height: 110,
+                    padding: EdgeInsets.symmetric(vertical: 24),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(32),
+                      color: Colors.red
+                    ),
+                    child: Container(
+                      height: 80,
+                      decoration: const BoxDecoration(
+                        color: purple,
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(32),
+                              topLeft: Radius.circular(32)),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
