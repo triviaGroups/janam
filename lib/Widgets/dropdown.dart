@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Widgets/heading.dart';
 import 'package:janam/constants/color_constants.dart';
 
 final List<String> genderItems = [
@@ -10,22 +11,12 @@ final List<String> genderItems = [
 
 Padding DropDown(String value,String select) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 8),
+    padding: const EdgeInsets.symmetric(vertical: 8),
     child: Column(
       children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          margin: EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            value,
-            style: GoogleFonts.inter(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: hTxt),
-          ),
-        ),
+        Heading(value),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 16),
           child:
           DropdownButtonFormField2(
             decoration: InputDecoration(
@@ -82,3 +73,4 @@ Padding DropDown(String value,String select) {
     ),
   );
 }
+

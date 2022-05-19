@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/dropdown.dart';
+import 'package:janam/Widgets/heading.dart';
+import 'package:janam/Widgets/search.dart';
+import 'package:janam/Widgets/textbox.dart';
+import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
 class vpage1 extends StatefulWidget {
@@ -11,57 +16,41 @@ class vpage1 extends StatefulWidget {
 }
 
 class _vpage1State extends State<vpage1> {
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return SafeArea(
+        child: Scaffold(
+          backgroundColor: white,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            Row(
-              children: [
-                Expanded(
-                    flex: 2,
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.only(left: 32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Village Survey",
-                            style: GoogleFonts.inter(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                color: purple),
-                          ),
-                          Text(
-                            "Add new household",
-                            style: GoogleFonts.inter(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                color: purple),
-                          )
-                        ],
-                      ),
-                    )),
-                Expanded(child: Container()),
-              ],
-            ),
-            SizedBox(
+            topic("Village survey","Add new household"),
+            const SizedBox(
               height: 24,
             ),
-            DropDown("Select village","Village name"),
-            DropDown("Add new","Select"),
+            DropDown("Select village", "Village name"),
+            DropDown("Add new", "Select"),
+            Heading("Add new household"),
+            textBox("Village name"),
+            textBox("Village name"),
+            textBox("Village name"),
+            textBox("Village name"),
+            textBox("Village name"),
+            Heading("Select household"),
+            Search(),
+            const SizedBox(
+              height: 16,
+            ),
+            Button("Next"),
+            const SizedBox(
+              height: 16,
+            ),
           ],
         ),
       ),
     ));
   }
-
-
 }
