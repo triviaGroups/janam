@@ -24,13 +24,13 @@ class _RadioButtonState extends State<RadioButton> {
         for (int i = 1; i <= widget.num; i++)
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(top: 8,bottom: 8,left: 6,right: 4),
+              margin: EdgeInsets.only(bottom: 8,left: 6,right: 4),
               decoration: BoxDecoration(
                   color: _value == i ? hTxt : white,
                   borderRadius: BorderRadius.circular(5)),
               child: ListTile(
                 title: Transform.translate(
-                  offset: Offset(-20, 0),
+                  offset: Offset(-32, -2),
                   child: Text(widget.items[i - 1],
                       textAlign: TextAlign.start,
                       softWrap: true,
