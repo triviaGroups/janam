@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Village%20Survey/page3.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/topic.dart';
@@ -123,7 +124,11 @@ class _vPage2State extends State<vPage2> {
                 ),
                 height: 90 * 10,
                 color: colors[(a++) % 4]),
-            Button("Next"),
+            GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> vPage3()));
+                },
+                child: Button("Next")),
             const SizedBox(
               height: 16,
             ),

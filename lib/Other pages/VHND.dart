@@ -120,7 +120,7 @@ class _VHNDState extends State<VHND> {
                         ),
                       ],
                     ),
-                    height: 40,
+                    height: 60,
                     color: colors[(a++) % 4]),
                 Cont(
                     child: Row(

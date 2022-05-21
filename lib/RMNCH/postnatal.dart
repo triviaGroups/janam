@@ -146,7 +146,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                     "Mental disturbance","Facial or hand swelling",
                     "Headaches","Convulsions","Painful calf muscles"
                       ],
-                  height: 720,
+                  height: 760,
                   a: (a++) % 4,
                 ),
                 Padding(
@@ -171,7 +171,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                     "Pur or bleeding",
                     "red or swollen eyes with pus",
                   ],
-                  height: 560,
+                  height: 600,
                   a: (a++) % 4,
                 ),
                 Cont(
@@ -210,7 +210,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                         ),
                       ],
                     ),
-                    height: 40,
+                    height: 60,
                     color: colors[(a++) % 4]),
                 Cont(
                     child: Row(
@@ -248,7 +248,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                         ),
                       ],
                     ),
-                    height: 40,
+                    height: 60,
                     color: colors[(a++) % 4]),
                 Cont(
                     child: Row(

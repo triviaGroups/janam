@@ -76,7 +76,7 @@ class _NIPIState extends State<NIPI> {
                         ),
                       ],
                     ),
-                    height: 40,
+                    height: 60,
                     color: colors[(a++) % 4]),
                 radioContainer(
                   name: "AWC name",
