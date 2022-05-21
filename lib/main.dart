@@ -2,9 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:janam/Home/home.dart';
+import 'package:janam/Other%20pages/AEFI.dart';
+import 'package:janam/Other%20pages/NIPI.dart';
+import 'package:janam/Other%20pages/ORS.dart';
+import 'package:janam/Other%20pages/VHND.dart';
 import 'package:janam/RMNCH/ANC.dart';
 import 'package:janam/RMNCH/Delivery.dart';
 import 'package:janam/RMNCH/childCare.dart';
+import 'package:janam/RMNCH/closeCase.dart';
+import 'package:janam/RMNCH/eligibleCouple.dart';
+import 'package:janam/RMNCH/postnatal.dart';
 import 'package:janam/RMNCH/pregnancy.dart';
 import 'package:janam/Village%20Survey/page2.dart';
 import 'package:janam/Village%20Survey/page3.dart';
@@ -79,7 +87,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return const Delivery();
+                        return const Home();
                       }
 
                       return Scaffold(

@@ -1,6 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Other%20pages/AEFI.dart';
+import 'package:janam/Other%20pages/IDSP.dart';
+import 'package:janam/Other%20pages/NIPI.dart';
+import 'package:janam/Other%20pages/NPCDCS.dart';
+import 'package:janam/Other%20pages/ORS.dart';
+import 'package:janam/Other%20pages/VHND.dart';
+import 'package:janam/Other%20pages/covid.dart';
+import 'package:janam/Other%20pages/deathReg.dart';
+import 'package:janam/Other%20pages/stockReg.dart';
+import 'package:janam/Other%20pages/temperatureChart.dart';
+import 'package:janam/RMNCH/ANC.dart';
+import 'package:janam/RMNCH/Delivery.dart';
+import 'package:janam/RMNCH/closeCase.dart';
+import 'package:janam/RMNCH/eligibleCouple.dart';
+import 'package:janam/RMNCH/postnatal.dart';
+import 'package:janam/RMNCH/pregnancy.dart';
 import 'package:janam/Village%20Survey/page1.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -19,6 +35,15 @@ class _HomeState extends State<Home> {
     "Postnatal checkup",
     "Immunization",
     "Close the case"
+  ];
+
+  List<Widget> Wid = [
+    EligibleCouple(),
+    Pregnancy(),
+    ANC(),
+    PostnatalCare(),
+    Delivery(),
+    CloseCase()
   ];
   @override
   Widget build(BuildContext context) {
@@ -95,9 +120,9 @@ class _HomeState extends State<Home> {
                           color: orange),
                     ),
                   ),
-                  programs("Village survey"),
+                  programs("Village survey",const vpage1()),
                   programs(
-                      "Reproductive, Maternal, Newborn, Child, Adolescent Health "),
+                      "Reproductive, Maternal, Newborn, Child, Adolescent Health ",const EligibleCouple()),
                   Container(
                     height: 250,
                     alignment: Alignment.center,
@@ -109,46 +134,51 @@ class _HomeState extends State<Home> {
                                 crossAxisSpacing: 20),
                         itemCount: 6,
                         itemBuilder: (BuildContext ctx, index) {
-                          return Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: orange,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.shade300,
-                                  blurRadius: 5,
-                                  spreadRadius: 1,
-                                  offset: Offset(1, 2),
+                          return GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Wid[index]));
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: orange,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                    offset: Offset(1, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 4),
+                                child: Text(
+                                  rmnca[index],
+                                  style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: white),
+                                  softWrap: true,
+                                  maxLines: 2,
+                                  textAlign: TextAlign.center,
                                 ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 4),
-                              child: Text(
-                                rmnca[index],
-                                style: GoogleFonts.inter(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: white),
-                                softWrap: true,
-                                maxLines: 2,
-                                textAlign: TextAlign.center,
                               ),
                             ),
                           );
                         }),
                   ),
-                  programs("Village Health & Nutrition Day (VHND)"),
-                  programs("National Iron Plus Initiative (NIPI)"),
-                  programs("NPCDCS - Cancer, diabetes, CVD & stroke"),
-                  programs("Stock register"),
-                  programs("Death register"),
-                  programs("ORS"),
-                  programs("AEFI"),
-                  programs("Temperature chart"),
-                  programs("IDSP"),
-                  programs("Covid 19"),
+                  programs("Village Health & Nutrition Day (VHND)",const VHND()),
+                  programs("National Iron Plus Initiative (NIPI)",const NIPI()),
+                  programs("NPCDCS - Cancer, diabetes, CVD & stroke",const  NPCDCS()),
+                  programs("Stock register",const StockReg()),
+                  programs("Death register",const DeathReg()),
+                  programs("ORS",const ORS()),
+                  programs("AEFI",const AEFI()),
+                  programs("Temperature chart",const TempChart()),
+                  programs("IDSP",const IDSP()),
+                  programs("Covid 19",const Covid()),
                 ],
               ),
             ),
@@ -158,12 +188,12 @@ class _HomeState extends State<Home> {
     ));
   }
 
-  Padding programs(String text) {
+  Padding programs(String text,Widget page) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: GestureDetector(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>vpage1()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>page));
         },
 
         child: Container(
