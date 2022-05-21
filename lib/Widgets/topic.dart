@@ -16,14 +16,14 @@ Row topic(String heading,String subheading) {
               children: [
                 Text(
                   heading,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
                       color: purple),
                 ),
                 Text(
                   subheading,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w400,
                       color: purple),

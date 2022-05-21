@@ -40,7 +40,7 @@ class _incDecState extends State<incDec> {
                 color: Colors.transparent,
                 child: Text(
                   widget.name,
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: black),
@@ -80,7 +80,7 @@ class _incDecState extends State<incDec> {
                         color: Colors.transparent,
                         child: Text(
                           widget.count,
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: black),

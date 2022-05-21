@@ -61,14 +61,14 @@ class _vPage3State extends State<vPage3> {
                                     children: [
                                       Text(
                                         "Husband name",
-                                        style: GoogleFonts.inter(
+                                        style: GoogleFonts.poppins(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                             color: black),
                                       ),
                                       Text(
                                         "32 years",
-                                        style: GoogleFonts.inter(
+                                        style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
                                             color: txt),
@@ -104,14 +104,14 @@ class _vPage3State extends State<vPage3> {
                                     children: [
                                       Text(
                                         "Husband name",
-                                        style: GoogleFonts.inter(
+                                        style: GoogleFonts.poppins(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                             color: black),
                                       ),
                                       Text(
                                         "32 years",
-                                        style: GoogleFonts.inter(
+                                        style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
                                             color: txt),
@@ -129,14 +129,14 @@ class _vPage3State extends State<vPage3> {
                           children: [
                             Text(
                               "Address",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.poppins(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
                                   color: black),
                             ),
                             Text(
                               "Plot No. 00, Street Name, Area Name,City, State - Pincode",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: txt),
@@ -257,7 +257,7 @@ class _vPage3State extends State<vPage3> {
               padding: const EdgeInsets.only(top: 16),
               child: Text(
                 "Details of Living Children",
-                style: GoogleFonts.inter(
+                style: GoogleFonts.poppins(
                     fontSize: 16, fontWeight: FontWeight.w600, color: black),
               ),
             ),
@@ -271,7 +271,7 @@ class _vPage3State extends State<vPage3> {
                         padding: const EdgeInsets.only(top: 16),
                         child: Text(
                           "Details of First Child",
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: black),
@@ -289,7 +289,7 @@ class _vPage3State extends State<vPage3> {
                             padding: const EdgeInsets.only(top: 16),
                             child: Text(
                               "Name",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: black),
@@ -312,7 +312,7 @@ class _vPage3State extends State<vPage3> {
                                 border: InputBorder.none,
                               ),
                               style:
-                                  GoogleFonts.inter(fontSize: 14, color: black),
+                                  GoogleFonts.poppins(fontSize: 14, color: black),
                             ),
                           ),
                         ),
@@ -329,7 +329,7 @@ class _vPage3State extends State<vPage3> {
                             padding: const EdgeInsets.only(top: 16),
                             child: Text(
                               "Date of Birth",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: black),
@@ -352,7 +352,7 @@ class _vPage3State extends State<vPage3> {
                                 border: InputBorder.none,
                               ),
                               style:
-                                  GoogleFonts.inter(fontSize: 14, color: black),
+                                  GoogleFonts.poppins(fontSize: 14, color: black),
                             ),
                           ),
                         ),
@@ -369,7 +369,7 @@ class _vPage3State extends State<vPage3> {
                             padding: const EdgeInsets.only(top: 16),
                             child: Text(
                               "Sex",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: black),
@@ -388,13 +388,13 @@ class _vPage3State extends State<vPage3> {
                               onChanged: (val) {},
                               decoration: InputDecoration(
                                 hintText: "Male or Female",
-                                hintStyle: GoogleFonts.inter(fontSize: 14, color: txt),
+                                hintStyle: GoogleFonts.poppins(fontSize: 14, color: txt),
                                 contentPadding:
                                     EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
                               ),
                               style:
-                                  GoogleFonts.inter(fontSize: 14, color: black),
+                                  GoogleFonts.poppins(fontSize: 14, color: black),
                             ),
                           ),
                         ),

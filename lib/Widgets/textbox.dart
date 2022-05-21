@@ -15,7 +15,7 @@ Padding textBox(String txt) {
         color: heading,
       ),
       child: Text(txt,
-          style: GoogleFonts.inter(fontSize: 14, color: white)),
+          style: GoogleFonts.poppins(fontSize: 14, color: white)),
     ),
   );
 }

@@ -35,7 +35,7 @@ class _RadioButtonState extends State<RadioButton> {
                       textAlign: TextAlign.start,
                       softWrap: true,
                       maxLines: 2,
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: _value != i ? hTxt : white,
                       )),

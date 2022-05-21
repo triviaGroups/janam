@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:janam/RMNCH/ANC.dart';
+import 'package:janam/RMNCH/Delivery.dart';
 import 'package:janam/RMNCH/pregnancy.dart';
 import 'package:janam/Village%20Survey/page2.dart';
 import 'package:janam/Village%20Survey/page3.dart';
@@ -76,7 +78,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return const Pregnancy();
+                        return const Delivery();
                       }
 
                       return Scaffold(

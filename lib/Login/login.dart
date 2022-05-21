@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
                   Container(
                       child: Text(
                     "Welcome Onboard",
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
                       color: purple,
@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
                       margin: EdgeInsets.only(top: 20),
                       child: Text(
                         "Let’s help you meet up your tasks.",
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
                           color: purple,
@@ -59,7 +59,7 @@ class _LoginState extends State<Login> {
                       child: Text(
                         "Enter your phone number and PIN to continue",
                         textAlign: TextAlign.start,
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
@@ -75,13 +75,13 @@ class _LoginState extends State<Login> {
                 height: 50,
                 width: double.infinity,
                 child: TextField(
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w400, fontSize: 14, color: purple),
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Phone Number",
-                      hintStyle: GoogleFonts.inter(
+                      hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                           color: purple)),
@@ -99,13 +99,13 @@ class _LoginState extends State<Login> {
                 height: 50,
                 width: double.infinity,
                 child: TextField(
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w400, fontSize: 14, color: purple),
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "PIN",
-                      hintStyle: GoogleFonts.inter(
+                      hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                           color: purple)),
@@ -132,7 +132,7 @@ class _LoginState extends State<Login> {
                       ),
                       Text(
                         "Get started",
-                        style: GoogleFonts.inter(
+                        style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 18),

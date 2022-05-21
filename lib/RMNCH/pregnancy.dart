@@ -39,14 +39,14 @@ class _PregnancyState extends State<Pregnancy> {
                       children: [
                         Text(
                           "Harine",
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.poppins(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                         Text(
                           ", Female, 23 years",
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
                               color: txt),
@@ -61,14 +61,14 @@ class _PregnancyState extends State<Pregnancy> {
                           children: [
                             Text(
                               "\nAddress",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                   color: black),
                             ),
                             Text(
                               "Plot No. 00, Street Name, Area Name,City, State - Pincode",
-                              style: GoogleFonts.inter(
+                              style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: txt),
@@ -110,7 +110,7 @@ class _PregnancyState extends State<Pregnancy> {
                                 EdgeInsets.only(left: 10, right: 10),
                             border: InputBorder.none,
                           ),
-                          style: GoogleFonts.inter(fontSize: 14, color: black),
+                          style: GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
@@ -148,7 +148,7 @@ class _PregnancyState extends State<Pregnancy> {
                                 EdgeInsets.only(left: 10, right: 10),
                             border: InputBorder.none,
                           ),
-                          style: GoogleFonts.inter(fontSize: 14, color: black),
+                          style: GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),

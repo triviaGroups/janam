@@ -28,7 +28,7 @@ Padding DropDown(String value,String select) {
             isExpanded: true,
             hint: Text(
               select,
-              style: GoogleFonts.inter(fontSize: 14,color: white),
+              style: GoogleFonts.poppins(fontSize: 14,color: white),
             ),
             icon: const Icon(
               Icons.arrow_drop_down,
@@ -50,7 +50,7 @@ Padding DropDown(String value,String select) {
                   value: item,
                   child: Text(
                     item,
-                    style: GoogleFonts.inter(
+                    style: GoogleFonts.poppins(
                       fontSize: 14,
                       color: black,
                       fontWeight: FontWeight.w400,

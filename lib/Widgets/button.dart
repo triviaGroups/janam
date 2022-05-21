@@ -14,7 +14,7 @@ Container Button(String value) {
     ),
     child: Text(
       value,
-      style: GoogleFonts.inter(
+      style: GoogleFonts.poppins(
           fontSize: 16,
           fontWeight: FontWeight.w500,
           color: white),

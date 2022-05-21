@@ -26,10 +26,10 @@ Padding Search() {
               errorMaxLines: 1,
               prefixIcon: Icon(Icons.search,size: 30,),
               contentPadding: EdgeInsets.only(left: 20,right: 10),
-              hintStyle: GoogleFonts.inter(fontSize: 14,color: black),
+              hintStyle: GoogleFonts.poppins(fontSize: 14,color: black),
               border: InputBorder.none
           ),
-          style: GoogleFonts.inter(fontSize: 14,color: black),
+          style: GoogleFonts.poppins(fontSize: 14,color: black),
         ),
       ),
     ),
