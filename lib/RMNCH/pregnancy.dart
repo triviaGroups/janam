@@ -79,7 +79,7 @@ class _PregnancyState extends State<Pregnancy> {
                         )),
                   ],
                 ),
-                height: 140,
+                height: 150,
                 color: colors[(a++) % 4]),
             Cont(
                 child: Row(

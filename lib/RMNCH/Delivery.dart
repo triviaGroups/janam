@@ -80,7 +80,7 @@ class _DeliveryState extends State<Delivery> {
                         )),
                   ],
                 ),
-                height: 140,
+                height: 150,
                 color: colors[(a++) % 4]),
             Cont(
                 child: Row(

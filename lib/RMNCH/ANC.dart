@@ -80,7 +80,7 @@ class _ANCState extends State<ANC> {
                         )),
                   ],
                 ),
-                height: 140,
+                height: 150,
                 color: colors[(a++) % 4]),
             Cont(
                 child: Row(
