@@ -15,10 +15,10 @@ class _ContState extends State<Cont> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 16),
       child: Container(
         alignment: Alignment.topCenter,
-        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           color: widget.color,
