@@ -5,8 +5,6 @@ import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
-import 'package:janam/provider/colorSelection.dart';
-import 'package:provider/provider.dart';
 
 class vPage2 extends StatefulWidget {
   const vPage2({Key? key}) : super(key: key);

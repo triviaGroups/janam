@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:janam/constants/color_constants.dart';
 
 class Cont extends StatefulWidget {
   final Widget child;

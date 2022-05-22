@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Village%20Survey/page2.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/dropdown.dart';
