@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../List/villageList.dart';
 import '../Widgets/VillagenameList.dart';
 
 class nurseDetails extends StatefulWidget {
@@ -14,6 +15,14 @@ class nurseDetails extends StatefulWidget {
 
 class _nurseDetailsState extends State<nurseDetails> {
 
+  List<villageDetailsDataList> vil = <villageDetailsDataList>[];
+  static int village_count = 3;
+
+  @override
+  void initState() {
+    vil = villageDetailsList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,8 +198,11 @@ class _nurseDetailsState extends State<nurseDetails> {
                 ),
                 Container(
                   height: 85,
+                  // constraints: BoxConstraints(
+                  //   maxHeight: double.infinity,
+                  // ),
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(8),
                         bottomRight: Radius.circular(8)),
@@ -213,23 +225,32 @@ class _nurseDetailsState extends State<nurseDetails> {
                       Expanded(
                           flex: 3,
                           child: Container(
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            child: Column(
-                              children: [
-                                VillageNameList("Village1 - name"),
-                                VillageNameList("Village2 - name")
-                              ],
-                            ),
+                            alignment: Alignment.topCenter,
+                            margin: EdgeInsets.only(top: 15),
+                            child: ListView.builder(
+                                itemCount: vil.length,
+                                padding: EdgeInsets.only(bottom: 1),
+                                physics: ClampingScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return VillageNameList(
+                                      vil[index].villageName);
+                                }),
                           )),
                       Expanded(
                           child: Container(
-                        alignment: Alignment.bottomCenter,
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.black,
-                          size: 30,
-                        ),
-                      )),
+                              alignment: Alignment.bottomCenter,
+                              child: GestureDetector(
+                                onTap: (){
+                                  village_count++;
+                                  vil.add(villageDetailsDataList(villageName: "Village $village_count - Name"));
+                                  
+                                },
+                                child: const Icon(
+                                  Icons.add,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
+                              ))),
                     ],
                   ),
                 )
@@ -240,6 +261,4 @@ class _nurseDetailsState extends State<nurseDetails> {
       ),
     );
   }
-
-
 }
