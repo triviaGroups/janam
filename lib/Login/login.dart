@@ -4,7 +4,6 @@ import 'package:janam/Login/nurseDetails.dart';
 import 'package:janam/constants/color_constants.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
