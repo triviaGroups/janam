@@ -7,7 +7,7 @@ class awcDetailsDataList
   awcDetailsDataList({required this.name});
 }
 
-List<awcDetailsDataList> ashaDetailsList()
+List<awcDetailsDataList> awcDetailsList()
 {
   // ignore: deprecated_member_use
   List<awcDetailsDataList> awc = <awcDetailsDataList>[];
