@@ -3,8 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../List/ashaList.dart';
 import '../List/villageList.dart';
-import '../Widgets/VillagenameList.dart';
+import '../Widgets/nameTextfield.dart';
+import '../Widgets/subVillageBoxShape.dart';
+import '../Widgets/villageBoxShape.dart';
 
 class nurseDetails extends StatefulWidget {
   const nurseDetails({super.key});
@@ -14,13 +17,16 @@ class nurseDetails extends StatefulWidget {
 }
 
 class _nurseDetailsState extends State<nurseDetails> {
-
   List<villageDetailsDataList> vil = <villageDetailsDataList>[];
-  static int village_count = 3;
+  List<ashaDetailsDataList> ash = <ashaDetailsDataList>[];
+
+  static int villageCount = 3;
+  static int ashaCount = 3;
 
   @override
   void initState() {
     vil = villageDetailsList();
+    ash = ashaDetailsList();
     super.initState();
   }
 
@@ -159,9 +165,29 @@ class _nurseDetailsState extends State<nurseDetails> {
                 ],
               ),
             ),
+
+            villageBoxShape(
+                context, purple, "List of Villages", "Village Name", vil.length,
+                () {
+              villageCount++;
+              String temp = "Village $villageCount -Name";
+              vil.add(villageDetailsDataList(name: temp));
+            }, vil),
+
+            subVillageBoxShape(context, orange, "Village1 - Details",
+                "Village name", "Population"),
+
+            villageBoxShape(
+                context, purple, "List of ASHA's", "ASHA Name", ash.length,
+                    () {
+                  ashaCount++;
+                  String temp = "ASHA $ashaCount -Name";
+                  ash.add(ashaDetailsDataList(name: temp));
+                }, ash),
+
             Container(
               margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              height: 126,
+              height: 183,
               width: double.infinity,
               decoration: BoxDecoration(
                 border: Border.all(width: 0.1, color: Colors.black38),
@@ -182,13 +208,13 @@ class _nurseDetailsState extends State<nurseDetails> {
                   width: MediaQuery.of(context).size.width,
                   height: 35,
                   decoration: BoxDecoration(
-                    color: purple,
+                    color: orange,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(left: 16.0),
                     child: Text(
-                      "List Of Villages",
+                      "ASHA 1 -Details",
                       style: GoogleFonts.inter(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
@@ -197,7 +223,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                   ),
                 ),
                 Container(
-                  height: 85,
+                  height: 140,
                   // constraints: BoxConstraints(
                   //   maxHeight: double.infinity,
                   // ),
@@ -207,55 +233,94 @@ class _nurseDetailsState extends State<nurseDetails> {
                         bottomLeft: Radius.circular(8),
                         bottomRight: Radius.circular(8)),
                   ),
-                  child: Row(
+                  child: Column(
                     children: [
                       Expanded(
-                          flex: 3,
-                          child: Container(
-                            margin: EdgeInsets.only(top: 15),
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "Village Name",
-                              style: GoogleFonts.inter(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  color: purple),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 12,horizontal: 32),
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    "ASHA name",
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: purple),
+                                  ),
+                                )),
+                            Expanded(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 16),
+                                alignment: Alignment.center,
+                                child: NameTextField("Enter Name"),
+                              ),
                             ),
-                          )),
+                          ],
+                        ),),
                       Expanded(
-                          flex: 3,
-                          child: Container(
-                            alignment: Alignment.topCenter,
-                            margin: EdgeInsets.only(top: 15),
-                            child: ListView.builder(
-                                itemCount: vil.length,
-                                padding: EdgeInsets.only(bottom: 1),
-                                physics: ClampingScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  return VillageNameList(
-                                      vil[index].villageName);
-                                }),
-                          )),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 32,vertical: 12),
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    "Mobile no",
+                                    textAlign: TextAlign.left,
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: purple),
+                                  ),
+                                )),
+                            Expanded(
+                              child:Container(
+                                margin: EdgeInsets.only(top: 16),
+                                alignment: Alignment.topCenter,
+                                child: NameTextField("99445*****"),
+                              ),
+                            ),
+                          ],
+                        ),),
                       Expanded(
-                          child: Container(
-                              alignment: Alignment.bottomCenter,
-                              child: GestureDetector(
-                                onTap: (){
-                                  village_count++;
-                                  vil.add(villageDetailsDataList(villageName: "Village $village_count - Name"));
-                                  
-                                },
-                                child: const Icon(
-                                  Icons.add,
-                                  color: Colors.black,
-                                  size: 30,
-                                ),
-                              ))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 32,vertical: 12),
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    "Village name",
+                                    textAlign: TextAlign.left,
+                                    style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: purple),
+                                  ),
+                                )),
+                            Expanded(
+                              child:Container(
+                                margin: EdgeInsets.only(top: 16),
+                                alignment: Alignment.topCenter,
+                                child: NameTextField("Village Name"),
+                              ),
+                            ),
+                          ],
+                        ),),
                     ],
                   ),
                 )
               ]),
-            )
+            ),
+
           ],
         ),
       ),

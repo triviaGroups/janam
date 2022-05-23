@@ -9,6 +9,8 @@ import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/colorSelection.dart';
 import 'package:provider/provider.dart';
 
+import 'Login/login.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -76,7 +78,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return const Pregnancy();
+                        return Login();
                       }
 
                       return Scaffold(

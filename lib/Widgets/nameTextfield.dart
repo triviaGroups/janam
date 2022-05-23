@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Padding VillageNameList(String villageName) {
+Padding NameTextField(String villageName) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 0.5, vertical: 2.5),
     child: Container(
