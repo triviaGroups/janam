@@ -47,38 +47,40 @@ class _CheckBoxContState extends State<CheckBoxCont> {
                 child: ListView.builder(
                   itemCount: widget.item.length,
                     itemBuilder: ((context, index) {
-                  return Row(
-                    children: [
-                      Checkbox(
-                        checkColor: white,
-                        activeColor:hTxt,
-                        value: status[index],
-                        onChanged: (value) {
-                          setState(() {
-                            status[index] = value!;
-                          });
-                        },
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: white,
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: white,
+                    ),
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          checkColor: white,
+                          activeColor:hTxt,
+                          value: status[index],
+                          onChanged: (value) {
+                            setState(() {
+                              status[index] = value!;
+                            });
+                          },
                         ),
-                        width:150,
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 16),
-                        child: Text(widget.item[index],
-                            textAlign: TextAlign.start,
-                            softWrap: true,
-                            maxLines: 2,
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              color: hTxt,
-                            )),
-                      ),
-                    ],
+                        Container(
+                          width:150,
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
+                          child: Text(widget.item[index],
+                              textAlign: TextAlign.start,
+                              softWrap: true,
+                              maxLines: 2,
+                              style: GoogleFonts.inter(
+                                fontSize: 14,
+                                color: hTxt,
+                              )),
+                        ),
+                      ],
+                    ),
                   );
                 }))),
           ],

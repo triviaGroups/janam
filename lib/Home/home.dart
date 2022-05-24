@@ -19,6 +19,8 @@ import 'package:janam/RMNCH/postnatal.dart';
 import 'package:janam/RMNCH/pregnancy.dart';
 import 'package:janam/Village%20Survey/page1.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -45,6 +47,14 @@ class _HomeState extends State<Home> {
     Delivery(),
     CloseCase()
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -78,7 +88,7 @@ class _HomeState extends State<Home> {
                                   color: orange),
                             ),
                             Text(
-                              "Revathy!",
+                              context.read<Details>().name.toUpperCase(),
                               style: GoogleFonts.inter(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w600,

@@ -2,14 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:janam/RMNCH/pregnancy.dart';
-import 'package:janam/Village%20Survey/page2.dart';
-import 'package:janam/Village%20Survey/page3.dart';
-import 'package:janam/constants/color_constants.dart';
-import 'package:janam/provider/colorSelection.dart';
-import 'package:provider/provider.dart';
 
-import 'Login/login.dart';
+import 'package:janam/Home/home.dart';
+import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<colorSelect>.value(value: (colorSelect())),
+        ChangeNotifierProvider<Details>.value(value: (Details())),
       ],
       child: const MaterialApp(
         home: FireBaseInitialization(),
@@ -78,7 +75,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return Login();
+                        return const Home();
                       }
 
                       return Scaffold(
