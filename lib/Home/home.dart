@@ -13,6 +13,7 @@ import 'package:janam/Other%20pages/stockReg.dart';
 import 'package:janam/Other%20pages/temperatureChart.dart';
 import 'package:janam/RMNCH/ANC.dart';
 import 'package:janam/RMNCH/Delivery.dart';
+import 'package:janam/RMNCH/childCare.dart';
 import 'package:janam/RMNCH/closeCase.dart';
 import 'package:janam/RMNCH/eligibleCouple.dart';
 import 'package:janam/RMNCH/postnatal.dart';
@@ -43,8 +44,8 @@ class _HomeState extends State<Home> {
     EligibleCouple(),
     Pregnancy(),
     ANC(),
-    PostnatalCare(),
     Delivery(),
+    ChildCare(),
     CloseCase()
   ];
 
