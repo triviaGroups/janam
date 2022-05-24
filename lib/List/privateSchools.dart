@@ -15,8 +15,5 @@ List<privateSchoolsDetailsDataList> pvtDetailsList()
   privateSchoolsDetailsDataList  pw = new privateSchoolsDetailsDataList(name: "School1 - Name");
   pvs.add(pw);
 
-  pw = new privateSchoolsDetailsDataList(name: "School2 - Name");
-  pvs.add(pw);
-
   return pvs;
 }

@@ -15,8 +15,5 @@ List<govtSchoolsDetailsDataList> govtDetailsList()
   govtSchoolsDetailsDataList  gw = new govtSchoolsDetailsDataList(name: "AWC1 - Name");
   gwc.add(gw);
 
-  gw = new govtSchoolsDetailsDataList(name: "AWC2 - Name");
-  gwc.add(gw);
-
   return gwc;
 }

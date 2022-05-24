@@ -15,8 +15,5 @@ List<awcDetailsDataList> awcDetailsList()
   awcDetailsDataList  aw = new awcDetailsDataList(name: "AWC1 - Name");
   awc.add(aw);
 
-  aw = new awcDetailsDataList(name: "AWC2 - Name");
-  awc.add(aw);
-
   return awc;
 }

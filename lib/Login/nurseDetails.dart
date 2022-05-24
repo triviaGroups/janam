@@ -14,7 +14,7 @@ import '../Widgets/subBoxShape.dart';
 import '../Widgets/nameTextfield.dart';
 import '../Widgets/subBoxShape2.dart';
 import '../Widgets/subVillageBoxShape.dart';
-import '../Widgets/plusBoxshape.dart';
+import '../Widgets/ListOfVillage.dart';
 
 class nurseDetails extends StatefulWidget {
   const nurseDetails({super.key});
@@ -33,10 +33,7 @@ class _nurseDetailsState extends State<nurseDetails> {
   List<privateSchoolsDetailsDataList> pwc = <privateSchoolsDetailsDataList>[];
 
   static int villageCount = 1;
-  static int ashaCount = 3;
-  static int awcCount = 3;
-  static int govtCount = 3;
-  static int pvtCount = 3;
+
 
   @override
   void initState() {
@@ -227,63 +224,65 @@ class _nurseDetailsState extends State<nurseDetails> {
                     ),
                   ),
                 ),
-                Container(
-                  height: 85,
-                  // constraints: BoxConstraints(
-                  //   maxHeight: double.infinity,
-                  // ),
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(8),
-                        bottomRight: Radius.circular(8)),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          flex: 3,
-                          child: Container(
-                            margin: EdgeInsets.only(top: 15),
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "Village Name",
-                              style: GoogleFonts.inter(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  color: purple),
-                            ),
-                          )),
-                      Expanded(
-                          flex: 3,
-                          child: Container(
-                            alignment: Alignment.topCenter,
-                            margin: EdgeInsets.only(top: 15),
-                            child: ListView.builder(
-                                itemCount: vil.length,
-                                shrinkWrap: true,
-                                padding: EdgeInsets.only(bottom: 1),
-                                physics: ClampingScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  return NameTextField(vil[index].name);
-                                }),
-                          )),
-                      Expanded(
-                          child: Container(
-                              alignment: Alignment.bottomCenter,
-                              child: GestureDetector(
-                                onTap: () {
-                                  villageCount++;
-                                  String temp = "Village $villageCount -Name";
-                                  vil.add(villageDetailsDataList(name: temp));
-                                  vilWid.add(ListOfVillage(villageNumber: 'Village$villageCount',));
-                                },
-                                child: const Icon(
-                                  Icons.add,
-                                  color: Colors.black,
-                                  size: 30,
-                                ),
-                              ))),
-                    ],
+                Expanded(
+                  child: Container(
+                   
+                    // constraints: BoxConstraints(
+                    //   maxHeight: double.infinity,
+                    // ),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8)),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            flex: 3,
+                            child: Container(
+                              margin: EdgeInsets.only(top: 15),
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                "Village Name",
+                                style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: purple),
+                              ),
+                            )),
+                        Expanded(
+                            flex: 3,
+                            child: Container(
+                              alignment: Alignment.topCenter,
+                              margin: EdgeInsets.only(top: 15),
+                              child: ListView.builder(
+                                  itemCount: vil.length,
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.only(bottom: 1),
+                                  physics: ClampingScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return NameTextField(vil[index].name);
+                                  }),
+                            )),
+                        Expanded(
+                            child: Container(
+                                alignment: Alignment.bottomCenter,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    villageCount++;
+                                    String temp = "Village $villageCount -Name";
+                                    vil.add(villageDetailsDataList(name: temp));
+                                    vilWid.add(ListOfVillage(villageNumber: 'Village$villageCount',));
+                                  },
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.black,
+                                    size: 30,
+                                  ),
+                                ))),
+                      ],
+                    ),
                   ),
                 )
               ]),
@@ -298,25 +297,25 @@ class _nurseDetailsState extends State<nurseDetails> {
                   return ListOfVillage(villageNumber: "Village$villageCount",);
                 }),
 
-            // Container(
-            //   width: double.infinity,
-            //   height: 45,
-            //   alignment: Alignment.center,
-            //   child: Container(
-            //     height: 40,
-            //     width: 120,
-            //     color: purple,
-            //     alignment: Alignment.center,
-            //     child: Text(
-            //       "Save",
-            //       style: GoogleFonts.inter(
-            //         color: Colors.white,
-            //         fontSize: 14,
-            //         fontWeight: FontWeight.w500,
-            //       ),
-            //     ),
-            //   ),
-            // )
+            Container(
+              width: double.infinity,
+              height: 45,
+              alignment: Alignment.center,
+              child: Container(
+                height: 40,
+                width: 120,
+                color: purple,
+                alignment: Alignment.center,
+                child: Text(
+                  "Save",
+                  style: GoogleFonts.inter(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
