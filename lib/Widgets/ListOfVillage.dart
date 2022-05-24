@@ -497,6 +497,10 @@ class _ListOfVillageState extends State<ListOfVillage> {
             itemBuilder: (context, index) {
               return pvtBoxShape(pvtNumber: "Private School$pvtCount");
             }),
+
+        singleBoxShape(context, "ICE Lined refrigerators", "No. of. ILR's"),
+
+        singleBoxShape(context, "Freezer", "No. of. freezers"),
       ],
     );
   }

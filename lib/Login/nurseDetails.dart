@@ -25,12 +25,12 @@ class nurseDetails extends StatefulWidget {
 
 class _nurseDetailsState extends State<nurseDetails> {
 
-  List<ListOfVillage> vilWid = <ListOfVillage>[];
-  List<villageDetailsDataList> vil = <villageDetailsDataList>[];
-  List<ashaDetailsDataList> ash = <ashaDetailsDataList>[];
-  List<awcDetailsDataList> awc = <awcDetailsDataList>[];
-  List<govtSchoolsDetailsDataList> gwc = <govtSchoolsDetailsDataList>[];
-  List<privateSchoolsDetailsDataList> pwc = <privateSchoolsDetailsDataList>[];
+  List<ListOfVillage> vilWid = villageWidget();
+  List<villageDetailsDataList> vil = villageDetailsList();
+  List<ashaDetailsDataList> ash = ashaDetailsList();
+  List<awcDetailsDataList> awc = awcDetailsList();
+  List<govtSchoolsDetailsDataList> gwc = govtDetailsList();
+  List<privateSchoolsDetailsDataList> pwc = pvtDetailsList();
 
   static int villageCount = 1;
 
