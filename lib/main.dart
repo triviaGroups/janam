@@ -10,6 +10,8 @@ import 'package:janam/provider/detailsFetch.dart';
 import 'package:janam/provider/nurseProvider.dart';
 import 'package:provider/provider.dart';
 
+import 'Login/login.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -80,7 +82,6 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
                           ConnectionState.active) {
                         return Login();
                       }
-
                       return Scaffold(
                         body: Center(
                           child: Text(
