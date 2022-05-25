@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/List/awcList.dart';
 import 'package:janam/List/govtSchhols.dart';
 import 'package:janam/List/privateSchools.dart';
 import 'package:janam/List/villageWidgetList.dart';
+import 'package:janam/Widgets/button.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:janam/provider/nurseProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../List/ashaList.dart';
 import '../List/villageList.dart';
-import '../Widgets/singleBoxShape.dart';
-import '../Widgets/subBoxShape.dart';
-import '../Widgets/nameTextfield.dart';
-import '../Widgets/subBoxShape2.dart';
-import '../Widgets/subVillageBoxShape.dart';
 import '../Widgets/ListOfVillage.dart';
 
 class nurseDetails extends StatefulWidget {
@@ -38,15 +37,16 @@ class _nurseDetailsState extends State<nurseDetails> {
   @override
   void initState() {
 
-    vilWid = villageWidget();
-    vil = villageDetailsList();
-    ash = ashaDetailsList();
-    awc = awcDetailsList();
-    gwc = govtDetailsList();
-    pwc = pvtDetailsList();
+    // vilWid = villageWidget();
+    // vil = villageDetailsList();
+    // ash = ashaDetailsList();
+    // awc = awcDetailsList();
+    // gwc = govtDetailsList();
+    // pwc = pvtDetailsList();
+
     super.initState();
   }
-
+var tecc = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -262,7 +262,34 @@ class _nurseDetailsState extends State<nurseDetails> {
                                   padding: EdgeInsets.only(bottom: 1),
                                   physics: ClampingScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    return NameTextField(vil[index].name);
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 0.5, vertical: 2.5),
+                                      child: Container(
+                                        //color: Colors.red,
+                                        alignment: Alignment.center,
+                                        height: 25,
+                                        width: 116,
+                                        child: TextFormField(
+                                          style: GoogleFonts.inter(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: vil[index].name,
+                                              hintStyle: GoogleFonts.inter(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                              )),
+                                          onChanged: (val){
+
+                                          },
+                                          onEditingComplete: (){
+
+                                          },
+                                        ),
+                                      ),
+                                    );
                                   }),
                             )),
                         Expanded(
@@ -273,7 +300,12 @@ class _nurseDetailsState extends State<nurseDetails> {
                                     villageCount++;
                                     String temp = "Village $villageCount -Name";
                                     vil.add(villageDetailsDataList(name: temp));
-                                    vilWid.add(ListOfVillage(villageNumber: 'Village$villageCount',));
+                                    vilWid.add(ListOfVillage(
+                                      villageNumber: 'Village$villageCount',ind: villageCount-1,));
+                                    //Provider.of<NurseDetails>(context,listen: false).set_village_count(vil.length);
+                                    setState(() {
+
+                                    });
                                   },
                                   child: const Icon(
                                     Icons.add,
@@ -294,28 +326,17 @@ class _nurseDetailsState extends State<nurseDetails> {
                 padding: EdgeInsets.only(bottom: 1),
                 physics: ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return ListOfVillage(villageNumber: "Village$villageCount",);
+                  return ListOfVillage(villageNumber: "Village " + (index+1).toString(),ind: index,);
                 }),
 
-            Container(
-              width: double.infinity,
-              height: 45,
-              alignment: Alignment.center,
-              child: Container(
-                height: 40,
-                width: 120,
-                color: purple,
-                alignment: Alignment.center,
-                child: Text(
-                  "Save",
-                  style: GoogleFonts.inter(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            )
+            GestureDetector(
+              onTap: (){
+                Provider.of<NurseDetails>(context,listen: false).details();
+                print("I AM PRINT ====");
+                //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeSub()));
+              },
+              child: Button("Save"),
+            ),
           ],
         ),
       ),

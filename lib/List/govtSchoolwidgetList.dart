@@ -6,6 +6,6 @@ import '../Widgets/govtBoxShape.dart';
 
 List<govtBoxShape> gwcWidget(){
   List<govtBoxShape> gsv = <govtBoxShape>[];
-  gsv.add(govtBoxShape(govtNumber: "Goverment School 1"));
+  gsv.add(govtBoxShape(govtNumber: "Goverment School 1",index: 0,part: 0,));
   return gsv;
 }

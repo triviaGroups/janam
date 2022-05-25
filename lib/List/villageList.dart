@@ -16,8 +16,5 @@ List<villageDetailsDataList> villageDetailsList()
   villageDetailsDataList vl = new villageDetailsDataList(name: "Village1 - Name");
   vil.add(vl);
 
-  vl = new villageDetailsDataList(name: "Village2 - Name");
-  vil.add(vl);
-
   return vil;
 }

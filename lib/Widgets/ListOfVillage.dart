@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Widgets/govtBoxShape.dart';
 import 'package:janam/Widgets/pvtBoxShape.dart';
 import 'package:janam/Widgets/singleBoxShape.dart';
-import 'package:janam/Widgets/subBoxShape.dart';
-import 'package:janam/Widgets/subBoxShape2.dart';
 import 'package:janam/Widgets/subVillageBoxShape.dart';
+import 'package:janam/provider/nurseProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../List/ashaList.dart';
 import '../List/ashaWidgetList.dart';
@@ -15,18 +15,17 @@ import '../List/govtSchhols.dart';
 import '../List/govtSchoolwidgetList.dart';
 import '../List/privateSchools.dart';
 import '../List/pvtSchoolWidgetList.dart';
-import '../List/villageList.dart';
 import '../List/villageWidgetList.dart';
 import '../constants/color_constants.dart';
 import 'ashaBoxShape.dart';
 import 'awcBoxShape.dart';
-import 'nameTextfield.dart';
+
 
 class ListOfVillage extends StatefulWidget {
 
   final String villageNumber;
-
-  const ListOfVillage({super.key, required this.villageNumber});
+  final int ind;
+  const ListOfVillage({super.key, required this.villageNumber, required this.ind});
 
   @override
   State<ListOfVillage> createState() => _ListOfVillageState();
@@ -40,10 +39,10 @@ class _ListOfVillageState extends State<ListOfVillage> {
   List<govtBoxShape> gsv = gwcWidget();
   List<pvtBoxShape> psv = pvcWidget();
 
-  List<ashaDetailsDataList> ash = <ashaDetailsDataList>[];
-  List<awcDetailsDataList> awc = <awcDetailsDataList>[];
-  List<govtSchoolsDetailsDataList> gwc = <govtSchoolsDetailsDataList>[];
-  List<privateSchoolsDetailsDataList> pwc = <privateSchoolsDetailsDataList>[];
+  List<ashaDetailsDataList> ash = ashaDetailsList();
+  List<awcDetailsDataList> awc = awcDetailsList();
+  List<govtSchoolsDetailsDataList> gwc = govtDetailsList();
+  List<privateSchoolsDetailsDataList> pwc = pvtDetailsList();
 
   static int ashaCount = 1;
   static int awcCount = 1;
@@ -57,14 +56,20 @@ class _ListOfVillageState extends State<ListOfVillage> {
     awc = awcDetailsList();
     gwc = govtDetailsList();
     pwc = pvtDetailsList();
+
     super.initState();
   }
+  var tecn = new TextEditingController();
+  var tecm = new TextEditingController();
+  var tecc = new TextEditingController();
+  var tecp = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
-        subVillageBoxShape(context, orange, "${widget.villageNumber}-Details",
-            "Village name", "Population"),
+        subVillageBoxShape(clr: orange,topic: "${widget.villageNumber}-Details",string1:"Village name",string2: "Population",index:widget.ind, ),
 
         Container(
           margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
@@ -141,7 +146,34 @@ class _ListOfVillageState extends State<ListOfVillage> {
                             padding: EdgeInsets.only(bottom: 1),
                             physics: ClampingScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return NameTextField(ash[index].name);
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 0.5, vertical: 2.5),
+                                child: Container(
+                                  //color: Colors.red,
+                                  alignment: Alignment.center,
+                                  height: 25,
+                                  width: 116,
+                                  child: TextFormField(
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: ash[index].name,
+                                        hintStyle: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                    onChanged: (val){
+
+                                    },
+                                    onEditingComplete: (){
+
+                                    },
+                                  ),
+                                ),
+                              );
                             }),
                       )),
                   Expanded(
@@ -150,9 +182,13 @@ class _ListOfVillageState extends State<ListOfVillage> {
                           child: GestureDetector(
                             onTap: () {
                               ashaCount++;
-                              String temp = "ASHA $ashaCount -Details";
+                              String temp = "ASHA $ashaCount -Name";
                               ash.add(ashaDetailsDataList(name: temp));
-                              asv.add(ashaBoxShape(ashaNumber: "ASHA$ashaCount"));
+                              asv.add(ashaBoxShape(ashaNumber: "ASHA$ashaCount",index: ashaCount-1,part: widget.ind,));
+                              Provider.of<NurseDetails>(context,listen: false).set_asha_count(widget.ind,ash.length);
+                              setState(() {
+
+                              });
                             },
                             child: const Icon(
                               Icons.add,
@@ -171,7 +207,7 @@ class _ListOfVillageState extends State<ListOfVillage> {
             padding: EdgeInsets.only(bottom: 1),
             physics: ClampingScrollPhysics(),
             itemBuilder: (context, index) {
-              return ashaBoxShape(ashaNumber: "ASHA$ashaCount");
+              return ashaBoxShape(ashaNumber: "ASHA "+(index+1).toString(),index: index,part: widget.ind,);
             }),
 
         Container(
@@ -249,7 +285,34 @@ class _ListOfVillageState extends State<ListOfVillage> {
                             padding: EdgeInsets.only(bottom: 1),
                             physics: ClampingScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return NameTextField(awc[index].name);
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 0.5, vertical: 2.5),
+                                child: Container(
+                                  //color: Colors.red,
+                                  alignment: Alignment.center,
+                                  height: 25,
+                                  width: 116,
+                                  child: TextFormField(
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: awc[index].name,
+                                        hintStyle: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                    onChanged: (val){
+
+                                    },
+                                    onEditingComplete: (){
+
+                                    },
+                                  ),
+                                ),
+                              );
                             }),
                       )),
                   Expanded(
@@ -260,7 +323,11 @@ class _ListOfVillageState extends State<ListOfVillage> {
                               awcCount++;
                               String temp = "AWC $awcCount -Details";
                               awc.add(awcDetailsDataList(name: temp));
-                              awv.add(awcBoxShape(awcNumber: "AWC$awcCount"));
+                              awv.add(awcBoxShape(awcNumber: "AWC$awcCount",index: awcCount-1,part: widget.ind,));
+                              Provider.of<NurseDetails>(context,listen: false).set_awc_count(widget.ind,awc.length);
+                              setState(() {
+
+                              });
                             },
                             child: const Icon(
                               Icons.add,
@@ -279,7 +346,7 @@ class _ListOfVillageState extends State<ListOfVillage> {
             padding: EdgeInsets.only(bottom: 1),
             physics: ClampingScrollPhysics(),
             itemBuilder: (context, index) {
-              return awcBoxShape(awcNumber: "AWC$awcCount");
+              return awcBoxShape(awcNumber: "AWC "+(index+1).toString(),index: index,part: widget.ind,);
             }),
 
         Container(
@@ -357,7 +424,34 @@ class _ListOfVillageState extends State<ListOfVillage> {
                             padding: EdgeInsets.only(bottom: 1),
                             physics: ClampingScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return NameTextField(gwc[index].name);
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 0.5, vertical: 2.5),
+                                child: Container(
+                                  //color: Colors.red,
+                                  alignment: Alignment.center,
+                                  height: 25,
+                                  width: 116,
+                                  child: TextFormField(
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: gwc[index].name,
+                                        hintStyle: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                    onChanged: (val){
+
+                                    },
+                                    onEditingComplete: (){
+
+                                    },
+                                  ),
+                                ),
+                              );
                             }),
                       )),
                   Expanded(
@@ -368,7 +462,11 @@ class _ListOfVillageState extends State<ListOfVillage> {
                               govtCount++;
                               String temp = "Goverment School$govtCount -Details";
                               gwc.add(govtSchoolsDetailsDataList(name: temp));
-                              gsv.add(govtBoxShape(govtNumber: "Goverment School$govtCount - Details"));
+                              gsv.add(govtBoxShape(govtNumber: "Goverment School$govtCount - Details",index: govtCount-1,part: widget.ind,));
+                              Provider.of<NurseDetails>(context,listen: false).set_gvt_count(widget.ind,gwc.length);
+                              setState(() {
+
+                              });
                             },
                             child: const Icon(
                               Icons.add,
@@ -387,7 +485,7 @@ class _ListOfVillageState extends State<ListOfVillage> {
             padding: EdgeInsets.only(bottom: 1),
             physics: ClampingScrollPhysics(),
             itemBuilder: (context, index) {
-              return govtBoxShape(govtNumber: "Goverment School$govtCount - Details");
+              return govtBoxShape(govtNumber: "Goverment School "+(index+1).toString()+ "- Details",index: index,part: widget.ind,);
             }),
 
         Container(
@@ -465,7 +563,34 @@ class _ListOfVillageState extends State<ListOfVillage> {
                             padding: EdgeInsets.only(bottom: 1),
                             physics: ClampingScrollPhysics(),
                             itemBuilder: (context, index) {
-                              return NameTextField(pwc[index].name);
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 0.5, vertical: 2.5),
+                                child: Container(
+                                  //color: Colors.red,
+                                  alignment: Alignment.center,
+                                  height: 25,
+                                  width: 116,
+                                  child: TextFormField(
+                                    style: GoogleFonts.inter(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: pwc[index].name,
+                                        hintStyle: GoogleFonts.inter(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        )),
+                                    onChanged: (val){
+
+                                    },
+                                    onEditingComplete: (){
+
+                                    },
+                                  ),
+                                ),
+                              );
                             }),
                       )),
                   Expanded(
@@ -476,7 +601,11 @@ class _ListOfVillageState extends State<ListOfVillage> {
                               pvtCount++;
                               String temp = "Private School$pvtCount -Details";
                               pwc.add(privateSchoolsDetailsDataList(name: temp));
-                              psv.add(pvtBoxShape(pvtNumber: "Private School$pvtCount"));
+                              psv.add(pvtBoxShape(pvtNumber: "Private School$pvtCount",part: widget.ind,index: pvtCount-1,));
+                              Provider.of<NurseDetails>(context,listen: false).set_pvt_count(widget.ind,pwc.length);
+                              setState(() {
+
+                              });
                             },
                             child: const Icon(
                               Icons.add,
@@ -495,12 +624,15 @@ class _ListOfVillageState extends State<ListOfVillage> {
             padding: EdgeInsets.only(bottom: 1),
             physics: ClampingScrollPhysics(),
             itemBuilder: (context, index) {
-              return pvtBoxShape(pvtNumber: "Private School$pvtCount");
+              return pvtBoxShape(pvtNumber: "Private School "+(index+1).toString()+" - Details",index: index,part: widget.ind,);
             }),
 
-        singleBoxShape(context, "ICE Lined refrigerators", "No. of. ILR's"),
-
-        singleBoxShape(context, "Freezer", "No. of. freezers"),
+        singleBoxShape(title: "ICE Lined refrigerators", string1: "No. of. ILR's", fun: (val){
+          Provider.of<NurseDetails>(context,listen: false).add_ilr(val, widget.ind);
+        }),
+        singleBoxShape(title: "Freezer", string1: "No. of. freezers", fun: (val){
+          Provider.of<NurseDetails>(context,listen: false).add_freezer(val, widget.ind);
+        }),
       ],
     );
   }

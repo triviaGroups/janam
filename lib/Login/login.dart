@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Login/nurseDetails.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/nurseProvider.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
 

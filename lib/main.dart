@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:janam/Home/home.dart';
+import 'package:janam/Login/login.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
+import 'package:janam/provider/nurseProvider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Details>.value(value: (Details())),
+        ChangeNotifierProvider<NurseDetails>.value(value: (NurseDetails())),
       ],
       child: const MaterialApp(
         home: FireBaseInitialization(),
@@ -75,7 +78,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return const Home();
+                        return Login();
                       }
 
                       return Scaffold(

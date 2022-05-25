@@ -8,7 +8,7 @@ List<awcBoxShape> awcWidget(){
 
   List<awcBoxShape> awv = <awcBoxShape>[];
 
-  awv.add(awcBoxShape(awcNumber: "AWC1"));
+  awv.add(awcBoxShape(awcNumber: "AWC1",index: 0,part: 0,));
 
   return awv;
 }

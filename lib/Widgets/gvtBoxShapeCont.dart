@@ -6,29 +6,37 @@ import 'package:provider/provider.dart';
 import '../constants/color_constants.dart';
 
 
-class subBoxShapeT extends StatefulWidget {
+class gvtBoxShapeCont extends StatefulWidget {
   final String title;
   final String string1;
   final String string2;
   final String string3;
-  final String string4;
   final int index;
   final int part;
-  const subBoxShapeT({Key? key, required this.title, required this.string1, required this.string2, required this.string3, required this.string4, required this.index, required this.part}) : super(key: key);
+  const gvtBoxShapeCont(
+      {Key? key,
+      required this.title,
+      required this.string1,
+      required this.string2,
+      required this.string3,
+      required this.index,
+      required this.part})
+      : super(key: key);
 
   @override
-  _subBoxShapeTState createState() => _subBoxShapeTState();
+  _gvtBoxShapeContState createState() => _gvtBoxShapeContState();
 }
 
-class _subBoxShapeTState extends State<subBoxShapeT> {
-  var tecn = new TextEditingController();
-  var tecm = new TextEditingController();
+class _gvtBoxShapeContState extends State<gvtBoxShapeCont> {
+
   var tecc = new TextEditingController();
+  var tecm = new TextEditingController();
+  var tecn = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-      height: 235,
+      height: 183,
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(width: 0.1, color: Colors.black38),
@@ -64,7 +72,7 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
           ),
         ),
         Container(
-          height: 190,
+          height: 140,
           // constraints: BoxConstraints(
           //   maxHeight: double.infinity,
           // ),
@@ -83,16 +91,17 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
                   children: [
                     Expanded(
                         child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 12,horizontal: 32),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            widget.string1,
-                            style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: purple),
-                          ),
-                        )),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 12, horizontal: 32),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        widget.string1,
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: purple),
+                      ),
+                    )),
                     Expanded(
                       child: Container(
                         margin: EdgeInsets.only(top: 16),
@@ -128,7 +137,8 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
                       ),
                     ),
                   ],
-                ),),
+                ),
+              ),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -136,19 +146,20 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
                   children: [
                     Expanded(
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 32,vertical: 12),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            widget.string2,
-                            textAlign: TextAlign.left,
-                            style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: purple),
-                          ),
-                        )),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        widget.string2,
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: purple),
+                      ),
+                    )),
                     Expanded(
-                      child:Container(
+                      child: Container(
                         margin: EdgeInsets.only(top: 16),
                         alignment: Alignment.topCenter,
                         child: Padding(
@@ -182,7 +193,8 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
                       ),
                     ),
                   ],
-                ),),
+                ),
+              ),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -190,19 +202,20 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
                   children: [
                     Expanded(
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 32,vertical: 12),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            widget.string3,
-                            textAlign: TextAlign.left,
-                            style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: purple),
-                          ),
-                        )),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        widget.string3,
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: purple),
+                      ),
+                    )),
                     Expanded(
-                      child:Container(
+                      child: Container(
                         margin: EdgeInsets.only(top: 16),
                         alignment: Alignment.topCenter,
                         child: Padding(
@@ -219,7 +232,7 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
                               ),
                               decoration: InputDecoration(
                                   border: InputBorder.none,
-                                  hintText: "No. of children",
+                                  hintText: "No. of childreh",
                                   hintStyle: GoogleFonts.inter(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -236,34 +249,8 @@ class _subBoxShapeTState extends State<subBoxShapeT> {
                       ),
                     ),
                   ],
-                ),),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 32,vertical: 12),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            widget.string4,
-                            textAlign: TextAlign.left,
-                            style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: purple),
-                          ),
-                        )),
-                    Expanded(
-                      child:Container(
-                        margin: EdgeInsets.only(top: 16),
-                        alignment: Alignment.topCenter,
-                        //child: NameTextField("Village Name"),
-                      ),
-                    ),
-                  ],
-                ),),
+                ),
+              ),
             ],
           ),
         )

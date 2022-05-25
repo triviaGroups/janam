@@ -6,6 +6,6 @@ import '../Widgets/pvtBoxShape.dart';
 
 List<pvtBoxShape> pvcWidget(){
   List<pvtBoxShape> psv = <pvtBoxShape>[];
-  psv.add(pvtBoxShape(pvtNumber: "Private School 1"));
+  psv.add(pvtBoxShape(pvtNumber: "Private School 1",index: 0,part: 0,));
   return psv;
 }

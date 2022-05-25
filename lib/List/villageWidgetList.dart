@@ -6,7 +6,7 @@ List<ListOfVillage> villageWidget(){
 
   List<ListOfVillage> lsv = <ListOfVillage>[];
 
-  lsv.add(ListOfVillage(villageNumber: "Village1",));
+  lsv.add(ListOfVillage(villageNumber: "Village1",ind: 0,));
 
   return lsv;
 }
