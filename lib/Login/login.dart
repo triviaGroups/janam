@@ -133,15 +133,16 @@ class _LoginState extends State<Login> {
             GestureDetector(
               onTap: () {
                 //_verifyPhone();
-                if(_number.text.length == 10)
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Loading(phone: _number.text)));
-                  }else
-                    {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar( backgroundColor: Colors.red,duration: Duration(seconds: 2),
-                        content: Text("Enter MobileNumber",style: GoogleFonts.inter(fontSize: 18),),
-                      ));
-                    }
+                // if(_number.text.length == 10)
+                //   {
+                //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Loading(phone: _number.text)));
+                //   }else
+                //     {
+                //       ScaffoldMessenger.of(context).showSnackBar(SnackBar( backgroundColor: Colors.red,duration: Duration(seconds: 2),
+                //         content: Text("Enter MobileNumber",style: GoogleFonts.inter(fontSize: 18),),
+                //       ));
+                //     }
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => nurseDetails()));
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 80, vertical: 50),

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:janam/Login/villageWidget.dart';
 
-import '../Widgets/ListOfVillage.dart';
 
-List<ListOfVillage> villageWidget(){
+List<village> villageWidget(){
 
-  List<ListOfVillage> lsv = <ListOfVillage>[];
-
-  lsv.add(ListOfVillage(villageNumber: "Village1",ind: 0,));
+  List<village> lsv = <village>[];
 
   return lsv;
 }

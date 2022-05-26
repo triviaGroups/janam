@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Other%20pages/AEFI.dart';
@@ -16,7 +15,6 @@ import 'package:janam/RMNCH/Delivery.dart';
 import 'package:janam/RMNCH/childCare.dart';
 import 'package:janam/RMNCH/closeCase.dart';
 import 'package:janam/RMNCH/eligibleCouple.dart';
-import 'package:janam/RMNCH/postnatal.dart';
 import 'package:janam/RMNCH/pregnancy.dart';
 import 'package:janam/Village%20Survey/page1.dart';
 import 'package:janam/constants/color_constants.dart';
@@ -40,7 +38,7 @@ class _HomeState extends State<Home> {
     "Close the case"
   ];
 
-  List<Widget> Wid = [
+  List<Widget> Wid =const [
     EligibleCouple(),
     Pregnancy(),
     ANC(),
