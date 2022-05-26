@@ -47,6 +47,9 @@ dependencies:
   google_fonts:
   font_awesome_flutter:
   dropdown_button2: ^1.5.1
+  file_picker:
+  pinput: ^0.2.6
+
 
 dev_dependencies:
   flutter_test:

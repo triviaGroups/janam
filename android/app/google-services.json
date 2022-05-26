@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "683360805215-cdvbfmda5dp6vh0qi3eism0h3ql4grud.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.janam",
+            "certificate_hash": "a93752f5b4401ed32fbae9ba39c9814b9e0eea0e"
+          }
+        },
+        {
           "client_id": "683360805215-u19n2ab63gala0juh3pe912vp4orba38.apps.googleusercontent.com",
           "client_type": 3
         }

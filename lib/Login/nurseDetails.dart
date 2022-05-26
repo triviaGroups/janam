@@ -1,3 +1,8 @@
+import 'dart:io';
+import 'package:path/path.dart' as Path;
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Home/home_sub.dart';
@@ -46,7 +51,8 @@ class _nurseDetailsState extends State<nurseDetails> {
 
     super.initState();
   }
-var tecc = new TextEditingController();
+  UploadTask? task;
+  var tecc = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +85,7 @@ var tecc = new TextEditingController();
                 margin: EdgeInsets.only(top: 30),
                 height: 50,
                 width: double.infinity,
-                child: TextField(
+                child: TextFormField(
                   style: GoogleFonts.inter(
                       fontWeight: FontWeight.w500, fontSize: 18, color: purple),
                   decoration: InputDecoration(
@@ -90,6 +96,9 @@ var tecc = new TextEditingController();
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
+                  onChanged: (val){
+                    Provider.of<NurseDetails>(context,listen: false).add_name(val);
+                  },
                 ),
               ),
             ),
@@ -103,7 +112,7 @@ var tecc = new TextEditingController();
                 margin: EdgeInsets.only(top: 30),
                 height: 50,
                 width: double.infinity,
-                child: TextField(
+                child: TextFormField(
                   style: GoogleFonts.inter(
                       fontWeight: FontWeight.w500, fontSize: 18, color: purple),
                   decoration: InputDecoration(
@@ -114,6 +123,9 @@ var tecc = new TextEditingController();
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
+                  onChanged: (val){
+                    Provider.of<NurseDetails>(context,listen: false).add_phcn(val);
+                  },
                 ),
               ),
             ),
@@ -138,6 +150,9 @@ var tecc = new TextEditingController();
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
+                  onChanged: (val){
+                    Provider.of<NurseDetails>(context,listen: false).add_sub(val);
+                  },
                 ),
               ),
             ),
@@ -169,13 +184,25 @@ var tecc = new TextEditingController();
                         ]),
                   ),
                   Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      color: Colors.white,
-                      child: FaIcon(
-                        FontAwesomeIcons.camera,
-                        color: Colors.grey,
-                        size: 27,
+                    child: GestureDetector(
+                      onTap: () async{
+                        await selectFile().whenComplete((){
+                          final File = Provider.of<NurseDetails>(context,listen: false).get_file()!;
+                          final filename = Path.basename(File!.path);
+                          print("Finle inga fetch panran");
+                          print(File);
+                          final destination = 'files/$filename';
+                          task = FirebaseApi.uploadFile(destination,File);
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.white,
+                        child: FaIcon(
+                          FontAwesomeIcons.camera,
+                          color: Colors.grey,
+                          size: 27,
+                        ),
                       ),
                     ),
                   )
@@ -320,14 +347,16 @@ var tecc = new TextEditingController();
               ]),
             ),
 
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: vilWid.length,
-                padding: EdgeInsets.only(bottom: 1),
-                physics: ClampingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return ListOfVillage(villageNumber: "Village " + (index+1).toString(),ind: index,);
-                }),
+            // ListView.builder(
+            //     shrinkWrap: true,
+            //     itemCount: vilWid.length,
+            //     padding: EdgeInsets.only(bottom: 1),
+            //     physics: ClampingScrollPhysics(),
+            //     itemBuilder: (context, index) {
+            //       return ListOfVillage(villageNumber: "Village " + (index+1).toString(),ind: index,);
+            //     }),
+
+            ListOfVillage(villageNumber: "Village " + (villageCount).toString(),ind: villageCount,),
 
             GestureDetector(
               onTap: (){
@@ -341,5 +370,30 @@ var tecc = new TextEditingController();
         ),
       ),
     );
+  }
+
+  Future selectFile() async{
+    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
+
+    if(result == null)
+      {
+        return ;
+      }
+
+    final path = result.files.single.path!;
+
+    Provider.of<NurseDetails>(context,listen: false).add_file(File(path) as File);
+  }
+}
+
+class FirebaseApi{
+  static UploadTask? uploadFile(String destination,File file){
+    try{
+      final ref = FirebaseStorage.instance.ref(destination);
+
+      return ref.putFile(file);
+    }on FirebaseException catch(e){
+      return null;
+    }
   }
 }

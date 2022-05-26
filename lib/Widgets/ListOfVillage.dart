@@ -168,9 +168,6 @@ class _ListOfVillageState extends State<ListOfVillage> {
                                     onChanged: (val){
 
                                     },
-                                    onEditingComplete: (){
-
-                                    },
                                   ),
                                 ),
                               );

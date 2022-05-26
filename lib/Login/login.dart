@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Login/nurseDetails.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/nurseProvider.dart';
 import 'package:provider/provider.dart';
+
+import '../loading.dart';
 
 class Login extends StatefulWidget {
 
@@ -12,8 +16,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  TextEditingController _number = new TextEditingController();
+  TextEditingController _otp = new TextEditingController();
+
+  late String _verificationcode;
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: appBg,
       resizeToAvoidBottomInset: true,
@@ -76,6 +87,9 @@ class _LoginState extends State<Login> {
                 height: 50,
                 width: double.infinity,
                 child: TextField(
+                  controller: _number,
+                  maxLength: 10,
+                  keyboardType: TextInputType.number,
                   style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w400, fontSize: 14, color: purple),
                   decoration: InputDecoration(
@@ -89,34 +103,45 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                margin: EdgeInsets.only(top: 10),
-                height: 50,
-                width: double.infinity,
-                child: TextField(
-                  style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w400, fontSize: 14, color: purple),
-                  decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 8),
-                      border: InputBorder.none,
-                      hintText: "PIN",
-                      hintStyle: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: purple)),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 32),
+            //   child: Container(
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(10),
+            //       color: Colors.white,
+            //     ),
+            //     margin: EdgeInsets.only(top: 10),
+            //     height: 50,
+            //     width: double.infinity,
+            //     child: TextField(
+            //       controller: _otp,
+            //       maxLength: 6,
+            //       keyboardType: TextInputType.number,
+            //       style: GoogleFonts.poppins(
+            //           fontWeight: FontWeight.w400, fontSize: 14, color: purple),
+            //       decoration: InputDecoration(
+            //           contentPadding: EdgeInsets.only(left: 8),
+            //           border: InputBorder.none,
+            //           hintText: "PIN",
+            //           hintStyle: GoogleFonts.poppins(
+            //               fontWeight: FontWeight.w400,
+            //               fontSize: 14,
+            //               color: purple)),
+            //     ),
+            //   ),
+            // ),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => nurseDetails()));
+                //_verifyPhone();
+                if(_number.text.length == 10)
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Loading(phone: _number.text)));
+                  }else
+                    {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar( backgroundColor: Colors.red,duration: Duration(seconds: 2),
+                        content: Text("Enter MobileNumber",style: GoogleFonts.inter(fontSize: 18),),
+                      ));
+                    }
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 80, vertical: 50),

@@ -1,3 +1,6 @@
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,6 +9,8 @@ class NurseDetails with ChangeNotifier {
   String _name = "";
   String _phcn = "";
   String _sub = "";
+
+  File? _file;
 
   List<String> _village = [];
   List<String> _pop = [];
@@ -290,6 +295,17 @@ class NurseDetails with ChangeNotifier {
     List<String> k = _pvt_mob[in1];
     k.insert(in2, name);
     _pvt_mob.insert(in1, k);
+  }
+
+  void add_file(File file)
+  {
+    this._file = file;
+    print("File data here");
+    print(_file);
+  }
+
+  File? get_file(){
+    return _file;
   }
 
 }
