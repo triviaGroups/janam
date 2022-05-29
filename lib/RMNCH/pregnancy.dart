@@ -18,6 +18,14 @@ class Pregnancy extends StatefulWidget {
 
 class _PregnancyState extends State<Pregnancy> {
   int a = 0;
+  int test = 0;
+  int result = 0;
+  int jsy = 0;
+  int blood = 0;
+  int gravida = 0;
+  int facility = 0;
+  int rpr = 0;
+  int hiv = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -163,6 +171,11 @@ class _PregnancyState extends State<Pregnancy> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                test = int.parse(val.toString());
+                print("$test");
+              }),
+              selectedButton: test,
             ),
             radioContainer(
               name: "Pregnancy test result",
@@ -170,6 +183,11 @@ class _PregnancyState extends State<Pregnancy> {
               item: const ["Positive", "Negative"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                result = int.parse(val.toString());
+                print("$result");
+              }),
+              selectedButton: result,
             ),
             radioContainer(
               name: "JSY beneficiary",
@@ -177,6 +195,11 @@ class _PregnancyState extends State<Pregnancy> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                jsy = int.parse(val.toString());
+                print("$jsy");
+              }),
+              selectedButton: jsy,
             ),
             CheckBoxCont(
               name: "Past history of illness",
@@ -200,6 +223,11 @@ class _PregnancyState extends State<Pregnancy> {
               ],
               height: 500,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                blood = int.parse(val.toString());
+                print("$blood");
+              }),
+              selectedButton: blood,
             ),
             CheckBoxCont(
               name: "If Gravida 2 \n\nComplications in previous pregnancy",
@@ -213,6 +241,11 @@ class _PregnancyState extends State<Pregnancy> {
               item: const ["Live birth", "Strillbirth", "Abortion"],
               height: 200,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                gravida = int.parse(val.toString());
+                print("$gravida");
+              }),
+              selectedButton: gravida,
             ),
             radioContainer(
               name: "Expected facility for delivery",
@@ -231,6 +264,11 @@ class _PregnancyState extends State<Pregnancy> {
               ],
               height: 600,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                facility = int.parse(val.toString());
+                print("$facility");
+              }),
+              selectedButton: facility,
             ),
             radioContainer(
               name: "VDRL / RPR Test",
@@ -238,6 +276,11 @@ class _PregnancyState extends State<Pregnancy> {
               item: const ["Positive", "Negative", "Test not done"],
               height: 180,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                rpr = int.parse(val.toString());
+                print("$rpr");
+              }),
+              selectedButton: rpr,
             ),
             radioContainer(
               name: "HIV",
@@ -245,6 +288,11 @@ class _PregnancyState extends State<Pregnancy> {
               item: const ["Positive", "Negative", "Test not done"],
               height: 180,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                hiv = int.parse(val.toString());
+                print("$hiv");
+              }),
+              selectedButton: hiv,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),

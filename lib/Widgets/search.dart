@@ -83,7 +83,7 @@ class _searchWidgetState extends State<searchWidget> {
                         controller: searchController,
                         decoration:
                         InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 25,vertical: 15),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 25,vertical: 15),
                             hintText: "🔍 Search",
                             errorMaxLines: 1,
                             hintStyle: GoogleFonts.poppins(fontSize: 16,color: black),
@@ -99,15 +99,15 @@ class _searchWidgetState extends State<searchWidget> {
                         init: searchProvider(),
                         builder: (val){
                           return IconButton(
-                              onPressed: (){
-                                val.queryData(searchController.text).then((value) => {
-                                  snapshot = value,
-                                  setState((){
-                                    isExecuted = true;
+                            onPressed: (){
+                              val.queryData(searchController.text).then((value) => {
+                                snapshot = value,
+                                setState((){
+                                  isExecuted = true;
                                 })
-                                });
-                              },
-                              icon: Icon(Icons.search, color: Colors.black,),
+                              });
+                            },
+                            icon: Icon(Icons.search, color: Colors.black,),
                           );
                         },
                       ),
@@ -146,4 +146,3 @@ class _searchWidgetState extends State<searchWidget> {
     );
   }
 }
-

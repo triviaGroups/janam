@@ -16,7 +16,15 @@ class vPage3 extends StatefulWidget {
 
 class _vPage3State extends State<vPage3> {
   int a = 0;
-  int _value = 1;
+
+  int reli = 0;
+  int eco = 0;
+  int elec = 0;
+  int house = 0;
+  int toilet = 0;
+  int caste = 0;
+  int waste = 0;
+  int fertile = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -153,6 +161,11 @@ class _vPage3State extends State<vPage3> {
               item: ["Hindu", "Christian", "Muslim", "Sikh", "Others"],
               height: 300,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                reli = int.parse(val.toString());
+                print("$reli");
+              }),
+              selectedButton: reli,
             ),
             radioContainer(
               name: "Caste",
@@ -160,6 +173,11 @@ class _vPage3State extends State<vPage3> {
               item: ["Scheduled Caste", "Scheduled Tribe", "Others"],
               height: 200,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                caste = int.parse(val.toString());
+                print("$caste");
+              }),
+              selectedButton: caste,
             ),
             radioContainer(
               name: "Economic Status",
@@ -167,6 +185,11 @@ class _vPage3State extends State<vPage3> {
               item: ["APL", "BPL", "Don't know"],
               height: 200,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                eco = int.parse(val.toString());
+                print("$eco");
+              }),
+              selectedButton: eco,
             ),
             radioContainer(
               name: "Electricity",
@@ -174,6 +197,11 @@ class _vPage3State extends State<vPage3> {
               item: ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                elec = int.parse(val.toString());
+                print("$elec");
+              }),
+              selectedButton: elec,
             ),
             radioContainer(
               name: "House Type",
@@ -181,6 +209,11 @@ class _vPage3State extends State<vPage3> {
               item: ["Kutcha", "Pucca"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                house = int.parse(val.toString());
+                print("$house");
+              }),
+              selectedButton: house,
             ),
             radioContainer(
               name: "Toilet facility",
@@ -188,6 +221,11 @@ class _vPage3State extends State<vPage3> {
               item: ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                toilet = int.parse(val.toString());
+                print("$toilet");
+              }),
+              selectedButton: toilet,
             ),
             radioContainer(
               name: "Waste disposal",
@@ -195,6 +233,11 @@ class _vPage3State extends State<vPage3> {
               item: ["Panchayat", "Municipality"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                waste = int.parse(val.toString());
+                print("$waste");
+              }),
+              selectedButton: waste,
             ),
             Cont(
                 child: Column(
@@ -404,12 +447,17 @@ class _vPage3State extends State<vPage3> {
                 ),
                 height: 250,
                 color: colors[2]),
-            const radioContainer(
+            radioContainer(
               name: "Is the couple fertile?",
               num: 2,
               item: ["Yes", "No"],
               height: 120,
               a: 3,
+              press: (val) => setState(() {
+                fertile = int.parse(val.toString());
+                print("$fertile");
+              }),
+              selectedButton: fertile,
             ),
             Button("Save"),
             const SizedBox(

@@ -19,6 +19,18 @@ class Delivery extends StatefulWidget {
 
 class _DeliveryState extends State<Delivery> {
   int a = 0;
+  int outcome = 0;
+  int conducted = 0;
+  int type = 0;
+  int injection = 0;
+  int preg = 0;
+  int sex = 0;
+  int cried = 0;
+  int management = 0;
+  int defect = 0;
+  int feed = 0;
+  int jsy = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -126,6 +138,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Livebirth", "Stillbirth"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                outcome = int.parse(val.toString());
+                print("$outcome");
+              }),
+              selectedButton: outcome,
             ),
             Cont(
                 child: Row(
@@ -209,6 +226,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Doctor", "Nurse", "Dhai"],
               height: 180,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                conducted = int.parse(val.toString());
+                print("$conducted");
+              }),
+              selectedButton: conducted,
             ),
             radioContainer(
               name: "Type of delivery",
@@ -216,6 +238,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Normal", "Ceasarean section", "Assisted"],
               height: 180,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                type = int.parse(val.toString());
+                print("$type");
+              }),
+              selectedButton: type,
             ),
             CheckBoxCont(
               name: "Complications during delivery",
@@ -242,6 +269,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                injection = int.parse(val.toString());
+                print("$injection");
+              }),
+              selectedButton: injection,
             ),
             Cont(
                 child: Row(
@@ -325,6 +357,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Singleton", "Twins"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                preg = int.parse(val.toString());
+                print("$preg");
+              }),
+              selectedButton: preg,
             ),
             radioContainer(
               name: "Sex of the infant",
@@ -332,6 +369,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Male", "Female", "Indeterminate"],
               height: 180,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                sex = int.parse(val.toString());
+                print("$sex");
+              }),
+              selectedButton: sex,
             ),
             radioContainer(
               name: "Baby cried at birth",
@@ -339,6 +381,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                cried = int.parse(val.toString());
+                print("$cried");
+              }),
+              selectedButton: cried,
             ),
             radioContainer(
               name: "Referred to higher centre for management",
@@ -346,6 +393,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                management = int.parse(val.toString());
+                print("$management");
+              }),
+              selectedButton: management,
             ),
             radioContainer(
               name: "Any defect seen at birth",
@@ -353,6 +405,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                defect = int.parse(val.toString());
+                print("$defect");
+              }),
+              selectedButton: defect,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
@@ -369,6 +426,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                feed = int.parse(val.toString());
+                print("$feed");
+              }),
+              selectedButton: feed,
             ),
             rowRadioBtnContainer(color: colors[(a++)%4], name: "Birth doses", item: const ["OPV-Zero", "BCG", "Hep B", "Vit k"], num: 4, height: 400),
             radioContainer(
@@ -377,6 +439,11 @@ class _DeliveryState extends State<Delivery> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                jsy = int.parse(val.toString());
+                print("$jsy");
+              }),
+              selectedButton: jsy,
             ),
             Cont(
                 child: Row(

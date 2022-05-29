@@ -17,6 +17,11 @@ class VHND extends StatefulWidget {
 
 class _VHNDState extends State<VHND> {
   int a = 0;
+  int name = 0;
+  int place = 0;
+  int attendee = 0;
+  int conducted = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -52,7 +57,9 @@ class _VHNDState extends State<VHND> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              onChanged: (val) {
+
+                              },
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -73,6 +80,12 @@ class _VHNDState extends State<VHND> {
                   item: const ["Village 1","Village 2","Village 3"],
                   height: 160,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    name = int.parse(val.toString());
+                    print("$name");
+                  }),
+                  selectedButton: name,
+
                 ),
                 radioContainer(
                   name: "Place of VHND",
@@ -80,6 +93,11 @@ class _VHNDState extends State<VHND> {
                   item: const ["PHC","SC","Others"],
                   height: 180,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    place = int.parse(val.toString());
+                    print("$place");
+                  }),
+                  selectedButton: place,
                 ),
                 Cont(
                     child: Row(
@@ -163,12 +181,22 @@ class _VHNDState extends State<VHND> {
                   item: const ["Ramya, 22 years", "Sita, 28 years", "Kamala, 32 years"],
                   height: 180,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    attendee = int.parse(val.toString());
+                    print("$attendee");
+                  }),
+                  selectedButton: attendee,
                 ),
                 radioContainer(
                   name: "Conducted by",num: 2,
                   item: const ["Dr. Manoj, MO, PHC - 1", "Ms. Amala, AWC - 3"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    conducted = int.parse(val.toString());
+                    print("$conducted");
+                  }),
+                  selectedButton: conducted,
                 ),
 
                 Padding(

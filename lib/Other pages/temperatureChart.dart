@@ -16,6 +16,18 @@ class TempChart extends StatefulWidget {
 
 class _TempChartState extends State<TempChart> {
   int a = 0;
+  int ILR = 0;
+  int ILRsun = 0;
+  int ILRlocked = 0;
+  int ILRdefrost = 0;
+  int ILRsocket = 0;
+  int food = 0;
+  int vaccine = 0;
+  int rotated = 0;
+  int door = 0;
+  int frozen = 0;
+  int expiry = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -111,6 +123,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    ILR = int.parse(val.toString());
+                    print("$ILR");
+                  }),
+                  selectedButton: ILR,
                 ),
                 radioContainer(
                   name: "Is the ILR, away from sun?",
@@ -118,6 +135,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    ILRsun = int.parse(val.toString());
+                    print("$ILRsun");
+                  }),
+                  selectedButton: ILRsun,
                 ),
                 radioContainer(
                   name: "Is the ILR, locked?",
@@ -125,6 +147,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    ILRlocked = int.parse(val.toString());
+                    print("$ILRlocked");
+                  }),
+                  selectedButton: ILRlocked,
                 ),
                 radioContainer(
                   name: "Is the ILR, defrosted periodically?",
@@ -132,6 +159,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    ILRdefrost = int.parse(val.toString());
+                    print("$ILRdefrost");
+                  }),
+                  selectedButton: ILRdefrost,
                 ),
                 radioContainer(
                   name: "Is the ILR, plugged to socket permanently",
@@ -139,6 +171,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    ILRsocket = int.parse(val.toString());
+                    print("$ILRsocket");
+                  }),
+                  selectedButton: ILRsocket,
                 ),
                 radioContainer(
                   name: "Is the ILR, used for food or drinks?",
@@ -146,6 +183,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    food = int.parse(val.toString());
+                    print("$food");
+                  }),
+                  selectedButton: food,
                 ),
                 radioContainer(
                   name: "Are the vaccines, stacked neatly?",
@@ -153,6 +195,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    vaccine = int.parse(val.toString());
+                    print("$vaccine");
+                  }),
+                  selectedButton: vaccine,
                 ),
                 radioContainer(
                   name: "Are the vaccines, rotated?",
@@ -160,6 +207,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    rotated = int.parse(val.toString());
+                    print("$rotated");
+                  }),
+                  selectedButton: rotated,
                 ),
                 radioContainer(
                   name: "Are the vaccines, kept in the door?",
@@ -167,6 +219,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    door = int.parse(val.toString());
+                    print("$door");
+                  }),
+                  selectedButton: door,
                 ),
                 radioContainer(
                   name: "Are the vaccines, frozen?",
@@ -174,6 +231,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    frozen = int.parse(val.toString());
+                    print("$frozen");
+                  }),
+                  selectedButton: frozen,
                 ),
                 radioContainer(
                   name: "Are the vaccines, date expired?",
@@ -181,6 +243,11 @@ class _TempChartState extends State<TempChart> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    expiry = int.parse(val.toString());
+                    print("$expiry");
+                  }),
+                  selectedButton: expiry,
                 ),
                 Cont(
                     child: Row(

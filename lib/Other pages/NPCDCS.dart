@@ -17,6 +17,15 @@ class NPCDCS extends StatefulWidget {
 
 class _NPCDCSState extends State<NPCDCS> {
   int a = 0;
+  int tobacco = 0;
+  int tob_smokeless = 0;
+  int alcohol = 0;
+  int sedentary = 0;
+  int history = 0;
+  int oral = 0;
+  int breast = 0;
+  int cervix = 0;
+  int status = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -172,6 +181,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Yes", "No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    tobacco = int.parse(val.toString());
+                    print("$tobacco");
+                  }),
+                  selectedButton: tobacco,
                 ),
                 radioContainer(
                   name: "Tobacco - Smokeless (Chewing / snuffing)",
@@ -179,6 +193,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Yes", "No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    tob_smokeless = int.parse(val.toString());
+                    print("$tob_smokeless");
+                  }),
+                  selectedButton: tob_smokeless,
                 ),
                 radioContainer(
                   name: "Alcohol consumption in last ? months",
@@ -186,6 +205,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Yes", "No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    alcohol = int.parse(val.toString());
+                    print("$alcohol");
+                  }),
+                  selectedButton: alcohol,
                 ),
                 radioContainer(
                   name: "Sedentary lifestyle",
@@ -193,6 +217,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Yes", "No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    sedentary = int.parse(val.toString());
+                    print("$sedentary");
+                  }),
+                  selectedButton: sedentary,
                 ),
                 radioContainer(
                   name: "Family history",
@@ -200,6 +229,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Diabetes","High BP","CVD","Stroke","COPD","CKD","RHD","Pul. TB","Cancer"],
                   height: 500,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    history = int.parse(val.toString());
+                    print("$history");
+                  }),
+                  selectedButton: history,
                 ),
                 Container(
                   height: 69,
@@ -481,6 +515,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Normal","Abnormal"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    oral = int.parse(val.toString());
+                    print("$oral");
+                  }),
+                  selectedButton: oral,
                 ),
                 radioContainer(
                   name: "Breast examination",
@@ -488,6 +527,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Normal","Abnormal"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    breast = int.parse(val.toString());
+                    print("$breast");
+                  }),
+                  selectedButton: breast,
                 ),
                 radioContainer(
                   name: "Visual examination of cervix",
@@ -495,6 +539,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Normal","Abnormal"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    cervix = int.parse(val.toString());
+                    print("$cervix");
+                  }),
+                  selectedButton: cervix,
                 ),
                 Cont(
                     child: Row(
@@ -576,6 +625,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   item: const ["Referred to FU","Lost to FU","Dead"],
                   height: 160,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    status = int.parse(val.toString());
+                    print("$status");
+                  }),
+                  selectedButton: status,
                 ),
                 Cont(
                     child: Row(

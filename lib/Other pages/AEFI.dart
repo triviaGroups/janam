@@ -16,6 +16,7 @@ class AEFI extends StatefulWidget {
 
 class _AEFIState extends State<AEFI> {
   int a = 0;
+  int medical_offer = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -350,6 +351,11 @@ class _AEFIState extends State<AEFI> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    medical_offer = int.parse(val.toString());
+                    print("$medical_offer");
+                  }),
+                  selectedButton: medical_offer,
                 ),
                 Cont(
                     child: Row(

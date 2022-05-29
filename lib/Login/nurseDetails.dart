@@ -1,11 +1,11 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:janam/Login/villageWidget.dart';
 import 'package:path/path.dart' as Path;
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:janam/Home/home_sub.dart';
 import 'package:janam/List/awcList.dart';
 import 'package:janam/List/govtSchhols.dart';
 import 'package:janam/List/privateSchools.dart';
@@ -18,7 +18,6 @@ import 'package:provider/provider.dart';
 
 import '../List/ashaList.dart';
 import '../List/villageList.dart';
-import '../Widgets/ListOfVillage.dart';
 
 class nurseDetails extends StatefulWidget {
   const nurseDetails({super.key});
@@ -28,20 +27,22 @@ class nurseDetails extends StatefulWidget {
 }
 
 class _nurseDetailsState extends State<nurseDetails> {
-
-  List<ListOfVillage> vilWid = villageWidget();
+  List<village> vilWid = villageWidget();
   List<villageDetailsDataList> vil = villageDetailsList();
   List<ashaDetailsDataList> ash = ashaDetailsList();
   List<awcDetailsDataList> awc = awcDetailsList();
   List<govtSchoolsDetailsDataList> gwc = govtDetailsList();
   List<privateSchoolsDetailsDataList> pwc = pvtDetailsList();
 
-  static int villageCount = 1;
+  static int villageCount = 0;
 
+  List<String> villageName = [""];
+  String name = "";
+  String phcn = "";
+  String sub = "";
 
   @override
   void initState() {
-
     // vilWid = villageWidget();
     // vil = villageDetailsList();
     // ash = ashaDetailsList();
@@ -51,6 +52,7 @@ class _nurseDetailsState extends State<nurseDetails> {
 
     super.initState();
   }
+
   UploadTask? task;
   var tecc = new TextEditingController();
   @override
@@ -76,28 +78,30 @@ class _nurseDetailsState extends State<nurseDetails> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 height: 50,
                 width: double.infinity,
                 child: TextFormField(
                   style: GoogleFonts.inter(
                       fontWeight: FontWeight.w500, fontSize: 18, color: purple),
                   decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 8),
+                      contentPadding: const EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Full Name",
                       hintStyle: GoogleFonts.inter(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
-                  onChanged: (val){
-                    Provider.of<NurseDetails>(context,listen: false).add_name(val);
+                  onChanged: (val) {
+                   setState(() {
+                     name = val;
+                   });
                   },
                 ),
               ),
@@ -109,7 +113,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 height: 50,
                 width: double.infinity,
                 child: TextFormField(
@@ -123,41 +127,45 @@ class _nurseDetailsState extends State<nurseDetails> {
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
-                  onChanged: (val){
-                    Provider.of<NurseDetails>(context,listen: false).add_phcn(val);
+                  onChanged: (val) {
+                    setState(() {
+                      phcn = val;
+                    });
                   },
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                 ),
-                margin: EdgeInsets.only(top: 30),
+                margin: const EdgeInsets.only(top: 30),
                 height: 50,
                 width: double.infinity,
                 child: TextField(
                   style: GoogleFonts.inter(
                       fontWeight: FontWeight.w500, fontSize: 18, color: purple),
                   decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 8),
+                      contentPadding: const EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Sub Center name",
                       hintStyle: GoogleFonts.inter(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
-                  onChanged: (val){
-                    Provider.of<NurseDetails>(context,listen: false).add_sub(val);
+                  onChanged: (val) {
+                    setState(() {
+                      sub = val;
+                    });
                   },
                 ),
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
               height: 80,
               child: Row(
                 children: [
@@ -185,14 +193,16 @@ class _nurseDetailsState extends State<nurseDetails> {
                   ),
                   Expanded(
                     child: GestureDetector(
-                      onTap: () async{
-                        await selectFile().whenComplete((){
-                          final File = Provider.of<NurseDetails>(context,listen: false).get_file()!;
-                          final filename = Path.basename(File!.path);
-                          print("Finle inga fetch panran");
+                      onTap: () async {
+                        await selectFile().whenComplete(() {
+                          final File =
+                              Provider.of<NurseDetails>(context, listen: false)
+                                  .get_file()!;
+                          final filename = Path.basename(File.path);
+                          print("Final inga fetch panran");
                           print(File);
                           final destination = 'files/$filename';
-                          task = FirebaseApi.uploadFile(destination,File);
+                          task = FirebaseApi.uploadFile(destination, File);
                         });
                       },
                       child: Container(
@@ -209,11 +219,10 @@ class _nurseDetailsState extends State<nurseDetails> {
                 ],
               ),
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              height: 126,
               width: double.infinity,
+              height: 200,
               decoration: BoxDecoration(
                 border: Border.all(width: 0.1, color: Colors.black38),
                 borderRadius: BorderRadius.circular(8),
@@ -253,7 +262,6 @@ class _nurseDetailsState extends State<nurseDetails> {
                 ),
                 Expanded(
                   child: Container(
-                   
                     // constraints: BoxConstraints(
                     //   maxHeight: double.infinity,
                     // ),
@@ -284,13 +292,14 @@ class _nurseDetailsState extends State<nurseDetails> {
                               alignment: Alignment.topCenter,
                               margin: EdgeInsets.only(top: 15),
                               child: ListView.builder(
-                                  itemCount: vil.length,
+                                  itemCount: villageCount,
                                   shrinkWrap: true,
                                   padding: EdgeInsets.only(bottom: 1),
                                   physics: ClampingScrollPhysics(),
                                   itemBuilder: (context, index) {
                                     return Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 0.5, vertical: 2.5),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 0.5, vertical: 2.5),
                                       child: Container(
                                         //color: Colors.red,
                                         alignment: Alignment.center,
@@ -308,11 +317,10 @@ class _nurseDetailsState extends State<nurseDetails> {
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                               )),
-                                          onChanged: (val){
-
-                                          },
-                                          onEditingComplete: (){
-
+                                          onChanged: (val) {
+                                            setState(() {
+                                              villageName[index] = val;
+                                            });
                                           },
                                         ),
                                       ),
@@ -325,14 +333,15 @@ class _nurseDetailsState extends State<nurseDetails> {
                                 child: GestureDetector(
                                   onTap: () {
                                     villageCount++;
+                                    villageName.add("");
                                     String temp = "Village $villageCount -Name";
                                     vil.add(villageDetailsDataList(name: temp));
-                                    vilWid.add(ListOfVillage(
-                                      villageNumber: 'Village$villageCount',ind: villageCount-1,));
+                                    vilWid.add(village(
+                                      villagecount: villageCount,
+                                      villageName: villageName,
+                                    ));
                                     //Provider.of<NurseDetails>(context,listen: false).set_village_count(vil.length);
-                                    setState(() {
-
-                                    });
+                                    setState(() {});
                                   },
                                   child: const Icon(
                                     Icons.add,
@@ -346,25 +355,36 @@ class _nurseDetailsState extends State<nurseDetails> {
                 )
               ]),
             ),
-
-            // ListView.builder(
-            //     shrinkWrap: true,
-            //     itemCount: vilWid.length,
-            //     padding: EdgeInsets.only(bottom: 1),
-            //     physics: ClampingScrollPhysics(),
-            //     itemBuilder: (context, index) {
-            //       return ListOfVillage(villageNumber: "Village " + (index+1).toString(),ind: index,);
-            //     }),
-
-            ListOfVillage(villageNumber: "Village " + (villageCount).toString(),ind: villageCount,),
-
             GestureDetector(
-              onTap: (){
-                Provider.of<NurseDetails>(context,listen: false).details();
-                print("I AM PRINT ====");
-                //Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeSub()));
+              onTap: () {
+                // Map<String, dynamic> data = {
+                //   "Name": name,
+                //   "Villages": villageName,
+                //   "Phcn": phcn,
+                //   "sub": sub,
+                // };
+                //
+                // FirebaseFirestore.instance
+                //     .collection("Nurse_Details")
+                //     .doc("Number")
+                //     .set(data)
+                //     .whenComplete(() => Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => village(
+                //                   villagecount: vilWid.length,
+                //                   villageName: villageName,
+                //                 ))));
+                Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => village(
+                                      villagecount: vilWid.length,
+                                      villageName: villageName,
+                                    )));
+
               },
-              child: Button("Save"),
+              child: Button("Next"),
             ),
           ],
         ),
@@ -372,27 +392,27 @@ class _nurseDetailsState extends State<nurseDetails> {
     );
   }
 
-  Future selectFile() async{
+  Future selectFile() async {
     final result = await FilePicker.platform.pickFiles(allowMultiple: false);
 
-    if(result == null)
-      {
-        return ;
-      }
+    if (result == null) {
+      return;
+    }
 
     final path = result.files.single.path!;
 
-    Provider.of<NurseDetails>(context,listen: false).add_file(File(path) as File);
+    Provider.of<NurseDetails>(context, listen: false)
+        .add_file(File(path) as File);
   }
 }
 
-class FirebaseApi{
-  static UploadTask? uploadFile(String destination,File file){
-    try{
+class FirebaseApi {
+  static UploadTask? uploadFile(String destination, File file) {
+    try {
       final ref = FirebaseStorage.instance.ref(destination);
 
       return ref.putFile(file);
-    }on FirebaseException catch(e){
+    } on FirebaseException catch (e) {
       return null;
     }
   }

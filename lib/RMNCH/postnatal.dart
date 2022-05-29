@@ -18,6 +18,7 @@ class PostnatalCare extends StatefulWidget {
 
 class _PostnatalCareState extends State<PostnatalCare> {
   int a = 0;
+  int method = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -134,6 +135,11 @@ class _PostnatalCareState extends State<PostnatalCare> {
                   item: const ["Sterlization", "Nil"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    method = int.parse(val.toString());
+                    print("$method");
+                  }),
+                  selectedButton: method,
                 ),
                 CheckBoxCont(
                   name: "Mother danger signs",

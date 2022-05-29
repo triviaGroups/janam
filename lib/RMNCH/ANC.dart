@@ -18,6 +18,12 @@ class ANC extends StatefulWidget {
 
 class _ANCState extends State<ANC> {
   int a = 0;
+  int urine = 0;
+  int blood = 0;
+  int risk = 0;
+  int referral = 0;
+  int type = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -341,6 +347,11 @@ class _ANCState extends State<ANC> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                urine = int.parse(val.toString());
+                print("$urine");
+              }),
+              selectedButton: urine,
             ),
             radioContainer(
               name: "Blood test",
@@ -348,6 +359,11 @@ class _ANCState extends State<ANC> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                blood = int.parse(val.toString());
+                print("$blood");
+              }),
+              selectedButton: blood,
             ),
             Cont(
                 child: Row(
@@ -449,6 +465,11 @@ class _ANCState extends State<ANC> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                risk = int.parse(val.toString());
+                print("$risk");
+              }),
+              selectedButton: risk,
             ),
             CheckBoxCont(
               name: "Antenatal Risk Factors",
@@ -495,6 +516,11 @@ class _ANCState extends State<ANC> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                referral = int.parse(val.toString());
+                print("$referral");
+              }),
+              selectedButton: referral,
             ),
             radioContainer(
               name: "Type of referral facility",
@@ -502,6 +528,11 @@ class _ANCState extends State<ANC> {
               item: const ["District hospital","Other Govt. hospital","Accredited private hospital","Other private hospital","Home","Sub direct hospital","Medical college hospital","Sub centre","PHC","CHC"],
               height: 650,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                type = int.parse(val.toString());
+                print("$type");
+              }),
+              selectedButton: type,
             ),
             const SizedBox(
               height: 32,

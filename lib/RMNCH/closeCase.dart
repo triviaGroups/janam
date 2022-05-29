@@ -17,6 +17,13 @@ class CloseCase extends StatefulWidget {
 
 class _CloseCaseState extends State<CloseCase> {
   int a = 0;
+  int close = 0;
+  int reason = 0;
+  int place = 0;
+  int cause = 0;
+  int death = 0;
+  int dc = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -86,6 +93,11 @@ class _CloseCaseState extends State<CloseCase> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    close = int.parse(val.toString());
+                    print("$close");
+                  }),
+                  selectedButton: close,
                 ),
                 radioContainer(
                   name: "Reason for closure",
@@ -93,6 +105,11 @@ class _CloseCaseState extends State<CloseCase> {
                   item: const ["Completed","Migration","Maternal death","Infant death","Abortion"],
                   height: 320,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    reason = int.parse(val.toString());
+                    print("$reason");
+                  }),
+                  selectedButton: reason,
                 ),
                 Cont(
                     child: Row(
@@ -138,6 +155,11 @@ class _CloseCaseState extends State<CloseCase> {
                   item: const ["Home","Hospital","In transit"],
                   height: 200,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    place = int.parse(val.toString());
+                    print("$place");
+                  }),
+                  selectedButton: place,
                 ),
                 Cont(
                     child: Row(
@@ -183,6 +205,11 @@ class _CloseCaseState extends State<CloseCase> {
                   item: const ["Asphyxia","Low birth weight","High fever","Diarrhoea","Pneumonia","Others"],
                   height: 360,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    cause = int.parse(val.toString());
+                    print("$cause");
+                  }),
+                  selectedButton: cause,
                 ),
                 Cont(
                     child: Row(
@@ -227,6 +254,11 @@ class _CloseCaseState extends State<CloseCase> {
                   item: const ["Home","Hospital","In transit"],
                   height: 200,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    death= int.parse(val.toString());
+                    print("$death");
+                  }),
+                  selectedButton: death,
                 ),
                 Cont(
                     child: Row(
@@ -308,6 +340,11 @@ class _CloseCaseState extends State<CloseCase> {
                   item: const ["Yes","No"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    dc = int.parse(val.toString());
+                    print("$dc");
+                  }),
+                  selectedButton: dc,
                 ),
                 Cont(
                     child: Row(

@@ -17,6 +17,8 @@ class IDSP extends StatefulWidget {
 
 class _IDSPState extends State<IDSP> {
   int a = 0;
+  int fever = 0;
+  int cough = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,6 +87,11 @@ class _IDSPState extends State<IDSP> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                fever = int.parse(val.toString());
+                print("$fever");
+              }),
+              selectedButton: fever,
             ),
             radioContainer(
               name: "Cough with or withour fever",
@@ -92,6 +99,11 @@ class _IDSPState extends State<IDSP> {
               item: const ["< 3 weeks","> 3 weeks"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                cough = int.parse(val.toString());
+                print("$cough");
+              }),
+              selectedButton: cough,
             ),
             CheckBoxCont(
               name: "Loose watery stools of less than 2 weeks",

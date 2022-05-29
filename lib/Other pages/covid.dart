@@ -17,6 +17,8 @@ class Covid extends StatefulWidget {
 
 class _CovidState extends State<Covid> {
   int a = 0;
+  int test_result = 0;
+  int discharge_reason = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -247,6 +249,11 @@ class _CovidState extends State<Covid> {
                   item: const ["Positive","Negative"],
                   height: 120,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    test_result = int.parse(val.toString());
+                    print("$test_result");
+                  }),
+                  selectedButton: test_result,
                 ),
                 Cont(
                     child: Row(
@@ -406,6 +413,11 @@ class _CovidState extends State<Covid> {
                   item: const ["Negative results","Quarantine completion","Dead"],
                   height: 180,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    discharge_reason = int.parse(val.toString());
+                    print("$discharge_reason");
+                  }),
+                  selectedButton: discharge_reason,
                 ),
                 const SizedBox(
                   height: 32,

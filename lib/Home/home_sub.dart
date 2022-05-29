@@ -12,15 +12,15 @@ class HomeSub extends StatefulWidget {
 }
 
 class _HomeSubState extends State<HomeSub> {
-  bool check = false;
+  bool check = true;
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Details>(context).getData("9360224171").whenComplete(() => {
-          setState(() {
-            check = true;
-          })
-        });
+    // Provider.of<Details>(context).getData("9360224171").whenComplete(() => {
+    //       setState(() {
+    //         check = true;
+    //       })
+    //     });
     return Scaffold(
       backgroundColor: white,
       body: check ? Home() : SizedBox(),

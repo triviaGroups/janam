@@ -17,6 +17,8 @@ class NIPI extends StatefulWidget {
 
 class _NIPIState extends State<NIPI> {
   int a = 0;
+  int children_participated = 0;
+  int awc_name = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -36,6 +38,11 @@ class _NIPIState extends State<NIPI> {
                   item: const ["Raj, 4 years","Raj, 4 years","Raj, 4 years"],
                   height: 160,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    children_participated = int.parse(val.toString());
+                    print("$children_participated");
+                  }),
+                  selectedButton: children_participated,
                 ),
                 Cont(
                     child: Row(
@@ -81,6 +88,11 @@ class _NIPIState extends State<NIPI> {
                   item: const ["AWC 1","AWC 2","AWC 3"],
                   height: 160,
                   a: (a++) % 4,
+                  press: (val) => setState(() {
+                    awc_name = int.parse(val.toString());
+                    print("$awc_name");
+                  }),
+                  selectedButton: awc_name,
                 ),
 
                 const SizedBox(

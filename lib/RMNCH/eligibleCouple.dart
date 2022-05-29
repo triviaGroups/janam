@@ -17,6 +17,13 @@ class EligibleCouple extends StatefulWidget {
 
 class _EligibleCoupleState extends State<EligibleCouple> {
   int a = 0;
+  int method = 0;
+  int ster = 0;
+  int tempster = 0;
+  int test = 0;
+  int result = 0;
+  int reason = 0;
+  int newmode = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -142,6 +149,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               ],
               height: 240,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                method = int.parse(val.toString());
+                print("$method");
+              }),
+              selectedButton: method,
             ),
             radioContainer(
               name: "If permanent sterlization, \n\nType of sterlization",
@@ -149,6 +161,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               item: const ["Vasectomy", "Tubectomy"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                ster = int.parse(val.toString());
+                print("$ster");
+              }),
+              selectedButton: ster,
             ),
             Cont(
                 child: Row(
@@ -232,6 +249,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               item: const ["Condoms", "OCPs", "Injections", "Devices"],
               height: 240,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                tempster = int.parse(val.toString());
+                print("$tempster");
+              }),
+              selectedButton: tempster,
             ),
             Cont(
                 child: Row(
@@ -866,6 +888,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                test = int.parse(val.toString());
+                print("$test");
+              }),
+              selectedButton: test,
             ),
             radioContainer(
               name: "Pregnancy test result",
@@ -873,6 +900,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               item: const ["Positive", "Negative"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                result = int.parse(val.toString());
+                print("$result");
+              }),
+              selectedButton: result,
             ),
             Cont(
                 child: Row(
@@ -960,6 +992,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               ],
               height: 200,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                reason = int.parse(val.toString());
+                print("$reason");
+              }),
+              selectedButton: reason,
             ),
             radioContainer(
               name: "If new mode of contraception, \nNew method",
@@ -973,6 +1010,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               ],
               height: 300,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                newmode = int.parse(val.toString());
+                print("$newmode");
+              }),
+              selectedButton: newmode,
             ),
             const SizedBox(
               height: 32,

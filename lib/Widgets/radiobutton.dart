@@ -5,7 +5,9 @@ import 'package:janam/constants/color_constants.dart';
 class RadioButton extends StatefulWidget {
   final int num;
   final List<String> items;
-  const RadioButton({Key? key, required this.num, required this.items})
+  final ValueChanged<int?> press;
+  final int selectedButton;
+  const RadioButton({Key? key, required this.num, required this.items, required this.press, required this.selectedButton,})
       : super(key: key);
 
   @override
@@ -14,7 +16,6 @@ class RadioButton extends StatefulWidget {
 
 class _RadioButtonState extends State<RadioButton> {
   int a = 0;
-  int _value = 1;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +27,7 @@ class _RadioButtonState extends State<RadioButton> {
             child: Container(
               margin: EdgeInsets.only(bottom: 8,left: 6,right: 4),
               decoration: BoxDecoration(
-                  color: _value == i ? hTxt : white,
+                  color: widget.selectedButton == i ? hTxt : white,
                   borderRadius: BorderRadius.circular(5)),
               child: ListTile(
                 title: Transform.translate(
@@ -37,21 +38,16 @@ class _RadioButtonState extends State<RadioButton> {
                       maxLines: 2,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
-                        color: _value != i ? hTxt : white,
+                        color: widget.selectedButton != i ? hTxt : white,
                       )),
                 ),
                 leading: Container(
                   width: 10,
                   child: Radio(
                     value: i,
-                    groupValue: _value,
+                    groupValue: widget.selectedButton,
                     activeColor: white,
-                    onChanged: (value) {
-                      setState(() {
-                        _value = value as int;
-                        a = 0;
-                      });
-                    },
+                    onChanged: widget.press,
                   ),
                 ),
               ),

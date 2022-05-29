@@ -10,7 +10,9 @@ class radioContainer extends StatefulWidget {
   final String name;
   final List<String> item;
   final double height;
-  const radioContainer({Key? key, required this.a, required this.name, required this.item, required this.height, required this.num}) : super(key: key);
+  final ValueChanged<int?> press;
+  final int selectedButton;
+  const radioContainer({Key? key, required this.a, required this.name, required this.item, required this.height, required this.num, required this.press, required this.selectedButton}) : super(key: key);
 
   @override
   _radioContainerState createState() => _radioContainerState();
@@ -44,6 +46,8 @@ class _radioContainerState extends State<radioContainer> {
                   child: RadioButton(
                     num: widget.num,
                     items: widget.item,
+                    press: widget.press,
+                    selectedButton: widget.selectedButton,
                   ),
                 )),
           ],

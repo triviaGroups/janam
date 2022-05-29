@@ -17,6 +17,7 @@ class ChildCare extends StatefulWidget {
 
 class _ChildCareState extends State<ChildCare> {
   int a = 0;
+  int aefi = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -142,6 +143,11 @@ class _ChildCareState extends State<ChildCare> {
               item: const ["Yes", "No"],
               height: 120,
               a: (a++) % 4,
+              press: (val) => setState(() {
+                aefi = int.parse(val.toString());
+                print("$aefi");
+              }),
+              selectedButton: aefi,
             ),
             const SizedBox(
               height: 32,
