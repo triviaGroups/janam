@@ -27,7 +27,7 @@ class _DeathRegState extends State<DeathReg> {
                   height: 16,
                 ),
                 topic("Death register", "Select member"),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Column(
                       children: [

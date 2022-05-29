@@ -29,7 +29,7 @@ class _NIPIState extends State<NIPI> {
                   height: 16,
                 ),
                 topic("NIPI", "Select child"),
-                Search(),
+                searchWidget(),
                 radioContainer(
                   name: "Children participated",
                   num: 3,

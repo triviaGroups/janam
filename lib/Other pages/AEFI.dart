@@ -28,7 +28,7 @@ class _AEFIState extends State<AEFI> {
                   height: 16,
                 ),
                 topic("AEFI", "Select vaccinated child"),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

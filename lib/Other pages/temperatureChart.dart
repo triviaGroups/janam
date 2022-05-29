@@ -28,7 +28,7 @@ class _TempChartState extends State<TempChart> {
                   height: 16,
                 ),
                 topic("Temperature chart", "Select freezer"),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

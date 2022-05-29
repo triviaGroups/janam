@@ -30,7 +30,8 @@ class _PregnancyState extends State<Pregnancy> {
               height: 16,
             ),
             topic("Pregnancy", ""),
-            Search(),
+            //Search(),
+            searchWidget(),
             Cont(
                 child: Column(
                   children: [

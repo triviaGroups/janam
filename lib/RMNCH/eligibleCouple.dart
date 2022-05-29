@@ -29,7 +29,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               height: 16,
             ),
             topic("Eligible Couple", ""),
-            Search(),
+            searchWidget(),
             Cont(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

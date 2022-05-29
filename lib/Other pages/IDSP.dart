@@ -29,7 +29,7 @@ class _IDSPState extends State<IDSP> {
               height: 16,
             ),
             topic("Integrated Disease Surveillance Program", "Select member"),
-            Search(),
+            searchWidget(),
             Cont(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,

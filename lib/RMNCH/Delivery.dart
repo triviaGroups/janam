@@ -31,7 +31,7 @@ class _DeliveryState extends State<Delivery> {
               height: 16,
             ),
             topic("Delivery", ""),
-            Search(),
+            searchWidget(),
             Cont(
                 child: Column(
                   children: [

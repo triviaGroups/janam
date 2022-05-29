@@ -29,7 +29,7 @@ class _CovidState extends State<Covid> {
                   height: 16,
                 ),
                 topic("COVID 19", "Select member"),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Column(
                       children: [

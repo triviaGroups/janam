@@ -29,7 +29,7 @@ class _NPCDCSState extends State<NPCDCS> {
                   height: 16,
                 ),
                 topic("NPCDCS", "Select member"),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Column(
                       children: [

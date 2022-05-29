@@ -29,7 +29,7 @@ class _CloseCaseState extends State<CloseCase> {
                   height: 16,
                 ),
                 topic("Closing the case", ""),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Column(
                       children: [

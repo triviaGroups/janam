@@ -29,7 +29,7 @@ class _ChildCareState extends State<ChildCare> {
               height: 16,
             ),
             topic("Child care", ""),
-            Search(),
+            searchWidget(),
             Cont(
                 child: Column(
                   children: [

@@ -28,7 +28,7 @@ class _ORSState extends State<ORS> {
                   height: 16,
                 ),
                 topic("ORS", "Select member"),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,

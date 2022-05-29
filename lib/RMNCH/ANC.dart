@@ -30,7 +30,7 @@ class _ANCState extends State<ANC> {
               height: 16,
             ),
             topic("Antenatal Care", ""),
-            Search(),
+            searchWidget(),
             Cont(
                 child: Column(
                   children: [

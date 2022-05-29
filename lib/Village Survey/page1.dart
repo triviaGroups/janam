@@ -40,7 +40,7 @@ class _vpage1State extends State<vpage1> {
             textBox("Village name"),
             textBox("Village name"),
             Heading("Select household"),
-            Search(),
+            searchWidget(),
             const SizedBox(
               height: 16,
             ),

@@ -30,7 +30,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                   height: 16,
                 ),
                 topic("Postnatal Care", ""),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Column(
                       children: [

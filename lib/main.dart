@@ -8,9 +8,11 @@ import 'package:janam/Login/login.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
 import 'package:janam/provider/nurseProvider.dart';
+import 'package:janam/provider/searchProviders.dart';
 import 'package:provider/provider.dart';
 
 import 'Login/login.dart';
+import 'RMNCH/pregnancy.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Details>.value(value: (Details())),
         ChangeNotifierProvider<NurseDetails>.value(value: (NurseDetails())),
+        //ChangeNotifierProvider<searchProvider>.value(value: (searchProvider())),
       ],
       child: const MaterialApp(
         home: FireBaseInitialization(),
@@ -80,7 +83,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return Login();
+                        return Pregnancy();
                       }
                       return Scaffold(
                         body: Center(

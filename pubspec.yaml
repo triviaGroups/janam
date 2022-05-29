@@ -49,7 +49,7 @@ dependencies:
   dropdown_button2: ^1.5.1
   file_picker:
   pinput: ^0.2.6
-
+  get:
 
 dev_dependencies:
   flutter_test:

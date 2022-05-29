@@ -27,7 +27,7 @@ class _StockRegState extends State<StockReg> {
                   height: 16,
                 ),
                 topic("Stock", ""),
-                Search(),
+                searchWidget(),
                 Cont(
                     child: Container(),
                     height: 300,
