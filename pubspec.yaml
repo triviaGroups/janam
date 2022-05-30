@@ -51,6 +51,7 @@ dependencies:
   pinput: ^0.2.6
   get:
   expansion_card:
+  flutter_holo_date_picker:
 
 
 dev_dependencies:
