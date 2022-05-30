@@ -333,15 +333,26 @@ class _vpage1State extends State<vpage1> {
   }
 
   void _addhousehold() async{
+
+
+    DocumentReference doc_ref=await FirebaseFirestore.instance
+        .collection("Village Details")
+        .doc(villagename)
+        .collection("Family").doc();
+
+    DocumentSnapshot docSnap = await doc_ref.get();
+    var doc = docSnap.reference.id;
+
     Map<String,dynamic> data= {
       "Village name" : villagename,
       "Plot no" : plotNo.text,
       "Street name" : streetName.text,
       "Area name" : areaName.text,
       "Mobile" : phoneNumber.text,
+      "Doc id" : doc.toString(),
     };
-    
-    await FirebaseFirestore.instance.collection("Village Details").doc(villagename).collection("Family").doc().set(data).whenComplete(() => Navigator.pop(context));
+
+    await FirebaseFirestore.instance.collection("Village Details").doc(villagename).collection("Family").doc(doc).set(data).whenComplete(() => Navigator.pop(context));
     
   }
 }

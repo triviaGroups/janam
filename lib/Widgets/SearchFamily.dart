@@ -15,6 +15,7 @@ class FamilySearch extends StatefulWidget {
 class _FamilySearchState extends State<FamilySearch> {
   TextEditingController _searchController = TextEditingController();
   Future? resultsloaded;
+  String _docid = "";
   List _allResults = [];
   List _resultsList = [];
 
@@ -46,6 +47,7 @@ class _FamilySearchState extends State<FamilySearch> {
         .doc(widget.villagename)
         .collection("Family")
         .get();
+
     setState(() {
       _allResults = unsold.docs;
     });
@@ -67,10 +69,10 @@ class _FamilySearchState extends State<FamilySearch> {
         if (sname.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
         }
-        if (pname.contains(_searchController.text.toLowerCase())) {
+        else if (pname.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
         }
-        if (aname.contains(_searchController.text.toLowerCase())) {
+        else if (aname.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
         }
       }
@@ -113,43 +115,48 @@ class _FamilySearchState extends State<FamilySearch> {
       ),
       children: [
         Container(
-          height: 150,
+          height: 250,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(35),
+            color: purple,
+          ),
+          padding: EdgeInsets.symmetric(vertical: 16,horizontal: 16),
           margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: ListView.builder(
               itemCount: _resultsList.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  leading: Container(
-                    alignment: Alignment.center,
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.blue),
-                  ),
-                  title: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      _searchController.text == ""
-                          ? _allResults[index]["Plot no"] +
-                              ", " +
-                              _allResults[index]["Street name"] +
-                              ", " +
-                              _allResults[index]["Area name"] +
-                              ", " +
-                              _allResults[index]["Village name"]
-                          : _resultsList[index]["Plot no"] +
-                              ", " +
-                              _resultsList[index]["Street name"] +
-                              ", " +
-                              _resultsList[index]["Area name"] +
-                              ", " +
-                              _resultsList[index]["Village name"],
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontFamily: "Grold Regular",
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        color: Colors.black,
+                return GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      _docid = _resultsList[index]["Doc id"];
+                    });
+                  },
+                  child: ListTile(
+                    title: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        _searchController.text == ""
+                            ? _allResults[index]["Plot no"] +
+                                ", " +
+                                _allResults[index]["Street name"] +
+                                ", " +
+                                _allResults[index]["Area name"] +
+                                ", " +
+                                _allResults[index]["Village name"]
+                            : _resultsList[index]["Plot no"] +
+                                ", " +
+                                _resultsList[index]["Street name"] +
+                                ", " +
+                                _resultsList[index]["Area name"] +
+                                ", " +
+                                _resultsList[index]["Village name"],
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "Grold Regular",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          color: white,
+                        ),
                       ),
                     ),
                   ),
