@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
@@ -17,6 +18,8 @@ class Pregnancy extends StatefulWidget {
 }
 
 class _PregnancyState extends State<Pregnancy> {
+
+
   int a = 0;
   int test = 0;
   int result = 0;
@@ -26,6 +29,19 @@ class _PregnancyState extends State<Pregnancy> {
   int facility = 0;
   int rpr = 0;
   int hiv = 0;
+
+  TextEditingController dob = new TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final datePicked = DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String formatted = formatter. format(datePicked!);
+    dob.text = formatted;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -112,7 +128,7 @@ class _PregnancyState extends State<Pregnancy> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dob,
                           decoration: InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
