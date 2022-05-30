@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Home/home_sub.dart';
@@ -69,7 +68,6 @@ class _villageState extends State<village> {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController();
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,
