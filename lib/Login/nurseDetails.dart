@@ -73,7 +73,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                 child: Text(
                   "Setting your profile",
-                  style: GoogleFonts.inter(
+                  style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600, fontSize: 24, color: orange),
                 ),
               ),
@@ -89,13 +89,13 @@ class _nurseDetailsState extends State<nurseDetails> {
                 height: 50,
                 width: double.infinity,
                 child: TextFormField(
-                  style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w500, fontSize: 18, color: purple),
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w400, fontSize: 16, color: black),
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Full Name",
-                      hintStyle: GoogleFonts.inter(
+                      hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
@@ -118,13 +118,13 @@ class _nurseDetailsState extends State<nurseDetails> {
                 height: 50,
                 width: double.infinity,
                 child: TextFormField(
-                  style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w500, fontSize: 18, color: purple),
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w400, fontSize: 16, color: black),
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Primary Health Center Name",
-                      hintStyle: GoogleFonts.inter(
+                      hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
@@ -147,13 +147,13 @@ class _nurseDetailsState extends State<nurseDetails> {
                 height: 50,
                 width: double.infinity,
                 child: TextField(
-                  style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w500, fontSize: 18, color: purple),
+                  style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w400, fontSize: 16, color: black),
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Sub Center name",
-                      hintStyle: GoogleFonts.inter(
+                      hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
                           color: purple)),
@@ -178,14 +178,14 @@ class _nurseDetailsState extends State<nurseDetails> {
                         children: [
                           Text(
                             "Upload Photo",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14,
                                 color: purple),
                           ),
                           Text(
                             "Take a photo or choose from gallery",
-                            style: GoogleFonts.inter(
+                            style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                                 color: purple),
@@ -254,7 +254,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                       overflow: TextOverflow.fade,
                       maxLines: 3,
                       textAlign: TextAlign.right,
-                      style: GoogleFonts.inter(
+                      style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                           color: Colors.white),
@@ -281,7 +281,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                               alignment: Alignment.topCenter,
                               child: Text(
                                 "Village Name",
-                                style: GoogleFonts.inter(
+                                style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
                                     color: purple),
@@ -307,14 +307,14 @@ class _nurseDetailsState extends State<nurseDetails> {
                                         height: 25,
                                         width: 116,
                                         child: TextFormField(
-                                          style: GoogleFonts.inter(
+                                          style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                           ),
                                           decoration: InputDecoration(
                                               border: InputBorder.none,
                                               hintText: vil[index].name,
-                                              hintStyle: GoogleFonts.inter(
+                                              hintStyle: GoogleFonts.poppins(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                               )),
