@@ -8,7 +8,6 @@ import 'package:janam/Login/login.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
 import 'package:janam/provider/nurseProvider.dart';
-import 'package:janam/provider/searchProviders.dart';
 import 'package:provider/provider.dart';
 
 import 'Login/login.dart';

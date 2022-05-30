@@ -50,6 +50,7 @@ dependencies:
   file_picker:
   pinput: ^0.2.6
   get:
+  expansion_card:
 
 
 dev_dependencies:
