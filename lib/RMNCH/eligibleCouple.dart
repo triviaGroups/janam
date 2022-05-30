@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_holo_date_picker/date_picker.dart';
+import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
@@ -24,6 +27,17 @@ class _EligibleCoupleState extends State<EligibleCouple> {
   int result = 0;
   int reason = 0;
   int newmode = 0;
+
+  TextEditingController dateTracking = new TextEditingController();
+  TextEditingController dateSerializ = new TextEditingController();
+  TextEditingController dateSupply = new TextEditingController();
+  TextEditingController dateInjection = new TextEditingController();
+  TextEditingController timeInjection = new TextEditingController();
+  TextEditingController dateDiscontinue = new TextEditingController();
+  TextEditingController dateInsertion = new TextEditingController();
+  TextEditingController dateAbortion = new TextEditingController();
+
+  TimeOfDay time = TimeOfDay(hour: 10, minute: 45);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -67,35 +81,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Date of tracking",
+                          "Date of Tracking",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dateTracking,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                dateTracking.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -172,35 +217,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Date od sterlization",
+                          "Date of sterlization",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dateSerializ,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                dateSerializ.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -266,7 +342,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         child: Text(
                           "Number of condoms distributed",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
@@ -336,35 +412,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           "Date of supply",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dateSupply,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                dateSupply.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -581,35 +688,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Date of injection",
+                          "Date of Injection",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dateInjection,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                dateInjection.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -625,7 +763,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         child: Text(
                           "Place of injection",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
@@ -686,35 +824,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Time of injection",
+                          "Time of Injection",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: timeInjection,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 7),
                             border: InputBorder.none,
                           ),
                           style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () async{
+                          TimeOfDay? newTime = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+
+                          ).then((value){
+                            setState((){
+                              time = value!;
+                            });
+                          });
+                          setState((){
+                            String crtTime = time.format(context).toString();
+                            timeInjection.text = crtTime;
+                            print(crtTime);
+                          });
+
+                          final snackBar = SnackBar(
+                              content:
+                              Text("Time Picked ${timeInjection.text}"));
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(snackBar);
+                        },
+                        child: Container(
+                            alignment: Alignment.centerRight,
+                            child: Icon(Icons.watch_later_outlined,color: Colors.black87,size: 30,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -724,35 +893,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           "Date of insertion",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dateInsertion,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                dateInsertion.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -855,7 +1055,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         child: Text(
                           "Type of IUCD insertion",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
@@ -911,35 +1111,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           "Date of discontinuation",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dateDiscontinue,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                dateDiscontinue.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -949,35 +1180,66 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           "Date of abortion",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dateAbortion,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                dateAbortion.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,

@@ -38,7 +38,7 @@ class _PregnancyState extends State<Pregnancy> {
     super.initState();
     final datePicked = DateTime.now();
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
-    final String formatted = formatter. format(datePicked!);
+    final String formatted = formatter. format(datePicked);
     dob.text = formatted;
   }
 
@@ -114,7 +114,7 @@ class _PregnancyState extends State<Pregnancy> {
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Date of Tracking",
+                          "Date of visit",
                           style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -131,10 +131,11 @@ class _PregnancyState extends State<Pregnancy> {
                           controller: dob,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style: GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:
+                          GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),

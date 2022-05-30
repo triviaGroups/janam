@@ -89,7 +89,6 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
                           return Login();
                         } else {
                           String phn= _user.phoneNumber!;
-                          
                           return HomeSub(number: phn.substring(3));
                         }
 

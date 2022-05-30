@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_holo_date_picker/date_picker.dart';
+import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
@@ -30,6 +33,25 @@ class _DeliveryState extends State<Delivery> {
   int defect = 0;
   int feed = 0;
   int jsy = 0;
+
+  TextEditingController dob = new TextEditingController();
+  TextEditingController date_delivery = new TextEditingController();
+  TextEditingController discharge = new TextEditingController();
+  TextEditingController time_delivery = new TextEditingController();
+  TextEditingController time_discharge = new TextEditingController();
+  TextEditingController date_JSY = new TextEditingController();
+
+  TimeOfDay time = TimeOfDay(hour: 10, minute: 45);
+  TimeOfDay Distime = TimeOfDay(hour: 10, minute: 45);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final datePicked = DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String formatted = formatter. format(datePicked);
+    dob.text = formatted;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,14 +139,14 @@ class _DeliveryState extends State<Delivery> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: dob,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
                           style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
@@ -149,35 +171,66 @@ class _DeliveryState extends State<Delivery> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Date of delivery",
+                          "Date of Delivery",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: date_delivery,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                date_delivery.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -187,28 +240,30 @@ class _DeliveryState extends State<Delivery> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           "Time of delivery",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: time_delivery,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                                EdgeInsets.only(left: 10, right: 10,bottom: 7),
                             border: InputBorder.none,
                           ),
                           style:
@@ -216,6 +271,35 @@ class _DeliveryState extends State<Delivery> {
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () async{
+                          TimeOfDay? newTime = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+
+                          ).then((value){
+                            setState((){
+                              time = value!;
+                            });
+                          });
+                          setState((){
+                            String crtTime = time.format(context).toString();
+                            time_delivery.text = crtTime;
+                            print(crtTime);
+                          });
+
+                          final snackBar = SnackBar(
+                              content:
+                              Text("Time Picked ${time_delivery.text}"));
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(snackBar);
+                        },
+                        child: Container(
+                            alignment: Alignment.centerRight,
+                            child: Icon(Icons.watch_later_outlined,color: Colors.black87,size: 30,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -280,77 +364,138 @@ class _DeliveryState extends State<Delivery> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
                           "Date of discharge",
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: discharge,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                height: 40,
-                color: colors[(a++) % 4]),
-            Cont(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(right: 8),
-                        child: Text(
-                          "Discharge time",
-                          style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
                     Expanded(
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: white,
-                            borderRadius: BorderRadius.circular(5)),
-                        child: TextFormField(
-                          onChanged: (val) {},
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
-                            border: InputBorder.none,
-                          ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
-                        ),
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                discharge.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                       ),
-                    ),
+                    )
                   ],
                 ),
                 height: 40,
                 color: colors[(a++) % 4]),
+          Cont(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Text(
+                        "Discharge Time",
+                        style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: black),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: white,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: TextFormField(
+                        controller: time_discharge,
+                        decoration: InputDecoration(
+                          contentPadding:
+                          EdgeInsets.only(left: 10, right: 10,bottom: 7),
+                          border: InputBorder.none,
+                        ),
+                        style:
+                        GoogleFonts.poppins(fontSize: 14, color: black),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () async{
+                        TimeOfDay? newTime = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.now(),
+                        ).then((value){
+                          setState((){
+                            Distime = value!;
+                          });
+                        });
+                        setState((){
+                          String crtTime = time.format(context).toString();
+                          time_discharge.text = crtTime;
+                          print(crtTime);
+                        });
+
+                        final snackBar = SnackBar(
+                            content:
+                            Text("Time Picked ${time_discharge.text}"));
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(snackBar);
+                      },
+                      child: Container(
+                          alignment: Alignment.centerRight,
+                          child: Icon(Icons.watch_later_outlined,color: Colors.black87,size: 30,)),
+                    ),
+                  )
+                ],
+              ),
+              height: 40,
+              color: colors[(a++) % 4]),
             radioContainer(
               name: "Singleton or twin pregnancy",
               num: 2,
@@ -450,6 +595,7 @@ class _DeliveryState extends State<Delivery> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
@@ -463,22 +609,52 @@ class _DeliveryState extends State<Delivery> {
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: date_JSY,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async{
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime(1994),
+                                firstDate: DateTime(1960),
+                                lastDate: DateTime(2022),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
+                              final String formatted = formatter. format(datePicked!);
+                              setState((){
+                                date_JSY.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -488,11 +664,12 @@ class _DeliveryState extends State<Delivery> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 4,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "JSY payment - Cheque number",
+                          "JSY payment Cheque - Number",
                           style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -501,19 +678,20 @@ class _DeliveryState extends State<Delivery> {
                       ),
                     ),
                     Expanded(
+                      flex: 4,
                       child: Container(
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          onTap: (){},
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10,bottom: 7),
                             border: InputBorder.none,
                           ),
                           style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
