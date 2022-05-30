@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
+import 'package:janam/Widgets/multisearch.dart';
 import 'package:janam/Widgets/radioContainer.dart';
 import 'package:janam/Widgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
@@ -31,7 +32,7 @@ class _NIPIState extends State<NIPI> {
                   height: 16,
                 ),
                 topic("NIPI", "Select child"),
-                searchWidget(),
+                SearchMulti(),
                 radioContainer(
                   name: "Children participated",
                   num: 3,

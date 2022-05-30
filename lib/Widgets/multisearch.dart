@@ -1,22 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/constants/color_constants.dart';
 
-class searchWidget extends StatefulWidget {
+class SearchMulti extends StatefulWidget {
+  const SearchMulti({Key? key}) : super(key: key);
 
   @override
-  State<searchWidget> createState() => _searchWidgetState();
+  _SearchMultiState createState() => _SearchMultiState();
 }
 
-class _searchWidgetState extends State<searchWidget> {
-
+class _SearchMultiState extends State<SearchMulti> {
   TextEditingController _searchController = TextEditingController();
   Future? resultsloaded;
   List _allResults = [];
   List _resultsList = [];
+
+  List _selected = [];
 
 
   @override
@@ -52,6 +53,8 @@ class _searchWidgetState extends State<searchWidget> {
     searchResults();
   }
 
+  List<bool> _isChecked = [];
+
   searchResults(){
     var showResults = [];
     if(_searchController.text != ""){
@@ -67,6 +70,7 @@ class _searchWidgetState extends State<searchWidget> {
     }
     setState(() {
       _resultsList = showResults;
+      _isChecked = List<bool>.filled(_resultsList.length, false);
     });
   }
 
@@ -106,16 +110,19 @@ class _searchWidgetState extends State<searchWidget> {
           child: ListView.builder(
               itemCount: _resultsList.length,
               itemBuilder: (BuildContext context,int index){
-                return  ListTile(
-                  leading: Container(
-                    alignment: Alignment.center,
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blue
-                    ),
-                  ),
+                return  CheckboxListTile(
+                  onChanged: (val){
+                    setState(
+                          () {
+                            print("Hi");
+                        _isChecked[index] = val!;
+                        val ? _selected.add(_resultsList[index]["Name"]) : _selected.remove(_resultsList[index]["Name"]);
+                        print(_selected);
+                      },
+                    );
+                  },
+                  value: _isChecked[index],
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
                   title: Container(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -136,5 +143,4 @@ class _searchWidgetState extends State<searchWidget> {
       ],
     );
   }
-
 }

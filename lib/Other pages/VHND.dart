@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
+import 'package:janam/Widgets/multisearch.dart';
 import 'package:janam/Widgets/radioContainer.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
@@ -175,6 +176,7 @@ class _VHNDState extends State<VHND> {
                     ),
                     height: 40,
                     color: colors[(a++) % 4]),
+                SearchMulti(),
                 radioContainer(
                   name: "Attendee name",
                   num: 3,

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'package:janam/Home/home.dart';
 import 'package:janam/Login/login.dart';
+import 'package:janam/Other%20pages/NIPI.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
 import 'package:janam/provider/nurseProvider.dart';
@@ -82,7 +83,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return Pregnancy();
+                        return NIPI();
                       }
                       return Scaffold(
                         body: Center(
