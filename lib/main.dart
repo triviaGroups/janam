@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:janam/Home/home.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Login/login.dart';
 import 'package:janam/Other%20pages/NIPI.dart';
 import 'package:janam/constants/color_constants.dart';
@@ -83,7 +84,15 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       if (streamSnapshot.connectionState ==
                           ConnectionState.active) {
-                        return NIPI();
+                        User? _user = streamSnapshot.data as User?;
+                        if (_user == null) {
+                          return Login();
+                        } else {
+                          String phn= _user.phoneNumber!;
+                          
+                          return HomeSub(number: phn.substring(3));
+                        }
+
                       }
                       return Scaffold(
                         body: Center(

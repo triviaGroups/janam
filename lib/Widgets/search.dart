@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/constants/color_constants.dart';
 
 class searchWidget extends StatefulWidget {
-
+  
   @override
   State<searchWidget> createState() => _searchWidgetState();
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,15 +74,17 @@ class _LoadingState extends State<Loading> {
                       verificationId: _verificationCode, smsCode: pin))
                       .then((value) async {
                     if (value.user != null) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => nurseDetails()),
-                              (route) => false);
+                      await FirebaseFirestore.instance.collection("Details").doc(widget.phone).get().then((data){
+                        if(data.exists){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeSub(number: widget.phone)));
+                        }
+                        else{
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => nurseDetails(
+                            number: widget.phone,
+                          )));
+                        }
+                      });
                     }
-                  }).whenComplete(() async{
-                    await FirebaseFirestore.instance.collection("Userdetails").doc(widget.phone).set({
-                      "Number" : widget.phone,
-                    });
                   });
                 } catch (e) {
                   FocusScope.of(context).unfocus();
@@ -103,7 +106,17 @@ class _LoadingState extends State<Loading> {
           await FirebaseAuth.instance.signInWithCredential(credential).then((value) async{
             if(value.user != null)
             {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => nurseDetails()));
+             await FirebaseFirestore.instance.collection("Details").doc(widget.phone).get().then((data){
+               if(data.exists){
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeSub(number: widget.phone)));
+               }
+               else{
+                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => nurseDetails(
+                   number: widget.phone,
+                 )));
+               }
+             });
+
             }
           });
         },

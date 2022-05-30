@@ -1,11 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:janam/Login/nurseDetails.dart';
 import 'package:janam/constants/color_constants.dart';
-import 'package:janam/provider/nurseProvider.dart';
-import 'package:provider/provider.dart';
 
 import '../loading.dart';
 
@@ -132,17 +127,17 @@ class _LoginState extends State<Login> {
             // ),
             GestureDetector(
               onTap: () {
-                //_verifyPhone();
-                // if(_number.text.length == 10)
-                //   {
-                //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Loading(phone: _number.text)));
-                //   }else
-                //     {
-                //       ScaffoldMessenger.of(context).showSnackBar(SnackBar( backgroundColor: Colors.red,duration: Duration(seconds: 2),
-                //         content: Text("Enter MobileNumber",style: GoogleFonts.inter(fontSize: 18),),
-                //       ));
-                //     }
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => nurseDetails()));
+               // _verifyPhone();
+                if(_number.text.length == 10)
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Loading(phone: _number.text)));
+                  }else
+                    {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar( backgroundColor: Colors.black,duration: Duration(seconds: 2),
+                        content: Text("Enter Mobile Number",style: GoogleFonts.poppins(fontSize: 18),),
+                      ));
+                    }
+                //Navigator.of(context).push(MaterialPageRoute(builder: (context) => nurseDetails()));
               },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 80, vertical: 50),

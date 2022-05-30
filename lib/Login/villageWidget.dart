@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Home/home_sub.dart';
@@ -13,8 +14,9 @@ import '../constants/color_constants.dart';
 class village extends StatefulWidget {
   final int villagecount;
   final List<String> villageName;
+  final String number;
   const village(
-      {Key? key, required this.villagecount, required this.villageName})
+      {Key? key, required this.villagecount, required this.villageName, required this.number})
       : super(key: key);
 
   @override
@@ -2130,7 +2132,7 @@ class _villageState extends State<village> {
                                                   ),
                                                   decoration: InputDecoration(
                                                       border: InputBorder.none,
-                                                      hintText: "Number",
+                                                      hintText: widget.number,
                                                       hintStyle:
                                                           GoogleFonts.inter(
                                                         fontSize: 14,
@@ -2245,7 +2247,7 @@ class _villageState extends State<village> {
                                                   ),
                                                   decoration: InputDecoration(
                                                       border: InputBorder.none,
-                                                      hintText: "Number",
+                                                      hintText: widget.number,
                                                       hintStyle:
                                                           GoogleFonts.inter(
                                                         fontSize: 14,
@@ -2279,193 +2281,252 @@ class _villageState extends State<village> {
                     index == widget.villagecount - 1
                         ? GestureDetector(
                             onTap: () {
-                              // Map<String, dynamic> data = {
-                              //   "Name": village_name,
-                              //   "Population": pop,
-                              //   "Ilr": ilr,
-                              //   "Freezer": freezer,
-                              // };
-                              //
-                              // FirebaseFirestore.instance
-                              //     .collection("Nurse Details")
-                              //     .doc("Number")
-                              //     .collection("Villages")
-                              //     .doc(village_name)
-                              //     .set(data)
-                              //     .whenComplete(() {
-                              //   for (int i = 0; i < asha_details.length; i++) {
-                              //     List<String> mn = asha_details[i];
-                              //     Map<String, dynamic> asha_data = {
-                              //       "Asha_name": mn[0],
-                              //       "Mobile_number": mn[1],
-                              //     };
-                              //     FirebaseFirestore.instance
-                              //         .collection("Nurse_Details")
-                              //         .doc("Number")
-                              //         .collection("Villages")
-                              //         .doc(village_name)
-                              //         .collection("Asha_Details")
-                              //         .doc(mn[0])
-                              //         .set(asha_data)
-                              //         .whenComplete(() {
-                              //       for (int i = 0;
-                              //           i < awc_details.length;
-                              //           i++) {
-                              //         List<String> mna = awc_details[i];
-                              //         Map<String, dynamic> awc_data = {
-                              //           "Awc_name": mna[0],
-                              //           "Mobile_number": mna[1],
-                              //           "No_of_childres": mna[2],
-                              //         };
-                              //         FirebaseFirestore.instance
-                              //             .collection("Nurse_Details")
-                              //             .doc("Number")
-                              //             .collection("Villages")
-                              //             .doc(village_name)
-                              //             .collection("Awc_Details")
-                              //             .doc(mna[0])
-                              //             .set(awc_data);
-                              //       }
-                              //     }).whenComplete(() {
-                              //       for (int i = 0;
-                              //           i < gvt_details.length;
-                              //           i++) {
-                              //         List<String> mng = gvt_details[i];
-                              //         Map<String, dynamic> gvt_data = {
-                              //           "Gvt_name": mng[0],
-                              //           "Mobile_number": mng[1],
-                              //           "No_of_children": mng[2],
-                              //         };
-                              //         FirebaseFirestore.instance
-                              //             .collection("Nurse_Details")
-                              //             .doc("Number")
-                              //             .collection("Villages")
-                              //             .doc(village_name)
-                              //             .collection("Gvt_Details")
-                              //             .doc(mng[0])
-                              //             .set(gvt_data)
-                              //             .whenComplete(() {
-                              //           for (int i = 0;
-                              //               i < pvt_details.length;
-                              //               i++) {
-                              //             List<String> mnp = pvt_details[i];
-                              //             Map<String, dynamic> pvt_data = {
-                              //               "Pvt_name": mnp[0],
-                              //               "Mobile_number": mnp[1],
-                              //               "No_of_childres": mnp[2],
-                              //             };
-                              //             FirebaseFirestore.instance
-                              //                 .collection("Nurse_Details")
-                              //                 .doc("Number")
-                              //                 .collection("Villages")
-                              //                 .doc(village_name)
-                              //                 .collection("Pvt_Details")
-                              //                 .doc(mn[0])
-                              //                 .set(pvt_data);
-                              //           }
-                              //         });
-                              //       }
-                              //     });
-                              //   }
-                              // });
+                              List<String> asha = [];
+                              List<String> awc = [];
+                              List<String> gvt = [];
+                              List<String> pvt = [];
+
+                              for(int i=0;i<asha_details.length;i++){
+                                List<String> mn = asha_details[i];
+                                asha.add(mn[0]);
+                              }
+
+                              for(int i=0;i<awc_details.length;i++){
+                                List<String> mn = awc_details[i];
+                                awc.add(mn[0]);
+                              }
+
+                              for(int i=0;i<gvt_details.length;i++){
+                                List<String> mn = gvt_details[i];
+                                gvt.add(mn[0]);
+                              }
+
+                              for(int i=0;i<pvt_details.length;i++){
+                                List<String> mn = pvt_details[i];
+                                pvt.add(mn[0]);
+                              }
+
+                              Map<String, dynamic> data = {
+                                "Name": village_name,
+                                "Population": pop,
+                                "Ilr": ilr,
+                                "Freezer": freezer,
+                                "Asha" : asha,
+                                "Awc": awc,
+                                "Gvt": gvt,
+                                "Pvt": pvt,
+                              };
+
+                              FirebaseFirestore.instance
+                                  .collection("Details")
+                                  .doc(widget.number)
+                                  .collection("village")
+                                  .doc(village_name)
+                                  .set(data)
+                                  .whenComplete(() {
+                                for (int i = 0; i < asha_details.length; i++) {
+                                  List<String> mn = asha_details[i];
+                                  Map<String, dynamic> asha_data = {
+                                    "Asha_name": mn[0],
+                                    "Mobile_number": mn[1],
+                                  };
+                                  FirebaseFirestore.instance
+                                      .collection("Details")
+                                      .doc(widget.number)
+                                      .collection("village")
+                                      .doc(village_name)
+                                      .collection("Asha")
+                                      .doc(mn[0])
+                                      .set(asha_data)
+                                      .whenComplete(() {
+                                    for (int i = 0;
+                                        i < awc_details.length;
+                                        i++) {
+                                      List<String> mna = awc_details[i];
+                                      Map<String, dynamic> awc_data = {
+                                        "Awc_name": mna[0],
+                                        "Mobile_number": mna[1],
+                                        "No_of_children": mna[2],
+                                      };
+                                      FirebaseFirestore.instance
+                                          .collection("Details")
+                                          .doc(widget.number)
+                                          .collection("village")
+                                          .doc(village_name)
+                                          .collection("Awc")
+                                          .doc(mna[0])
+                                          .set(awc_data);
+                                    }
+                                  }).whenComplete(() {
+                                    for (int i = 0;
+                                        i < gvt_details.length;
+                                        i++) {
+                                      List<String> mng = gvt_details[i];
+                                      Map<String, dynamic> gvt_data = {
+                                        "Gvt_name": mng[0],
+                                        "Mobile_number": mng[1],
+                                        "No_of_children": mng[2],
+                                      };
+                                      FirebaseFirestore.instance
+                                          .collection("Details")
+                                          .doc(widget.number)
+                                          .collection("village")
+                                          .doc(village_name)
+                                          .collection("Gvt")
+                                          .doc(mng[0])
+                                          .set(gvt_data)
+                                          .whenComplete(() {
+                                        for (int i = 0;
+                                            i < pvt_details.length;
+                                            i++) {
+                                          List<String> mnp = pvt_details[i];
+                                          Map<String, dynamic> pvt_data = {
+                                            "Pvt_name": mnp[0],
+                                            "Mobile_number": mnp[1],
+                                            "No_of_children": mnp[2],
+                                          };
+                                          FirebaseFirestore.instance
+                                              .collection("Details")
+                                              .doc(widget.number)
+                                              .collection("village")
+                                              .doc(village_name)
+                                              .collection("Pvt")
+                                              .doc(mn[0])
+                                              .set(pvt_data);
+                                        }
+                                      });
+                                    }
+                                  });
+                                }
+                              }).whenComplete(() =>
+                                  FirebaseFirestore.instance.collection("Village Details").doc(village_name));
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomeSub()));
+                                      builder: (context) => HomeSub(number: widget.number,)));
                             },
                             child: Button("Save"))
                         : GestureDetector(
                             onTap: () {
-                              // Map<String, dynamic> data = {
-                              //   "Name": village_name,
-                              //   "Population": pop,
-                              //   "Ilr": ilr,
-                              //   "Freezer": freezer,
-                              // };
-                              //
-                              // FirebaseFirestore.instance
-                              //     .collection("Nurse Details")
-                              //     .doc("Number")
-                              //     .collection("Villages")
-                              //     .doc(village_name)
-                              //     .set(data)
-                              //     .whenComplete(() {
-                              //   for (int i = 0; i < asha_details.length; i++) {
-                              //     List<String> mn = asha_details[i];
-                              //     Map<String, dynamic> asha_data = {
-                              //       "Asha_name": mn[0],
-                              //       "Mobile_number": mn[1],
-                              //     };
-                              //     FirebaseFirestore.instance
-                              //         .collection("Nurse_Details")
-                              //         .doc("Number")
-                              //         .collection("Villages")
-                              //         .doc(village_name)
-                              //         .collection("Asha_Details")
-                              //         .doc(mn[0])
-                              //         .set(asha_data)
-                              //         .whenComplete(() {
-                              //       for (int i = 0;
-                              //           i < awc_details.length;
-                              //           i++) {
-                              //         List<String> mna = awc_details[i];
-                              //         Map<String, dynamic> awc_data = {
-                              //           "Awc_name": mna[0],
-                              //           "Mobile_number": mna[1],
-                              //           "No_of_childres": mna[2],
-                              //         };
-                              //         FirebaseFirestore.instance
-                              //             .collection("Nurse_Details")
-                              //             .doc("Number")
-                              //             .collection("Villages")
-                              //             .doc(village_name)
-                              //             .collection("Awc_Details")
-                              //             .doc(mna[0])
-                              //             .set(awc_data);
-                              //       }
-                              //     }).whenComplete(() {
-                              //       for (int i = 0;
-                              //           i < gvt_details.length;
-                              //           i++) {
-                              //         List<String> mng = gvt_details[i];
-                              //         Map<String, dynamic> gvt_data = {
-                              //           "Gvt_name": mng[0],
-                              //           "Mobile_number": mng[1],
-                              //           "No_of_children": mng[2],
-                              //         };
-                              //         FirebaseFirestore.instance
-                              //             .collection("Nurse_Details")
-                              //             .doc("Number")
-                              //             .collection("Villages")
-                              //             .doc(village_name)
-                              //             .collection("Gvt_Details")
-                              //             .doc(mng[0])
-                              //             .set(gvt_data)
-                              //             .whenComplete(() {
-                              //           for (int i = 0;
-                              //               i < pvt_details.length;
-                              //               i++) {
-                              //             List<String> mnp = pvt_details[i];
-                              //             Map<String, dynamic> pvt_data = {
-                              //               "Pvt_name": mnp[0],
-                              //               "Mobile_number": mnp[1],
-                              //               "No_of_childres": mnp[2],
-                              //             };
-                              //             FirebaseFirestore.instance
-                              //                 .collection("Nurse_Details")
-                              //                 .doc("Number")
-                              //                 .collection("Villages")
-                              //                 .doc(village_name)
-                              //                 .collection("Pvt_Details")
-                              //                 .doc(mn[0])
-                              //                 .set(pvt_data);
-                              //           }
-                              //         });
-                              //       }
-                              //     });
-                              //   }
-                              // });
+                              List<String> asha = [];
+                              List<String> awc = [];
+                              List<String> gvt = [];
+                              List<String> pvt = [];
 
+                              for(int i=0;i<asha_details.length;i++){
+                                List<String> mn = asha_details[i];
+                                asha.add(mn[0]);
+                              }
+
+                              for(int i=0;i<awc_details.length;i++){
+                                List<String> mn = awc_details[i];
+                                awc.add(mn[0]);
+                              }
+
+                              for(int i=0;i<gvt_details.length;i++){
+                                List<String> mn = gvt_details[i];
+                                gvt.add(mn[0]);
+                              }
+
+                              for(int i=0;i<pvt_details.length;i++){
+                                List<String> mn = pvt_details[i];
+                                pvt.add(mn[0]);
+                              }
+
+                              Map<String, dynamic> data = {
+                                "Name": village_name,
+                                "Population": pop,
+                                "Ilr": ilr,
+                                "Freezer": freezer,
+                                "Asha" : asha,
+                                "Awc": awc,
+                                "Gvt": gvt,
+                                "Pvt": pvt,
+                              };
+
+                              FirebaseFirestore.instance
+                                  .collection("Details")
+                                  .doc(widget.number)
+                                  .collection("village")
+                                  .doc(village_name)
+                                  .set(data)
+                                  .whenComplete(() {
+                                for (int i = 0; i < asha_details.length; i++) {
+                                  List<String> mn = asha_details[i];
+                                  Map<String, dynamic> asha_data = {
+                                    "Asha_name": mn[0],
+                                    "Mobile_number": mn[1],
+                                  };
+                                  FirebaseFirestore.instance
+                                      .collection("Details")
+                                      .doc(widget.number)
+                                      .collection("village")
+                                      .doc(village_name)
+                                      .collection("Asha")
+                                      .doc(mn[0])
+                                      .set(asha_data)
+                                      .whenComplete(() {
+                                    for (int i = 0;
+                                    i < awc_details.length;
+                                    i++) {
+                                      List<String> mna = awc_details[i];
+                                      Map<String, dynamic> awc_data = {
+                                        "Awc_name": mna[0],
+                                        "Mobile_number": mna[1],
+                                        "No_of_children": mna[2],
+                                      };
+                                      FirebaseFirestore.instance
+                                          .collection("Details")
+                                          .doc(widget.number)
+                                          .collection("village")
+                                          .doc(village_name)
+                                          .collection("Awc")
+                                          .doc(mna[0])
+                                          .set(awc_data);
+                                    }
+                                  }).whenComplete(() {
+                                    for (int i = 0;
+                                    i < gvt_details.length;
+                                    i++) {
+                                      List<String> mng = gvt_details[i];
+                                      Map<String, dynamic> gvt_data = {
+                                        "Gvt_name": mng[0],
+                                        "Mobile_number": mng[1],
+                                        "No_of_children": mng[2],
+                                      };
+                                      FirebaseFirestore.instance
+                                          .collection("Details")
+                                          .doc(widget.number)
+                                          .collection("village")
+                                          .doc(village_name)
+                                          .collection("Gvt")
+                                          .doc(mng[0])
+                                          .set(gvt_data)
+                                          .whenComplete(() {
+                                        for (int i = 0;
+                                        i < pvt_details.length;
+                                        i++) {
+                                          List<String> mnp = pvt_details[i];
+                                          Map<String, dynamic> pvt_data = {
+                                            "Pvt_name": mnp[0],
+                                            "Mobile_number": mnp[1],
+                                            "No_of_children": mnp[2],
+                                          };
+                                          FirebaseFirestore.instance
+                                              .collection("Details")
+                                              .doc(widget.number)
+                                              .collection("village")
+                                              .doc(village_name)
+                                              .collection("Pvt")
+                                              .doc(mn[0])
+                                              .set(pvt_data);
+                                        }
+                                      });
+                                    }
+                                  });
+                                }
+                              }).whenComplete(() =>
+                                  FirebaseFirestore.instance.collection("Village Details").doc(village_name));
 
                               controller.nextPage(
                                   duration: Duration(milliseconds: 10),

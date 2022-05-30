@@ -20,7 +20,8 @@ import '../List/ashaList.dart';
 import '../List/villageList.dart';
 
 class nurseDetails extends StatefulWidget {
-  const nurseDetails({super.key});
+  final String number;
+  const nurseDetails({super.key, required this.number});
 
   @override
   State<nurseDetails> createState() => _nurseDetailsState();
@@ -36,7 +37,7 @@ class _nurseDetailsState extends State<nurseDetails> {
 
   static int villageCount = 0;
 
-  List<String> villageName = [""];
+  List<String> villageName = [];
   String name = "";
   String phcn = "";
   String sub = "";
@@ -339,6 +340,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                                     vilWid.add(village(
                                       villagecount: villageCount,
                                       villageName: villageName,
+                                      number: widget.number,
                                     ));
                                     //Provider.of<NurseDetails>(context,listen: false).set_village_count(vil.length);
                                     setState(() {});
@@ -357,31 +359,31 @@ class _nurseDetailsState extends State<nurseDetails> {
             ),
             GestureDetector(
               onTap: () {
-                // Map<String, dynamic> data = {
-                //   "Name": name,
-                //   "Villages": villageName,
-                //   "Phcn": phcn,
-                //   "sub": sub,
-                // };
-                //
-                // FirebaseFirestore.instance
-                //     .collection("Nurse_Details")
-                //     .doc("Number")
-                //     .set(data)
-                //     .whenComplete(() => Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //             builder: (context) => village(
-                //                   villagecount: vilWid.length,
-                //                   villageName: villageName,
-                //                 ))));
-                Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => village(
-                                      villagecount: vilWid.length,
-                                      villageName: villageName,
-                                    )));
+                Map<String, dynamic> data = {
+                  "Name": name,
+                  "Villages": villageName,
+                  "Phcn": phcn,
+                  "sub": sub,
+                };
+                FirebaseFirestore.instance
+                    .collection("Details")
+                    .doc(widget.number)
+                    .set(data)
+                    .whenComplete(() => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => village(
+                                  villagecount: vilWid.length,
+                                  villageName: villageName,
+                              number: widget.number,
+                                ))));
+                // Navigator.push(
+                //             context,
+                //             MaterialPageRoute(
+                //                 builder: (context) => village(
+                //                       villagecount: vilWid.length,
+                //                       villageName: villageName,
+                //                     )));
 
               },
               child: Button("Next"),
