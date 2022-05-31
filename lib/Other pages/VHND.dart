@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
@@ -22,6 +23,18 @@ class _VHNDState extends State<VHND> {
   int place = 0;
   int attendee = 0;
   int conducted = 0;
+
+  TextEditingController dateVHND = new TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final datePicked = DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String formatted = formatter. format(datePicked);
+    dateVHND.text = formatted;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +71,10 @@ class _VHNDState extends State<VHND> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {
-
-                              },
+                              controller: dateVHND,
                               decoration: InputDecoration(
                                 contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                                EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
                               ),
                               style:

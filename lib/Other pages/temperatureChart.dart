@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/radioContainer.dart';
@@ -27,6 +28,18 @@ class _TempChartState extends State<TempChart> {
   int door = 0;
   int frozen = 0;
   int expiry = 0;
+
+  TextEditingController dateCharting = new TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final datePicked = DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String formatted = formatter. format(datePicked);
+    dateCharting.text = formatted;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +101,7 @@ class _TempChartState extends State<TempChart> {
                             alignment: Alignment.centerLeft,
                             padding: const EdgeInsets.only(right: 8),
                             child: Text(
-                              "Date of charting",
+                              "Date of visit",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -102,10 +115,10 @@ class _TempChartState extends State<TempChart> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: dateCharting,
                               decoration: InputDecoration(
                                 contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                                EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
                               ),
                               style:
