@@ -561,8 +561,10 @@ class _DeliveryState extends State<Delivery> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Birth weight (gm)",
-                count: "3000",
+                count: 3000,
                 height: 60,
+                add: (){},
+                sub: (){},
               ),
             ),
             radioContainer(

@@ -315,8 +315,10 @@ class _PregnancyState extends State<Pregnancy> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Current weight (kg)",
-                count: "0",
+                count: 0,
                 height: 60,
+                add: (){},
+                sub: (){},
               ),
             ),
             Padding(
@@ -324,8 +326,10 @@ class _PregnancyState extends State<Pregnancy> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Height (cm)",
-                count: "0",
+                count: 0,
                 height: 60,
+                add: (){},
+                sub: (){},
               ),
             ),
             const SizedBox(

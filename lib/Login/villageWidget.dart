@@ -90,14 +90,12 @@ class _villageState extends State<village> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              controller.previousPage(
-                                  duration: Duration(milliseconds: 10),
-                                  curve: Curves.easeIn);
+
                             },
                             child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.grey.shade100,
+                                color: Colors.white,
                               ),
                               padding: EdgeInsets.all(8),
                               child: Icon(

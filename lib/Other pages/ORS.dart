@@ -72,8 +72,10 @@ class _ORSState extends State<ORS> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Height",
-                    count: "170",
+                    count: 170,
                     height: 60,
+                    add: (){},
+                    sub: (){},
                   ),
                 ),
                 Padding(
@@ -81,8 +83,10 @@ class _ORSState extends State<ORS> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Weight (kg)",
-                    count: "70",
+                    count: 70,
                     height: 60,
+                    add: (){},
+                    sub: (){},
                   ),
                 ),
                 Cont(

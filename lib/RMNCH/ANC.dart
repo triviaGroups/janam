@@ -148,8 +148,10 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Current weight (kg)",
-                count: "0",
+                count: 0,
                 height: 60,
+                add: (){},
+                sub: (){},
               ),
             ),
             Container(
@@ -355,8 +357,10 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Haemoglobin",
-                count: "0",
+                count: 0,
                 height: 60,
+                add: (){},
+                sub: (){},
               ),
             ),
             radioContainer(
@@ -526,8 +530,10 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of folic acid tablets given",
-                count: "0",
+                count: 0,
                 height: 80,
+                add: (){},
+                sub: (){},
               ),
             ),
             Padding(
@@ -535,8 +541,10 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of iron folic acid tablets given",
-                count: "0",
+                count: 0,
                 height: 80,
+                add: (){},
+                sub: (){},
               ),
             ),
             radioContainer(

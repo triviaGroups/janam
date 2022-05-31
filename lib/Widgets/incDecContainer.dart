@@ -5,9 +5,11 @@ import 'package:janam/constants/color_constants.dart';
 class incDec extends StatefulWidget {
   final Color color;
   final String name;
-  final String count;
+  final int count;
   final double height;
-  const incDec({Key? key, required this.color, required this.name, required this.count, required this.height}) : super(key: key);
+  final Function() add;
+  final Function() sub;
+  const incDec({Key? key, required this.color, required this.name, required this.count, required this.height, required this.add, required this.sub}) : super(key: key);
 
   @override
   _incDecState createState() => _incDecState();
@@ -66,10 +68,13 @@ class _incDecState extends State<incDec> {
                         ),
                         child: Transform.translate(
                             offset: Offset(0, 0),
-                            child: const Icon(
-                              Icons.add,
-                              color: black,
-                              size: 16,
+                            child: GestureDetector(
+                              onTap: widget.add,
+                              child: const Icon(
+                                Icons.add,
+                                color: black,
+                                size: 16,
+                              ),
                             )),
                       )),
                   Expanded(
@@ -79,7 +84,7 @@ class _incDecState extends State<incDec> {
                         alignment: Alignment.center,
                         color: Colors.transparent,
                         child: Text(
-                          widget.count,
+                          widget.count.toString(),
                           style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -103,10 +108,13 @@ class _incDecState extends State<incDec> {
                         ),
                         child: Transform.translate(
                             offset: Offset(0, -4),
-                            child: const Icon(
-                              Icons.minimize,
-                              color: black,
-                              size: 16,
+                            child: GestureDetector(
+                              onTap: widget.sub,
+                              child: const Icon(
+                                Icons.minimize,
+                                color: black,
+                                size: 16,
+                              ),
                             )),
                       )),
                 ],

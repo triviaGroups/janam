@@ -206,8 +206,10 @@ class _VHNDState extends State<VHND> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "No. of IFA tablets given in VHNDs",
-                    count: "0",
+                    count: 0,
                     height: 60,
+                    add: (){},
+                    sub: (){},
                   ),
                 ),
                 Padding(
@@ -215,8 +217,10 @@ class _VHNDState extends State<VHND> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "No. of IFA tablets issued by AWW",
-                    count: "0",
+                    count: 0,
                     height: 60,
+                    add: (){},
+                    sub: (){},
                   ),
                 ),
                 const SizedBox(

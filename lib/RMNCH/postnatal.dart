@@ -161,8 +161,10 @@ class _PostnatalCareState extends State<PostnatalCare> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "No. of IFA tablets given",
-                    count: "0",
+                    count: 0,
                     height: 60,
+                    add: (){},
+                    sub: (){},
                   ),
                 ),
                 radioContainer(
@@ -196,8 +198,10 @@ class _PostnatalCareState extends State<PostnatalCare> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Weight of the child",
-                    count: "0",
+                    count: 0,
                     height: 60,
+                    add: (){},
+                    sub: (){},
                   ),
                 ),
 

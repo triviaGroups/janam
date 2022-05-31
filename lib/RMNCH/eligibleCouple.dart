@@ -481,8 +481,10 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Body weight (kg)",
-                count: "60",
+                count: 60,
                 height: 60,
+                add: (){},
+                sub: (){},
               ),
             ),
             Container(
