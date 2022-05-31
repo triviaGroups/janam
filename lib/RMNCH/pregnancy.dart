@@ -44,6 +44,7 @@ class _PregnancyState extends State<Pregnancy> {
 
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
@@ -53,7 +54,7 @@ class _PregnancyState extends State<Pregnancy> {
             const SizedBox(
               height: 16,
             ),
-            topic("Pregnancy", ""),
+            topic("Pregnancy", "Select member"),
             searchWidget(),
             Cont(
                 child: Column(
@@ -205,133 +206,137 @@ class _PregnancyState extends State<Pregnancy> {
               }),
               selectedButton: result,
             ),
-            radioContainer(
-              name: "JSY beneficiary",
-              num: 2,
-              item: const ["Yes", "No"],
-              height: 120,
-              a: (a++) % 4,
-              press: (val) => setState(() {
-                jsy = int.parse(val.toString());
-                print("$jsy");
-              }),
-              selectedButton: jsy,
-            ),
-            CheckBoxCont(
-              name: "Past history of illness",
-              item: const ["Tuberculosis (TB)","Diabetes mellitus (DM)","Hypertension","Heart disease","Epilepsy","Sexually Transmitted disease","HIV","Hepatisis B","Asthma","Other"],
-              height: 700,
-              a: (a++) % 4,
-            ),
-            radioContainer(
-              name: "Blood grouping",
-              num: 9,
-              item: const [
-                "A +ve",
-                "A -ve",
-                "B +ve",
-                "B -ve",
-                "AB +ve",
-                "AB -ve",
-                "O +ve",
-                "O -ve",
-                "Not done"
+            result == 1 ? Column(
+              children: [
+                radioContainer(
+                  name: "JSY beneficiary",
+                  num: 2,
+                  item: const ["Yes", "No"],
+                  height: 120,
+                  a: (a++) % 4,
+                  press: (val) => setState(() {
+                    jsy = int.parse(val.toString());
+                    print("$jsy");
+                  }),
+                  selectedButton: jsy,
+                ),
+                CheckBoxCont(
+                  name: "Past history of illness",
+                  item: const ["Tuberculosis (TB)","Diabetes mellitus (DM)","Hypertension","Heart disease","Epilepsy","Sexually Transmitted disease","HIV","Hepatisis B","Asthma","Other"],
+                  height: 700,
+                  a: (a++) % 4,
+                ),
+                radioContainer(
+                  name: "Blood grouping",
+                  num: 9,
+                  item: const [
+                    "A +ve",
+                    "A -ve",
+                    "B +ve",
+                    "B -ve",
+                    "AB +ve",
+                    "AB -ve",
+                    "O +ve",
+                    "O -ve",
+                    "Not done"
+                  ],
+                  height: 500,
+                  a: (a++) % 4,
+                  press: (val) => setState(() {
+                    blood = int.parse(val.toString());
+                    print("$blood");
+                  }),
+                  selectedButton: blood,
+                ),
+                CheckBoxCont(
+                  name: "If Gravida 2 \n\nComplications in previous pregnancy",
+                  item: const ["Convulsions","APH","PIH","Repeated abortions","Stillbirth","Congenital anomaly","Cesearean section","Blood transfusion","Twin pregnancy","Obstructed labour","PPH","Any other"],
+                  height: 848,
+                  a: (a++) % 4,
+                ),
+                radioContainer(
+                  name: "If Gravida 2\n\nOutcome of last pregnancy",
+                  num: 3,
+                  item: const ["Live birth", "Strillbirth", "Abortion"],
+                  height: 200,
+                  a: (a++) % 4,
+                  press: (val) => setState(() {
+                    gravida = int.parse(val.toString());
+                    print("$gravida");
+                  }),
+                  selectedButton: gravida,
+                ),
+                radioContainer(
+                  name: "Expected facility for delivery",
+                  num: 10,
+                  item: const [
+                    "District hospital",
+                    "Other Govt. hospital",
+                    "Accredited private hospital",
+                    "Other private hospital",
+                    "Home",
+                    "Sub district hospital",
+                    "Medical college hospital",
+                    "Sub centre",
+                    "PHC",
+                    "CHC"
+                  ],
+                  height: 600,
+                  a: (a++) % 4,
+                  press: (val) => setState(() {
+                    facility = int.parse(val.toString());
+                    print("$facility");
+                  }),
+                  selectedButton: facility,
+                ),
+                radioContainer(
+                  name: "VDRL / RPR Test",
+                  num: 3,
+                  item: const ["Positive", "Negative", "Test not done"],
+                  height: 180,
+                  a: (a++) % 4,
+                  press: (val) => setState(() {
+                    rpr = int.parse(val.toString());
+                    print("$rpr");
+                  }),
+                  selectedButton: rpr,
+                ),
+                radioContainer(
+                  name: "HIV",
+                  num: 3,
+                  item: const ["Positive", "Negative", "Test not done"],
+                  height: 180,
+                  a: (a++) % 4,
+                  press: (val) => setState(() {
+                    hiv = int.parse(val.toString());
+                    print("$hiv");
+                  }),
+                  selectedButton: hiv,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: incDec(
+                    color: colors[(a++) % 4],
+                    name: "Current weight (kg)",
+                    count: 0,
+                    height: 60,
+                    add: (){},
+                    sub: (){},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: incDec(
+                    color: colors[(a++) % 4],
+                    name: "Height (cm)",
+                    count: 0,
+                    height: 60,
+                    add: (){},
+                    sub: (){},
+                  ),
+                ),
               ],
-              height: 500,
-              a: (a++) % 4,
-              press: (val) => setState(() {
-                blood = int.parse(val.toString());
-                print("$blood");
-              }),
-              selectedButton: blood,
-            ),
-            CheckBoxCont(
-              name: "If Gravida 2 \n\nComplications in previous pregnancy",
-              item: const ["Convulsions","APH","PIH","Repeated abortions","Stillbirth","Congenital anomaly","Cesearean section","Blood transfusion","Twin pregnancy","Obstructed labour","PPH","Any other"],
-              height: 848,
-              a: (a++) % 4,
-            ),
-            radioContainer(
-              name: "If Gravida 2\n\nOutcome of last pregnancy",
-              num: 3,
-              item: const ["Live birth", "Strillbirth", "Abortion"],
-              height: 200,
-              a: (a++) % 4,
-              press: (val) => setState(() {
-                gravida = int.parse(val.toString());
-                print("$gravida");
-              }),
-              selectedButton: gravida,
-            ),
-            radioContainer(
-              name: "Expected facility for delivery",
-              num: 10,
-              item: const [
-                "District hospital",
-                "Other Govt. hospital",
-                "Accredited private hospital",
-                "Other private hospital",
-                "Home",
-                "Sub district hospital",
-                "Medical college hospital",
-                "Sub centre",
-                "PHC",
-                "CHC"
-              ],
-              height: 600,
-              a: (a++) % 4,
-              press: (val) => setState(() {
-                facility = int.parse(val.toString());
-                print("$facility");
-              }),
-              selectedButton: facility,
-            ),
-            radioContainer(
-              name: "VDRL / RPR Test",
-              num: 3,
-              item: const ["Positive", "Negative", "Test not done"],
-              height: 180,
-              a: (a++) % 4,
-              press: (val) => setState(() {
-                rpr = int.parse(val.toString());
-                print("$rpr");
-              }),
-              selectedButton: rpr,
-            ),
-            radioContainer(
-              name: "HIV",
-              num: 3,
-              item: const ["Positive", "Negative", "Test not done"],
-              height: 180,
-              a: (a++) % 4,
-              press: (val) => setState(() {
-                hiv = int.parse(val.toString());
-                print("$hiv");
-              }),
-              selectedButton: hiv,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: incDec(
-                color: colors[(a++) % 4],
-                name: "Current weight (kg)",
-                count: 0,
-                height: 60,
-                add: (){},
-                sub: (){},
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: incDec(
-                color: colors[(a++) % 4],
-                name: "Height (cm)",
-                count: 0,
-                height: 60,
-                add: (){},
-                sub: (){},
-              ),
-            ),
+            ) : SizedBox(),
             const SizedBox(
               height: 32,
             ),

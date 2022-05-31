@@ -101,6 +101,7 @@ class _vPage22State extends State<vPage22> {
 
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,

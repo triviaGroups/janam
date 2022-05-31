@@ -43,7 +43,7 @@ class _CloseCaseState extends State<CloseCase> {
                 const SizedBox(
                   height: 16,
                 ),
-                topic("Closing the case", ""),
+                topic("Closing the case", "Select member"),
                 searchWidget(),
                 Cont(
                     child: Column(

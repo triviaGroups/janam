@@ -3,6 +3,7 @@ import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/RMNCH/postnatal.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
@@ -64,7 +65,7 @@ class _DeliveryState extends State<Delivery> {
             const SizedBox(
               height: 16,
             ),
-            topic("Delivery", ""),
+            topic("Delivery", "Select member"),
             searchWidget(),
             Cont(
                 child: Column(
@@ -704,7 +705,11 @@ class _DeliveryState extends State<Delivery> {
             const SizedBox(
               height: 32,
             ),
-            Button("Save"),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> PostnatalCare()));
+              },
+                child: Button("Save")),
             const SizedBox(
               height: 16,
             ),

@@ -95,6 +95,7 @@ class _vPage2State extends State<vPage2> {
 
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
             backgroundColor: white,
@@ -1053,37 +1054,39 @@ class _vPage2State extends State<vPage2> {
                       "docId": doc,
                     };
 
-                    // await FirebaseFirestore.instance
-                    //     .collection("Village Details")
-                    //     .doc(widget.VillageName)
-                    //     .collection("Family")
-                    //     .doc(widget.docId)
-                    //     .collection("Household")
-                    //     .doc(doc)
-                    //     .set(data)
-                    //     .whenComplete(() {
-                    //   Navigator.pushReplacement(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => vPage3(
-                    //                 docId: widget.docId,
-                    //                 VillageName: widget.VillageName,
-                    //                 head: head,
-                    //                 spouse: spouse,
-                    //                 Address: widget.Address,
-                    //               )));
-                    // });
+                    await FirebaseFirestore.instance
+                        .collection("Village Details")
+                        .doc(widget.VillageName)
+                        .collection("Family")
+                        .doc(widget.docId)
+                        .collection("Household")
+                        .doc(doc)
+                        .set(data)
+                        .whenComplete(() {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => vPage3(
+                                    docId: widget.docId,
+                                    VillageName: widget.VillageName,
+                                    head: head,
+                                    spouse: spouse,
+                                    Address: widget.Address,
+                                familyId: doc,
+                                  )));
+                    });
 
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => vPage3(
-                              docId: widget.docId,
-                              VillageName: widget.VillageName,
-                              head: head,
-                              spouse: spouse,
-                              Address: widget.Address,
-                            )));
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => vPage3(
+                    //           docId: widget.docId,
+                    //           VillageName: widget.VillageName,
+                    //           head: head,
+                    //           spouse: spouse,
+                    //           Address: widget.Address,
+                    //           familyId: doc,
+                    //         )));
                   },
                   child: Button("Save")),
               SizedBox(
