@@ -2,20 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:janam/Home/home.dart';
 import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Login/login.dart';
-import 'package:janam/Other%20pages/NIPI.dart';
-import 'package:janam/Village%20Survey/page3.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
+import 'package:janam/provider/docIdProvider.dart';
 import 'package:janam/provider/nurseProvider.dart';
+import 'package:janam/provider/pregDocId.dart';
 import 'package:janam/provider/villageProvider.dart';
 import 'package:provider/provider.dart';
-
 import 'Login/login.dart';
-import 'RMNCH/pregnancy.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +28,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<Details>.value(value: (Details())),
         ChangeNotifierProvider<NurseDetails>.value(value: (NurseDetails())),
         ChangeNotifierProvider<VillageProvider>.value(value: (VillageProvider())),
-        //ChangeNotifierProvider<searchProvider>.value(value: (searchProvider())),
+        ChangeNotifierProvider<DocID>.value(value: (DocID())),
+        ChangeNotifierProvider<PregDocID>.value(value: (PregDocID())),
       ],
       child: const MaterialApp(
         home: FireBaseInitialization(),

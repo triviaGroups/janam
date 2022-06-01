@@ -7,7 +7,7 @@ import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/Widgets/search.dart';
+import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -29,6 +29,19 @@ class _NPCDCSState extends State<NPCDCS> {
   int breast = 0;
   int cervix = 0;
   int status = 0;
+
+  List<String> ncd = const [
+    "Diabetes mellitus",
+    "Hypertension",
+    "Heart disease (CVD)",
+    "Stroke",
+    "Kidney disease (CKD)",
+    "COPID",
+    "Pul. TB",
+    "Cancer"
+  ];
+
+  List<bool> ncdbool = [false,false,false,false,false,false,false,false];
 
   TextEditingController dob = new TextEditingController();
 
@@ -199,18 +212,10 @@ class _NPCDCSState extends State<NPCDCS> {
                     color: colors[(a++) % 4]),
                 CheckBoxCont(
                   name: "Known NCD",
-                  item: const [
-                    "Diabetes mellitus",
-                    "Hypertension",
-                    "Heart disease (CVD)",
-                    "Stroke",
-                    "Kidney disease (CKD)",
-                    "COPID",
-                    "Pul. TB",
-                    "Cancer"
-                  ],
+                  item: ncd,
                   height: 568,
                   a: (a++) % 4,
+                  boolean: ncdbool,
                 ),
                 radioContainer(
                   name: "Tobacco - Smoking",

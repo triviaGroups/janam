@@ -1,14 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/SearchWidgets/SearchEC.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/Widgets/search.dart';
+import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:janam/provider/docIdProvider.dart';
+import 'package:janam/provider/pregDocId.dart';
+import 'package:provider/provider.dart';
 
 class Pregnancy extends StatefulWidget {
   const Pregnancy({Key? key}) : super(key: key);
@@ -29,6 +35,45 @@ class _PregnancyState extends State<Pregnancy> {
   int facility = 0;
   int rpr = 0;
   int hiv = 0;
+  
+  List<String> testList = const ["Positive", "Negative", "Test not done"];
+
+  List<String> resultList = const ["Positive", "Negative"];
+
+  List<bool> historybool = [false,false,false,false,false,false,false,false,false,false];
+  List<String> history = const ["Tuberculosis (TB)","Diabetes mellitus (DM)","Hypertension","Heart disease","Epilepsy","Sexually Transmitted disease","HIV","Hepatisis B","Asthma","Other"];
+
+  List<String> bloodgrp = const [
+    "A +ve",
+    "A -ve",
+    "B +ve",
+    "B -ve",
+    "AB +ve",
+    "AB -ve",
+    "O +ve",
+    "O -ve",
+    "Not done"
+  ];
+  
+  List<String> facilityList = const [
+    "District hospital",
+    "Other Govt. hospital",
+    "Accredited private hospital",
+    "Other private hospital",
+    "Home",
+    "Sub district hospital",
+    "Medical college hospital",
+    "Sub centre",
+    "PHC",
+    "CHC"
+  ];
+
+  List<bool> gcompbool = [false,false,false,false,false,false,false,false,false,false,false,false];
+  List<String> gcomp = const ["Convulsions","APH","PIH","Repeated abortions","Stillbirth","Congenital anomaly","Cesearean section","Blood transfusion","Twin pregnancy","Obstructed labour","PPH","Any other"];
+
+  List<String> yesno = const ["Yes", "No"];
+  
+  List<String> gpreg = const ["Live birth", "Strillbirth", "Abortion"];
 
   TextEditingController dob = new TextEditingController();
 
@@ -55,7 +100,7 @@ class _PregnancyState extends State<Pregnancy> {
               height: 16,
             ),
             topic("Pregnancy", "Select member"),
-            searchWidget(),
+            EcSearch(),
             Cont(
                 child: Column(
                   children: [
@@ -115,7 +160,7 @@ class _PregnancyState extends State<Pregnancy> {
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Date of visit",
+                          "Date of tracking",
                           style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -185,7 +230,7 @@ class _PregnancyState extends State<Pregnancy> {
             radioContainer(
               name: "Pregnancy test conducted?",
               num: 2,
-              item: const ["Yes", "No"],
+              item: yesno,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -197,7 +242,7 @@ class _PregnancyState extends State<Pregnancy> {
             radioContainer(
               name: "Pregnancy test result",
               num: 2,
-              item: const ["Positive", "Negative"],
+              item: resultList,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -211,7 +256,7 @@ class _PregnancyState extends State<Pregnancy> {
                 radioContainer(
                   name: "JSY beneficiary",
                   num: 2,
-                  item: const ["Yes", "No"],
+                  item: yesno,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -222,24 +267,15 @@ class _PregnancyState extends State<Pregnancy> {
                 ),
                 CheckBoxCont(
                   name: "Past history of illness",
-                  item: const ["Tuberculosis (TB)","Diabetes mellitus (DM)","Hypertension","Heart disease","Epilepsy","Sexually Transmitted disease","HIV","Hepatisis B","Asthma","Other"],
+                  item: history,
                   height: 700,
                   a: (a++) % 4,
+                  boolean: historybool,
                 ),
                 radioContainer(
                   name: "Blood grouping",
                   num: 9,
-                  item: const [
-                    "A +ve",
-                    "A -ve",
-                    "B +ve",
-                    "B -ve",
-                    "AB +ve",
-                    "AB -ve",
-                    "O +ve",
-                    "O -ve",
-                    "Not done"
-                  ],
+                  item: bloodgrp,
                   height: 500,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -248,39 +284,33 @@ class _PregnancyState extends State<Pregnancy> {
                   }),
                   selectedButton: blood,
                 ),
-                CheckBoxCont(
-                  name: "If Gravida 2 \n\nComplications in previous pregnancy",
-                  item: const ["Convulsions","APH","PIH","Repeated abortions","Stillbirth","Congenital anomaly","Cesearean section","Blood transfusion","Twin pregnancy","Obstructed labour","PPH","Any other"],
-                  height: 848,
-                  a: (a++) % 4,
-                ),
-                radioContainer(
-                  name: "If Gravida 2\n\nOutcome of last pregnancy",
-                  num: 3,
-                  item: const ["Live birth", "Strillbirth", "Abortion"],
-                  height: 200,
-                  a: (a++) % 4,
-                  press: (val) => setState(() {
-                    gravida = int.parse(val.toString());
-                    print("$gravida");
-                  }),
-                  selectedButton: gravida,
-                ),
+                 int.parse(context.watch<DocID>().G) > 0 ? Column(
+                  children: [
+                    CheckBoxCont(
+                      name: "If Gravida 2 \n\nComplications in previous pregnancy",
+                      item: gcomp,
+                      height: 848,
+                      a: (a++) % 4,
+                      boolean: gcompbool,
+                    ),
+                    radioContainer(
+                      name: "If Gravida 2\n\nOutcome of last pregnancy",
+                      num: 3,
+                      item: gpreg,
+                      height: 200,
+                      a: (a++) % 4,
+                      press: (val) => setState(() {
+                        gravida = int.parse(val.toString());
+                        print("$gravida");
+                      }),
+                      selectedButton: gravida,
+                    ),
+                  ],
+                ) : SizedBox(),
                 radioContainer(
                   name: "Expected facility for delivery",
                   num: 10,
-                  item: const [
-                    "District hospital",
-                    "Other Govt. hospital",
-                    "Accredited private hospital",
-                    "Other private hospital",
-                    "Home",
-                    "Sub district hospital",
-                    "Medical college hospital",
-                    "Sub centre",
-                    "PHC",
-                    "CHC"
-                  ],
+                  item: facilityList,
                   height: 600,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -292,7 +322,7 @@ class _PregnancyState extends State<Pregnancy> {
                 radioContainer(
                   name: "VDRL / RPR Test",
                   num: 3,
-                  item: const ["Positive", "Negative", "Test not done"],
+                  item: testList,
                   height: 180,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -304,7 +334,7 @@ class _PregnancyState extends State<Pregnancy> {
                 radioContainer(
                   name: "HIV",
                   num: 3,
-                  item: const ["Positive", "Negative", "Test not done"],
+                  item: testList,
                   height: 180,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -318,10 +348,20 @@ class _PregnancyState extends State<Pregnancy> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Current weight (kg)",
-                    count: 0,
+                    count: Provider.of<PregDocID>(context,listen: false).weight,
                     height: 60,
-                    add: (){},
-                    sub: (){},
+                    add: (){
+                      Provider.of<PregDocID>(context,listen: false).incWeight();
+                      setState(() {
+
+                      });
+                    },
+                    sub: (){
+                      Provider.of<PregDocID>(context,listen: false).decWeight();
+                      setState(() {
+
+                      });
+                    },
                   ),
                 ),
                 Padding(
@@ -329,10 +369,21 @@ class _PregnancyState extends State<Pregnancy> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Height (cm)",
-                    count: 0,
+                    count: Provider.of<PregDocID>(context,listen: false).height,
                     height: 60,
-                    add: (){},
-                    sub: (){},
+                    add: (){
+                      Provider.of<PregDocID>(context,listen: false).incHeight();
+                      setState(() {
+
+                      });
+                    },
+                    sub: (){
+                      Provider.of<PregDocID>(context,listen: false).decHeight();
+                      setState(() {
+
+
+                      });
+                    },
                   ),
                 ),
               ],
@@ -340,7 +391,32 @@ class _PregnancyState extends State<Pregnancy> {
             const SizedBox(
               height: 32,
             ),
-            Button("Register"),
+            GestureDetector(
+              onTap: () async{
+                if(result == 1){
+                  Map<String,dynamic> data = {
+                    "JSY" : yesno[jsy],
+                  };
+                  await FirebaseFirestore.instance
+                      .collection("Details")
+                      .doc(Provider.of<Details>(context, listen: false).phone)
+                      .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).collection("Details").doc(dob.text).set(data);
+
+                }
+                if(result == 2) {
+                  DocumentSnapshot<Map<String,dynamic>> ds = await FirebaseFirestore.instance
+                      .collection("Details")
+                      .doc(Provider.of<Details>(context, listen: false).phone)
+                      .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).get();
+                  if(ds.exists){
+                    await FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(Provider.of<Details>(context, listen: false).phone)
+                        .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).delete();
+                  }
+                }
+              },
+                child: Button("Register")),
             const SizedBox(
               height: 16,
             ),

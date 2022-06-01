@@ -8,7 +8,7 @@ import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/Widgets/search.dart';
+import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -22,6 +22,31 @@ class PostnatalCare extends StatefulWidget {
 class _PostnatalCareState extends State<PostnatalCare> {
   int a = 0;
   int method = 0;
+
+  List<String> signs = const [
+    "Bleeding",
+    "Fever",
+    "Foul smelling discharge",
+    "Abdominal cramps",
+    "Painful breast or cracked nipples",
+    "Mental disturbance","Facial or hand swelling",
+    "Headaches","Convulsions","Painful calf muscles"
+  ];
+
+  List<bool> signbool = [false,false,false,false,false,false,false];
+
+  List<String> danger = const [
+    "Difficult breathing",
+    "Skin lesions",
+    "Yellow skin",
+    "Convulsion",
+    "Poor sucking, feeding",
+    "Lethargy or unconsciousness",
+    "Pur or bleeding",
+    "red or swollen eyes with pus",
+  ];
+
+  List<bool> dangerbool = [false,false,false,false,false,false,false,false];
 
   TextEditingController dateVisit = new TextEditingController();
   @override
@@ -181,17 +206,10 @@ class _PostnatalCareState extends State<PostnatalCare> {
                 ),
                 CheckBoxCont(
                   name: "Mother danger signs",
-                  item: const [
-                    "Bleeding",
-                    "Fever",
-                    "Foul smelling discharge",
-                    "Abdominal cramps",
-                    "Painful breast or cracked nipples",
-                    "Mental disturbance","Facial or hand swelling",
-                    "Headaches","Convulsions","Painful calf muscles"
-                      ],
+                  item: signs,
                   height: 760,
                   a: (a++) % 4,
+                  boolean: signbool,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
@@ -207,18 +225,10 @@ class _PostnatalCareState extends State<PostnatalCare> {
 
                 CheckBoxCont(
                   name: "Infant danger signs",
-                  item: const [
-                    "Difficult breathing",
-                    "Skin lesions",
-                    "Yellow skin",
-                    "Convulsion",
-                    "Poor sucking, feeding",
-                    "Lethargy or unconsciousness",
-                    "Pur or bleeding",
-                    "red or swollen eyes with pus",
-                  ],
+                  item: danger,
                   height: 600,
                   a: (a++) % 4,
+                  boolean: dangerbool,
                 ),
                 Cont(
                     child: Row(

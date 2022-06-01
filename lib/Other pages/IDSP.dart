@@ -4,7 +4,7 @@ import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/Widgets/search.dart';
+import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -19,6 +19,23 @@ class _IDSPState extends State<IDSP> {
   int a = 0;
   int fever = 0;
   int cough = 0;
+
+  List<String> feverList = const [
+    "Only fever",
+    "With rash",
+    "With bleeding",
+    "With daze"
+  ];
+
+  List<String> loose =  const [
+    "With dehydration",
+    "Without dehydration",
+    "With blood in stool"
+  ];
+
+  List<bool> feverbool = [false,false,false,false];
+  List<bool> loosebool = [false,false,false];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -72,14 +89,10 @@ class _IDSPState extends State<IDSP> {
                 color: colors[(a++) % 4]),
             CheckBoxCont(
               name: "Fever < 7 days",
-              item: const [
-                "Only fever",
-                "With rash",
-                "With bleeding",
-                "With daze"
-              ],
+              item: feverList,
               height: 260,
               a: (a++) % 4,
+              boolean: feverbool,
             ),
             radioContainer(
               name: "Fever > 7 days",
@@ -107,13 +120,10 @@ class _IDSPState extends State<IDSP> {
             ),
             CheckBoxCont(
               name: "Loose watery stools of less than 2 weeks",
-              item: const [
-                "With dehydration",
-                "Without dehydration",
-                "With blood in stool"
-              ],
+              item: loose,
               height: 240,
               a: (a++) % 4,
+              boolean: loosebool,
             ),
             Cont(
                 child: Row(

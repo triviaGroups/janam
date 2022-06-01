@@ -7,7 +7,7 @@ import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/Widgets/search.dart';
+import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -22,6 +22,19 @@ class _CovidState extends State<Covid> {
   int a = 0;
   int test_result = 0;
   int discharge_reason = 0;
+
+  List<String> symp = const [
+    "Fever",
+    "Running nose",
+    "Cough",
+    "Headache",
+    "Sore throat",
+    "Loss of smell",
+    "Loss of taste",
+    "Shortness of breath"
+  ];
+
+  List<bool> sympbool = [false,false,false,false,false,false,false,false];
 
   TextEditingController dob = new TextEditingController();
   @override
@@ -191,18 +204,10 @@ class _CovidState extends State<Covid> {
                     color: colors[(a++) % 4]),
                 CheckBoxCont(
                   name: "Symptoms",
-                  item: const [
-                    "Fever",
-                    "Running nose",
-                    "Cough",
-                    "Headache",
-                    "Sore throat",
-                    "Loss of smell",
-                    "Loss of taste",
-                    "Shortness of breath"
-                  ],
+                  item: symp,
                   height: 540,
                   a: (a++) % 4,
+                  boolean: sympbool,
                 ),
                 Cont(
                     child: Row(

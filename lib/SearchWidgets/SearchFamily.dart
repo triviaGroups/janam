@@ -120,10 +120,10 @@ class _FamilySearchState extends State<FamilySearch> {
                 height: 250,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(35),
-                  color: white,
-                  border: Border.all(width: 0.5, color: Colors.grey.shade800),
+                  color: purple,
+                  border: Border.all(width: 0.5, color: white),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                padding: EdgeInsets.symmetric(vertical: 16),
                 margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: ListView.builder(
                     itemCount: _resultsList.length,
@@ -152,13 +152,14 @@ class _FamilySearchState extends State<FamilySearch> {
                           decoration: BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(
-                                    width: 1, color: Colors.grey.shade600)),
+                                    width: 1, color: Colors.white)),
                           ),
                           child: ListTile(
                             title: Container(
                               alignment: _resultsList == []
                                   ? Alignment.center
                                   : Alignment.centerLeft,
+                              padding: EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
                                 _resultsList == []
                                     ? "No result"
@@ -176,7 +177,7 @@ class _FamilySearchState extends State<FamilySearch> {
                                   fontFamily: "Grold Regular",
                                   fontWeight: FontWeight.w400,
                                   fontSize: 16,
-                                  color: black,
+                                  color: white,
                                 ),
                               ),
                             ),

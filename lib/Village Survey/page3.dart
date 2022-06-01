@@ -642,14 +642,14 @@ class _vPage3State extends State<vPage3> {
                       Provider.of<VillageProvider>(context, listen: false).L1;
 
                   Map<String, dynamic> data = {
-                    "Religion": religion[reli],
-                    "Caste": casteList[caste],
-                    "EcoStatus": ecoList[eco],
-                    "Electricity": yesno[elec],
-                    "House": houseType[house],
-                    "Toilet": yesno[toilet],
-                    "Waste": wasteDis[waste],
-                    "Fertile": yesno[fertile],
+                    "Religion": religion[reli-1],
+                    "Caste": casteList[caste-1],
+                    "EcoStatus": ecoList[eco-1],
+                    "Electricity": yesno[elec-1],
+                    "House": houseType[house-1],
+                    "Toilet": yesno[toilet-1],
+                    "Waste": wasteDis[waste-1],
+                    "Fertile": yesno[fertile-1],
                     "G": Provider.of<VillageProvider>(context,listen: false).G,
                     "P": Provider.of<VillageProvider>(context,listen: false).P,
                     "L1": Provider.of<VillageProvider>(context,listen: false).L1,

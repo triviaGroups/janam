@@ -8,12 +8,13 @@ class CheckBoxCont extends StatefulWidget {
   final String name;
   final List<String> item;
   final double height;
+  final List<bool> boolean;
   const CheckBoxCont(
       {Key? key,
       required this.a,
       required this.name,
       required this.item,
-      required this.height,})
+      required this.height, required this.boolean,})
       : super(key: key);
 
   @override
@@ -21,8 +22,8 @@ class CheckBoxCont extends StatefulWidget {
 }
 
 class _CheckBoxContState extends State<CheckBoxCont> {
-  List<bool> status = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,];
-  @override
+
+ @override
   Widget build(BuildContext context) {
     return Cont(
         child: Row(
@@ -58,10 +59,10 @@ class _CheckBoxContState extends State<CheckBoxCont> {
                         Checkbox(
                           checkColor: white,
                           activeColor:hTxt,
-                          value: status[index],
+                          value: widget.boolean[index],
                           onChanged: (value) {
                             setState(() {
-                              status[index] = value!;
+                              widget.boolean[index] = value!;
                             });
                           },
                         ),

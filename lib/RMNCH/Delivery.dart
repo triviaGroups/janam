@@ -10,7 +10,7 @@ import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
 import 'package:janam/Widgets/rowRadioButtonContainer.dart';
-import 'package:janam/Widgets/search.dart';
+import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -44,6 +44,24 @@ class _DeliveryState extends State<Delivery> {
 
   TimeOfDay time = TimeOfDay(hour: 10, minute: 45);
   TimeOfDay Distime = TimeOfDay(hour: 10, minute: 45);
+
+  List<String> comp = const [
+    "Convulsions",
+    "APH",
+    "PIH",
+    "Repeated abortions",
+    "Stillbirth",
+    "Congenital anomaly",
+    "Cesearean section",
+    "Blood transfusion",
+    "Twin pregnancy",
+    "Obstructed labour",
+    "PPH",
+    "Any other"
+  ];
+
+  List<bool> gcompbool = [false,false,false,false,false,false,false,false,false,false,false,false];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -331,22 +349,10 @@ class _DeliveryState extends State<Delivery> {
             ),
             CheckBoxCont(
               name: "Complications during delivery",
-              item: const [
-                "Convulsions",
-                "APH",
-                "PIH",
-                "Repeated abortions",
-                "Stillbirth",
-                "Congenital anomaly",
-                "Cesearean section",
-                "Blood transfusion",
-                "Twin pregnancy",
-                "Obstructed labour",
-                "PPH",
-                "Any other"
-              ],
+              item: comp,
               height: 848,
               a: (a++) % 4,
+              boolean: gcompbool,
             ),
             radioContainer(
               name: "Corticosteriod injection for delivery",

@@ -1,15 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/SearchWidgets/SearchEC.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/Widgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:janam/provider/docIdProvider.dart';
+import 'package:janam/provider/villageProvider.dart';
+import 'package:provider/provider.dart';
 
 class EligibleCouple extends StatefulWidget {
   const EligibleCouple({Key? key}) : super(key: key);
@@ -29,14 +34,71 @@ class _EligibleCoupleState extends State<EligibleCouple> {
   int reason = 0;
   int poi = 0;
   int newmode = 0;
+  int inj = 0;
+
+  String docId = "";
+
+  List<String> methodList = const [
+    "Permanent",
+    "Temporary",
+    "Currently pregnant",
+    "Not using any"
+  ];
+
+  List<String> newList = const [
+    "OCPs",
+    "Injections",
+    "Sterlizations",
+    "Devices",
+    "Condoms"
+  ];
+
+  List<String> perSterList = const ["Vasectomy", "Tubectomy"];
+
+  List<String> temSterList = const [
+    "Condoms",
+    "OCPs",
+    "Injections",
+    "Devices"
+  ];
+
+  List<String> placeList = const [
+    "DH",
+    "PHC",
+    "Others"
+  ];
+
+  List<String> resultList = const ["Positive", "Negative"];
+
+  List<String> yesno = const ["Yes", "No"];
+
+  List<String> injList = const ["Intramuscular","Subcutaneous"];
+
+  List<String> reasonList = const [
+    "Planning child",
+    "Menopause",
+    "New mode of contraception"
+  ];
 
   TextEditingController dateTracking = new TextEditingController();
-  TextEditingController dateSerializ = new TextEditingController();
+  TextEditingController lmp = new TextEditingController();
+
+  TextEditingController dateSterializ = new TextEditingController();
+  TextEditingController reasonSterializ = new TextEditingController();
+
+  TextEditingController condom = new TextEditingController();
+
+  TextEditingController ocp = new TextEditingController();
   TextEditingController dateSupply = new TextEditingController();
+
   TextEditingController dateInjection = new TextEditingController();
   TextEditingController timeInjection = new TextEditingController();
+
   TextEditingController dateDiscontinue = new TextEditingController();
+
   TextEditingController dateInsertion = new TextEditingController();
+  TextEditingController ICUD = new TextEditingController();
+
   TextEditingController dateAbortion = new TextEditingController();
 
   TimeOfDay time = TimeOfDay(hour: 10, minute: 45);
@@ -52,33 +114,35 @@ class _EligibleCoupleState extends State<EligibleCouple> {
             const SizedBox(
               height: 16,
             ),
-            topic("Eligible Couple", "Select member"),
-            searchWidget(),
-            Cont(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "\nAddress",
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: black),
+            topic("Eligible Couple", "Track eligible couple"),
+            EcSearch(),
+            context.watch<DocID>().doc == ""
+                ? SizedBox()
+                : Cont(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Address",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: black),
+                        ),
+                        Text(
+                          Provider.of<DocID>(context, listen: false).address,
+                          style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: txt),
+                          maxLines: 2,
+                          softWrap: true,
+                        ),
+                      ],
                     ),
-                    Text(
-                      "Plot No. 00, Street Name, Area Name,City, State - Pincode",
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: txt),
-                      maxLines: 2,
-                      softWrap: true,
-                    ),
-                  ],
-                ),
-                height: 120,
-                color: colors[(a++) % 4]),
+                    height: 100,
+                    color: colors[(a++) % 4]),
             Cont(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -177,6 +241,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
+                          controller: lmp,
                           onChanged: (val) {},
                           decoration: InputDecoration(
                             contentPadding:
@@ -195,12 +260,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
             radioContainer(
               name: "Method of contraception used",
               num: 4,
-              item: const [
-                "Permanent",
-                "Temporary",
-                "Currently pregnant",
-                "Not using any"
-              ],
+              item: methodList,
               height: 240,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -216,7 +276,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         name:
                             "If permanent sterlization, \n\nType of sterlization",
                         num: 2,
-                        item: const ["Vasectomy", "Tubectomy"],
+                        item: perSterList,
                         height: 120,
                         a: (a++) % 4,
                         press: (val) => setState(() {
@@ -251,7 +311,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                       color: white,
                                       borderRadius: BorderRadius.circular(5)),
                                   child: TextFormField(
-                                    controller: dateSerializ,
+                                    controller: dateSterializ,
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(
                                           left: 10, right: 10, bottom: 5),
@@ -282,7 +342,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                         final String formatted =
                                             formatter.format(datePicked!);
                                         setState(() {
-                                          dateSerializ.text = formatted;
+                                          dateSterializ.text = formatted;
                                         });
                                         final snackBar = SnackBar(
                                             content:
@@ -324,7 +384,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                       color: white,
                                       borderRadius: BorderRadius.circular(5)),
                                   child: TextFormField(
-                                    onChanged: (val) {},
+                                    controller: reasonSterializ,
                                     decoration: InputDecoration(
                                       contentPadding:
                                           EdgeInsets.only(left: 10, right: 10),
@@ -347,12 +407,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                           radioContainer(
                             name: "If temporary sterlization, \n\nMethod used",
                             num: 4,
-                            item: const [
-                              "Condoms",
-                              "OCPs",
-                              "Injections",
-                              "Devices"
-                            ],
+                            item: temSterList,
                             height: 240,
                             a: (a++) % 4,
                             press: (val) => setState(() {
@@ -388,7 +443,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                               borderRadius:
                                                   BorderRadius.circular(5)),
                                           child: TextFormField(
-                                            onChanged: (val) {},
+                                            controller: condom,
                                             decoration: InputDecoration(
                                               contentPadding: EdgeInsets.only(
                                                   left: 10, right: 10),
@@ -438,7 +493,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                             BorderRadius
                                                                 .circular(5)),
                                                     child: TextFormField(
-                                                      onChanged: (val) {},
+                                                      controller: ocp,
                                                       decoration:
                                                           InputDecoration(
                                                         contentPadding:
@@ -578,10 +633,20 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                               child: incDec(
                                                 color: colors[(a++) % 4],
                                                 name: "Body weight (kg)",
-                                                count: 60,
+                                                count: Provider.of<VillageProvider>(context,listen: false).weight,
                                                 height: 60,
-                                                add: () {},
-                                                sub: () {},
+                                                add: () {
+                                                  Provider.of<VillageProvider>(context,listen: false).incWeight();
+                                                  setState(() {
+
+                                                  });
+                                                },
+                                                sub: () {
+                                                  Provider.of<VillageProvider>(context,listen: false).decWeight();
+                                                  setState(() {
+
+                                                  });
+                                                },
                                               ),
                                             ),
                                             Container(
@@ -694,14 +759,22 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                               0,
                                                                               0),
                                                                       child:
-                                                                          const Icon(
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).incSys();
+                                                                              setState(() {
+
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
                                                                         Icons
-                                                                            .add,
+                                                                              .add,
                                                                         color:
-                                                                            black,
+                                                                              black,
                                                                         size:
-                                                                            16,
-                                                                      )),
+                                                                              16,
+                                                                      ),
+                                                                          )),
                                                             )),
                                                             Expanded(
                                                                 flex: 2,
@@ -717,7 +790,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                   color: Colors
                                                                       .transparent,
                                                                   child: Text(
-                                                                    "120",
+                                                                    Provider.of<VillageProvider>(context,listen: false).sys.toString(),
                                                                     style: GoogleFonts.poppins(
                                                                         fontSize:
                                                                             16,
@@ -765,14 +838,22 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                               0,
                                                                               -4),
                                                                       child:
-                                                                          const Icon(
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).decSys();
+                                                                              setState(() {
+
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
                                                                         Icons
-                                                                            .minimize,
+                                                                              .minimize,
                                                                         color:
-                                                                            black,
+                                                                              black,
                                                                         size:
-                                                                            16,
-                                                                      )),
+                                                                              16,
+                                                                      ),
+                                                                          )),
                                                             )),
                                                           ],
                                                         ),
@@ -848,14 +929,22 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                               0,
                                                                               0),
                                                                       child:
-                                                                          const Icon(
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).incDis();
+                                                                              setState(() {
+
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
                                                                         Icons
-                                                                            .add,
+                                                                              .add,
                                                                         color:
-                                                                            black,
+                                                                              black,
                                                                         size:
-                                                                            16,
-                                                                      )),
+                                                                              16,
+                                                                      ),
+                                                                          )),
                                                             )),
                                                             Expanded(
                                                                 flex: 2,
@@ -871,7 +960,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                   color: Colors
                                                                       .transparent,
                                                                   child: Text(
-                                                                    "80",
+                                                                    Provider.of<VillageProvider>(context,listen: false).dia.toString(),
                                                                     style: GoogleFonts.poppins(
                                                                         fontSize:
                                                                             16,
@@ -919,14 +1008,22 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                               0,
                                                                               -4),
                                                                       child:
-                                                                          const Icon(
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).decDis();
+                                                                              setState(() {
+
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
                                                                         Icons
-                                                                            .minimize,
+                                                                              .minimize,
                                                                         color:
-                                                                            black,
+                                                                              black,
                                                                         size:
-                                                                            16,
-                                                                      )),
+                                                                              16,
+                                                                      ),
+                                                                          )),
                                                             )),
                                                           ],
                                                         ),
@@ -1051,121 +1148,18 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                 ),
                                                 height: 40,
                                                 color: colors[(a++) % 4]),
-                                            Cont(
-                                                child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Container(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(right: 8),
-                                                        child: Text(
-                                                          "Place of injection",
-                                                          style: GoogleFonts
-                                                              .poppins(
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: black),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                        child: Column(
-                                                      children: [
-                                                        Expanded(
-                                                          flex: 2,
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                color: white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5)),
-                                                            child:
-                                                                TextFormField(
-                                                              onChanged:
-                                                                  (val) {},
-                                                              decoration: InputDecoration(
-                                                                  hintText:
-                                                                      "Intromuscular",
-                                                                  contentPadding:
-                                                                      EdgeInsets.only(
-                                                                          left:
-                                                                              10,
-                                                                          right:
-                                                                              10),
-                                                                  border:
-                                                                      InputBorder
-                                                                          .none,
-                                                                  hintStyle: GoogleFonts
-                                                                      .poppins(
-                                                                          fontSize:
-                                                                              14,
-                                                                          color:
-                                                                              black)),
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                      fontSize:
-                                                                          14,
-                                                                      color:
-                                                                          black),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                            child: Container()),
-                                                        Expanded(
-                                                          flex: 2,
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                color: white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5)),
-                                                            child:
-                                                                TextFormField(
-                                                              onChanged:
-                                                                  (val) {},
-                                                              decoration: InputDecoration(
-                                                                  hintText:
-                                                                      "Subcutaneous",
-                                                                  contentPadding:
-                                                                      EdgeInsets.only(
-                                                                          left:
-                                                                              10,
-                                                                          right:
-                                                                              10),
-                                                                  border:
-                                                                      InputBorder
-                                                                          .none,
-                                                                  hintStyle: GoogleFonts
-                                                                      .poppins(
-                                                                          fontSize:
-                                                                              14,
-                                                                          color:
-                                                                              black)),
-                                                              style: GoogleFonts
-                                                                  .poppins(
-                                                                      fontSize:
-                                                                          14,
-                                                                      color:
-                                                                          black),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    )),
-                                                  ],
-                                                ),
-                                                height: 100,
-                                                color: colors[(a++) % 4]),
+                                            radioContainer(
+                                              name: "Place of injection",
+                                              num: 2,
+                                              item: injList,
+                                              height: 120,
+                                              a: (a++) % 4,
+                                              press: (val) => setState(() {
+                                                inj = int.parse(val.toString());
+                                                print("$inj");
+                                              }),
+                                              selectedButton: inj,
+                                            ),
                                             Cont(
                                                 child: Row(
                                                   crossAxisAlignment:
@@ -1399,15 +1393,12 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                 radioContainer(
                                                   name: "Place of insertion",
                                                   num: 3,
-                                                  item: const [
-                                                    "DH",
-                                                    "PHC",
-                                                    "Others"
-                                                  ],
+                                                  item: placeList,
                                                   height: 180,
                                                   a: (a++) % 4,
                                                   press: (val) => setState(() {
-                                                    poi = int.parse(val.toString());
+                                                    poi = int.parse(
+                                                        val.toString());
                                                     print("$poi");
                                                   }),
                                                   selectedButton: poi,
@@ -1447,8 +1438,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                             5)),
                                                             child:
                                                                 TextFormField(
-                                                              onChanged:
-                                                                  (val) {},
+                                                              controller: ICUD,
                                                               decoration:
                                                                   InputDecoration(
                                                                 contentPadding:
@@ -1486,7 +1476,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                 name:
                                     "If pregnant \n\nPregnancy test conducted?",
                                 num: 2,
-                                item: const ["Yes", "No"],
+                                item: yesno,
                                 height: 120,
                                 a: (a++) % 4,
                                 press: (val) => setState(() {
@@ -1498,7 +1488,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                               radioContainer(
                                 name: "Pregnancy test result",
                                 num: 2,
-                                item: const ["Positive", "Negative"],
+                                item: resultList,
                                 height: 120,
                                 a: (a++) % 4,
                                 press: (val) => setState(() {
@@ -1699,11 +1689,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                   radioContainer(
                                     name: "Reason for discontinuing",
                                     num: 3,
-                                    item: const [
-                                      "Planning child",
-                                      "Menopause",
-                                      "New mode of contraception"
-                                    ],
+                                    item: reasonList,
                                     height: 200,
                                     a: (a++) % 4,
                                     press: (val) => setState(() {
@@ -1717,13 +1703,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                           name:
                                               "If new mode of contraception, \nNew method",
                                           num: 5,
-                                          item: const [
-                                            "OCPs",
-                                            "Injections",
-                                            "Sterlizations",
-                                            "Devices",
-                                            "Condoms"
-                                          ],
+                                          item: newList,
                                           height: 300,
                                           a: (a++) % 4,
                                           press: (val) => setState(() {
@@ -1739,7 +1719,168 @@ class _EligibleCoupleState extends State<EligibleCouple> {
             const SizedBox(
               height: 32,
             ),
-            Button("Save"),
+            GestureDetector(
+                onTap: () async {
+                  Map<String, dynamic> data = {
+                    "Date": dateTracking.text,
+                    "LMP": lmp.text,
+                    "Method": methodList[method-1],
+                  };
+
+                  await FirebaseFirestore.instance
+                      .collection("Details")
+                      .doc(Provider.of<Details>(context, listen: false).phone)
+                      .collection("Eligible Couples")
+                      .doc(Provider.of<DocID>(context, listen: false).doc)
+                      .collection("Tracking")
+                      .doc(dateTracking.text)
+                      .set(data);
+
+                  if(method == 1){
+                    Map<String, dynamic> details = {
+                      "Type" : perSterList[ster-1],
+                      "Date" : dateSterializ.text,
+                      "Reason" : reasonSterializ.text
+                    };
+
+                    await FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(Provider.of<Details>(context, listen: false).phone)
+                        .collection("Eligible Couples")
+                        .doc(Provider.of<DocID>(context, listen: false).doc)
+                        .collection("Tracking")
+                        .doc(dateTracking.text).collection("Permanent").doc(dateTracking.text)
+                        .set(details);
+                  }
+
+                  else if(method == 2){
+                    if(tempster == 1){
+                      Map<String, dynamic> temp = {
+                        "Number" : condom.text,
+                        "Type" : "Condoms"
+                      };
+
+                      await FirebaseFirestore.instance
+                          .collection("Details")
+                          .doc(Provider.of<Details>(context, listen: false).phone)
+                          .collection("Eligible Couples")
+                          .doc(Provider.of<DocID>(context, listen: false).doc)
+                          .collection("Tracking")
+                          .doc(dateTracking.text).collection("Temporary Condoms").doc(dateTracking.text)
+                          .set(temp);
+
+                    }
+                    else if(tempster == 2){
+                      Map<String, dynamic> temp = {
+                        "Name of Ocp" : ocp.text,
+                        "Date" : dateSupply.text,
+                      };
+
+                      await FirebaseFirestore.instance
+                          .collection("Details")
+                          .doc(Provider.of<Details>(context, listen: false).phone)
+                          .collection("Eligible Couples")
+                          .doc(Provider.of<DocID>(context, listen: false).doc)
+                          .collection("Tracking")
+                          .doc(dateTracking.text).collection("Temporary OCP").doc(dateTracking.text)
+                          .set(temp);
+
+                    }
+                    else if(tempster == 3){
+                      Map<String, dynamic> temp = {
+                        "Weight" : Provider.of<VillageProvider>(context,listen: false).weight,
+                        "Sys" : Provider.of<VillageProvider>(context,listen: false).sys,
+                        "Dia" : Provider.of<VillageProvider>(context,listen: false).dia,
+                        "Date" : dateInjection.text,
+                        "Place" : injList[inj-1],
+                        "Time" : timeInjection.text,
+                      };
+
+                      await FirebaseFirestore.instance
+                          .collection("Details")
+                          .doc(Provider.of<Details>(context, listen: false).phone)
+                          .collection("Eligible Couples")
+                          .doc(Provider.of<DocID>(context, listen: false).doc)
+                          .collection("Tracking")
+                          .doc(dateTracking.text).collection("Temporary Injection").doc(dateTracking.text)
+                          .set(temp);
+
+                    }
+                    else if(tempster == 4){
+                      Map<String, dynamic> temp = {
+                        "Date" : dateInsertion.text,
+                        "Place" : placeList[poi-1],
+                        "ICUD" : ICUD.text,
+                      };
+
+                      await FirebaseFirestore.instance
+                          .collection("Details")
+                          .doc(Provider.of<Details>(context, listen: false).phone)
+                          .collection("Eligible Couples")
+                          .doc(Provider.of<DocID>(context, listen: false).doc)
+                          .collection("Tracking")
+                          .doc(dateTracking.text).collection("Temporary Device").doc(dateTracking.text)
+                          .set(temp);
+
+                    }
+                  }
+
+                  else if(method == 3){
+                    Map<String, dynamic> details = {
+                      "Test" : yesno[test-1],
+                      "Result" : resultList[result-1],
+                    };
+
+                    await FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(Provider.of<Details>(context, listen: false).phone)
+                        .collection("Eligible Couples")
+                        .doc(Provider.of<DocID>(context, listen: false).doc)
+                        .collection("Tracking")
+                        .doc(dateTracking.text).collection("Pregnant").doc(dateTracking.text)
+                        .set(details).whenComplete(() async {
+
+                          if(result == 1){
+
+                           DocumentSnapshot<Map<String,dynamic>> ds = await FirebaseFirestore.instance
+                                .collection("Details")
+                                .doc(Provider.of<Details>(context, listen: false).phone)
+                                .collection("Eligible Couples")
+                                .doc(Provider.of<DocID>(context, listen: false).doc).get();
+
+                           Map<String,dynamic>? pregData = ds.data();
+
+                            await FirebaseFirestore.instance
+                                .collection("Details")
+                                .doc(Provider.of<Details>(context, listen: false).phone)
+                                .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).set(pregData!);
+
+                          }
+
+                    });
+                  }
+
+                  else if(method == 4){
+                    Map<String, dynamic> details = {
+                      "Date" : dateDiscontinue.text,
+                      "Reason" : reasonList[reason-1],
+                      "New Method" : reason == 3 ? newList[newmode-1] : "",
+                    };
+
+                    await FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(Provider.of<Details>(context, listen: false).phone)
+                        .collection("Eligible Couples")
+                        .doc(Provider.of<DocID>(context, listen: false).doc)
+                        .collection("Tracking")
+                        .doc(dateTracking.text).collection("Permanent").doc(dateTracking.text)
+                        .set(details);
+                  }
+
+                  Navigator.pop(context);
+
+                },
+                child: Button("Save")),
             const SizedBox(
               height: 16,
             ),

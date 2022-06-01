@@ -8,7 +8,7 @@ import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/Widgets/search.dart';
+import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -31,6 +31,24 @@ class _ANCState extends State<ANC> {
   TextEditingController dob = new TextEditingController();
   TextEditingController FttDose = new TextEditingController();
   TextEditingController SttDose = new TextEditingController();
+
+  List<String> prev = const [
+    "Previous surgery",
+    "Thyroid disease",
+    "Jaundice",
+    "Previous Low Birth Weight",
+    "Twin pregnancy",
+    "Previous LSCS",
+    "Previous breech",
+    "Previous transverse delivery",
+    "Previous instrumental delivery",
+    "Previous induced delivery",
+    "Previous Oxytoxin",
+    "Previous antibiotics",
+    "Previous cortico steroids"
+  ];
+
+  List<bool> prevbool = [false,false,false,false,false,false,false,false,false,false,false,false,false];
 
   @override
   void initState() {
@@ -561,23 +579,10 @@ class _ANCState extends State<ANC> {
             ),
             CheckBoxCont(
               name: "Antenatal Risk Factors",
-              item: const [
-                "Previous surgery",
-                "Thyroid disease",
-                "Jaundice",
-                "Previous Low Birth Weight",
-                "Twin pregnancy",
-                "Previous LSCS",
-                "Previous breech",
-                "Previous transverse delivery",
-                "Previous instrumental delivery",
-                "Previous induced delivery",
-                "Previous Oxytoxin",
-                "Previous antibiotics",
-                "Previous cortico steroids"
-              ],
+              item: prev,
               height: 968,
               a: (a++) % 4,
+              boolean: prevbool,
             ),
             Cont(
                 child: Container(
