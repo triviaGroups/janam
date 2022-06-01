@@ -6,16 +6,22 @@ import 'package:janam/Login/villageWidget.dart';
 class DocID with ChangeNotifier {
   String _doc = "";
   String _address = "";
-  String _G = "";
+  int _G = 0;
+  String _name = "";
+  String _dob = "";
 
   String get doc => _doc;
   String get address => _address;
-  String get G => _G;
+  int get G => _G;
+  String get name => _name;
+  String get dob => _dob;
 
-  void setEc(String val,String add,String g){
+  void setEc(String val,String add,int g,String name,String dob){
     this._doc = val;
     this._address = add;
     this._G = g;
+    this._name = name;
+    this._dob = dob;
     print("Setted");
     notifyListeners();
   }

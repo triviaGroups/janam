@@ -8,7 +8,6 @@ import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
@@ -101,21 +100,25 @@ class _PregnancyState extends State<Pregnancy> {
             ),
             topic("Pregnancy", "Select member"),
             EcSearch(),
-            Cont(
+            context.watch<DocID>().doc == ""
+                ? SizedBox() : Cont(
                 child: Column(
                   children: [
                     Expanded(
                         child: Row(
                       children: [
                         Text(
-                          "Harine",
+                          Provider.of<DocID>(context, listen: false).name,
                           style: GoogleFonts.poppins(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                         Text(
-                          ", Female, 23 years",
+                          ", Female, "+ (2021 -
+                              (int.parse(Provider.of<DocID>(context, listen: false).dob
+                                  .substring(0, 4))))
+                              .toString(),
                           style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -137,7 +140,7 @@ class _PregnancyState extends State<Pregnancy> {
                                   color: black),
                             ),
                             Text(
-                              "Plot No. 00, Street Name, Area Name,City, State - Pincode",
+                              Provider.of<DocID>(context, listen: false).address,
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
@@ -284,7 +287,7 @@ class _PregnancyState extends State<Pregnancy> {
                   }),
                   selectedButton: blood,
                 ),
-                 int.parse(context.watch<DocID>().G) > 0 ? Column(
+                 context.watch<DocID>().G > 0 ? Column(
                   children: [
                     CheckBoxCont(
                       name: "If Gravida 2 \n\nComplications in previous pregnancy",
@@ -393,26 +396,60 @@ class _PregnancyState extends State<Pregnancy> {
             ),
             GestureDetector(
               onTap: () async{
+
+                print("PRINT ==== ");
+
+                print(gcompbool);
+                print(historybool);
+
                 if(result == 1){
+
+                  List<String> m = [];
+
+                  for(int i=0;i<gcomp.length;i++){
+                    if(gcompbool[i]){
+                      m.add(gcomp[i]);
+                    }
+                  }
+
+                  List<String> k = [];
+
+                  for(int i=0;i<history.length;i++){
+                    if(historybool[i]){
+                      k.add(history[i]);
+                    }
+                  }
+                  print("HELLO");
+                  print(m);
+                  print(k);
+
                   Map<String,dynamic> data = {
-                    "JSY" : yesno[jsy],
+                    "JSY" : yesno[jsy-1],
+                    "History" : k,
+                    "Blood" : bloodgrp[blood-1],
+                    "Complications G" : m,
+                    "Outcome G" : gpreg[gravida-1],
+                    "Facility" : facilityList[facility-1],
+                    "VDLR" : testList[rpr-1],
+                    "HIV" : testList[hiv-1],
+
                   };
                   await FirebaseFirestore.instance
                       .collection("Details")
                       .doc(Provider.of<Details>(context, listen: false).phone)
-                      .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).collection("Details").doc(dob.text).set(data);
+                      .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).collection("Details").doc(dob.text).set(data).whenComplete(() => Navigator.pop(context));
 
                 }
                 if(result == 2) {
                   DocumentSnapshot<Map<String,dynamic>> ds = await FirebaseFirestore.instance
                       .collection("Details")
                       .doc(Provider.of<Details>(context, listen: false).phone)
-                      .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).get();
+                      .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).get();
                   if(ds.exists){
                     await FirebaseFirestore.instance
                         .collection("Details")
                         .doc(Provider.of<Details>(context, listen: false).phone)
-                        .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).delete();
+                        .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).delete().whenComplete(() => Navigator.pop(context));
                   }
                 }
               },

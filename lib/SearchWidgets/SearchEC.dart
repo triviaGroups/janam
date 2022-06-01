@@ -132,7 +132,7 @@ class _EcSearchState extends State<EcSearch> {
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: (){
-                    Provider.of<DocID>(context,listen: false).setEc(_resultsList[index]["DocId"],_resultsList[index]["Address"],_resultsList[index]["G"]);
+                    Provider.of<DocID>(context,listen: false).setEc(_resultsList[index]["DocId"],_resultsList[index]["Address"],_resultsList[index]["G"],_resultsList[index]["Name"],_resultsList[index]["DOB"]);
                     setState(() {
 
                     });
