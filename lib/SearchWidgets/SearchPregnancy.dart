@@ -8,14 +8,15 @@ import 'package:janam/provider/pregDocId.dart';
 import 'package:provider/provider.dart';
 
 class PregSearch extends StatefulWidget {
-  const PregSearch({Key? key,}) : super(key: key);
+  const PregSearch({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _PregSearchState createState() => _PregSearchState();
 }
 
 class _PregSearchState extends State<PregSearch> {
-
   TextEditingController _searchController = TextEditingController();
   Future? resultsloaded;
   String _docid = "";
@@ -61,9 +62,7 @@ class _PregSearchState extends State<PregSearch> {
     searchResults();
   }
 
-  void setValue(){
-
-  }
+  void setValue() {}
 
   searchResults() {
     var showResults = [];
@@ -74,8 +73,7 @@ class _PregSearchState extends State<PregSearch> {
 
         if (sname.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
-        }
-        else if (vname.contains(_searchController.text.toLowerCase())) {
+        } else if (vname.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
         }
       }
@@ -86,8 +84,6 @@ class _PregSearchState extends State<PregSearch> {
       _resultsList = showResults;
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +107,7 @@ class _PregSearchState extends State<PregSearch> {
           onTap: () {},
           decoration: InputDecoration(
               contentPadding:
-              EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+                  EdgeInsets.symmetric(horizontal: 25, vertical: 16),
               hintText: "Search",
               errorMaxLines: 1,
               hintStyle: GoogleFonts.poppins(fontSize: 16, color: black),
@@ -123,61 +119,65 @@ class _PregSearchState extends State<PregSearch> {
         _searchController.text == ""
             ? SizedBox()
             : Container(
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(35),
-            color: purple,
-            border: Border.all(width: 0.5, color: white),
-          ),
-          padding: EdgeInsets.symmetric(vertical: 16),
-          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: ListView.builder(
-              itemCount: _resultsList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: (){
-                    Provider.of<PregDocID>(context,listen: false).setEc(_resultsList[index]["DocId"],_resultsList[index]["Address"]);
-                    setState(() {
+                height: 250,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(35),
+                  color: purple,
+                  border: Border.all(width: 0.5, color: white),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 16),
+                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                child: ListView.builder(
+                    itemCount: _resultsList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Provider.of<PregDocID>(context, listen: false).setEc(
+                              _resultsList[index]["DocId"],
+                              _resultsList[index]["Address"],
+                              _resultsList[index]["G"],
+                              _resultsList[index]["Name"],
+                              _resultsList[index]["DOB"]);
+                          setState(() {});
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                                bottom:
+                                    BorderSide(width: 1, color: Colors.white)),
+                          ),
+                          child: ListTile(
+                            title: Container(
+                              alignment: _resultsList == []
+                                  ? Alignment.center
+                                  : Alignment.centerLeft,
+                              margin: EdgeInsets.symmetric(horizontal: 16),
+                              child: Text(
+                                _resultsList == []
+                                    ? "No result"
+                                    : _resultsList[index]["Name"] +", "+
 
-                    });
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              width: 1, color: Colors.white)),
-                    ),
-                    child: ListTile(
-                      title: Container(
-                        alignment: _resultsList == []
-                            ? Alignment.center
-                            : Alignment.centerLeft,
-                        margin: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          _resultsList == []
-                              ? "No result"
-                              : _resultsList[index]["Name"] +
-                              ", Female, " +
-                              (2021 -
-                                  (int.parse(_resultsList[index]["DOB"]
-                                      .substring(0, 4))))
-                                  .toString(),
-                          textAlign: _resultsList == []
-                              ? TextAlign.center
-                              : TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: "Grold Regular",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16,
-                            color: white,
+                                        (2021 -
+                                                (int.parse(_resultsList[index]
+                                                        ["DOB"]
+                                                    .substring(0, 4))))
+                                            .toString()+", "+_resultsList[index]["Village Name"],
+                                textAlign: _resultsList == []
+                                    ? TextAlign.center
+                                    : TextAlign.left,
+                                style: TextStyle(
+                                  fontFamily: "Grold Regular",
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                  color: white,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                );
-              }),
-        )
+                      );
+                    }),
+              )
       ],
     );
   }

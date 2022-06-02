@@ -26,7 +26,7 @@ class _HomeSubState extends State<HomeSub> {
         });
     return Scaffold(
       backgroundColor: white,
-      body: check ? Home() : SizedBox(),
+      body: check ? Home(num: widget.number,) : SizedBox(),
     );
   }
 }

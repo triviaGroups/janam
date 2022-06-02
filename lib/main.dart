@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Login/login.dart';
+import 'package:janam/Other%20pages/VHND/VHNDpro.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
 import 'package:janam/provider/docIdProvider.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<VillageProvider>.value(value: (VillageProvider())),
         ChangeNotifierProvider<DocID>.value(value: (DocID())),
         ChangeNotifierProvider<PregDocID>.value(value: (PregDocID())),
+        ChangeNotifierProvider<vhndpro>.value(value: vhndpro()),
       ],
       child: const MaterialApp(
         home: FireBaseInitialization(),

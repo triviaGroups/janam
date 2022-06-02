@@ -2,10 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Other%20pages/VHND/VHNDpro.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:provider/provider.dart';
 
 class SearchMulti extends StatefulWidget {
-  const SearchMulti({Key? key}) : super(key: key);
+  final int num;
+  const SearchMulti({Key? key, required this.num}) : super(key: key);
 
   @override
   _SearchMultiState createState() => _SearchMultiState();
@@ -18,7 +21,6 @@ class _SearchMultiState extends State<SearchMulti> {
   List _resultsList = [];
 
   List _selected = [];
-
 
   @override
   void initState() {
@@ -36,36 +38,66 @@ class _SearchMultiState extends State<SearchMulti> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
     super.dispose();
   }
-  getData() async{
-    var unsold =   await FirebaseFirestore.instance.collection("Search").doc("preganancy").collection("NameList").get();
-    setState(() {
-      _allResults = unsold.docs;
+
+  getData() async {
+    print("KIO");
+    var rk = 
+    await FirebaseFirestore.instance
+        .collection("Village Details")
+        .doc(Provider.of<vhndpro>(context, listen: false).village[widget.num])
+        .collection("Family")
+        .get();
+    print("MEOW");
+    rk.docs.forEach((e) async{
+      print("HIKJMLP");
+      print(e.id);
+      var mk =
+      await FirebaseFirestore.instance
+          .collection("Village Details")
+          .doc(Provider.of<vhndpro>(context, listen: false).village[widget.num])
+          .collection("Family")
+          .doc(e.id).collection("Household").get();
+      setState(() {
+        _allResults.add(mk.docs);
+      });
+      print(_allResults);
     });
+    
     return "Completed";
   }
 
-  _onSearchChanged(){
+  _onSearchChanged() {
     searchResults();
   }
 
   List<bool> _isChecked = [];
 
-  searchResults(){
+  searchResults() {
     var showResults = [];
-    if(_searchController.text != ""){
-      for(var i in _allResults){
-        String name = i["Name"].toString().toLowerCase();
+    if (_searchController.text != "") {
+      for (var i in _allResults) {
+        for(var j in i){
+          print("PRINT");
+          String name = j["head"][0].toString().toLowerCase();
+          String pname = j["spouse"][1].toString().toLowerCase();
 
-        if(name.contains(_searchController.text.toLowerCase())){
-          showResults.add(i);
+          if (name.contains(_searchController.text.toLowerCase())) {
+            showResults.add(j);
+          }
+          else if (pname.contains(_searchController.text.toLowerCase())) {
+            showResults.add(j);
+          }
+          if (_selected.contains(name)) {
+            showResults.remove(j);
+          }
         }
       }
-    }else{
+    } else {
       showResults = [];
     }
     setState(() {
@@ -78,67 +110,83 @@ class _SearchMultiState extends State<SearchMulti> {
   Widget build(BuildContext context) {
     return ExpansionCard(
       backgroundColor: Colors.white,
-      trailing: Icon(Icons.search,color: Colors.black,),
+      trailing: Icon(
+        Icons.search,
+        color: Colors.black,
+      ),
       title: Container(
         alignment: Alignment.center,
         height: 56,
         decoration: BoxDecoration(
-            border: Border.all(width: 0.5,color: Colors.grey),
-            borderRadius: BorderRadius.circular(50)
-        ),
+            border: Border.all(width: 0.5, color: Colors.grey),
+            borderRadius: BorderRadius.circular(50)),
         child: TextField(
           textAlign: TextAlign.start,
           textAlignVertical: TextAlignVertical.center,
           controller: _searchController,
-          onTap: (){
-          },
-          decoration:
-          InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 25,vertical: 16),
+          onTap: () {},
+          decoration: InputDecoration(
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 25, vertical: 16),
               hintText: "Search",
               errorMaxLines: 1,
-              hintStyle: GoogleFonts.poppins(fontSize: 16,color: black),
-              border: InputBorder.none
-          ),
-          style: GoogleFonts.poppins(fontSize: 14,color: black),
+              hintStyle: GoogleFonts.poppins(fontSize: 16, color: black),
+              border: InputBorder.none),
+          style: GoogleFonts.poppins(fontSize: 14, color: black),
         ),
       ),
       children: [
-        Container(
-          height: 150,
-          margin: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+        _searchController.text == ""
+            ? SizedBox()
+            : Container(
+          height: 250,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(35),
+            color: purple,
+            border: Border.all(width: 0.5, color: white),
+          ),
+          padding: EdgeInsets.symmetric(vertical: 16),
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: ListView.builder(
               itemCount: _resultsList.length,
-              itemBuilder: (BuildContext context,int index){
+              itemBuilder: (BuildContext context, int index) {
                 return  CheckboxListTile(
                   onChanged: (val){
                     setState(
                           () {
-                            print("Hi");
+                        print("Hi");
                         _isChecked[index] = val!;
-                        val ? _selected.add(_resultsList[index]["Name"]) : _selected.remove(_resultsList[index]["Name"]);
+                        val ? _selected.add(_resultsList[index]["head"][0]) : _selected.remove(_resultsList[index]["head"][0]);
                         print(_selected);
                       },
                     );
                   },
+                  activeColor: white,
+                  checkColor: hTxt,
                   value: _isChecked[index],
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                  checkboxShape: CircleBorder(),
                   title: Container(
-                    alignment: Alignment.centerLeft,
+                    alignment: _resultsList == []
+                        ? Alignment.center
+                        : Alignment.centerLeft,
+                    margin: EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      _searchController.text == "" ? _allResults[index]["Name"] : _resultsList[index]["Name"],
-                      textAlign: TextAlign.left,
+                      _resultsList == []
+                          ? "No result"
+                          : _resultsList[index]["head"][0] +", "+_resultsList[index]["spouse"][1] +", ",
+                      textAlign: _resultsList == []
+                          ? TextAlign.center
+                          : TextAlign.left,
                       style: TextStyle(
                         fontFamily: "Grold Regular",
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
-                        color: Colors.black,
+                        color: white,
                       ),
                     ),
                   ),
                 );
-              }
-          ),
+              }),
         )
       ],
     );

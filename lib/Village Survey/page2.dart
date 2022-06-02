@@ -108,42 +108,6 @@ class _vPage2State extends State<vPage2> {
               const SizedBox(
                 height: 8,
               ),
-              Cont(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          "Total number of families in the household ",
-                          style: GoogleFonts.inter(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: black),
-                        ),
-                      ),
-                      Expanded(
-                          child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 0.5, color: Colors.grey),
-                          borderRadius: BorderRadius.circular(5),
-                          color: white,
-                        ),
-                        child: TextFormField(
-                          onChanged: (val) {
-                            count = int.parse(val);
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                              contentPadding:
-                                  EdgeInsets.only(left: 20, right: 10),
-                              border: InputBorder.none),
-                          style: GoogleFonts.inter(fontSize: 14, color: black),
-                        ),
-                      ))
-                    ],
-                  ),
-                  height: 48,
-                  color: c3),
 
               SwitchMethodHead("Head of the household"),
               isSwitchedHead

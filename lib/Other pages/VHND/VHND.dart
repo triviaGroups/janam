@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/Other%20pages/VHND/VHNDpro.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
@@ -8,6 +9,7 @@ import 'package:janam/Widgets/multisearch.dart';
 import 'package:janam/Widgets/radioContainer.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:provider/provider.dart';
 
 
 class VHND extends StatefulWidget {
@@ -24,7 +26,10 @@ class _VHNDState extends State<VHND> {
   int attendee = 0;
   int conducted = 0;
 
+  List<String> placeList = const ["PHC","SC","Others"];
+
   TextEditingController dateVHND = new TextEditingController();
+  TextEditingController topicc = new TextEditingController();
 
   @override
   void initState() {
@@ -38,6 +43,7 @@ class _VHNDState extends State<VHND> {
 
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
           backgroundColor: white,
@@ -88,9 +94,9 @@ class _VHNDState extends State<VHND> {
                     color: colors[(a++) % 4]),
                 radioContainer(
                   name: "Name of village",
-                  num: 3,
-                  item: const ["Village 1","Village 2","Village 3"],
-                  height: 160,
+                  num: Provider.of<vhndpro>(context,listen: false).village.length,
+                  item: Provider.of<vhndpro>(context,listen: false).village,
+                  height: Provider.of<vhndpro>(context,listen: false).village.length * 80,
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     name = int.parse(val.toString());
@@ -102,7 +108,7 @@ class _VHNDState extends State<VHND> {
                 radioContainer(
                   name: "Place of VHND",
                   num: 3,
-                  item: const ["PHC","SC","Others"],
+                  item: placeList,
                   height: 180,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -111,7 +117,7 @@ class _VHNDState extends State<VHND> {
                   }),
                   selectedButton: place,
                 ),
-                Cont(
+                place == 3 ? Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -148,7 +154,7 @@ class _VHNDState extends State<VHND> {
                       ],
                     ),
                     height: 60,
-                    color: colors[(a++) % 4]),
+                    color: colors[(a++) % 4]) : SizedBox(),
                 Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -172,7 +178,7 @@ class _VHNDState extends State<VHND> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: topicc,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -187,18 +193,24 @@ class _VHNDState extends State<VHND> {
                     ),
                     height: 40,
                     color: colors[(a++) % 4]),
-                SearchMulti(),
-                radioContainer(
-                  name: "Attendee name",
-                  num: 3,
-                  item: const ["Ramya, 22 years", "Sita, 28 years", "Kamala, 32 years"],
-                  height: 180,
-                  a: (a++) % 4,
-                  press: (val) => setState(() {
-                    attendee = int.parse(val.toString());
-                    print("$attendee");
-                  }),
-                  selectedButton: attendee,
+                name == 0 ? SizedBox() : Column(
+                  children: [
+                    SearchMulti(
+                      num: name-1,
+                    ),
+                    radioContainer(
+                      name: "Attendee name",
+                      num: 3,
+                      item: const ["Ramya, 22 years", "Sita, 28 years", "Kamala, 32 years"],
+                      height: 180,
+                      a: (a++) % 4,
+                      press: (val) => setState(() {
+                        attendee = int.parse(val.toString());
+                        print("$attendee");
+                      }),
+                      selectedButton: attendee,
+                    ),
+                  ],
                 ),
                 radioContainer(
                   name: "Conducted by",num: 2,
@@ -217,10 +229,20 @@ class _VHNDState extends State<VHND> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "No. of IFA tablets given in VHNDs",
-                    count: 0,
+                    count: Provider.of<vhndpro>(context,listen: false).given,
                     height: 60,
-                    add: (){},
-                    sub: (){},
+                    add: (){
+                      Provider.of<vhndpro>(context,listen: false).incGiven();
+                      setState(() {
+
+                      });
+                    },
+                    sub: (){
+                      Provider.of<vhndpro>(context,listen: false).decGiven();
+                      setState(() {
+
+                      });
+                    },
                   ),
                 ),
                 Padding(
@@ -228,16 +250,30 @@ class _VHNDState extends State<VHND> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "No. of IFA tablets issued by AWW",
-                    count: 0,
+                    count: Provider.of<vhndpro>(context,listen: false).issued,
                     height: 60,
-                    add: (){},
-                    sub: (){},
+                    add: (){
+                      Provider.of<vhndpro>(context,listen: false).incIssue();
+                      setState(() {
+
+                      });
+                    },
+                    sub: (){
+                      Provider.of<vhndpro>(context,listen: false).decIssue();
+                      setState(() {
+
+                      });
+                    },
                   ),
                 ),
                 const SizedBox(
                   height: 32,
                 ),
-                Button("Save"),
+                GestureDetector(
+                  onTap: (){
+
+                  },
+                    child: Button("Save")),
                 const SizedBox(
                   height: 16,
                 ),

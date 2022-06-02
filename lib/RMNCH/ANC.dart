@@ -1,16 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/SearchWidgets/SearchPregnancy.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:janam/provider/villageProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/pregDocId.dart';
 
 class ANC extends StatefulWidget {
   const ANC({Key? key}) : super(key: key);
@@ -20,7 +25,6 @@ class ANC extends StatefulWidget {
 }
 
 class _ANCState extends State<ANC> {
-
   int a = 0;
   int urine = 0;
   int blood = 0;
@@ -31,6 +35,21 @@ class _ANCState extends State<ANC> {
   TextEditingController dob = new TextEditingController();
   TextEditingController FttDose = new TextEditingController();
   TextEditingController SttDose = new TextEditingController();
+
+  List<String> yesno = const ["Yes", "No"];
+
+  List<String> typeList = const [
+    "District hospital",
+    "Other Govt. hospital",
+    "Accredited private hospital",
+    "Other private hospital",
+    "Home",
+    "Sub direct hospital",
+    "Medical college hospital",
+    "Sub centre",
+    "PHC",
+    "CHC"
+  ];
 
   List<String> prev = const [
     "Previous surgery",
@@ -48,7 +67,21 @@ class _ANCState extends State<ANC> {
     "Previous cortico steroids"
   ];
 
-  List<bool> prevbool = [false,false,false,false,false,false,false,false,false,false,false,false,false];
+  List<bool> prevbool = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
 
   @override
   void initState() {
@@ -56,12 +89,13 @@ class _ANCState extends State<ANC> {
     super.initState();
     final datePicked = DateTime.now();
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
-    final String formatted = formatter. format(datePicked);
+    final String formatted = formatter.format(datePicked);
     dob.text = formatted;
   }
 
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
@@ -72,57 +106,68 @@ class _ANCState extends State<ANC> {
               height: 16,
             ),
             topic("Antenatal Care", "Select member"),
-            searchWidget(),
-            Cont(
-                child: Column(
-                  children: [
-                    Expanded(
-                        child: Row(
+            PregSearch(),
+            context.watch<PregDocID>().doc == ""
+                ? SizedBox()
+                : Cont(
+                    child: Column(
                       children: [
-                        Text(
-                          "Harine",
-                          style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: black),
-                        ),
-                        Text(
-                          ", Female, 23 years",
-                          style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: txt),
-                        ),
-                      ],
-                    )),
-                    Expanded(
-                        flex: 2,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Expanded(
+                            child: Row(
                           children: [
                             Text(
-                              "\nAddress",
+                              Provider.of<PregDocID>(context, listen: false)
+                                  .name,
                               style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
                                   color: black),
                             ),
                             Text(
-                              "Plot No. 00, Street Name, Area Name,City, State - Pincode",
+                              ", Female, " +
+                                  (2021 -
+                                          (int.parse(Provider.of<PregDocID>(
+                                                  context,
+                                                  listen: false)
+                                              .dob
+                                              .substring(0, 4))))
+                                      .toString(),
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: txt),
-                              maxLines: 2,
-                              softWrap: true,
                             ),
                           ],
                         )),
-                  ],
-                ),
-                height: 150,
-                color: colors[(a++) % 4]),
+                        Expanded(
+                            flex: 2,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "\nAddress",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: black),
+                                ),
+                                Text(
+                                  Provider.of<PregDocID>(context, listen: false)
+                                      .address,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      color: txt),
+                                  maxLines: 2,
+                                  softWrap: true,
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    height: 150,
+                    color: colors[(a++) % 4]),
             Cont(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -164,24 +209,33 @@ class _ANCState extends State<ANC> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
-                color: colors[(a++) % 4],
-                name: "Current weight (kg)",
-                count: 0,
-                height: 60,
-                add: (){},
-                sub: (){},
-              ),
+                  color: colors[(a++) % 4],
+                  name: "Current weight (kg)",
+                  count: Provider.of<PregDocID>(context, listen: false).weight,
+                  height: 60,
+                  add: () {
+                    Provider.of<PregDocID>(context, listen: false).incWeight();
+                    setState(() {});
+                  },
+                  sub: () {
+                    Provider.of<PregDocID>(context, listen: false).decWeight();
+                    setState(() {});
+                  }),
             ),
             Container(
               height: 69,
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              margin: EdgeInsets.symmetric(
+                  vertical: 8, horizontal: 24),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius:
+                  BorderRadius.circular(5),
                   color: colors[(a++) % 4],
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.shade300,
+                      color:
+                      Colors.grey.shade300,
                       blurRadius: 5,
                       spreadRadius: 1,
                       offset: Offset(1, 2),
@@ -191,179 +245,359 @@ class _ANCState extends State<ANC> {
                 children: [
                   Expanded(
                       child: Container(
-                    padding: EdgeInsets.only(top: 8, bottom: 8, right: 8),
-                    color: Colors.transparent,
-                    child: Text(
-                      "BP",
-                      style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: black),
-                    ),
-                  )),
+                        padding: EdgeInsets.only(
+                            top: 8,
+                            bottom: 8,
+                            right: 8),
+                        color: Colors.transparent,
+                        child: Text(
+                          "BP",
+                          style:
+                          GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight:
+                              FontWeight
+                                  .w600,
+                              color: black),
+                        ),
+                      )),
                   Expanded(
                       flex: 3,
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 8),
+                        padding:
+                        const EdgeInsets
+                            .only(right: 8),
                         child: Row(
                           children: [
                             Expanded(
                                 flex: 2,
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                      top: 8, bottom: 8, right: 8),
-                                  color: Colors.transparent,
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .only(
+                                      top:
+                                      8,
+                                      bottom:
+                                      8,
+                                      right:
+                                      8),
+                                  color: Colors
+                                      .transparent,
                                   child: Text(
                                     "Sys",
                                     style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: black),
+                                        fontSize:
+                                        16,
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        color:
+                                        black),
                                   ),
                                 )),
                             Expanded(
-                                child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    blurRadius: 5,
-                                    spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .symmetric(
+                                      vertical:
+                                      4),
+                                  decoration:
+                                  BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius
+                                        .circular(
+                                        5),
+                                    color: white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors
+                                            .grey
+                                            .shade300,
+                                        blurRadius:
+                                        5,
+                                        spreadRadius:
+                                        1,
+                                        offset:
+                                        Offset(
+                                            1,
+                                            2),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              child: Transform.translate(
-                                  offset: Offset(0, 0),
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: black,
-                                    size: 16,
-                                  )),
-                            )),
+                                  child: Transform
+                                      .translate(
+                                      offset:
+                                      Offset(
+                                          0,
+                                          0),
+                                      child:
+                                      GestureDetector(
+                                        onTap: (){
+                                          Provider.of<VillageProvider>(context,listen: false).incSys();
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: const Icon(
+                                          Icons
+                                              .add,
+                                          color:
+                                          black,
+                                          size:
+                                          16,
+                                        ),
+                                      )),
+                                )),
                             Expanded(
                                 flex: 2,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
-                                  alignment: Alignment.center,
-                                  color: Colors.transparent,
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .symmetric(
+                                      vertical:
+                                      8),
+                                  alignment:
+                                  Alignment
+                                      .center,
+                                  color: Colors
+                                      .transparent,
                                   child: Text(
-                                    "120",
+                                    Provider.of<VillageProvider>(context,listen: false).sys.toString(),
                                     style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: black),
+                                        fontSize:
+                                        16,
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        color:
+                                        black),
                                   ),
                                 )),
                             Expanded(
-                                child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    blurRadius: 5,
-                                    spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .symmetric(
+                                      vertical:
+                                      4),
+                                  decoration:
+                                  BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius
+                                        .circular(
+                                        5),
+                                    color: white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors
+                                            .grey
+                                            .shade300,
+                                        blurRadius:
+                                        5,
+                                        spreadRadius:
+                                        1,
+                                        offset:
+                                        Offset(
+                                            1,
+                                            2),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              child: Transform.translate(
-                                  offset: Offset(0, -4),
-                                  child: const Icon(
-                                    Icons.minimize,
-                                    color: black,
-                                    size: 16,
-                                  )),
-                            )),
+                                  child: Transform
+                                      .translate(
+                                      offset:
+                                      Offset(
+                                          0,
+                                          -4),
+                                      child:
+                                      GestureDetector(
+                                        onTap: (){
+                                          Provider.of<VillageProvider>(context,listen: false).decSys();
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: const Icon(
+                                          Icons
+                                              .minimize,
+                                          color:
+                                          black,
+                                          size:
+                                          16,
+                                        ),
+                                      )),
+                                )),
                           ],
                         ),
                       )),
                   Expanded(
                       flex: 3,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 8),
+                        padding:
+                        const EdgeInsets
+                            .only(left: 8),
                         child: Row(
                           children: [
                             Expanded(
                                 flex: 2,
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                      top: 8, bottom: 8, right: 8),
-                                  color: Colors.transparent,
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .only(
+                                      top:
+                                      8,
+                                      bottom:
+                                      8,
+                                      right:
+                                      8),
+                                  color: Colors
+                                      .transparent,
                                   child: Text(
                                     "Dia",
                                     style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: black),
+                                        fontSize:
+                                        16,
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        color:
+                                        black),
                                   ),
                                 )),
                             Expanded(
-                                child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    blurRadius: 5,
-                                    spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .symmetric(
+                                      vertical:
+                                      4),
+                                  decoration:
+                                  BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius
+                                        .circular(
+                                        5),
+                                    color: white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors
+                                            .grey
+                                            .shade300,
+                                        blurRadius:
+                                        5,
+                                        spreadRadius:
+                                        1,
+                                        offset:
+                                        Offset(
+                                            1,
+                                            2),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              child: Transform.translate(
-                                  offset: Offset(0, 0),
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: black,
-                                    size: 16,
-                                  )),
-                            )),
+                                  child: Transform
+                                      .translate(
+                                      offset:
+                                      Offset(
+                                          0,
+                                          0),
+                                      child:
+                                      GestureDetector(
+                                        onTap: (){
+                                          Provider.of<VillageProvider>(context,listen: false).incDis();
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: const Icon(
+                                          Icons
+                                              .add,
+                                          color:
+                                          black,
+                                          size:
+                                          16,
+                                        ),
+                                      )),
+                                )),
                             Expanded(
                                 flex: 2,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
-                                  alignment: Alignment.center,
-                                  color: Colors.transparent,
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .symmetric(
+                                      vertical:
+                                      8),
+                                  alignment:
+                                  Alignment
+                                      .center,
+                                  color: Colors
+                                      .transparent,
                                   child: Text(
-                                    "80",
+                                    Provider.of<VillageProvider>(context,listen: false).dia.toString(),
                                     style: GoogleFonts.poppins(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: black),
+                                        fontSize:
+                                        16,
+                                        fontWeight:
+                                        FontWeight
+                                            .w600,
+                                        color:
+                                        black),
                                   ),
                                 )),
                             Expanded(
-                                child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade300,
-                                    blurRadius: 5,
-                                    spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                child:
+                                Container(
+                                  padding: EdgeInsets
+                                      .symmetric(
+                                      vertical:
+                                      4),
+                                  decoration:
+                                  BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius
+                                        .circular(
+                                        5),
+                                    color: white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors
+                                            .grey
+                                            .shade300,
+                                        blurRadius:
+                                        5,
+                                        spreadRadius:
+                                        1,
+                                        offset:
+                                        Offset(
+                                            1,
+                                            2),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              child: Transform.translate(
-                                  offset: Offset(0, -4),
-                                  child: const Icon(
-                                    Icons.minimize,
-                                    color: black,
-                                    size: 16,
-                                  )),
-                            )),
+                                  child: Transform
+                                      .translate(
+                                      offset:
+                                      Offset(
+                                          0,
+                                          -4),
+                                      child:
+                                      GestureDetector(
+                                        onTap: (){
+                                          Provider.of<VillageProvider>(context,listen: false).decDis();
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: const Icon(
+                                          Icons
+                                              .minimize,
+                                          color:
+                                          black,
+                                          size:
+                                          16,
+                                        ),
+                                      )),
+                                )),
                           ],
                         ),
                       )),
@@ -375,16 +609,26 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Haemoglobin",
-                count: 0,
+                count: Provider.of<PregDocID>(context, listen: false).hae,
                 height: 60,
-                add: (){},
-                sub: (){},
+                add: () {
+                  Provider.of<PregDocID>(context, listen: false).incHae();
+                  setState(() {
+
+                  });
+                },
+                sub: () {
+                  Provider.of<PregDocID>(context, listen: false).decHae();
+                  setState(() {
+
+                  });
+                },
               ),
             ),
             radioContainer(
               name: "Urine test",
               num: 2,
-              item: const ["Yes", "No"],
+              item: yesno,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -396,7 +640,7 @@ class _ANCState extends State<ANC> {
             radioContainer(
               name: "Blood test",
               num: 2,
-              item: const ["Yes", "No"],
+              item: yesno,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -434,10 +678,11 @@ class _ANCState extends State<ANC> {
                           controller: FttDose,
                           decoration: InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10,bottom: 5),
+                                EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:
+                              GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
@@ -445,7 +690,7 @@ class _ANCState extends State<ANC> {
                       child: Container(
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
-                            onTap: () async{
+                            onTap: () async {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
@@ -456,18 +701,23 @@ class _ANCState extends State<ANC> {
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,
                               );
-                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
-                              final String formatted = formatter. format(datePicked!);
-                              setState((){
+                              final DateFormat formatter =
+                                  DateFormat('yyyy-MM-dd');
+                              final String formatted =
+                                  formatter.format(datePicked!);
+                              setState(() {
                                 FttDose.text = formatted;
                               });
                               final snackBar = SnackBar(
-                                  content:
-                                  Text("Date Picked $formatted"));
+                                  content: Text("Date Picked $formatted"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                            child: Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.black87,
+                              size: 24,
+                            )),
                       ),
                     )
                   ],
@@ -503,10 +753,11 @@ class _ANCState extends State<ANC> {
                           controller: SttDose,
                           decoration: InputDecoration(
                             contentPadding:
-                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
+                                EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
                           ),
-                          style:GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:
+                              GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
@@ -514,9 +765,9 @@ class _ANCState extends State<ANC> {
                       child: Container(
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
-                            onTap: () async{
+                            onTap: () async {
                               var datePicked =
-                              await DatePicker.showSimpleDatePicker(
+                                  await DatePicker.showSimpleDatePicker(
                                 context,
                                 initialDate: DateTime(1994),
                                 firstDate: DateTime(1960),
@@ -525,18 +776,23 @@ class _ANCState extends State<ANC> {
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,
                               );
-                              final DateFormat formatter = DateFormat('yyyy-MM-dd');
-                              final String formatted = formatter. format(datePicked!);
-                              setState((){
+                              final DateFormat formatter =
+                                  DateFormat('yyyy-MM-dd');
+                              final String formatted =
+                                  formatter.format(datePicked!);
+                              setState(() {
                                 SttDose.text = formatted;
                               });
                               final snackBar = SnackBar(
-                                  content:
-                                  Text("Date Picked $formatted"));
+                                  content: Text("Date Picked $formatted"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                            child: Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.black87,
+                              size: 24,
+                            )),
                       ),
                     )
                   ],
@@ -548,10 +804,20 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of folic acid tablets given",
-                count: 0,
+                count: Provider.of<PregDocID>(context, listen: false).folic,
                 height: 80,
-                add: (){},
-                sub: (){},
+                add: () {
+                  Provider.of<PregDocID>(context, listen: false).incFolic();
+                  setState(() {
+
+                  });
+                },
+                sub: () {
+                  Provider.of<PregDocID>(context, listen: false).decFolic();
+                  setState(() {
+
+                  });
+                },
               ),
             ),
             Padding(
@@ -559,16 +825,26 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of iron folic acid tablets given",
-                count: 0,
+                count: Provider.of<PregDocID>(context, listen: false).iron,
                 height: 80,
-                add: (){},
-                sub: (){},
+                add: () {
+                  Provider.of<PregDocID>(context, listen: false).incIron();
+                  setState(() {
+
+                  });
+                },
+                sub: () {
+                  Provider.of<PregDocID>(context, listen: false).decIron();
+                  setState(() {
+
+                  });
+                },
               ),
             ),
             radioContainer(
               name: "High-risk symptoms",
               num: 2,
-              item: const ["Yes", "No"],
+              item: yesno,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -606,7 +882,7 @@ class _ANCState extends State<ANC> {
             radioContainer(
               name: "Need for referral",
               num: 2,
-              item: const ["Yes", "No"],
+              item: yesno,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -618,7 +894,7 @@ class _ANCState extends State<ANC> {
             radioContainer(
               name: "Type of referral facility",
               num: 10,
-              item: const ["District hospital","Other Govt. hospital","Accredited private hospital","Other private hospital","Home","Sub direct hospital","Medical college hospital","Sub centre","PHC","CHC"],
+              item: typeList,
               height: 650,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -630,7 +906,39 @@ class _ANCState extends State<ANC> {
             const SizedBox(
               height: 32,
             ),
-            Button("Save"),
+            GestureDetector(
+              onTap: () async{
+
+                List<String> m = [];
+
+                for(int i=0;i<prev.length;i++){
+                  if(prevbool[i]){
+                    m.add(prev[i]);
+                  }
+                }
+
+                Map<String,dynamic> data = {
+                  "Visit" : dob.text,
+                  "Weight" : Provider.of<PregDocID>(context, listen: false).weight,
+                  "Sys" : Provider.of<VillageProvider>(context,listen: false).sys,
+                  "Dia" : Provider.of<VillageProvider>(context,listen: false).dia,
+                  "Haemo" : Provider.of<PregDocID>(context, listen: false).hae,
+                  "Urine test" : yesno[urine-1],
+                  "Blood test" : yesno[blood-1],
+                  "Folic" : Provider.of<PregDocID>(context, listen: false).folic,
+                  "Iron" : Provider.of<PregDocID>(context, listen: false).iron,
+                  "Risk" : yesno[risk-1],
+                  "Antenattal risk" : m,
+                  "Need" : yesno[referral-1],
+                  "Type" : typeList[type-1],
+                };
+
+                await FirebaseFirestore.instance
+                    .collection("Details")
+                    .doc(Provider.of<Details>(context, listen: false).phone)
+                    .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).collection("ANC").doc(dob.text).set(data).whenComplete(() => Navigator.pop(context));
+              },
+                child: Button("Save")),
             const SizedBox(
               height: 16,
             ),

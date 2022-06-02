@@ -5,7 +5,7 @@ import 'package:janam/Other%20pages/IDSP.dart';
 import 'package:janam/Other%20pages/NIPI.dart';
 import 'package:janam/Other%20pages/NPCDCS.dart';
 import 'package:janam/Other%20pages/ORS.dart';
-import 'package:janam/Other%20pages/VHND.dart';
+import 'package:janam/Other%20pages/VHND/VHNDsub.dart';
 import 'package:janam/Other%20pages/covid.dart';
 import 'package:janam/Other%20pages/deathReg.dart';
 import 'package:janam/Other%20pages/stockReg.dart';
@@ -22,7 +22,8 @@ import 'package:janam/provider/detailsFetch.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final String num;
+  const Home({Key? key, required this.num}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -178,7 +179,7 @@ class _HomeState extends State<Home> {
                           );
                         }),
                   ),
-                  programs("Village Health & Nutrition Day (VHND)",const VHND()),
+                  programs("Village Health & Nutrition Day (VHND)", Vhndsub(number: widget.num)),
                   programs("National Iron Plus Initiative (NIPI)",const NIPI()),
                   programs("NPCDCS - Cancer, diabetes, CVD & stroke",const  NPCDCS()),
                   programs("Stock register",const StockReg()),

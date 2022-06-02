@@ -7,7 +7,6 @@ import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/multisearch.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 
@@ -38,7 +37,9 @@ class _NIPIState extends State<NIPI> {
                   height: 16,
                 ),
                 topic("NIPI", "Select child"),
-                SearchMulti(),
+                SearchMulti(
+                  num: children_participated-1,
+                ),
                 radioContainer(
                   name: "Children participated",
                   num: 3,

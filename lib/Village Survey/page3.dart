@@ -667,7 +667,7 @@ class _vPage3State extends State<vPage3> {
                       .doc(widget.docId)
                       .collection("Household")
                       .doc(widget.familyId)
-                      .set(data).whenComplete(() async {
+                      .update(data).whenComplete(() async {
                         for(int i=0;i<children.length;i++){
 
                           DocumentReference doc_ref = await FirebaseFirestore.instance
