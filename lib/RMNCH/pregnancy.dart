@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/SearchWidgets/SearchEC.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
@@ -449,7 +450,13 @@ class _PregnancyState extends State<Pregnancy> {
                     await FirebaseFirestore.instance
                         .collection("Details")
                         .doc(Provider.of<Details>(context, listen: false).phone)
-                        .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).delete().whenComplete(() => Navigator.pop(context));
+                        .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).delete().whenComplete(() => Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeSub(
+                                number: Provider.of<Details>(context,
+                                    listen: false)
+                                    .phone))));
                   }
                 }
               },

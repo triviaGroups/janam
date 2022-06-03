@@ -1878,7 +1878,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         .set(details);
                   }
 
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeSub(number: Provider.of<Details>(context, listen: false).phone,)));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeSub(number: Provider.of<Details>(context, listen: false).phone,)));
 
                 },
                 child: Button("Save")),

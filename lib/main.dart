@@ -12,6 +12,7 @@ import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
 import 'package:janam/provider/docIdProvider.dart';
 import 'package:janam/provider/nurseProvider.dart';
+import 'package:janam/provider/pnpro.dart';
 import 'package:janam/provider/pregDocId.dart';
 import 'package:janam/provider/villageProvider.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<nipipro>.value(value: nipipro()),
         ChangeNotifierProvider<orspro>.value(value: orspro()),
         ChangeNotifierProvider<tcpro>.value(value: tcpro()),
+        ChangeNotifierProvider<PnPro>.value(value: PnPro()),
       ],
       child: const MaterialApp(
         home: FireBaseInitialization(),

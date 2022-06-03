@@ -857,25 +857,6 @@ class _DeliveryState extends State<Delivery> {
 
                   Map<String, dynamic>? pregData = ds.data();
 
-                  QuerySnapshot qs = await FirebaseFirestore.instance
-                      .collection("Details")
-                      .doc(Provider.of<Details>(context, listen: false).phone)
-                      .collection("Pregnant")
-                      .doc(Provider.of<PregDocID>(context, listen: false).doc).collection("ANC").get();
-
-                  final allData = qs.docs.map((doc) => doc.data()).toList();
-
-                  print(allData);
-
-                  QuerySnapshot qss = await FirebaseFirestore.instance
-                      .collection("Details")
-                      .doc(Provider.of<Details>(context, listen: false).phone)
-                      .collection("Pregnant")
-                      .doc(Provider.of<PregDocID>(context, listen: false).doc).collection("Details").get();
-
-                  final allDatas = qss.docs.map((doc) => doc.data()).toList();
-
-                  print(allDatas);
 
                   await FirebaseFirestore.instance
                       .collection("Details")
@@ -915,7 +896,7 @@ class _DeliveryState extends State<Delivery> {
                               .doc(date_delivery.text)
                               .set(data)
                               .whenComplete(() {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => PostnatalCare()));

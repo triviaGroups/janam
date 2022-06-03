@@ -4,6 +4,7 @@ import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/SearchWidgets/SearchPregnancy.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
@@ -224,18 +225,14 @@ class _ANCState extends State<ANC> {
             ),
             Container(
               height: 69,
-              margin: EdgeInsets.symmetric(
-                  vertical: 8, horizontal: 24),
-              padding: EdgeInsets.symmetric(
-                  horizontal: 16),
+              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
-                  borderRadius:
-                  BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(5),
                   color: colors[(a++) % 4],
                   boxShadow: [
                     BoxShadow(
-                      color:
-                      Colors.grey.shade300,
+                      color: Colors.grey.shade300,
                       blurRadius: 5,
                       spreadRadius: 1,
                       offset: Offset(1, 2),
@@ -245,359 +242,217 @@ class _ANCState extends State<ANC> {
                 children: [
                   Expanded(
                       child: Container(
-                        padding: EdgeInsets.only(
-                            top: 8,
-                            bottom: 8,
-                            right: 8),
-                        color: Colors.transparent,
-                        child: Text(
-                          "BP",
-                          style:
-                          GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight:
-                              FontWeight
-                                  .w600,
-                              color: black),
-                        ),
-                      )),
+                    padding: EdgeInsets.only(top: 8, bottom: 8, right: 8),
+                    color: Colors.transparent,
+                    child: Text(
+                      "BP",
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: black),
+                    ),
+                  )),
                   Expanded(
                       flex: 3,
                       child: Padding(
-                        padding:
-                        const EdgeInsets
-                            .only(right: 8),
+                        padding: const EdgeInsets.only(right: 8),
                         child: Row(
                           children: [
                             Expanded(
                                 flex: 2,
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .only(
-                                      top:
-                                      8,
-                                      bottom:
-                                      8,
-                                      right:
-                                      8),
-                                  color: Colors
-                                      .transparent,
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                      top: 8, bottom: 8, right: 8),
+                                  color: Colors.transparent,
                                   child: Text(
                                     "Sys",
                                     style: GoogleFonts.poppins(
-                                        fontSize:
-                                        16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        color:
-                                        black),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: black),
                                   ),
                                 )),
                             Expanded(
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        Offset(
-                                            1,
-                                            2),
-                                      ),
-                                    ],
+                                child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 4),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                    offset: Offset(1, 2),
                                   ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      Offset(
-                                          0,
-                                          0),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).incSys();
-                                          setState(() {
-
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons
-                                              .add,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
-                                        ),
-                                      )),
-                                )),
+                                ],
+                              ),
+                              child: Transform.translate(
+                                  offset: Offset(0, 0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Provider.of<VillageProvider>(context,
+                                              listen: false)
+                                          .incSys();
+                                      setState(() {});
+                                    },
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: black,
+                                      size: 16,
+                                    ),
+                                  )),
+                            )),
                             Expanded(
                                 flex: 2,
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      8),
-                                  alignment:
-                                  Alignment
-                                      .center,
-                                  color: Colors
-                                      .transparent,
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  alignment: Alignment.center,
+                                  color: Colors.transparent,
                                   child: Text(
-                                    Provider.of<VillageProvider>(context,listen: false).sys.toString(),
+                                    Provider.of<VillageProvider>(context,
+                                            listen: false)
+                                        .sys
+                                        .toString(),
                                     style: GoogleFonts.poppins(
-                                        fontSize:
-                                        16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        color:
-                                        black),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: black),
                                   ),
                                 )),
                             Expanded(
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        Offset(
-                                            1,
-                                            2),
-                                      ),
-                                    ],
+                                child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 4),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                    offset: Offset(1, 2),
                                   ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      Offset(
-                                          0,
-                                          -4),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).decSys();
-                                          setState(() {
-
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons
-                                              .minimize,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
-                                        ),
-                                      )),
-                                )),
+                                ],
+                              ),
+                              child: Transform.translate(
+                                  offset: Offset(0, -4),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Provider.of<VillageProvider>(context,
+                                              listen: false)
+                                          .decSys();
+                                      setState(() {});
+                                    },
+                                    child: const Icon(
+                                      Icons.minimize,
+                                      color: black,
+                                      size: 16,
+                                    ),
+                                  )),
+                            )),
                           ],
                         ),
                       )),
                   Expanded(
                       flex: 3,
                       child: Padding(
-                        padding:
-                        const EdgeInsets
-                            .only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: Row(
                           children: [
                             Expanded(
                                 flex: 2,
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .only(
-                                      top:
-                                      8,
-                                      bottom:
-                                      8,
-                                      right:
-                                      8),
-                                  color: Colors
-                                      .transparent,
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                      top: 8, bottom: 8, right: 8),
+                                  color: Colors.transparent,
                                   child: Text(
                                     "Dia",
                                     style: GoogleFonts.poppins(
-                                        fontSize:
-                                        16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        color:
-                                        black),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: black),
                                   ),
                                 )),
                             Expanded(
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        Offset(
-                                            1,
-                                            2),
-                                      ),
-                                    ],
+                                child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 4),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                    offset: Offset(1, 2),
                                   ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      Offset(
-                                          0,
-                                          0),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).incDis();
-                                          setState(() {
-
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons
-                                              .add,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
-                                        ),
-                                      )),
-                                )),
+                                ],
+                              ),
+                              child: Transform.translate(
+                                  offset: Offset(0, 0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Provider.of<VillageProvider>(context,
+                                              listen: false)
+                                          .incDis();
+                                      setState(() {});
+                                    },
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: black,
+                                      size: 16,
+                                    ),
+                                  )),
+                            )),
                             Expanded(
                                 flex: 2,
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      8),
-                                  alignment:
-                                  Alignment
-                                      .center,
-                                  color: Colors
-                                      .transparent,
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  alignment: Alignment.center,
+                                  color: Colors.transparent,
                                   child: Text(
-                                    Provider.of<VillageProvider>(context,listen: false).dia.toString(),
+                                    Provider.of<VillageProvider>(context,
+                                            listen: false)
+                                        .dia
+                                        .toString(),
                                     style: GoogleFonts.poppins(
-                                        fontSize:
-                                        16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        color:
-                                        black),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: black),
                                   ),
                                 )),
                             Expanded(
-                                child:
-                                Container(
-                                  padding: EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        Offset(
-                                            1,
-                                            2),
-                                      ),
-                                    ],
+                                child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 4),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                    offset: Offset(1, 2),
                                   ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      Offset(
-                                          0,
-                                          -4),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).decDis();
-                                          setState(() {
-
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons
-                                              .minimize,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
-                                        ),
-                                      )),
-                                )),
+                                ],
+                              ),
+                              child: Transform.translate(
+                                  offset: Offset(0, -4),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Provider.of<VillageProvider>(context,
+                                              listen: false)
+                                          .decDis();
+                                      setState(() {});
+                                    },
+                                    child: const Icon(
+                                      Icons.minimize,
+                                      color: black,
+                                      size: 16,
+                                    ),
+                                  )),
+                            )),
                           ],
                         ),
                       )),
@@ -613,15 +468,11 @@ class _ANCState extends State<ANC> {
                 height: 60,
                 add: () {
                   Provider.of<PregDocID>(context, listen: false).incHae();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
                 sub: () {
                   Provider.of<PregDocID>(context, listen: false).decHae();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
             ),
@@ -808,15 +659,11 @@ class _ANCState extends State<ANC> {
                 height: 80,
                 add: () {
                   Provider.of<PregDocID>(context, listen: false).incFolic();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
                 sub: () {
                   Provider.of<PregDocID>(context, listen: false).decFolic();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
             ),
@@ -829,15 +676,11 @@ class _ANCState extends State<ANC> {
                 height: 80,
                 add: () {
                   Provider.of<PregDocID>(context, listen: false).incIron();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
                 sub: () {
                   Provider.of<PregDocID>(context, listen: false).decIron();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
             ),
@@ -907,37 +750,51 @@ class _ANCState extends State<ANC> {
               height: 32,
             ),
             GestureDetector(
-              onTap: () async{
+                onTap: () async {
+                  List<String> m = [];
 
-                List<String> m = [];
-
-                for(int i=0;i<prev.length;i++){
-                  if(prevbool[i]){
-                    m.add(prev[i]);
+                  for (int i = 0; i < prev.length; i++) {
+                    if (prevbool[i]) {
+                      m.add(prev[i]);
+                    }
                   }
-                }
 
-                Map<String,dynamic> data = {
-                  "Visit" : dob.text,
-                  "Weight" : Provider.of<PregDocID>(context, listen: false).weight,
-                  "Sys" : Provider.of<VillageProvider>(context,listen: false).sys,
-                  "Dia" : Provider.of<VillageProvider>(context,listen: false).dia,
-                  "Haemo" : Provider.of<PregDocID>(context, listen: false).hae,
-                  "Urine test" : yesno[urine-1],
-                  "Blood test" : yesno[blood-1],
-                  "Folic" : Provider.of<PregDocID>(context, listen: false).folic,
-                  "Iron" : Provider.of<PregDocID>(context, listen: false).iron,
-                  "Risk" : yesno[risk-1],
-                  "Antenattal risk" : m,
-                  "Need" : yesno[referral-1],
-                  "Type" : typeList[type-1],
-                };
+                  Map<String, dynamic> data = {
+                    "Visit": dob.text,
+                    "Weight":
+                        Provider.of<PregDocID>(context, listen: false).weight,
+                    "Sys": Provider.of<VillageProvider>(context, listen: false)
+                        .sys,
+                    "Dia": Provider.of<VillageProvider>(context, listen: false)
+                        .dia,
+                    "Haemo": Provider.of<PregDocID>(context, listen: false).hae,
+                    "Urine test": yesno[urine - 1],
+                    "Blood test": yesno[blood - 1],
+                    "Folic":
+                        Provider.of<PregDocID>(context, listen: false).folic,
+                    "Iron": Provider.of<PregDocID>(context, listen: false).iron,
+                    "Risk": yesno[risk - 1],
+                    "Antenattal risk": m,
+                    "Need": yesno[referral - 1],
+                    "Type": typeList[type - 1],
+                  };
 
-                await FirebaseFirestore.instance
-                    .collection("Details")
-                    .doc(Provider.of<Details>(context, listen: false).phone)
-                    .collection("Pregnant").doc(Provider.of<PregDocID>(context, listen: false).doc).collection("ANC").doc(dob.text).set(data).whenComplete(() => Navigator.pop(context));
-              },
+                  await FirebaseFirestore.instance
+                      .collection("Details")
+                      .doc(Provider.of<Details>(context, listen: false).phone)
+                      .collection("Pregnant")
+                      .doc(Provider.of<PregDocID>(context, listen: false).doc)
+                      .collection("ANC")
+                      .doc(dob.text)
+                      .set(data)
+                      .whenComplete(() => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeSub(
+                                  number: Provider.of<Details>(context,
+                                          listen: false)
+                                      .phone))));
+                },
                 child: Button("Save")),
             const SizedBox(
               height: 16,

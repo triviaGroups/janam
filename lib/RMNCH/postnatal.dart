@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
@@ -8,9 +9,12 @@ import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:janam/provider/pnpro.dart';
+import 'package:provider/provider.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/pregDocId.dart';
 
 class PostnatalCare extends StatefulWidget {
   const PostnatalCare({Key? key}) : super(key: key);
@@ -47,10 +51,16 @@ class _PostnatalCareState extends State<PostnatalCare> {
   ];
 
   List<bool> dangerbool = [false,false,false,false,false,false,false,false];
+  List<String> ster = const ["Sterlization", "Nil"];
+
 
   TextEditingController dateVisit = new TextEditingController();
+  TextEditingController mother = new TextEditingController();
+  TextEditingController infant = new TextEditingController();
+  TextEditingController name = new TextEditingController();
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
           backgroundColor: white,
@@ -61,22 +71,31 @@ class _PostnatalCareState extends State<PostnatalCare> {
                   height: 16,
                 ),
                 topic("Postnatal Care", "Select member"),
-                searchWidget(),
-                Cont(
+                context.watch<PregDocID>().doc == ""
+                    ? SizedBox()
+                    : Cont(
                     child: Column(
                       children: [
                         Expanded(
                             child: Row(
                               children: [
                                 Text(
-                                  "Harine",
+                                  Provider.of<PregDocID>(context, listen: false)
+                                      .name,
                                   style: GoogleFonts.poppins(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       color: black),
                                 ),
                                 Text(
-                                  ", Female, 23 years",
+                                  ", Female, " +
+                                      (2021 -
+                                          (int.parse(Provider.of<PregDocID>(
+                                              context,
+                                              listen: false)
+                                              .dob
+                                              .substring(0, 4))))
+                                          .toString(),
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -98,7 +117,8 @@ class _PostnatalCareState extends State<PostnatalCare> {
                                       color: black),
                                 ),
                                 Text(
-                                  "Plot No. 00, Street Name, Area Name,City, State - Pincode",
+                                  Provider.of<PregDocID>(context, listen: false)
+                                      .address,
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -112,90 +132,31 @@ class _PostnatalCareState extends State<PostnatalCare> {
                     ),
                     height: 150,
                     color: colors[(a++) % 4]),
-              Cont(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.only(right: 8),
-                          child: Text(
-                            "Date of visit",
-                            style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: black),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: white,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: TextFormField(
-                            controller: dateVisit,
-                            decoration: InputDecoration(
-                              contentPadding:
-                              EdgeInsets.only(left: 10, right: 10,bottom: 5),
-                              border: InputBorder.none,
-                            ),
-                            style:GoogleFonts.poppins(fontSize: 14, color: black),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child: GestureDetector(
-                              onTap: () async{
-                                var datePicked =
-                                await DatePicker.showSimpleDatePicker(
-                                  context,
-                                  initialDate: DateTime(1994),
-                                  firstDate: DateTime(1960),
-                                  lastDate: DateTime(2022),
-                                  dateFormat: "dd-MMMM-yyyy",
-                                  locale: DateTimePickerLocale.en_us,
-                                  looping: true,
-                                );
-                                final DateFormat formatter = DateFormat('yyyy-MM-dd');
-                                final String formatted = formatter. format(datePicked!);
-                                setState((){
-                                  dateVisit.text = formatted;
-                                });
-                                final snackBar = SnackBar(
-                                    content:
-                                    Text("Date Picked $formatted"));
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
-                              },
-                              child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
-                        ),
-                      )
-                    ],
-                  ),
-                  height: 40,
-                  color: colors[(a++) % 4]),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "No. of IFA tablets given",
-                    count: 0,
+                    count: Provider.of<PnPro>(context,listen: false).ifa,
                     height: 60,
-                    add: (){},
-                    sub: (){},
+                    add: (){
+                      Provider.of<PnPro>(context,listen: false).incIfa();
+                      setState(() {
+                        
+                      });
+                    },
+                    sub: (){
+                      Provider.of<PnPro>(context,listen: false).decIfa();
+                      setState(() {
+                        
+                      });
+                    },
                   ),
                 ),
                 radioContainer(
                   name: "Method of contraception",
                   num: 2,
-                  item: const ["Sterlization", "Nil"],
+                  item: ster,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -216,10 +177,20 @@ class _PostnatalCareState extends State<PostnatalCare> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Weight of the child",
-                    count: 0,
+                    count: Provider.of<PnPro>(context,listen: false).weight,
                     height: 60,
-                    add: (){},
-                    sub: (){},
+                    add: (){
+                      Provider.of<PnPro>(context,listen: false).incWeight();
+                      setState(() {
+                        
+                      });
+                    },
+                    sub: (){
+                      Provider.of<PnPro>(context,listen: false).decWeight();
+                      setState(() {
+                        
+                      });
+                    },
                   ),
                 ),
 
@@ -253,7 +224,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: mother,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -291,7 +262,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: infant,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -329,7 +300,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: name,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -347,7 +318,47 @@ class _PostnatalCareState extends State<PostnatalCare> {
                 const SizedBox(
                   height: 32,
                 ),
-                Button("Save"),
+                GestureDetector(
+                  onTap: () async{
+
+                    List<String> mn = [];
+
+                    for(int i=0;i<signs.length;i++){
+                      if(signbool[i]){
+                        mn.add(signs[i]);
+                      }
+                    }
+
+                    List<String> nm = [];
+
+                    for(int i=0;i<danger.length;i++){
+                      if(dangerbool[i]){
+                        nm.add(danger[i]);
+                      }
+                    }
+
+                    Map<String,dynamic> data = {
+                      "IFA" : Provider.of<PnPro>(context,listen: false).ifa,
+                      "Contraception" : ster[method],
+                      "Mother danger signs" : mn,
+                      "Weight" : Provider.of<PnPro>(context,listen: false).weight,
+                      "Infant danger signs" : nm,
+                      "Referral facility for mother" : mother.text,
+                      "Referral facility for infant" : infant.text,
+                      "Name" : name.text,
+                      "PregId" : Provider.of<PregDocID>(context, listen: false).doc
+                    };
+
+                    await FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(Provider.of<Details>(context, listen: false)
+                        .phone)
+                        .collection("Post Pregnancy")
+                        .doc(Provider.of<PregDocID>(context, listen: false)
+                        .doc).collection("Postnatal").doc(Provider.of<PregDocID>(context, listen: false)
+                        .doc).set(data);
+                  },
+                    child: Button("Save")),
                 const SizedBox(
                   height: 16,
                 ),
