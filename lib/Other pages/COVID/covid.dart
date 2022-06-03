@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
@@ -10,6 +12,8 @@ import 'package:janam/Widgets/radioContainer.dart';
 import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:provider/provider.dart';
 
 class Covid extends StatefulWidget {
   const Covid({Key? key}) : super(key: key);
@@ -36,9 +40,25 @@ class _CovidState extends State<Covid> {
 
   List<bool> sympbool = [false,false,false,false,false,false,false,false];
 
+  List<String> r =  const ["Positive","Negative"];
+  List<String> reason = const ["Negative results","Quarantine completion","Dead"];
+
+  TextEditingController name = new TextEditingController();
+  TextEditingController addr = new TextEditingController();
   TextEditingController dob = new TextEditingController();
+
+  TextEditingController test_date = new TextEditingController();
+  TextEditingController result_date = new TextEditingController();
+
+  TextEditingController source = new TextEditingController();
+  TextEditingController place = new TextEditingController();
+
+  TextEditingController adm_date = new TextEditingController();
+  TextEditingController dis_date = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
           backgroundColor: white,
@@ -48,8 +68,7 @@ class _CovidState extends State<Covid> {
                 const SizedBox(
                   height: 16,
                 ),
-                topic("COVID 19", "Select member"),
-                searchWidget(),
+                topic("COVID 19", "Enter member"),
                 Cont(
                     child: Column(
                       children: [
@@ -77,7 +96,7 @@ class _CovidState extends State<Covid> {
                                     color: white,
                                     borderRadius: BorderRadius.circular(5)),
                                 child: TextFormField(
-                                  onChanged: (val) {},
+                                  controller: name,
                                   decoration: InputDecoration(
                                       hintText: "",
                                       contentPadding:
@@ -115,7 +134,7 @@ class _CovidState extends State<Covid> {
                                     color: white,
                                     borderRadius: BorderRadius.circular(5)),
                                 child: TextFormField(
-                                  onChanged: (val) {},
+                                  controller: addr,
                                   decoration: InputDecoration(
                                       hintText: "",
                                       contentPadding:
@@ -231,7 +250,7 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: test_date,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -269,7 +288,7 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: result_date,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -287,7 +306,7 @@ class _CovidState extends State<Covid> {
                 radioContainer(
                   name: "Test result",
                   num: 2,
-                  item: const ["Positive","Negative"],
+                  item: r,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -305,7 +324,7 @@ class _CovidState extends State<Covid> {
                             alignment: Alignment.centerLeft,
                             padding: const EdgeInsets.only(right: 8),
                             child: Text(
-                              "Source if contact",
+                              "Source of contact",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -319,7 +338,7 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: source,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -357,7 +376,7 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: place,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -395,7 +414,7 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: adm_date,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -433,7 +452,7 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller: dis_date,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -451,7 +470,7 @@ class _CovidState extends State<Covid> {
                 radioContainer(
                   name: "Reason for discharge",
                   num: 3,
-                  item: const ["Negative results","Quarantine completion","Dead"],
+                  item: reason,
                   height: 180,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -463,7 +482,46 @@ class _CovidState extends State<Covid> {
                 const SizedBox(
                   height: 32,
                 ),
-                Button("Save"),
+                GestureDetector(
+                  onTap: () async{
+                    List<String> mn = [];
+
+                    for(int i=0;i<symp.length;i++){
+                      if(sympbool[i]){
+                        mn.add(symp[i]);
+                      }
+                    }
+
+                    Map<String, dynamic> data = {
+                      "Name" : name.text,
+                      "Address" : addr.text,
+                      "DOB" : dob.text,
+                      "Symptoms" : mn,
+                      "Test date" : test_date.text,
+                      "Result date" : result_date.text,
+                      "Admission date" : adm_date.text,
+                      "Discharge date" : dis_date.text,
+                      "Test result" : r[test_result],
+                      "Source" : source.text,
+                      "Place" : place.text,
+                      "Reason" : reason[discharge_reason],
+                    };
+                    await FirebaseFirestore.instance
+                        .collection("Covid")
+                        .doc(Provider.of<Details>(context, listen: false)
+                        .phone).collection(result_date.text).doc(name.text)
+                        .set(data);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeSub(
+                              number:
+                              Provider.of<Details>(context, listen: false)
+                                  .phone,
+                            )));
+
+                  },
+                    child: Button("Save")),
                 const SizedBox(
                   height: 16,
                 ),

@@ -92,7 +92,7 @@ class _SearchMultiState extends State<SearchMulti> {
           else if (pname.contains(_searchController.text.toLowerCase())) {
             showResults.add(j);
           }
-          if (_selected.contains(name)) {
+          if (Provider.of<vhndpro>(context,listen: false).selected.contains(name)) {
             showResults.remove(j);
           }
         }
@@ -156,8 +156,12 @@ class _SearchMultiState extends State<SearchMulti> {
                           () {
                         print("Hi");
                         _isChecked[index] = val!;
-                        val ? _selected.add(_resultsList[index]["head"][0]) : _selected.remove(_resultsList[index]["head"][0]);
-                        print(_selected);
+                        val ? Provider.of<vhndpro>(context,listen: false).putselect(_resultsList[index]["head"][0]+" ,"+(2022-(int.parse(_resultsList[index]["head"][1].toString().substring(0,4)))).toString()) : Provider.of<vhndpro>(context,listen: false).removedata(_resultsList[index]["head"][0]+" ,"+(2022-(int.parse(_resultsList[index]["head"][1].toString().substring(0,4)))).toString());
+                        val ? Provider.of<vhndpro>(context,listen: false).putselect(_resultsList[index]["spouse"][1]+" ,"+(2022-(int.parse(_resultsList[index]["spouse"][2].toString().substring(0,4)))).toString()): Provider.of<vhndpro>(context,listen: false).removedata(_resultsList[index]["head"][0]+" ,"+(2022-(int.parse(_resultsList[index]["spouse"][2].toString().substring(0,4)))).toString());
+                        print(Provider.of<vhndpro>(context,listen: false).selected);
+                        setState(() {
+
+                        });
                       },
                     );
                   },

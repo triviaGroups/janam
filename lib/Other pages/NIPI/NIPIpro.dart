@@ -3,20 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:janam/Login/villageWidget.dart';
 
-class vhndpro with ChangeNotifier {
+class nipipro with ChangeNotifier {
 
   List<String> _village = [];
   int _len = 0;
-  int _given = 0;
-  int _issued = 0;
   List<String> _selected = [];
+  List<String> _awc = [];
+  String _num = "";
 
 
   List<String> get village => _village;
-  int get given => _given;
-  int get issued => _issued;
   int get len => _len;
   List<String> get selected => _selected;
+  List<String> get awc => _awc;
 
   void putselect(String data){
     this._selected.add(data);
@@ -33,30 +32,19 @@ class vhndpro with ChangeNotifier {
       this._village.add(value['Villages'].toString().substring(1,value['Villages'].toString().length-1)),
     });
     this._len = _village.length;
-    
+    this._num = num;
+
     notifyListeners();
   }
 
-  void incGiven(){
-    this._given++;
+  Future<void> getAwc(int n) async{
+    await FirebaseFirestore.instance.collection("Details").doc(this._num).collection("village").doc(this._village[n]).get().then((value) => {
+      this._awc.add(value['Awc'].toString().substring(1,value['Awc'].toString().length-1)),
+    });
+
+    notifyListeners();
   }
 
-  void decGiven(){
-    this._given--;
-    if(this._given < 0){
-      this._given = 0;
-    }
-  }
-
-  void incIssue(){
-    this._issued++;
-  }
-
-  void decIssue(){
-    this._issued--;
-    if(this._issued < 0){
-      this._issued = 0;
-    }
-  }
 
 }
+

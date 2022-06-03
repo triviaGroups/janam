@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:janam/Other%20pages/AEFI.dart';
-import 'package:janam/Other%20pages/IDSP.dart';
-import 'package:janam/Other%20pages/NIPI.dart';
-import 'package:janam/Other%20pages/NPCDCS.dart';
-import 'package:janam/Other%20pages/ORS.dart';
+import 'package:janam/Other%20pages/AEFI/AEFI.dart';
+import 'package:janam/Other%20pages/IDSP/IDSP.dart';
+import 'package:janam/Other%20pages/NIPI/NIPI.dart';
+import 'package:janam/Other%20pages/NIPI/NIPIsub.dart';
+import 'package:janam/Other%20pages/NPCDCS/NPCDCS.dart';
+import 'package:janam/Other%20pages/ORS/ORS.dart';
 import 'package:janam/Other%20pages/VHND/VHNDsub.dart';
-import 'package:janam/Other%20pages/covid.dart';
-import 'package:janam/Other%20pages/deathReg.dart';
-import 'package:janam/Other%20pages/stockReg.dart';
-import 'package:janam/Other%20pages/temperatureChart.dart';
+import 'package:janam/Other%20pages/COVID/covid.dart';
+import 'package:janam/Other%20pages/DR/deathReg.dart';
+import 'package:janam/Other%20pages/Stock/stockReg.dart';
+import 'package:janam/Other%20pages/TC/temperatureChart.dart';
 import 'package:janam/RMNCH/ANC.dart';
 import 'package:janam/RMNCH/Delivery.dart';
 import 'package:janam/RMNCH/childCare.dart';
@@ -180,7 +181,7 @@ class _HomeState extends State<Home> {
                         }),
                   ),
                   programs("Village Health & Nutrition Day (VHND)", Vhndsub(number: widget.num)),
-                  programs("National Iron Plus Initiative (NIPI)",const NIPI()),
+                  programs("National Iron Plus Initiative (NIPI)",Nipisub(number: widget.num)),
                   programs("NPCDCS - Cancer, diabetes, CVD & stroke",const  NPCDCS()),
                   programs("Stock register",const StockReg()),
                   programs("Death register",const DeathReg()),

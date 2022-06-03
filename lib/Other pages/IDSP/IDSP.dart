@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
@@ -7,6 +10,8 @@ import 'package:janam/Widgets/radioContainer.dart';
 import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:provider/provider.dart';
 
 class IDSP extends StatefulWidget {
   const IDSP({Key? key}) : super(key: key);
@@ -18,6 +23,8 @@ class IDSP extends StatefulWidget {
 class _IDSPState extends State<IDSP> {
   int a = 0;
   int fever = 0;
+  int f = 0;
+  int l = 0;
   int cough = 0;
 
   List<String> feverList = const [
@@ -33,11 +40,17 @@ class _IDSPState extends State<IDSP> {
     "With blood in stool"
   ];
 
-  List<bool> feverbool = [false,false,false,false];
-  List<bool> loosebool = [false,false,false];
+  List<String> yn = const ["Yes", "No"];
+  List<String> c = const ["< 3 weeks","> 3 weeks"];
+
+  TextEditingController name = new TextEditingController();
+  TextEditingController jaundice = new TextEditingController();
+  TextEditingController paralysis = new TextEditingController();
+  TextEditingController symptoms = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
@@ -47,8 +60,7 @@ class _IDSPState extends State<IDSP> {
             const SizedBox(
               height: 16,
             ),
-            topic("Integrated Disease Surveillance Program", "Select member"),
-            searchWidget(),
+            topic("Integrated Disease Surveillance Program", "Enter member"),
             Cont(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,7 +84,7 @@ class _IDSPState extends State<IDSP> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: name,
                           decoration: InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -87,17 +99,22 @@ class _IDSPState extends State<IDSP> {
                 ),
                 height: 40,
                 color: colors[(a++) % 4]),
-            CheckBoxCont(
+            radioContainer(
               name: "Fever < 7 days",
+              num: 4,
               item: feverList,
               height: 260,
               a: (a++) % 4,
-              boolean: feverbool,
+              press: (val) => setState(() {
+                f = int.parse(val.toString());
+                print("$f");
+              }),
+              selectedButton: f,
             ),
             radioContainer(
               name: "Fever > 7 days",
               num: 2,
-              item: const ["Yes", "No"],
+              item: yn,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -109,7 +126,7 @@ class _IDSPState extends State<IDSP> {
             radioContainer(
               name: "Cough with or withour fever",
               num: 2,
-              item: const ["< 3 weeks","> 3 weeks"],
+              item: c,
               height: 120,
               a: (a++) % 4,
               press: (val) => setState(() {
@@ -118,13 +135,19 @@ class _IDSPState extends State<IDSP> {
               }),
               selectedButton: cough,
             ),
-            CheckBoxCont(
+            radioContainer(
               name: "Loose watery stools of less than 2 weeks",
+              num: 2,
               item: loose,
-              height: 240,
+              height: 120,
               a: (a++) % 4,
-              boolean: loosebool,
+              press: (val) => setState(() {
+                l = int.parse(val.toString());
+                print("$l");
+              }),
+              selectedButton: l,
             ),
+
             Cont(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -148,7 +171,7 @@ class _IDSPState extends State<IDSP> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: jaundice,
                           decoration: InputDecoration(
                             contentPadding:
                             EdgeInsets.only(left: 10, right: 10),
@@ -186,7 +209,7 @@ class _IDSPState extends State<IDSP> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: paralysis,
                           decoration: InputDecoration(
                             contentPadding:
                             EdgeInsets.only(left: 10, right: 10),
@@ -224,7 +247,7 @@ class _IDSPState extends State<IDSP> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: symptoms,
                           decoration: InputDecoration(
                             contentPadding:
                             EdgeInsets.only(left: 10, right: 10),
@@ -242,7 +265,36 @@ class _IDSPState extends State<IDSP> {
             const SizedBox(
               height: 32,
             ),
-            Button("Save"),
+            GestureDetector(
+              onTap: () async{
+                Map<String, dynamic> data = {
+                  "Name" : name.text,
+                  "Fever" : feverList[f-1],
+                  "> 7" : yn[fever-1],
+                  "Cough" : c[cough],
+                  "Loose stool" : loose[l],
+                  "Jaundice" : jaundice.text,
+                  "Paralysis" : paralysis.text,
+                  "Symptoms" : symptoms.text
+                };
+                var now = new DateTime.now();
+                var formatter = new DateFormat('yyyy-MM-dd');
+                String formattedDate = formatter.format(now);
+                await FirebaseFirestore.instance
+                    .collection("IDSP")
+                    .doc(Provider.of<Details>(context, listen: false)
+                    .phone).collection(formattedDate.toString()).doc(name.text)
+                    .set(data);
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomeSub(
+                          number:
+                          Provider.of<Details>(context, listen: false)
+                              .phone,
+                        )));
+              },
+                child: Button("Save")),
             const SizedBox(
               height: 16,
             ),

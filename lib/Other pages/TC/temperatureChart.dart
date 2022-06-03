@@ -1,12 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/Home/home_sub.dart';
+import 'package:janam/Other%20pages/TC/Tcpro.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:provider/provider.dart';
 
 class TempChart extends StatefulWidget {
   const TempChart({Key? key}) : super(key: key);
@@ -29,6 +33,8 @@ class _TempChartState extends State<TempChart> {
   int frozen = 0;
   int expiry = 0;
 
+  List<String> yn = const ["Yes","No"];
+
   TextEditingController dateCharting = new TextEditingController();
 
   @override
@@ -41,6 +47,9 @@ class _TempChartState extends State<TempChart> {
     dateCharting.text = formatted;
   }
 
+  TextEditingController name = new TextEditingController();
+  TextEditingController num = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -52,8 +61,7 @@ class _TempChartState extends State<TempChart> {
                 const SizedBox(
                   height: 16,
                 ),
-                topic("Temperature chart", "Select freezer"),
-                searchWidget(),
+                topic("Temperature chart", "Enter freezer"),
                 Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -77,7 +85,7 @@ class _TempChartState extends State<TempChart> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller:  name,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -133,7 +141,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Is the ILR level?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -145,7 +153,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Is the ILR, away from sun?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -157,7 +165,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Is the ILR, locked?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -169,7 +177,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Is the ILR, defrosted periodically?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -181,7 +189,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Is the ILR, plugged to socket permanently",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -193,7 +201,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Is the ILR, used for food or drinks?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -205,7 +213,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Are the vaccines, stacked neatly?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -217,7 +225,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Are the vaccines, rotated?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -229,7 +237,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Are the vaccines, kept in the door?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -241,7 +249,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Are the vaccines, frozen?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -253,7 +261,7 @@ class _TempChartState extends State<TempChart> {
                 radioContainer(
                   name: "Are the vaccines, date expired?",
                   num: 2,
-                  item: const ["Yes","No"],
+                  item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
@@ -285,7 +293,7 @@ class _TempChartState extends State<TempChart> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              onChanged: (val) {},
+                              controller:  num,
                               decoration: InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -348,6 +356,13 @@ class _TempChartState extends State<TempChart> {
                               child: Row(
                                 children: [
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).incI8();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -364,10 +379,12 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, 0),
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: black,
-                                              size: 16,
+
+                                              child: const Icon(
+                                                Icons.add,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                   Expanded(
@@ -377,7 +394,7 @@ class _TempChartState extends State<TempChart> {
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
-                                          "0",
+                                          context.watch<tcpro>().I8.toString(),
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
@@ -385,6 +402,13 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                       )),
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).decI8();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -401,10 +425,12 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, -4),
-                                            child: const Icon(
-                                              Icons.minimize,
-                                              color: black,
-                                              size: 16,
+
+                                              child: const Icon(
+                                                Icons.minimize,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                 ],
@@ -430,6 +456,13 @@ class _TempChartState extends State<TempChart> {
                               child: Row(
                                 children: [
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).incD8();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -446,10 +479,12 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, 0),
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: black,
-                                              size: 16,
+
+                                              child: const Icon(
+                                                Icons.add,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                   Expanded(
@@ -459,7 +494,7 @@ class _TempChartState extends State<TempChart> {
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
-                                          "0",
+                                          context.watch<tcpro>().D8.toString(),
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
@@ -467,6 +502,13 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                       )),
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).decD8();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -483,10 +525,12 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, -4),
-                                            child: const Icon(
-                                              Icons.minimize,
-                                              color: black,
-                                              size: 16,
+
+                                              child: const Icon(
+                                                Icons.minimize,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                 ],
@@ -544,6 +588,13 @@ class _TempChartState extends State<TempChart> {
                               child: Row(
                                 children: [
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).incI2();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -560,10 +611,12 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, 0),
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: black,
-                                              size: 16,
+
+                                              child: const Icon(
+                                                Icons.add,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                   Expanded(
@@ -573,7 +626,7 @@ class _TempChartState extends State<TempChart> {
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
-                                          "0",
+                                          context.watch<tcpro>().I2.toString(),
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
@@ -581,6 +634,13 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                       )),
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).decI2();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -597,10 +657,12 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, -4),
-                                            child: const Icon(
-                                              Icons.minimize,
-                                              color: black,
-                                              size: 16,
+
+                                              child: const Icon(
+                                                Icons.minimize,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                 ],
@@ -626,6 +688,13 @@ class _TempChartState extends State<TempChart> {
                               child: Row(
                                 children: [
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).incD2();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -642,10 +711,12 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, 0),
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: black,
-                                              size: 16,
+
+                                              child: const Icon(
+                                                Icons.add,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                   Expanded(
@@ -655,7 +726,7 @@ class _TempChartState extends State<TempChart> {
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
-                                          "0",
+                                          context.watch<tcpro>().D2.toString(),
                                           style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w600,
@@ -663,6 +734,13 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                       )),
                                   Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Provider.of<tcpro>(context,listen: false).decD2();
+                                          setState(() {
+
+                                          });
+                                        },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
@@ -679,10 +757,11 @@ class _TempChartState extends State<TempChart> {
                                         ),
                                         child: Transform.translate(
                                             offset: Offset(0, -4),
-                                            child: const Icon(
-                                              Icons.minimize,
-                                              color: black,
-                                              size: 16,
+                                              child: const Icon(
+                                                Icons.minimize,
+                                                color: black,
+                                                size: 16,
+                                              ),
                                             )),
                                       )),
                                 ],
@@ -695,7 +774,40 @@ class _TempChartState extends State<TempChart> {
                 const SizedBox(
                   height: 32,
                 ),
-                Button("Save"),
+                GestureDetector(
+                  onTap: () async{
+                    Map<String, dynamic> data = {
+                      "Name" : name.text,
+                      "Date" : dateCharting.text,
+                      "Level" : yn[ILR-1],
+                      "Away from sun" : yn[ILRsun-1],
+                      "Locked" : yn[ILRlocked-1],
+                      "Defrosted" : yn[ILRdefrost-1],
+                      "Plugged" : yn[ILRsocket-1],
+                      "Food or drinks" : yn[food-1],
+                      "Stacked" : yn[vaccine-1],
+                      "Rotated" : yn[rotated-1],
+                      "Door" : yn[door-1],
+                      "Frozen" : yn[frozen-1],
+                      "Expire" : yn[expiry-1],
+                    };
+
+                    await FirebaseFirestore.instance
+                        .collection("Temperature Chart")
+                        .doc(Provider.of<Details>(context, listen: false)
+                        .phone).collection(dateCharting.text).doc(name.text)
+                        .set(data);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeSub(
+                              number:
+                              Provider.of<Details>(context, listen: false)
+                                  .phone,
+                            )));
+                  },
+                  child: Button("Save"),
+                ),
                 const SizedBox(
                   height: 16,
                 ),

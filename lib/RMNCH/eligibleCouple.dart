@@ -4,6 +4,7 @@ import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/SearchWidgets/SearchEC.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
@@ -1877,7 +1878,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         .set(details);
                   }
 
-                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeSub(number: Provider.of<Details>(context, listen: false).phone,)));
 
                 },
                 child: Button("Save")),
