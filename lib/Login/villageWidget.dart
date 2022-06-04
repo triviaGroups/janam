@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Home/home_sub.dart';
 import 'package:janam/List/villageWidgetList.dart';
@@ -62,8 +63,7 @@ class _villageState extends State<village> {
         govtCount.add(0);
         pvtCount.add(0);
       }
-      setState(() {
-      });
+      setState(() {});
     });
 
     super.initState();
@@ -78,7 +78,7 @@ class _villageState extends State<village> {
         body: PageView.builder(
             itemCount: widget.villagecount,
             controller: controller,
-            physics: const ClampingScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return SingleChildScrollView(
                 child: Column(
@@ -121,7 +121,7 @@ class _villageState extends State<village> {
                         Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
-                          height: 126,
+                          height: 150,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border:
@@ -149,7 +149,7 @@ class _villageState extends State<village> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 16.0),
                                 child: Text(
-                                  "Village ${index + 1}-Details",
+                                  "Village ${index + 1} - Details",
                                   style: GoogleFonts.poppins(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14,
@@ -158,7 +158,7 @@ class _villageState extends State<village> {
                               ),
                             ),
                             Container(
-                              height: 85,
+                              height: 100,
                               width: MediaQuery.of(context).size.width,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
@@ -190,10 +190,11 @@ class _villageState extends State<village> {
                                         Expanded(
                                             child: Container(
                                           margin: const EdgeInsets.symmetric(
-                                              vertical: 12, horizontal: 32),
+                                              vertical: 12),
                                           alignment: Alignment.topLeft,
                                           child: Text(
                                             widget.villageName[index],
+                                            softWrap: true,
                                             style: GoogleFonts.poppins(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14,
@@ -226,46 +227,37 @@ class _villageState extends State<village> {
                                         )),
                                         Expanded(
                                           child: Container(
-                                              margin: const EdgeInsets.only(
-                                                  top: 16),
-                                              alignment: Alignment.topCenter,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 0.5,
-                                                        vertical: 2.5),
-                                                child: Container(
-                                                  //color: Colors.red,
-                                                  alignment: Alignment.center,
-                                                  height: 25,
-                                                  width: 116,
-                                                  child: TextFormField(
-                                                    style: GoogleFonts.poppins(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                    keyboardType: TextInputType.number,
-                                                    decoration: InputDecoration(
-                                                        border:
-                                                            InputBorder.none,
-                                                        hintText:
-                                                            "Enter population",
-                                                        hintStyle:
-                                                            GoogleFonts.poppins(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                        )),
-                                                    onChanged: (val) {
-                                                      setState(() {
-                                                        pop = val;
-                                                      });
-                                                    },
-                                                    onEditingComplete: () {},
-                                                  ),
-                                                ),
-                                              )),
+                                            alignment: Alignment.center,
+                                            margin:
+                                                const EdgeInsets.only(right: 8),
+                                            child: TextFormField(
+                                              style: GoogleFonts.poppins(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              maxLines: 1,
+                                              inputFormatters: [
+                                                LengthLimitingTextInputFormatter(
+                                                    10),
+                                              ],
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  isDense: true,
+                                                  hintText: "Enter population",
+                                                  hintStyle:
+                                                      GoogleFonts.poppins(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                  )),
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  pop = val;
+                                                });
+                                              },
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -278,7 +270,9 @@ class _villageState extends State<village> {
                         Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
-                          height: 126,
+                          height: ashaCount[index] == 0 || ashaCount[index] == 1
+                              ? 126
+                              : ashaCount[index] * 60,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border:
@@ -296,30 +290,57 @@ class _villageState extends State<village> {
                           ),
                           child: Column(children: [
                             Container(
-                              alignment: Alignment.centerLeft,
                               width: MediaQuery.of(context).size.width,
                               height: 35,
                               decoration: BoxDecoration(
                                 color: purple,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 16.0),
-                                child: Text(
-                                  "List of ASHA's",
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  maxLines: 3,
-                                  textAlign: TextAlign.right,
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Colors.white),
-                                ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        "List of ASHA's",
+                                        softWrap: false,
+                                        maxLines: 3,
+                                        textAlign: TextAlign.right,
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                      alignment: Alignment.center,
+                                      margin: const EdgeInsets.only(right: 16),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          List<String> mn = ["", ""];
+                                          ashaDetails.add(mn);
+                                          ashaCount[index]++;
+                                          String temp =
+                                              "ASHA ${ashaCount[index]} -Name";
+                                          ash.add(
+                                              ashaDetailsDataList(name: temp));
+                                          setState(() {});
+                                        },
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 24,
+                                        ),
+                                      ))
+                                ],
                               ),
                             ),
                             Container(
-                              height: 85,
                               width: MediaQuery.of(context).size.width,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
@@ -363,6 +384,7 @@ class _villageState extends State<village> {
                                                 child: Text(
                                                   ashaDetails[ashin][0]
                                                       .toString(),
+                                                  softWrap: true,
                                                   style: GoogleFonts.poppins(
                                                       fontWeight:
                                                           FontWeight.w400,
@@ -373,26 +395,6 @@ class _villageState extends State<village> {
                                               );
                                             }),
                                       )),
-                                  Expanded(
-                                      child: Container(
-                                          alignment: Alignment.bottomCenter,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              List<String> mn = ["", ""];
-                                              ashaDetails.add(mn);
-                                              ashaCount[index]++;
-                                              String temp =
-                                                  "ASHA ${ashaCount[index]} -Name";
-                                              ash.add(ashaDetailsDataList(
-                                                  name: temp));
-                                              setState(() {});
-                                            },
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: Colors.black,
-                                              size: 30,
-                                            ),
-                                          ))),
                                 ],
                               ),
                             ),
@@ -481,8 +483,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment: Alignment.center,
                                                   child: Padding(
                                                     padding: const EdgeInsets
@@ -493,8 +493,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -502,11 +503,17 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
+                                                        maxLines: 1,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              25),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Enter name",
                                                                 hintStyle:
@@ -559,8 +566,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment:
                                                       Alignment.topCenter,
                                                   child: Padding(
@@ -572,8 +577,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -581,12 +587,20 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
-                                                        keyboardType: TextInputType.number,
+                                                        maxLines: 1,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              10),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Enter mobile",
                                                                 hintStyle:
@@ -666,7 +680,7 @@ class _villageState extends State<village> {
                         Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
-                          height: 126,
+                          height: awcCount[index] == 0 || awcCount[index] == 1 ? 126 : awcCount[index]*60,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border:
@@ -684,26 +698,54 @@ class _villageState extends State<village> {
                           ),
                           child: Column(children: [
                             Container(
-                              alignment: Alignment.centerLeft,
                               width: MediaQuery.of(context).size.width,
                               height: 35,
                               decoration: BoxDecoration(
                                 color: purple,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 16.0),
-                                child: Text(
-                                  "List of AWC's",
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  maxLines: 3,
-                                  textAlign: TextAlign.right,
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Colors.white),
-                                ),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        "List of AWC's",
+                                        softWrap: false,
+                                        maxLines: 3,
+                                        textAlign: TextAlign.right,
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.only(right: 8),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          awcCount[index]++;
+                                          List<String> mn = ["", "", ""];
+                                          awcDetails.add(mn);
+                                          String temp =
+                                              "AWC ${awcCount[index]} -Details";
+                                          awck.add(awcDetailsDataList(
+                                              name: temp));
+
+                                          setState(() {});
+                                        },
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 24,
+                                        ),
+                                      )),
+                                ],
                               ),
                             ),
                             Container(
@@ -761,27 +803,6 @@ class _villageState extends State<village> {
                                               );
                                             }),
                                       )),
-                                  Expanded(
-                                      child: Container(
-                                          alignment: Alignment.bottomCenter,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              awcCount[index]++;
-                                              List<String> mn = ["", "", ""];
-                                              awcDetails.add(mn);
-                                              String temp =
-                                                  "AWC ${awcCount[index]} -Details";
-                                              awck.add(awcDetailsDataList(
-                                                  name: temp));
-
-                                              setState(() {});
-                                            },
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: Colors.black,
-                                              size: 30,
-                                            ),
-                                          ))),
                                 ],
                               ),
                             ),
@@ -870,8 +891,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment: Alignment.center,
                                                   child: Padding(
                                                     padding: const EdgeInsets
@@ -882,8 +901,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -891,11 +911,17 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
+                                                        maxLines: 1,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              25),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Enter name",
                                                                 hintStyle:
@@ -948,8 +974,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment:
                                                       Alignment.topCenter,
                                                   child: Padding(
@@ -961,8 +985,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -970,12 +995,20 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
-                                                        keyboardType: TextInputType.number,
+                                                        maxLines: 1,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              10),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Mobile number",
                                                                 hintStyle:
@@ -1028,8 +1061,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment:
                                                       Alignment.topCenter,
                                                   child: Padding(
@@ -1041,8 +1072,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1050,12 +1082,20 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
-                                                        keyboardType: TextInputType.number,
+                                                        maxLines: 1,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              5),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "No. of children",
                                                                 hintStyle:
@@ -1134,7 +1174,7 @@ class _villageState extends State<village> {
                         Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
-                          height: 126,
+                          height: govtCount[index] == 0 || govtCount[index] == 1 ? 126 : govtCount[index]*60,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border:
@@ -1152,28 +1192,63 @@ class _villageState extends State<village> {
                           ),
                           child: Column(children: [
                             Container(
-                              alignment: Alignment.centerLeft,
                               width: MediaQuery.of(context).size.width,
                               height: 35,
                               decoration: BoxDecoration(
                                 color: purple,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 16.0),
-                                child: Text(
-                                  "List of Government Schools",
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  maxLines: 3,
-                                  textAlign: TextAlign.right,
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Colors.white),
-                                ),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        "List of Government Schools",
+                                        softWrap: false,
+                                        maxLines: 3,
+                                        textAlign: TextAlign.right,
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.only(right: 8),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          govtCount[index]++;
+                                          List<String> mn = [
+                                            "",
+                                            "",
+                                            "",
+                                            ""
+                                          ];
+                                          gvtDetails.add(mn);
+                                          String temp =
+                                              "Government School${govtCount[index]} -Details";
+                                          gwc.add(
+                                              govtSchoolsDetailsDataList(
+                                                  name: temp));
+
+                                          setState(() {});
+                                        },
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 24,
+                                        ),
+                                      ))
+                                ],
                               ),
                             ),
+
                             Container(
                               height: 85,
                               width: MediaQuery.of(context).size.width,
@@ -1229,33 +1304,6 @@ class _villageState extends State<village> {
                                               );
                                             }),
                                       )),
-                                  Expanded(
-                                      child: Container(
-                                          alignment: Alignment.bottomCenter,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              govtCount[index]++;
-                                              List<String> mn = [
-                                                "",
-                                                "",
-                                                "",
-                                                ""
-                                              ];
-                                              gvtDetails.add(mn);
-                                              String temp =
-                                                  "Government School${govtCount[index]} -Details";
-                                              gwc.add(
-                                                  govtSchoolsDetailsDataList(
-                                                      name: temp));
-
-                                              setState(() {});
-                                            },
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: Colors.black,
-                                              size: 30,
-                                            ),
-                                          ))),
                                 ],
                               ),
                             ),
@@ -1344,8 +1392,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment: Alignment.center,
                                                   child: Padding(
                                                     padding: const EdgeInsets
@@ -1356,8 +1402,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1365,11 +1412,17 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
+                                                        maxLines: 1,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              30),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Enter name",
                                                                 hintStyle:
@@ -1421,8 +1474,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment: Alignment.center,
                                                   child: Padding(
                                                     padding: const EdgeInsets
@@ -1433,8 +1484,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1442,11 +1494,17 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
+                                                        maxLines: 1,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              25),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Enter head name",
                                                                 hintStyle:
@@ -1499,8 +1557,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment:
                                                       Alignment.topCenter,
                                                   child: Padding(
@@ -1512,8 +1568,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1521,12 +1578,20 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
-                                                        keyboardType: TextInputType.number,
+                                                        maxLines: 1,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              10),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Mobile number",
                                                                 hintStyle:
@@ -1579,8 +1644,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment:
                                                       Alignment.topCenter,
                                                   child: Padding(
@@ -1592,8 +1655,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1601,12 +1665,20 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
-                                                        keyboardType: TextInputType.number,
+                                                        maxLines: 1,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              5),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "No. of children",
                                                                 hintStyle:
@@ -1642,7 +1714,7 @@ class _villageState extends State<village> {
                         Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
-                          height: 126,
+                          height: pvtCount[index] == 0 || pvtCount[index] == 1 ? 126 : pvtCount[index]*60,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border:
@@ -1660,26 +1732,60 @@ class _villageState extends State<village> {
                           ),
                           child: Column(children: [
                             Container(
-                              alignment: Alignment.centerLeft,
                               width: MediaQuery.of(context).size.width,
                               height: 35,
                               decoration: BoxDecoration(
                                 color: purple,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 16.0),
-                                child: Text(
-                                  "List of Private Schools",
-                                  softWrap: false,
-                                  overflow: TextOverflow.fade,
-                                  maxLines: 3,
-                                  textAlign: TextAlign.right,
-                                  style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Colors.white),
-                                ),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 16.0),
+                                      child: Text(
+                                        "List of Private Schools",
+                                        softWrap: false,
+                                        maxLines: 3,
+                                        textAlign: TextAlign.right,
+                                        style: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                      alignment: Alignment.center,
+                                      margin: EdgeInsets.only(right: 8),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          pvtCount[index]++;
+                                          List<String> mn = [
+                                            "",
+                                            "",
+                                            "",
+                                            ""
+                                          ];
+                                          pvtDetails.add(mn);
+                                          String temp =
+                                              "Private School${pvtCount[index]} -Details";
+                                          pwc.add(
+                                              privateSchoolsDetailsDataList(
+                                                  name: temp));
+
+                                          setState(() {});
+                                        },
+                                        child: const Icon(
+                                          Icons.add,
+                                          color: Colors.white,
+                                          size: 24,
+                                        ),
+                                      ))
+                                ],
                               ),
                             ),
                             Container(
@@ -1737,33 +1843,6 @@ class _villageState extends State<village> {
                                               );
                                             }),
                                       )),
-                                  Expanded(
-                                      child: Container(
-                                          alignment: Alignment.bottomCenter,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              pvtCount[index]++;
-                                              List<String> mn = [
-                                                "",
-                                                "",
-                                                "",
-                                                ""
-                                              ];
-                                              pvtDetails.add(mn);
-                                              String temp =
-                                                  "Private School${pvtCount[index]} -Details";
-                                              pwc.add(
-                                                  privateSchoolsDetailsDataList(
-                                                      name: temp));
-
-                                              setState(() {});
-                                            },
-                                            child: const Icon(
-                                              Icons.add,
-                                              color: Colors.black,
-                                              size: 30,
-                                            ),
-                                          ))),
                                 ],
                               ),
                             ),
@@ -1852,8 +1931,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment: Alignment.center,
                                                   child: Padding(
                                                     padding: const EdgeInsets
@@ -1864,8 +1941,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1873,11 +1951,17 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
+                                                        maxLines: 1,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              30),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Enter name",
                                                                 hintStyle:
@@ -1929,8 +2013,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment: Alignment.center,
                                                   child: Padding(
                                                     padding: const EdgeInsets
@@ -1941,8 +2023,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1950,11 +2033,17 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
+                                                        maxLines: 1,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              25),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Enter head name",
                                                                 hintStyle:
@@ -2007,8 +2096,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment:
                                                       Alignment.topCenter,
                                                   child: Padding(
@@ -2020,8 +2107,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -2029,12 +2117,20 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
-                                                        keyboardType: TextInputType.number,
+                                                        maxLines: 1,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              10),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "Mobile number",
                                                                 hintStyle:
@@ -2087,8 +2183,6 @@ class _villageState extends State<village> {
                                               )),
                                               Expanded(
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 16),
                                                   alignment:
                                                       Alignment.topCenter,
                                                   child: Padding(
@@ -2100,8 +2194,9 @@ class _villageState extends State<village> {
                                                       //color: Colors.red,
                                                       alignment:
                                                           Alignment.center,
-                                                      height: 25,
-                                                      width: 116,
+                                                      padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                                      margin:EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -2109,12 +2204,20 @@ class _villageState extends State<village> {
                                                           fontWeight:
                                                               FontWeight.w400,
                                                         ),
-                                                        keyboardType: TextInputType.number,
+                                                        maxLines: 1,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .number,
+                                                        inputFormatters: [
+                                                          LengthLimitingTextInputFormatter(
+                                                              5),
+                                                        ],
                                                         decoration:
                                                             InputDecoration(
                                                                 border:
                                                                     InputBorder
                                                                         .none,
+                                                                isDense: true,
                                                                 hintText:
                                                                     "No. of children",
                                                                 hintStyle:
@@ -2224,7 +2327,8 @@ class _villageState extends State<village> {
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                               ),
-                                              keyboardType: TextInputType.number,
+                                              keyboardType:
+                                                  TextInputType.number,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
@@ -2328,7 +2432,8 @@ class _villageState extends State<village> {
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                               ),
-                                              keyboardType: TextInputType.number,
+                                              keyboardType:
+                                                  TextInputType.number,
                                               textAlign: TextAlign.center,
                                               decoration: InputDecoration(
                                                   border: InputBorder.none,
@@ -2375,8 +2480,8 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < ashaDetails.length; i++) {
                                 List<String> mn = ashaDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     one = false;
                                   }
                                 }
@@ -2385,8 +2490,8 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < awcDetails.length; i++) {
                                 List<String> mn = awcDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     two = false;
                                   }
                                 }
@@ -2395,8 +2500,8 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < gvtDetails.length; i++) {
                                 List<String> mn = gvtDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     three = false;
                                   }
                                 }
@@ -2405,16 +2510,17 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < pvtDetails.length; i++) {
                                 List<String> mn = pvtDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     four = false;
                                   }
                                 }
                                 pvt.add(mn[0]);
                               }
 
-                              if(pop.isEmpty || pop == ""){
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              if (pop.isEmpty || pop == "") {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
                                   backgroundColor: Colors.black,
                                   duration: const Duration(seconds: 2),
                                   content: Text(
@@ -2422,10 +2528,10 @@ class _villageState extends State<village> {
                                     style: GoogleFonts.poppins(fontSize: 18),
                                   ),
                                 ));
-                              }
-                              else{
-                                if(!one){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              } else {
+                                if (!one) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2433,9 +2539,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(!two){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (!two) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2443,9 +2549,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(!three){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (!three) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2453,9 +2559,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(!four){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (!four) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2463,9 +2569,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(ilr.isEmpty || ilr == ""){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (ilr.isEmpty || ilr == "") {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2473,9 +2579,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(freezer.isEmpty || freezer == ""){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (freezer.isEmpty || freezer == "") {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2483,19 +2589,18 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else{
-                                  EnterData(asha,awc,gvt,pvt,widget.villageName[index])
-                                      .whenComplete(() => Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => HomeSub(
-                                            number: widget.number,
-                                          ))));
+                                } else {
+                                  EnterData(asha, awc, gvt, pvt,
+                                          widget.villageName[index])
+                                      .whenComplete(
+                                          () => Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => HomeSub(
+                                                        number: widget.number,
+                                                      ))));
                                 }
                               }
-
-
                             },
                             child: Button("Save"))
                         : GestureDetector(
@@ -2512,8 +2617,8 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < ashaDetails.length; i++) {
                                 List<String> mn = ashaDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     one = false;
                                   }
                                 }
@@ -2522,8 +2627,8 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < awcDetails.length; i++) {
                                 List<String> mn = awcDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     two = false;
                                   }
                                 }
@@ -2532,8 +2637,8 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < gvtDetails.length; i++) {
                                 List<String> mn = gvtDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     three = false;
                                   }
                                 }
@@ -2542,16 +2647,17 @@ class _villageState extends State<village> {
 
                               for (int i = 0; i < pvtDetails.length; i++) {
                                 List<String> mn = pvtDetails[i];
-                                for(int j = 0;j<mn.length;j++){
-                                  if(mn[j].isEmpty || mn[j] == ""){
+                                for (int j = 0; j < mn.length; j++) {
+                                  if (mn[j].isEmpty || mn[j] == "") {
                                     four = false;
                                   }
                                 }
                                 pvt.add(mn[0]);
                               }
 
-                              if(pop.isEmpty || pop == ""){
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              if (pop.isEmpty || pop == "") {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
                                   backgroundColor: Colors.black,
                                   duration: const Duration(seconds: 2),
                                   content: Text(
@@ -2559,11 +2665,11 @@ class _villageState extends State<village> {
                                     style: GoogleFonts.poppins(fontSize: 18),
                                   ),
                                 ));
-                              }
-                              else{
-                                if(!one){
+                              } else {
+                                if (!one) {
                                   print(asha);
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2571,9 +2677,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(!two){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (!two) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2581,9 +2687,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(!three){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (!three) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2591,9 +2697,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(!four){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (!four) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2601,9 +2707,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(ilr.isEmpty || ilr == ""){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (ilr.isEmpty || ilr == "") {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2611,9 +2717,9 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else if(freezer.isEmpty || freezer == ""){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                } else if (freezer.isEmpty || freezer == "") {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
                                     backgroundColor: Colors.black,
                                     duration: const Duration(seconds: 2),
                                     content: Text(
@@ -2621,12 +2727,12 @@ class _villageState extends State<village> {
                                       style: GoogleFonts.poppins(fontSize: 18),
                                     ),
                                   ));
-                                }
-                                else{
-                                  EnterData(asha,awc,gvt,pvt,widget.villageName[index])
+                                } else {
+                                  EnterData(asha, awc, gvt, pvt,
+                                          widget.villageName[index])
                                       .whenComplete(() => controller.nextPage(
-                                      duration: Duration(milliseconds: 10),
-                                      curve: Curves.easeIn));
+                                          duration: Duration(milliseconds: 10),
+                                          curve: Curves.easeIn));
                                 }
                               }
                             },
@@ -2642,8 +2748,8 @@ class _villageState extends State<village> {
     );
   }
 
-  Future<void> EnterData(List<String> asha,List<String> awc,List<String> gvt,List<String> pvt,String villageName) async {
-
+  Future<void> EnterData(List<String> asha, List<String> awc, List<String> gvt,
+      List<String> pvt, String villageName) async {
     Map<String, dynamic> data = {
       "Name": villageName,
       "Population": pop,

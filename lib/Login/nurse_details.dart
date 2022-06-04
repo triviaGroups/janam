@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:janam/Login/villageWidget.dart';
 import 'package:path/path.dart' as Path;
 import 'package:file_picker/file_picker.dart';
@@ -56,7 +57,8 @@ class _nurseDetailsState extends State<nurseDetails> {
               color: purple,
               alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                 child: Text(
                   "Setting your profile",
                   style: GoogleFonts.poppins(
@@ -86,9 +88,9 @@ class _nurseDetailsState extends State<nurseDetails> {
                           fontSize: 16,
                           color: purple)),
                   onChanged: (val) {
-                   setState(() {
-                     name = val;
-                   });
+                    setState(() {
+                      name = val;
+                    });
                   },
                 ),
               ),
@@ -205,9 +207,9 @@ class _nurseDetailsState extends State<nurseDetails> {
               ),
             ),
             Container(
-              margin:const  EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               width: double.infinity,
-              height: 200,
+              height: villageCount == 0 || villageCount == 1 ? 100 : villageCount* 70,
               decoration: BoxDecoration(
                 border: Border.all(width: 0.1, color: Colors.black38),
                 borderRadius: BorderRadius.circular(8),
@@ -217,37 +219,70 @@ class _nurseDetailsState extends State<nurseDetails> {
                     color: Colors.grey.shade300,
                     blurRadius: 5,
                     spreadRadius: 1,
-                    offset:const  Offset(1, 2),
+                    offset: const Offset(1, 2),
                   ),
                 ],
               ),
-              child: Column(children: [
+              child: Column(
+                  children: [
                 Container(
-                  alignment: Alignment.centerLeft,
-                  width: MediaQuery.of(context).size.width,
+                  width : MediaQuery.of(context).size.width,
                   height: 35,
                   decoration: BoxDecoration(
                     color: purple,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Padding(
-                    padding:const  EdgeInsets.only(left: 16.0),
-                    child: Text(
-                      "List Of Villages",
-                      softWrap: false,
-                      overflow: TextOverflow.fade,
-                      maxLines: 3,
-                      textAlign: TextAlign.right,
-                      style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Colors.white),
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Text(
+                            "List Of Villages",
+                            softWrap: false,
+                            maxLines: 3,
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+
+                      Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(right: 16),
+                          child: GestureDetector(
+                            onTap: () {
+                              villageCount++;
+                              villageName.add("");
+                              String temp =
+                                  "Village ${villageCount + 1} -Name";
+                              vil.add(villageDetailsDataList(name: temp));
+                              vilWid.add(village(
+                                villagecount: villageCount,
+                                villageName: villageName,
+                                number: widget.number,
+                              ));
+                              //Provider.of<NurseDetails>(context,listen: false).set_village_count(vil.length);
+                              setState(() {});
+                            },
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                          )),
+                    ],
                   ),
                 ),
                 Expanded(
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: double.infinity,
+                    height: 35,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(8),
@@ -258,7 +293,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                         Expanded(
                             flex: 3,
                             child: Container(
-                              margin:const  EdgeInsets.only(top: 15),
+                              margin: const EdgeInsets.only(top: 15),
                               alignment: Alignment.topCenter,
                               child: Text(
                                 "Village Name",
@@ -272,7 +307,8 @@ class _nurseDetailsState extends State<nurseDetails> {
                             flex: 3,
                             child: Container(
                               alignment: Alignment.topCenter,
-                              margin: const EdgeInsets.only(top: 15),
+                              width: double.infinity,
+                              margin: const EdgeInsets.only(right: 8),
                               child: ListView.builder(
                                   itemCount: villageCount,
                                   shrinkWrap: true,
@@ -283,17 +319,21 @@ class _nurseDetailsState extends State<nurseDetails> {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 0.5, vertical: 2.5),
                                       child: Container(
-                                        //color: Colors.red,
                                         alignment: Alignment.center,
-                                        height: 25,
-                                        width: 116,
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 4),
                                         child: TextFormField(
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                           ),
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(50),
+                                          ],
+                                          maxLines: 1,
                                           decoration: InputDecoration(
                                               border: InputBorder.none,
+                                              isDense: true,
                                               hintText: vil[index].name,
                                               hintStyle: GoogleFonts.poppins(
                                                 fontSize: 14,
@@ -309,29 +349,6 @@ class _nurseDetailsState extends State<nurseDetails> {
                                     );
                                   }),
                             )),
-                        Expanded(
-                            child: Container(
-                                alignment: Alignment.bottomCenter,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    villageCount++;
-                                    villageName.add("");
-                                    String temp = "Village ${villageCount+1} -Name";
-                                    vil.add(villageDetailsDataList(name: temp));
-                                    vilWid.add(village(
-                                      villagecount: villageCount,
-                                      villageName: villageName,
-                                      number: widget.number,
-                                    ));
-                                    //Provider.of<NurseDetails>(context,listen: false).set_village_count(vil.length);
-                                    setState(() {});
-                                  },
-                                  child: const Icon(
-                                    Icons.add,
-                                    color: Colors.black,
-                                    size: 30,
-                                  ),
-                                ))),
                       ],
                     ),
                   ),
@@ -340,7 +357,12 @@ class _nurseDetailsState extends State<nurseDetails> {
             ),
             GestureDetector(
               onTap: () {
-                if(name.isEmpty || name == "" || phcn.isEmpty || phcn == "" || sub.isEmpty || sub == ""){
+                if (name.isEmpty ||
+                    name == "" ||
+                    phcn.isEmpty ||
+                    phcn == "" ||
+                    sub.isEmpty ||
+                    sub == "") {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     backgroundColor: Colors.black,
                     duration: const Duration(seconds: 2),
@@ -349,16 +371,15 @@ class _nurseDetailsState extends State<nurseDetails> {
                       style: GoogleFonts.poppins(fontSize: 18),
                     ),
                   ));
-                }
-                else{
+                } else {
                   int k = villageName.length;
                   bool mn = true;
-                  for(int i=0;i<k;i++){
-                    if(villageName[i] == "" || villageName.isEmpty){
+                  for (int i = 0; i < k; i++) {
+                    if (villageName[i] == "" || villageName.isEmpty) {
                       mn = false;
                     }
                   }
-                  if(mn){
+                  if (mn) {
                     Map<String, dynamic> data = {
                       "Name": name,
                       "Villages": villageName,
@@ -368,17 +389,18 @@ class _nurseDetailsState extends State<nurseDetails> {
                     FirebaseFirestore.instance
                         .collection("Details")
                         .doc(widget.number)
-                        .set(data)
-                        .whenComplete(() => Navigator.push(
+                        .set(data);
+
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => village(
                               villagecount: vilWid.length,
                               villageName: villageName,
                               number: widget.number,
-                            ))));
-                  }
-                  else{
+                            )));
+
+                  } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       backgroundColor: Colors.black,
                       duration: const Duration(seconds: 2),

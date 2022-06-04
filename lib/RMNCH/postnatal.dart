@@ -333,6 +333,17 @@ class _PostnatalCareState extends State<PostnatalCare> {
             ),
             GestureDetector(
                 onTap: () async {
+
+                  Map<String,dynamic> newBorn = {
+                    "Child name" : name.text,
+                  };
+
+                  await FirebaseFirestore.instance
+                      .collection("Village Children")
+                      .doc(Provider.of<Details>(context, listen: false)
+                      .phone)
+                      .collection("New born").doc(Provider.of<PregDocID>(context, listen: false).doc).update(newBorn);
+
                   List<String> mn = [];
 
                   for (int i = 0; i < signs.length; i++) {

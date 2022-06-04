@@ -773,6 +773,29 @@ class DeliveryState extends State<Delivery> {
             ),
             GestureDetector(
                 onTap: () async {
+
+                  Map<String,dynamic> newBorn = {
+                    "Name" : Provider.of<PregDocID>(context, listen: false).name,
+                    "DOB" : Provider.of<PregDocID>(context, listen: false).dob,
+                    "Address" : Provider.of<PregDocID>(context, listen: false).address,
+                    "DocId" : Provider.of<PregDocID>(context, listen: false).doc,
+                    "Delivery date" : dateDelivery.text,
+                    "Village Name" : Provider.of<PregDocID>(context, listen: false).village,
+                    "Birth dose" : true,
+                    "OPV": [yesno[doseint[0] - 1], dosedates[0]],
+                    "BCG": [yesno[doseint[1] - 1], dosedates[1]],
+                    "HEP": [yesno[doseint[2] - 1], dosedates[2]],
+                    "VIT": [yesno[doseint[3] - 1], dosedates[3]],
+                  };
+
+                  await FirebaseFirestore.instance
+                      .collection("Village Children")
+                      .doc(Provider.of<Details>(context, listen: false)
+                      .phone)
+                      .collection("New born").doc(Provider.of<PregDocID>(context, listen: false).doc).set(newBorn);
+
+
+
                   List<String> m = [];
 
                   for (int i = 0; i < comp.length; i++) {

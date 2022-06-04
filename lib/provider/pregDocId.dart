@@ -9,16 +9,24 @@ class PregDocID with ChangeNotifier {
   String _dob = "";
   int _bwieght = 3000;
   String _village = "";
+  List<int> _list = [];
+  List<String> _birthDoses = [];
 
   int _weight = 0;
   int _height = 0;
   int _hae = 0;
+  int _difference = 0;
   int _folic = 0;
   int _iron = 0;
+  String _date = "";
 
   String get doc => _doc;
   String get address => _address;
+  String get date => _date;
   String get village => _village;
+  List<int> get list => _list;
+  List<String> get bD => _birthDoses;
+  int get diff => _difference;
 
 
   int get G => _G;
@@ -39,6 +47,27 @@ class PregDocID with ChangeNotifier {
     _name = name;
     _dob = dob;
     _village = vi;
+    notifyListeners();
+  }
+
+  void setCc(String val,String add,String da,String name,String dob,String vi,List<String> a,List<String> b,List<String> c,List<String> d){
+    _doc = val;
+    _address = add;
+    _date = da;
+    _name = name;
+    _dob = dob;
+    _village = vi;
+    _list.add(int.parse(a[0]));
+    _list.add(int.parse(b[0]));
+    _list.add(int.parse(c[0]));
+    _list.add(int.parse(d[0]));
+    _birthDoses.add(a[1]);
+    _birthDoses.add(b[1]);
+    _birthDoses.add(c[1]);
+    _birthDoses.add(d[1]);
+    final birthday = DateTime.parse(_date);
+    final date2 = DateTime.now();
+    _difference = date2.difference(birthday).inDays;
     notifyListeners();
   }
 
