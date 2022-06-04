@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Other%20pages/AEFI/AEFI.dart';
 import 'package:janam/Other%20pages/IDSP/IDSP.dart';
-import 'package:janam/Other%20pages/NIPI/NIPI.dart';
 import 'package:janam/Other%20pages/NIPI/NIPIsub.dart';
 import 'package:janam/Other%20pages/NPCDCS/NPCDCS.dart';
 import 'package:janam/Other%20pages/ORS/ORS.dart';
@@ -40,7 +39,7 @@ class _HomeState extends State<Home> {
     "Close the case"
   ];
 
-  List<Widget> Wid =const [
+  List<Widget> wid =const [
     EligibleCouple(),
     Pregnancy(),
     ANC(),
@@ -48,13 +47,6 @@ class _HomeState extends State<Home> {
     ChildCare(),
     CloseCase()
   ];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +95,8 @@ class _HomeState extends State<Home> {
                     alignment: Alignment.center,
                     height: 100,
                     width: 80,
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
                       image: DecorationImage(
@@ -122,7 +114,7 @@ class _HomeState extends State<Home> {
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.symmetric(horizontal: 16),
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       "My Programs",
                       style: GoogleFonts.inter(
@@ -147,7 +139,7 @@ class _HomeState extends State<Home> {
                         itemBuilder: (BuildContext ctx, index) {
                           return GestureDetector(
                             onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Wid[index]));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>wid[index]));
                             },
                             child: Container(
                               alignment: Alignment.center,
@@ -159,7 +151,7 @@ class _HomeState extends State<Home> {
                                     color: Colors.grey.shade300,
                                     blurRadius: 5,
                                     spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                    offset: const Offset(1, 2),
                                   ),
                                 ],
                               ),
@@ -218,7 +210,7 @@ class _HomeState extends State<Home> {
                 color: Colors.grey.shade300,
                 blurRadius: 5,
                 spreadRadius: 1,
-                offset: Offset(1, 2),
+                offset: const Offset(1, 2),
               ),
             ],
           ),

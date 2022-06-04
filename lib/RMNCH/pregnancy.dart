@@ -24,8 +24,6 @@ class Pregnancy extends StatefulWidget {
 }
 
 class _PregnancyState extends State<Pregnancy> {
-
-
   int a = 0;
   int test = 0;
   int result = 0;
@@ -35,13 +33,35 @@ class _PregnancyState extends State<Pregnancy> {
   int facility = 0;
   int rpr = 0;
   int hiv = 0;
-  
+
   List<String> testList = const ["Positive", "Negative", "Test not done"];
 
   List<String> resultList = const ["Positive", "Negative"];
 
-  List<bool> historybool = [false,false,false,false,false,false,false,false,false,false];
-  List<String> history = const ["Tuberculosis (TB)","Diabetes mellitus (DM)","Hypertension","Heart disease","Epilepsy","Sexually Transmitted disease","HIV","Hepatisis B","Asthma","Other"];
+  List<bool> historybool = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+  List<String> history = const [
+    "Tuberculosis (TB)",
+    "Diabetes mellitus (DM)",
+    "Hypertension",
+    "Heart disease",
+    "Epilepsy",
+    "Sexually Transmitted disease",
+    "HIV",
+    "Hepatitis B",
+    "Asthma",
+    "Other"
+  ];
 
   List<String> bloodgrp = const [
     "A +ve",
@@ -54,7 +74,7 @@ class _PregnancyState extends State<Pregnancy> {
     "O -ve",
     "Not done"
   ];
-  
+
   List<String> facilityList = const [
     "District hospital",
     "Other Govt. hospital",
@@ -68,14 +88,40 @@ class _PregnancyState extends State<Pregnancy> {
     "CHC"
   ];
 
-  List<bool> gcompbool = [false,false,false,false,false,false,false,false,false,false,false,false];
-  List<String> gcomp = const ["Convulsions","APH","PIH","Repeated abortions","Stillbirth","Congenital anomaly","Cesearean section","Blood transfusion","Twin pregnancy","Obstructed labour","PPH","Any other"];
+  List<bool> gcompbool = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+  List<String> gcomp = const [
+    "Convulsions",
+    "APH",
+    "PIH",
+    "Repeated abortions",
+    "Stillbirth",
+    "Congenital anomaly",
+    "Cesarean section",
+    "Blood transfusion",
+    "Twin pregnancy",
+    "Obstructed labour",
+    "PPH",
+    "Any other"
+  ];
 
   List<String> yesno = const ["Yes", "No"];
-  
-  List<String> gpreg = const ["Live birth", "Strillbirth", "Abortion"];
 
-  TextEditingController dob = new TextEditingController();
+  List<String> gpreg = const ["Live birth", "Stillbirth", "Abortion"];
+
+  TextEditingController dob = TextEditingController();
 
   @override
   void initState() {
@@ -83,7 +129,7 @@ class _PregnancyState extends State<Pregnancy> {
     super.initState();
     final datePicked = DateTime.now();
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
-    final String formatted = formatter. format(datePicked);
+    final String formatted = formatter.format(datePicked);
     dob.text = formatted;
   }
 
@@ -100,61 +146,66 @@ class _PregnancyState extends State<Pregnancy> {
               height: 16,
             ),
             topic("Pregnancy", "Select member"),
-            EcSearch(),
+            const EcSearch(),
             context.watch<DocID>().doc == ""
-                ? SizedBox() : Cont(
-                child: Column(
-                  children: [
-                    Expanded(
-                        child: Row(
+                ? const SizedBox()
+                : Cont(
+                    child: Column(
                       children: [
-                        Text(
-                          Provider.of<DocID>(context, listen: false).name,
-                          style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: black),
-                        ),
-                        Text(
-                          ", Female, "+ (2021 -
-                              (int.parse(Provider.of<DocID>(context, listen: false).dob
-                                  .substring(0, 4))))
-                              .toString(),
-                          style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: txt),
-                        ),
-                      ],
-                    )),
-                    Expanded(
-                        flex: 2,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Expanded(
+                            child: Row(
                           children: [
                             Text(
-                              "\nAddress",
+                              Provider.of<DocID>(context, listen: false).name,
                               style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
                                   color: black),
                             ),
                             Text(
-                              Provider.of<DocID>(context, listen: false).address,
+                              ", Female, " +
+                                  (2021 -
+                                          (int.parse(Provider.of<DocID>(context,
+                                                  listen: false)
+                                              .dob
+                                              .substring(0, 4))))
+                                      .toString(),
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w400,
                                   color: txt),
-                              maxLines: 2,
-                              softWrap: true,
                             ),
                           ],
                         )),
-                  ],
-                ),
-                height: 150,
-                color: colors[(a++) % 4]),
+                        Expanded(
+                            flex: 2,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "\nAddress",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: black),
+                                ),
+                                Text(
+                                  Provider.of<DocID>(context, listen: false)
+                                      .address,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      color: txt),
+                                  maxLines: 2,
+                                  softWrap: true,
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    height: 150,
+                    color: colors[(a++) % 4]),
             Cont(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -179,13 +230,13 @@ class _PregnancyState extends State<Pregnancy> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: dob,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
-                            EdgeInsets.only(left: 10, right: 10,bottom: 5),
+                                EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
                           ),
                           style:
-                          GoogleFonts.poppins(fontSize: 14, color: black),
+                              GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
@@ -202,7 +253,7 @@ class _PregnancyState extends State<Pregnancy> {
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "Last mestrual period (LMP)",
+                          "Last menstrual period (LMP)",
                           maxLines: 2,
                           style: GoogleFonts.poppins(
                               fontSize: 16,
@@ -218,12 +269,13 @@ class _PregnancyState extends State<Pregnancy> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           onChanged: (val) {},
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                             border: InputBorder.none,
                           ),
-                          style: GoogleFonts.poppins(fontSize: 14, color: black),
+                          style:
+                              GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
@@ -239,7 +291,6 @@ class _PregnancyState extends State<Pregnancy> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 test = int.parse(val.toString());
-                print("$test");
               }),
               selectedButton: test,
             ),
@@ -251,220 +302,216 @@ class _PregnancyState extends State<Pregnancy> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 result = int.parse(val.toString());
-                print("$result");
               }),
               selectedButton: result,
             ),
-            result == 1 ? Column(
-              children: [
-                radioContainer(
-                  name: "JSY beneficiary",
-                  num: 2,
-                  item: yesno,
-                  height: 120,
-                  a: (a++) % 4,
-                  press: (val) => setState(() {
-                    jsy = int.parse(val.toString());
-                    print("$jsy");
-                  }),
-                  selectedButton: jsy,
-                ),
-                CheckBoxCont(
-                  name: "Past history of illness",
-                  item: history,
-                  height: 700,
-                  a: (a++) % 4,
-                  boolean: historybool,
-                ),
-                radioContainer(
-                  name: "Blood grouping",
-                  num: 9,
-                  item: bloodgrp,
-                  height: 500,
-                  a: (a++) % 4,
-                  press: (val) => setState(() {
-                    blood = int.parse(val.toString());
-                    print("$blood");
-                  }),
-                  selectedButton: blood,
-                ),
-                 context.watch<DocID>().G > 0 ? Column(
-                  children: [
-                    CheckBoxCont(
-                      name: "If Gravida 2 \n\nComplications in previous pregnancy",
-                      item: gcomp,
-                      height: 848,
-                      a: (a++) % 4,
-                      boolean: gcompbool,
-                    ),
-                    radioContainer(
-                      name: "If Gravida 2\n\nOutcome of last pregnancy",
-                      num: 3,
-                      item: gpreg,
-                      height: 200,
-                      a: (a++) % 4,
-                      press: (val) => setState(() {
-                        gravida = int.parse(val.toString());
-                        print("$gravida");
-                      }),
-                      selectedButton: gravida,
-                    ),
-                  ],
-                ) : SizedBox(),
-                radioContainer(
-                  name: "Expected facility for delivery",
-                  num: 10,
-                  item: facilityList,
-                  height: 600,
-                  a: (a++) % 4,
-                  press: (val) => setState(() {
-                    facility = int.parse(val.toString());
-                    print("$facility");
-                  }),
-                  selectedButton: facility,
-                ),
-                radioContainer(
-                  name: "VDRL / RPR Test",
-                  num: 3,
-                  item: testList,
-                  height: 180,
-                  a: (a++) % 4,
-                  press: (val) => setState(() {
-                    rpr = int.parse(val.toString());
-                    print("$rpr");
-                  }),
-                  selectedButton: rpr,
-                ),
-                radioContainer(
-                  name: "HIV",
-                  num: 3,
-                  item: testList,
-                  height: 180,
-                  a: (a++) % 4,
-                  press: (val) => setState(() {
-                    hiv = int.parse(val.toString());
-                    print("$hiv");
-                  }),
-                  selectedButton: hiv,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: incDec(
-                    color: colors[(a++) % 4],
-                    name: "Current weight (kg)",
-                    count: Provider.of<PregDocID>(context,listen: false).weight,
-                    height: 60,
-                    add: (){
-                      Provider.of<PregDocID>(context,listen: false).incWeight();
-                      setState(() {
-
-                      });
-                    },
-                    sub: (){
-                      Provider.of<PregDocID>(context,listen: false).decWeight();
-                      setState(() {
-
-                      });
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: incDec(
-                    color: colors[(a++) % 4],
-                    name: "Height (cm)",
-                    count: Provider.of<PregDocID>(context,listen: false).height,
-                    height: 60,
-                    add: (){
-                      Provider.of<PregDocID>(context,listen: false).incHeight();
-                      setState(() {
-
-                      });
-                    },
-                    sub: (){
-                      Provider.of<PregDocID>(context,listen: false).decHeight();
-                      setState(() {
-
-
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ) : SizedBox(),
+            result == 1
+                ? Column(
+                    children: [
+                      radioContainer(
+                        name: "JSY beneficiary",
+                        num: 2,
+                        item: yesno,
+                        height: 120,
+                        a: (a++) % 4,
+                        press: (val) => setState(() {
+                          jsy = int.parse(val.toString());
+                        }),
+                        selectedButton: jsy,
+                      ),
+                      CheckBoxCont(
+                        name: "Past history of illness",
+                        item: history,
+                        height: 700,
+                        a: (a++) % 4,
+                        boolean: historybool,
+                      ),
+                      radioContainer(
+                        name: "Blood grouping",
+                        num: 9,
+                        item: bloodgrp,
+                        height: 500,
+                        a: (a++) % 4,
+                        press: (val) => setState(() {
+                          blood = int.parse(val.toString());
+                        }),
+                        selectedButton: blood,
+                      ),
+                      context.watch<DocID>().G > 0
+                          ? Column(
+                              children: [
+                                CheckBoxCont(
+                                  name:
+                                      "If Gravida 2 \n\nComplications in previous pregnancy",
+                                  item: gcomp,
+                                  height: 848,
+                                  a: (a++) % 4,
+                                  boolean: gcompbool,
+                                ),
+                                radioContainer(
+                                  name:
+                                      "If Gravida 2\n\nOutcome of last pregnancy",
+                                  num: 3,
+                                  item: gpreg,
+                                  height: 200,
+                                  a: (a++) % 4,
+                                  press: (val) => setState(() {
+                                    gravida = int.parse(val.toString());
+                                  }),
+                                  selectedButton: gravida,
+                                ),
+                              ],
+                            )
+                          : const SizedBox(),
+                      radioContainer(
+                        name: "Expected facility for delivery",
+                        num: 10,
+                        item: facilityList,
+                        height: 600,
+                        a: (a++) % 4,
+                        press: (val) => setState(() {
+                          facility = int.parse(val.toString());
+                        }),
+                        selectedButton: facility,
+                      ),
+                      radioContainer(
+                        name: "VDRL / RPR Test",
+                        num: 3,
+                        item: testList,
+                        height: 180,
+                        a: (a++) % 4,
+                        press: (val) => setState(() {
+                          rpr = int.parse(val.toString());
+                        }),
+                        selectedButton: rpr,
+                      ),
+                      radioContainer(
+                        name: "HIV",
+                        num: 3,
+                        item: testList,
+                        height: 180,
+                        a: (a++) % 4,
+                        press: (val) => setState(() {
+                          hiv = int.parse(val.toString());
+                        }),
+                        selectedButton: hiv,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: incDec(
+                          color: colors[(a++) % 4],
+                          name: "Current weight (kg)",
+                          count: Provider.of<PregDocID>(context, listen: false)
+                              .weight,
+                          height: 60,
+                          add: () {
+                            Provider.of<PregDocID>(context, listen: false)
+                                .incWeight();
+                            setState(() {});
+                          },
+                          sub: () {
+                            Provider.of<PregDocID>(context, listen: false)
+                                .decWeight();
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: incDec(
+                          color: colors[(a++) % 4],
+                          name: "Height (cm)",
+                          count: Provider.of<PregDocID>(context, listen: false)
+                              .height,
+                          height: 60,
+                          add: () {
+                            Provider.of<PregDocID>(context, listen: false)
+                                .incHeight();
+                            setState(() {});
+                          },
+                          sub: () {
+                            Provider.of<PregDocID>(context, listen: false)
+                                .decHeight();
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
             const SizedBox(
               height: 32,
             ),
             GestureDetector(
-              onTap: () async{
+                onTap: () async {
+                  if (result == 1) {
+                    List<String> m = [];
 
-                print("PRINT ==== ");
-
-                print(gcompbool);
-                print(historybool);
-
-                if(result == 1){
-
-                  List<String> m = [];
-
-                  for(int i=0;i<gcomp.length;i++){
-                    if(gcompbool[i]){
-                      m.add(gcomp[i]);
+                    for (int i = 0; i < gcomp.length; i++) {
+                      if (gcompbool[i]) {
+                        m.add(gcomp[i]);
+                      }
                     }
-                  }
 
-                  List<String> k = [];
+                    List<String> k = [];
 
-                  for(int i=0;i<history.length;i++){
-                    if(historybool[i]){
-                      k.add(history[i]);
+                    for (int i = 0; i < history.length; i++) {
+                      if (historybool[i]) {
+                        k.add(history[i]);
+                      }
                     }
-                  }
-                  print("HELLO");
-                  print(m);
-                  print(k);
 
-                  Map<String,dynamic> data = {
-                    "JSY" : yesno[jsy-1],
-                    "History" : k,
-                    "Blood" : bloodgrp[blood-1],
-                    "Complications G" : m,
-                    "Outcome G" : gpreg[gravida-1],
-                    "Facility" : facilityList[facility-1],
-                    "VDLR" : testList[rpr-1],
-                    "HIV" : testList[hiv-1],
-
-                  };
-                  await FirebaseFirestore.instance
-                      .collection("Details")
-                      .doc(Provider.of<Details>(context, listen: false).phone)
-                      .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).collection("Details").doc(dob.text).set(data).whenComplete(() => Navigator.pop(context));
-
-                }
-                if(result == 2) {
-                  DocumentSnapshot<Map<String,dynamic>> ds = await FirebaseFirestore.instance
-                      .collection("Details")
-                      .doc(Provider.of<Details>(context, listen: false).phone)
-                      .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).get();
-                  if(ds.exists){
+                    Map<String, dynamic> data = {
+                      "JSY": yesno[jsy - 1],
+                      "History": k,
+                      "Blood": bloodgrp[blood - 1],
+                      "Complications G": m,
+                      "Outcome G": gpreg[gravida - 1],
+                      "Facility": facilityList[facility - 1],
+                      "VDLR": testList[rpr - 1],
+                      "HIV": testList[hiv - 1],
+                    };
                     await FirebaseFirestore.instance
                         .collection("Details")
                         .doc(Provider.of<Details>(context, listen: false).phone)
-                        .collection("Pregnant").doc(Provider.of<DocID>(context, listen: false).doc).delete().whenComplete(() => Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomeSub(
-                                number: Provider.of<Details>(context,
-                                    listen: false)
-                                    .phone))));
+                        .collection("Pregnant")
+                        .doc(Provider.of<DocID>(context, listen: false).doc)
+                        .collection("Details")
+                        .doc(dob.text)
+                        .set(data)
+                        .whenComplete(() => Navigator.pop(context));
                   }
-                }
-              },
+                  if (result == 2) {
+                    DocumentSnapshot<Map<String, dynamic>> ds =
+                        await FirebaseFirestore.instance
+                            .collection("Details")
+                            .doc(Provider.of<Details>(context, listen: false)
+                                .phone)
+                            .collection("Pregnant")
+                            .doc(Provider.of<DocID>(context, listen: false).doc)
+                            .get();
+                    if (ds.exists) {
+                      await FirebaseFirestore.instance
+                          .collection("Details")
+                          .doc(Provider.of<Details>(context, listen: false)
+                              .phone)
+                          .collection("Pregnant")
+                          .doc(Provider.of<DocID>(context, listen: false).doc)
+                          .delete()
+                          .whenComplete(() => Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeSub(
+                                      number: Provider.of<Details>(context,
+                                              listen: false)
+                                          .phone))));
+                    }
+                  }
+                },
                 child: Button("Register")),
             const SizedBox(
               height: 16,
             ),
-
           ],
         ),
       ),

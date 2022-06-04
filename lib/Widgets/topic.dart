@@ -15,7 +15,7 @@ Row topic(String heading,String subheading) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  heading,
+                  heading.toString(),
                   style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,

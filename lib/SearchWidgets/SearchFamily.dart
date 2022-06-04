@@ -88,7 +88,7 @@ class _FamilySearchState extends State<FamilySearch> {
     return ExpansionCard(
       backgroundColor: Colors.white,
       initiallyExpanded: true,
-      trailing: Icon(
+      trailing: const Icon(
         Icons.search,
         color: Colors.black,
       ),
@@ -105,7 +105,7 @@ class _FamilySearchState extends State<FamilySearch> {
           onTap: () {},
           decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
               hintText: "Search",
               errorMaxLines: 1,
               hintStyle: GoogleFonts.poppins(fontSize: 16, color: black),
@@ -115,7 +115,7 @@ class _FamilySearchState extends State<FamilySearch> {
       ),
       children: [
         _searchController.text == ""
-            ? SizedBox()
+            ?const  SizedBox()
             : Container(
                 height: 250,
                 decoration: BoxDecoration(
@@ -123,8 +123,8 @@ class _FamilySearchState extends State<FamilySearch> {
                   color: purple,
                   border: Border.all(width: 0.5, color: white),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16),
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: ListView.builder(
                     itemCount: _resultsList.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -149,7 +149,7 @@ class _FamilySearchState extends State<FamilySearch> {
                                       )));
                         },
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             border: Border(
                                 bottom: BorderSide(
                                     width: 1, color: Colors.white)),
@@ -159,7 +159,7 @@ class _FamilySearchState extends State<FamilySearch> {
                               alignment: _resultsList == []
                                   ? Alignment.center
                                   : Alignment.centerLeft,
-                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              padding: const  EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
                                 _resultsList == []
                                     ? "No result"
@@ -173,7 +173,7 @@ class _FamilySearchState extends State<FamilySearch> {
                                 textAlign: _resultsList == []
                                     ? TextAlign.center
                                     : TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: "Grold Regular",
                                   fontWeight: FontWeight.w400,
                                   fontSize: 16,

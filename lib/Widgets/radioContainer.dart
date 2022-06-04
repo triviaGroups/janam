@@ -42,7 +42,7 @@ class _radioContainerState extends State<radioContainer> {
              Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 20),
+                  padding: const EdgeInsets.only(left: 20),
                   child: RadioButton(
                     num: widget.num,
                     items: widget.item,

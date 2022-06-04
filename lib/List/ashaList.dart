@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class ashaDetailsDataList
 {
@@ -13,7 +12,7 @@ List<ashaDetailsDataList> ashaDetailsList()
   // ignore: deprecated_member_use
   List<ashaDetailsDataList> ash = <ashaDetailsDataList>[];
 
-  ashaDetailsDataList  as = new ashaDetailsDataList(name: "ASHA 1 - Name");
+  ashaDetailsDataList  as =  ashaDetailsDataList(name: "ASHA 1 - Name");
   ash.add(as);
 
   return ash;

@@ -76,7 +76,7 @@ class _vPage3State extends State<vPage3> {
                     Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          padding:  const EdgeInsets.symmetric(vertical: 8),
                           child: Row(
                             children: [
                               Expanded(
@@ -84,11 +84,11 @@ class _vPage3State extends State<vPage3> {
                                 alignment: Alignment.center,
                                 height: 100,
                                 width: 80,
-                                padding: EdgeInsets.symmetric(horizontal: 40),
-                                decoration: BoxDecoration(
+                                padding: const EdgeInsets.symmetric(horizontal: 40),
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: white,
-                                  image: new DecorationImage(
+                                  image: DecorationImage(
                                       image:
                                           AssetImage("assets/images/male.png"),
                                       fit: BoxFit.cover),
@@ -127,7 +127,7 @@ class _vPage3State extends State<vPage3> {
                     Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          padding:  const EdgeInsets.symmetric(vertical: 8),
                           child: Row(
                             children: [
                               Expanded(
@@ -135,11 +135,11 @@ class _vPage3State extends State<vPage3> {
                                 alignment: Alignment.center,
                                 height: 100,
                                 width: 80,
-                                padding: EdgeInsets.symmetric(horizontal: 40),
-                                decoration: BoxDecoration(
+                                padding: const EdgeInsets.symmetric(horizontal: 40),
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: white,
-                                  image: new DecorationImage(
+                                  image:  DecorationImage(
                                     image:
                                         AssetImage("assets/images/female.png"),
                                     fit: BoxFit.cover,
@@ -210,7 +210,6 @@ class _vPage3State extends State<vPage3> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 reli = int.parse(val.toString());
-                print("$reli");
               }),
               selectedButton: reli,
             ),
@@ -222,7 +221,6 @@ class _vPage3State extends State<vPage3> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 caste = int.parse(val.toString());
-                print("$caste");
               }),
               selectedButton: caste,
             ),
@@ -234,7 +232,6 @@ class _vPage3State extends State<vPage3> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 eco = int.parse(val.toString());
-                print("$eco");
               }),
               selectedButton: eco,
             ),
@@ -246,7 +243,6 @@ class _vPage3State extends State<vPage3> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 elec = int.parse(val.toString());
-                print("$elec");
               }),
               selectedButton: elec,
             ),
@@ -258,7 +254,6 @@ class _vPage3State extends State<vPage3> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 house = int.parse(val.toString());
-                print("$house");
               }),
               selectedButton: house,
             ),
@@ -270,7 +265,6 @@ class _vPage3State extends State<vPage3> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 toilet = int.parse(val.toString());
-                print("$toilet");
               }),
               selectedButton: toilet,
             ),
@@ -282,7 +276,6 @@ class _vPage3State extends State<vPage3> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 waste = int.parse(val.toString());
-                print("$waste");
               }),
               selectedButton: waste,
             ),
@@ -439,8 +432,8 @@ class _vPage3State extends State<vPage3> {
                 color: white),
             Container(
               alignment: Alignment.topLeft,
-              margin: EdgeInsets.symmetric(horizontal: 24),
-              padding: const EdgeInsets.only(top: 16),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              padding:  const EdgeInsets.only(top: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -463,6 +456,7 @@ class _vPage3State extends State<vPage3> {
             ),
             Provider.of<VillageProvider>(context, listen: false).L1 > 0 ? Container(
               height: 300,
+              alignment: Alignment.center,
               child: PageView.builder(
                   itemCount:
                       Provider.of<VillageProvider>(context, listen: false).L1,
@@ -475,8 +469,8 @@ class _vPage3State extends State<vPage3> {
                             Expanded(
                               child: Container(
                                 alignment: Alignment.topLeft,
-                                margin: EdgeInsets.symmetric(horizontal: 24),
-                                padding: const EdgeInsets.only(top: 16),
+                                margin: const EdgeInsets.symmetric(horizontal: 24),
+                                padding:  const EdgeInsets.only(top: 16),
                                 child: Text(
                                   "Details of ${index + 1} Child",
                                   style: GoogleFonts.poppins(
@@ -494,8 +488,8 @@ class _vPage3State extends State<vPage3> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     margin:
-                                        EdgeInsets.symmetric(horizontal: 24),
-                                    padding: const EdgeInsets.only(top: 16),
+                                        const EdgeInsets.symmetric(horizontal: 24),
+                                    padding:  const EdgeInsets.only(top: 16),
                                     child: Text(
                                       "Name",
                                       style: GoogleFonts.poppins(
@@ -508,7 +502,7 @@ class _vPage3State extends State<vPage3> {
                                 Expanded(
                                   flex: 3,
                                   child: Container(
-                                    margin: EdgeInsets.only(
+                                    margin: const EdgeInsets.only(
                                         top: 8, bottom: 8, left: 6, right: 4),
                                     decoration: BoxDecoration(
                                         color: white,
@@ -517,7 +511,7 @@ class _vPage3State extends State<vPage3> {
                                       onChanged: (val) {
                                         children[index][0] = val;
                                       },
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.only(
                                             left: 10, right: 10),
                                         border: InputBorder.none,
@@ -537,8 +531,8 @@ class _vPage3State extends State<vPage3> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     margin:
-                                        EdgeInsets.symmetric(horizontal: 24),
-                                    padding: const EdgeInsets.only(top: 16),
+                                        const EdgeInsets.symmetric(horizontal: 24),
+                                    padding:  const EdgeInsets.only(top: 16),
                                     child: Text(
                                       "Date of Birth",
                                       style: GoogleFonts.poppins(
@@ -551,7 +545,7 @@ class _vPage3State extends State<vPage3> {
                                 Expanded(
                                   flex: 3,
                                   child: Container(
-                                    margin: EdgeInsets.only(
+                                    margin: const EdgeInsets.only(
                                         top: 8, bottom: 8, left: 6, right: 4),
                                     decoration: BoxDecoration(
                                         color: white,
@@ -560,8 +554,8 @@ class _vPage3State extends State<vPage3> {
                                       onChanged: (val) {
                                         children[index][1] = val;
                                       },
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.only(
+                                      decoration:const  InputDecoration(
+                                        contentPadding:EdgeInsets.only(
                                             left: 10, right: 10),
                                         border: InputBorder.none,
                                       ),
@@ -580,8 +574,8 @@ class _vPage3State extends State<vPage3> {
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     margin:
-                                        EdgeInsets.symmetric(horizontal: 24),
-                                    padding: const EdgeInsets.only(top: 16),
+                                        const EdgeInsets.symmetric(horizontal: 24),
+                                    padding:  const EdgeInsets.only(top: 16),
                                     child: Text(
                                       "Sex",
                                       style: GoogleFonts.poppins(
@@ -594,7 +588,7 @@ class _vPage3State extends State<vPage3> {
                                 Expanded(
                                   flex: 3,
                                   child: Container(
-                                    margin: EdgeInsets.only(
+                                    margin: const EdgeInsets.only(
                                         top: 8, bottom: 8, left: 6, right: 4),
                                     decoration: BoxDecoration(
                                         color: white,
@@ -607,7 +601,7 @@ class _vPage3State extends State<vPage3> {
                                         hintText: "Male or Female",
                                         hintStyle: GoogleFonts.poppins(
                                             fontSize: 14, color: txt),
-                                        contentPadding: EdgeInsets.only(
+                                        contentPadding: const EdgeInsets.only(
                                             left: 10, right: 10),
                                         border: InputBorder.none,
                                       ),
@@ -623,7 +617,7 @@ class _vPage3State extends State<vPage3> {
                         height: 250,
                         color: colors[2]);
                   }),
-            ) : SizedBox(),
+            ) : const SizedBox(),
             radioContainer(
               name: "Is the couple fertile?",
               num: 2,
@@ -632,7 +626,6 @@ class _vPage3State extends State<vPage3> {
               a: 3,
               press: (val) => setState(() {
                 fertile = int.parse(val.toString());
-                print("$fertile");
               }),
               selectedButton: fertile,
             ),
@@ -670,7 +663,7 @@ class _vPage3State extends State<vPage3> {
                       .update(data).whenComplete(() async {
                         for(int i=0;i<children.length;i++){
 
-                          DocumentReference doc_ref = await FirebaseFirestore.instance
+                          DocumentReference doc_ref =  FirebaseFirestore.instance
                               .collection("Village Details")
                               .doc(widget.VillageName)
                               .collection("Family")
@@ -687,6 +680,9 @@ class _vPage3State extends State<vPage3> {
                             "DOB" : j[1],
                             "Gender" : j[2],
                             "ChildId" : doc,
+                            "docID" : widget.docId,
+                            "Address" : widget.Address,
+                            "Village" : widget.VillageName,
                           };
 
                           await FirebaseFirestore.instance
@@ -695,13 +691,29 @@ class _vPage3State extends State<vPage3> {
                               .collection("Family")
                               .doc(widget.docId)
                               .collection("Household")
-                              .doc(widget.familyId).collection("Children").doc(doc).set(h);
+                              .doc(widget.familyId).collection("Children").doc(doc).set(h).whenComplete(() async{
+                            await FirebaseFirestore.instance
+                                .collection("Village Members")
+                                .doc(Provider.of<Details>(context, listen: false).phone)
+                                .collection("Members")
+                                .doc()
+                                .set(h).whenComplete(() async{
+                                  int k = int.parse(j[1].substring(0,4));
+                                  if((2022-k)<5){
+                                    await FirebaseFirestore.instance
+                                        .collection("Village Children")
+                                        .doc(Provider.of<Details>(context, listen: false).phone)
+                                        .collection("Children")
+                                        .doc()
+                                        .set(h);
+                                  }
+                            });
+                          });
 
                         }
                   });
 
                   if(fertile == 1){
-                    print("Eligible");
                     Map<String, dynamic> detail = {
                       "Name": widget.spouse[1],
                       "DOB": widget.spouse[2],

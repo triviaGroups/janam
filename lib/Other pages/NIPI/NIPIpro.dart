@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:janam/Login/villageWidget.dart';
 
 class nipipro with ChangeNotifier {
 
   List<String> _village = [];
   int _len = 0;
   List<String> _selected = [];
-  List<String> _awc = [];
+   List<String> _awc = [];
   String _num = "";
 
 
@@ -18,28 +17,28 @@ class nipipro with ChangeNotifier {
   List<String> get awc => _awc;
 
   void putselect(String data){
-    this._selected.add(data);
+    _selected.add(data);
     notifyListeners();
   }
 
   void removedata(String data){
-    this._selected.remove(data);
+    _selected.remove(data);
     notifyListeners();
   }
 
   Future<void> getData(String num) async{
     await FirebaseFirestore.instance.collection("Details").doc(num).get().then((value) => {
-      this._village.add(value['Villages'].toString().substring(1,value['Villages'].toString().length-1)),
+      _village = List.from(value["Villages"])
     });
-    this._len = _village.length;
-    this._num = num;
+    _len = _village.length;
+    _num = num;
 
     notifyListeners();
   }
 
   Future<void> getAwc(int n) async{
-    await FirebaseFirestore.instance.collection("Details").doc(this._num).collection("village").doc(this._village[n]).get().then((value) => {
-      this._awc.add(value['Awc'].toString().substring(1,value['Awc'].toString().length-1)),
+    await FirebaseFirestore.instance.collection("Details").doc(_num).collection("village").doc(_village[n]).get().then((value) => {
+      _awc  = List.from(value["Awc"])
     });
 
     notifyListeners();

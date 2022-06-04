@@ -58,9 +58,6 @@ Padding DropDown(String value,String select) {
                   ),
                 ))
                 .toList(),
-            validator: (value) {
-
-            },
             onChanged: (value) {
 
             },

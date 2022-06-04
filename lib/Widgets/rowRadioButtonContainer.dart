@@ -86,7 +86,7 @@ class _rowRadioState extends State<rowRadio> {
           ),
           Expanded(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 4),
+                margin: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
                     color: _value == 0 ? hTxt : white,
                     borderRadius: BorderRadius.circular(5)),
@@ -117,7 +117,7 @@ class _rowRadioState extends State<rowRadio> {
               )),
           Expanded(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 4),
+                margin: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
                     color: _value == 1 ? hTxt : white,
                     borderRadius: BorderRadius.circular(5)),
@@ -148,7 +148,7 @@ class _rowRadioState extends State<rowRadio> {
               )),
           Expanded(
               child: Container(
-                margin: EdgeInsets.only(left: 4),
+                margin: const EdgeInsets.only(left: 4),
                 decoration: BoxDecoration(
                     color: white, borderRadius: BorderRadius.circular(5)),
                 child: TextFormField(
@@ -157,7 +157,7 @@ class _rowRadioState extends State<rowRadio> {
                   },
                   decoration: InputDecoration(
                     hintText: widget.dates[widget.d],
-                    contentPadding: EdgeInsets.only(left: 10, right: 10),
+                    contentPadding: const EdgeInsets.only(left: 10, right: 10),
                     border: InputBorder.none,
                     hintStyle: GoogleFonts.poppins(
                         fontSize: 14, color: black, fontWeight: FontWeight.w600),

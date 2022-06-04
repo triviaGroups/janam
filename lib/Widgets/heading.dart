@@ -5,7 +5,7 @@ import 'package:janam/constants/color_constants.dart';
 Container Heading(String value) {
   return Container(
     alignment: Alignment.centerLeft,
-    margin: EdgeInsets.symmetric(horizontal: 24),
+    margin: const EdgeInsets.symmetric(horizontal: 24),
     child: Text(
       value,
       style: GoogleFonts.inter(

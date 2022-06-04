@@ -24,7 +24,7 @@ class _vpage1State extends State<vpage1> {
   String area = "";
   String phone = "";
 
-  String check_value = "Add new houseHold";
+  String checkValue = "Add new houseHold";
 
   List<dynamic> villageList = [];
 
@@ -40,11 +40,11 @@ class _vpage1State extends State<vpage1> {
     villageList = Provider.of<Details>(context, listen: false).village;
   }
 
-  TextEditingController villageName = new TextEditingController();
-  TextEditingController plotNo = new TextEditingController();
-  TextEditingController streetName = new TextEditingController();
-  TextEditingController areaName = new TextEditingController();
-  TextEditingController phoneNumber = new TextEditingController();
+  TextEditingController villageName =  TextEditingController();
+  TextEditingController plotNo =  TextEditingController();
+  TextEditingController streetName =  TextEditingController();
+  TextEditingController areaName =  TextEditingController();
+  TextEditingController phoneNumber =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +110,6 @@ class _vpage1State extends State<vpage1> {
                                 ),
                               ))
                           .toList(),
-                      validator: (value) {
-                        setState(() {
-                          villagename = value.toString();
-                        });
-                      },
                       onChanged: (value) {
                         setState(() {
                           villagename = value.toString();
@@ -179,11 +174,9 @@ class _vpage1State extends State<vpage1> {
                                 ),
                               ))
                           .toList(),
-                      validator: (value) {},
                       onChanged: (value) {
                         setState(() {
-                          check_value = value.toString();
-                          print(check_value);
+                          checkValue = value.toString();
                         });
                       },
                       onSaved: (val) {},
@@ -192,7 +185,7 @@ class _vpage1State extends State<vpage1> {
                 ],
               ),
             ),
-            check_value == "Add new houseHold"
+            checkValue == "Add new houseHold"
                 ? Column(
                     children: [
                       Heading("Add new household"),
@@ -202,7 +195,7 @@ class _vpage1State extends State<vpage1> {
                         child: Container(
                           height: 56,
                           width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.only(left: 16, right: 10),
+                          padding: const EdgeInsets.only(left: 16, right: 10),
                           alignment: Alignment.centerLeft,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
@@ -226,7 +219,7 @@ class _vpage1State extends State<vpage1> {
                             controller: plotNo,
                             decoration: InputDecoration(
                               contentPadding:
-                                  EdgeInsets.only(left: 16, right: 10),
+                              const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Plot No",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -249,7 +242,7 @@ class _vpage1State extends State<vpage1> {
                             controller: streetName,
                             decoration: InputDecoration(
                               contentPadding:
-                                  EdgeInsets.only(left: 16, right: 10),
+                              const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Street Name",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -272,7 +265,7 @@ class _vpage1State extends State<vpage1> {
                             controller: areaName,
                             decoration: InputDecoration(
                               contentPadding:
-                                  EdgeInsets.only(left: 16, right: 10),
+                              const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Area Name",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -296,7 +289,7 @@ class _vpage1State extends State<vpage1> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               contentPadding:
-                                  EdgeInsets.only(left: 16, right: 10),
+                              const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Phone Number",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -311,14 +304,14 @@ class _vpage1State extends State<vpage1> {
                     ],
                   )
                 : Column(),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            check_value != "Add new houseHold"
+            checkValue != "Add new houseHold"
                 ? Column(
                     children: [
                       Heading("Select Household"),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       FamilySearch(villagename: villagename),
@@ -334,14 +327,14 @@ class _vpage1State extends State<vpage1> {
                       ? () {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             backgroundColor: Colors.black,
-                            duration: Duration(seconds: 2),
+                            duration: const Duration(seconds: 2),
                             content: Text(
                               "Enter Mobile Number",
                               style: GoogleFonts.poppins(fontSize: 18),
                             ),
                           ));
                         }
-                      : check_value == "Add new houseHold"
+                      : checkValue == "Add new houseHold"
                           ? _addhousehold()
                           : {};
 
@@ -358,13 +351,13 @@ class _vpage1State extends State<vpage1> {
   }
 
   void _addhousehold() async {
-    DocumentReference doc_ref = await FirebaseFirestore.instance
+    DocumentReference docRef =  FirebaseFirestore.instance
         .collection("Village Details")
         .doc(villagename)
         .collection("Family")
         .doc();
 
-    DocumentSnapshot docSnap = await doc_ref.get();
+    DocumentSnapshot docSnap = await docRef.get();
     var doc = docSnap.reference.id;
 
     Map<String, dynamic> data = {

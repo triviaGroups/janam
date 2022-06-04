@@ -4,7 +4,6 @@ const Color black = Color(0xff000000);
 const Color white = Color(0xffFFFFFF);
 
 const Color appBg = Color(0xffF9FAFE);
-const Color filBtn = Color(0xffEEF1F5);
 const Color highlights = Color(0xffFBD721);
 const Color btn = Color(0xffFF6A9C);
 const Color fBtn = Color(0xff13D7BC);

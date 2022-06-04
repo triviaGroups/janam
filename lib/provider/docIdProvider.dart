@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:janam/Login/villageWidget.dart';
 
 class DocID with ChangeNotifier {
   String _doc = "";
@@ -17,11 +15,11 @@ class DocID with ChangeNotifier {
   String get dob => _dob;
 
   void setEc(String val,String add,int g,String name,String dob){
-    this._doc = val;
-    this._address = add;
-    this._G = g;
-    this._name = name;
-    this._dob = dob;
+    _doc = val;
+    _address = add;
+    _G = g;
+    _name = name;
+    _dob = dob;
     print("Setted");
     notifyListeners();
   }

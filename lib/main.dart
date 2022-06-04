@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Login/login.dart';
+import 'package:janam/Login/nurse_details.dart';
 import 'package:janam/Other%20pages/NIPI/NIPIpro.dart';
 import 'package:janam/Other%20pages/ORS/ORSpro.dart';
 import 'package:janam/Other%20pages/TC/Tcpro.dart';
@@ -57,6 +58,7 @@ class FireBaseInitialization extends StatefulWidget {
 }
 
 class _FireBaseInitializationState extends State<FireBaseInitialization> {
+
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
@@ -103,19 +105,16 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
                         }
 
                       }
-                      return Scaffold(
+                      return const Scaffold(
                         body: Center(
-                          child: Text(
-                            "Checking Authentication",
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
+                          child: CircularProgressIndicator()
                         ),
                       );
                     });
               }
               return const Scaffold(
                 body: Center(
-                  child: Text("Initialising App....."),
+                  child: CircularProgressIndicator(),
                 ),
               );
             }),

@@ -27,10 +27,10 @@ class _CloseCaseState extends State<CloseCase> {
   int death = 0;
   int dc = 0;
 
-  TextEditingController dateMaternal = new TextEditingController();
-  TextEditingController dateInfant = new TextEditingController();
-  TextEditingController dateAbortion = new TextEditingController();
-  TextEditingController dateDC = new TextEditingController();
+  TextEditingController dateMaternal =  TextEditingController();
+  TextEditingController dateInfant =  TextEditingController();
+  TextEditingController dateAbortion =  TextEditingController();
+  TextEditingController dateDC =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,6 @@ class _CloseCaseState extends State<CloseCase> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     close = int.parse(val.toString());
-                    print("$close");
                   }),
                   selectedButton: close,
                 ),
@@ -115,7 +114,6 @@ class _CloseCaseState extends State<CloseCase> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     reason = int.parse(val.toString());
-                    print("$reason");
                   }),
                   selectedButton: reason,
                 ),
@@ -143,7 +141,7 @@ class _CloseCaseState extends State<CloseCase> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               onChanged: (val) {},
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -165,7 +163,6 @@ class _CloseCaseState extends State<CloseCase> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     place = int.parse(val.toString());
-                    print("$place");
                   }),
                   selectedButton: place,
                 ),
@@ -196,7 +193,7 @@ class _CloseCaseState extends State<CloseCase> {
                               borderRadius: BorderRadius.circular(5)),
                           child: TextFormField(
                             controller: dateMaternal,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               contentPadding:
                               EdgeInsets.only(left: 10, right: 10,bottom: 5),
                               border: InputBorder.none,
@@ -231,7 +228,7 @@ class _CloseCaseState extends State<CloseCase> {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);
                               },
-                              child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                              child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                         ),
                       )
                     ],
@@ -246,7 +243,6 @@ class _CloseCaseState extends State<CloseCase> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     cause = int.parse(val.toString());
-                    print("$cause");
                   }),
                   selectedButton: cause,
                 ),
@@ -273,7 +269,7 @@ class _CloseCaseState extends State<CloseCase> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               onChanged: (val) {},
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -295,7 +291,6 @@ class _CloseCaseState extends State<CloseCase> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     death= int.parse(val.toString());
-                    print("$death");
                   }),
                   selectedButton: death,
                 ),
@@ -326,7 +321,7 @@ class _CloseCaseState extends State<CloseCase> {
                               borderRadius: BorderRadius.circular(5)),
                           child: TextFormField(
                             controller: dateInfant,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               contentPadding:
                               EdgeInsets.only(left: 10, right: 10,bottom: 5),
                               border: InputBorder.none,
@@ -361,7 +356,7 @@ class _CloseCaseState extends State<CloseCase> {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);
                               },
-                              child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                              child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                         ),
                       )
                     ],
@@ -395,7 +390,7 @@ class _CloseCaseState extends State<CloseCase> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: dateAbortion,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
@@ -430,7 +425,7 @@ class _CloseCaseState extends State<CloseCase> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 },
-                                child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                                child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                           ),
                         )
                       ],
@@ -445,7 +440,6 @@ class _CloseCaseState extends State<CloseCase> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     dc = int.parse(val.toString());
-                    print("$dc");
                   }),
                   selectedButton: dc,
                 ),
@@ -472,7 +466,7 @@ class _CloseCaseState extends State<CloseCase> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               onChanged: (val) {},
-                              decoration: InputDecoration(
+                              decoration:const  InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -513,7 +507,7 @@ class _CloseCaseState extends State<CloseCase> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: dateDC,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                             EdgeInsets.only(left: 10, right: 10,bottom: 5),
                             border: InputBorder.none,
@@ -548,7 +542,7 @@ class _CloseCaseState extends State<CloseCase> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                            child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                       ),
                     )
                   ],

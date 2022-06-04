@@ -1,35 +1,41 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:janam/Login/villageWidget.dart';
 
 class orspro with ChangeNotifier {
 
   int _weight = 50;
   int _height = 170;
 
+  String _name = "";
+
   int get weight => _weight;
   int get height => _height;
+  String get name => _name;
+
+  void setName(String nam){
+    _name = nam;
+    notifyListeners();
+  }
 
   void incWeight(){
-    this._weight++;
+    _weight++;
   }
 
   void decWeight(){
-    this._weight--;
-    if(this._weight < 0){
-      this._weight = 0;
+    _weight--;
+    if(_weight < 0){
+      _weight = 0;
     }
   }
 
   void incHeight(){
-    this._height++;
+    _height++;
   }
 
   void decHeight(){
-    this._height--;
-    if(this._height < 0){
-      this._height = 0;
+    _height--;
+    if(_height < 0){
+      _height = 0;
     }
   }
 

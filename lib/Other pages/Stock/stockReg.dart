@@ -45,10 +45,10 @@ class _StockRegState extends State<StockReg> {
     "OPV",
     "Napkins",];
 
-  TextEditingController initial = new TextEditingController();
-  TextEditingController num = new TextEditingController();
-  TextEditingController dateEntry = new TextEditingController();
-  TextEditingController finale = new TextEditingController();
+  TextEditingController initial =  TextEditingController();
+  TextEditingController num =  TextEditingController();
+  TextEditingController dateEntry =  TextEditingController();
+  TextEditingController finale =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +107,7 @@ class _StockRegState extends State<StockReg> {
                       ),
                     ))
                         .toList(),
-                    validator: (value) {
-                      setState(() {
-                        selected = value.toString();
-                      });
-                    },
+
                     onChanged: (value) {
                       setState(() {
                         selected = value.toString();
@@ -148,7 +144,7 @@ class _StockRegState extends State<StockReg> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: initial,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -170,7 +166,6 @@ class _StockRegState extends State<StockReg> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     f = int.parse(val.toString());
-                    print("$f");
                   }),
                   selectedButton: f,
                 ),
@@ -198,7 +193,7 @@ class _StockRegState extends State<StockReg> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: num,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -239,7 +234,7 @@ class _StockRegState extends State<StockReg> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: dateEntry,
-                              decoration: InputDecoration(
+                              decoration:const  InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
@@ -274,7 +269,7 @@ class _StockRegState extends State<StockReg> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 },
-                                child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                                child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                           ),
                         )
                       ],
@@ -305,7 +300,7 @@ class _StockRegState extends State<StockReg> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: finale,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,

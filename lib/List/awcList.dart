@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class awcDetailsDataList
 {
@@ -12,7 +11,7 @@ List<awcDetailsDataList> awcDetailsList()
   // ignore: deprecated_member_use
   List<awcDetailsDataList> awc = <awcDetailsDataList>[];
 
-  awcDetailsDataList  aw = new awcDetailsDataList(name: "AWC1 - Name");
+  awcDetailsDataList  aw =  awcDetailsDataList(name: "AWC1 - Name");
   awc.add(aw);
 
   return awc;

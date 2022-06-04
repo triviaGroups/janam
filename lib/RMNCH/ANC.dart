@@ -33,9 +33,9 @@ class _ANCState extends State<ANC> {
   int referral = 0;
   int type = 0;
 
-  TextEditingController dob = new TextEditingController();
-  TextEditingController FttDose = new TextEditingController();
-  TextEditingController SttDose = new TextEditingController();
+  TextEditingController dob = TextEditingController();
+  TextEditingController fttDose = TextEditingController();
+  TextEditingController sttDose = TextEditingController();
 
   List<String> yesno = const ["Yes", "No"];
 
@@ -107,9 +107,9 @@ class _ANCState extends State<ANC> {
               height: 16,
             ),
             topic("Antenatal Care", "Select member"),
-            PregSearch(),
+            const PregSearch(),
             context.watch<PregDocID>().doc == ""
-                ? SizedBox()
+                ? const SizedBox()
                 : Cont(
                     child: Column(
                       children: [
@@ -193,7 +193,7 @@ class _ANCState extends State<ANC> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: dob,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                             border: InputBorder.none,
@@ -208,7 +208,7 @@ class _ANCState extends State<ANC> {
                 height: 40,
                 color: colors[(a++) % 4]),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
                   color: colors[(a++) % 4],
                   name: "Current weight (kg)",
@@ -225,8 +225,8 @@ class _ANCState extends State<ANC> {
             ),
             Container(
               height: 69,
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 24),
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: colors[(a++) % 4],
@@ -235,14 +235,14 @@ class _ANCState extends State<ANC> {
                       color: Colors.grey.shade300,
                       blurRadius: 5,
                       spreadRadius: 1,
-                      offset: Offset(1, 2),
+                      offset: const Offset(1, 2),
                     ),
                   ]),
               child: Row(
                 children: [
                   Expanded(
                       child: Container(
-                    padding: EdgeInsets.only(top: 8, bottom: 8, right: 8),
+                    padding: const EdgeInsets.only(top: 8, bottom: 8, right: 8),
                     color: Colors.transparent,
                     child: Text(
                       "BP",
@@ -261,7 +261,7 @@ class _ANCState extends State<ANC> {
                             Expanded(
                                 flex: 2,
                                 child: Container(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 8, bottom: 8, right: 8),
                                   color: Colors.transparent,
                                   child: Text(
@@ -274,7 +274,7 @@ class _ANCState extends State<ANC> {
                                 )),
                             Expanded(
                                 child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
+                              padding: const EdgeInsets.symmetric(vertical: 4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: white,
@@ -283,12 +283,12 @@ class _ANCState extends State<ANC> {
                                     color: Colors.grey.shade300,
                                     blurRadius: 5,
                                     spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                    offset: const Offset(1, 2),
                                   ),
                                 ],
                               ),
                               child: Transform.translate(
-                                  offset: Offset(0, 0),
+                                  offset: const Offset(0, 0),
                                   child: GestureDetector(
                                     onTap: () {
                                       Provider.of<VillageProvider>(context,
@@ -306,7 +306,8 @@ class _ANCState extends State<ANC> {
                             Expanded(
                                 flex: 2,
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
                                   alignment: Alignment.center,
                                   color: Colors.transparent,
                                   child: Text(
@@ -322,7 +323,7 @@ class _ANCState extends State<ANC> {
                                 )),
                             Expanded(
                                 child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
+                              padding: const EdgeInsets.symmetric(vertical: 4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: white,
@@ -331,12 +332,12 @@ class _ANCState extends State<ANC> {
                                     color: Colors.grey.shade300,
                                     blurRadius: 5,
                                     spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                    offset: const Offset(1, 2),
                                   ),
                                 ],
                               ),
                               child: Transform.translate(
-                                  offset: Offset(0, -4),
+                                  offset: const Offset(0, -4),
                                   child: GestureDetector(
                                     onTap: () {
                                       Provider.of<VillageProvider>(context,
@@ -363,7 +364,7 @@ class _ANCState extends State<ANC> {
                             Expanded(
                                 flex: 2,
                                 child: Container(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       top: 8, bottom: 8, right: 8),
                                   color: Colors.transparent,
                                   child: Text(
@@ -376,7 +377,7 @@ class _ANCState extends State<ANC> {
                                 )),
                             Expanded(
                                 child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
+                              padding: const EdgeInsets.symmetric(vertical: 4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: white,
@@ -385,12 +386,12 @@ class _ANCState extends State<ANC> {
                                     color: Colors.grey.shade300,
                                     blurRadius: 5,
                                     spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                    offset: const Offset(1, 2),
                                   ),
                                 ],
                               ),
                               child: Transform.translate(
-                                  offset: Offset(0, 0),
+                                  offset: const Offset(0, 0),
                                   child: GestureDetector(
                                     onTap: () {
                                       Provider.of<VillageProvider>(context,
@@ -408,7 +409,8 @@ class _ANCState extends State<ANC> {
                             Expanded(
                                 flex: 2,
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
                                   alignment: Alignment.center,
                                   color: Colors.transparent,
                                   child: Text(
@@ -424,7 +426,7 @@ class _ANCState extends State<ANC> {
                                 )),
                             Expanded(
                                 child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
+                              padding: const EdgeInsets.symmetric(vertical: 4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: white,
@@ -433,12 +435,12 @@ class _ANCState extends State<ANC> {
                                     color: Colors.grey.shade300,
                                     blurRadius: 5,
                                     spreadRadius: 1,
-                                    offset: Offset(1, 2),
+                                    offset: const Offset(1, 2),
                                   ),
                                 ],
                               ),
                               child: Transform.translate(
-                                  offset: Offset(0, -4),
+                                  offset: const Offset(0, -4),
                                   child: GestureDetector(
                                     onTap: () {
                                       Provider.of<VillageProvider>(context,
@@ -460,7 +462,7 @@ class _ANCState extends State<ANC> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Haemoglobin",
@@ -484,7 +486,6 @@ class _ANCState extends State<ANC> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 urine = int.parse(val.toString());
-                print("$urine");
               }),
               selectedButton: urine,
             ),
@@ -496,7 +497,6 @@ class _ANCState extends State<ANC> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 blood = int.parse(val.toString());
-                print("$blood");
               }),
               selectedButton: blood,
             ),
@@ -526,8 +526,8 @@ class _ANCState extends State<ANC> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          controller: FttDose,
-                          decoration: InputDecoration(
+                          controller: fttDose,
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -557,14 +557,14 @@ class _ANCState extends State<ANC> {
                               final String formatted =
                                   formatter.format(datePicked!);
                               setState(() {
-                                FttDose.text = formatted;
+                                fttDose.text = formatted;
                               });
                               final snackBar = SnackBar(
                                   content: Text("Date Picked $formatted"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.black87,
                               size: 24,
@@ -601,8 +601,8 @@ class _ANCState extends State<ANC> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          controller: SttDose,
-                          decoration: InputDecoration(
+                          controller: sttDose,
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -632,14 +632,14 @@ class _ANCState extends State<ANC> {
                               final String formatted =
                                   formatter.format(datePicked!);
                               setState(() {
-                                SttDose.text = formatted;
+                                sttDose.text = formatted;
                               });
                               final snackBar = SnackBar(
                                   content: Text("Date Picked $formatted"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.black87,
                               size: 24,
@@ -651,7 +651,7 @@ class _ANCState extends State<ANC> {
                 height: 40,
                 color: colors[(a++) % 4]),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of folic acid tablets given",
@@ -668,7 +668,7 @@ class _ANCState extends State<ANC> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of iron folic acid tablets given",
@@ -692,7 +692,6 @@ class _ANCState extends State<ANC> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 risk = int.parse(val.toString());
-                print("$risk");
               }),
               selectedButton: risk,
             ),
@@ -718,7 +717,15 @@ class _ANCState extends State<ANC> {
                 height: 60,
                 color: colors[(a++) % 4]),
             Cont(
-              child: Container(),
+              child: Container(
+                height: 200,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Image.asset(
+                  "assets/images/risk.png",
+                  fit: BoxFit.contain,
+                ),
+              ),
               height: 200,
               color: white,
             ),
@@ -730,7 +737,6 @@ class _ANCState extends State<ANC> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 referral = int.parse(val.toString());
-                print("$referral");
               }),
               selectedButton: referral,
             ),
@@ -742,7 +748,6 @@ class _ANCState extends State<ANC> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 type = int.parse(val.toString());
-                print("$type");
               }),
               selectedButton: type,
             ),
@@ -767,14 +772,15 @@ class _ANCState extends State<ANC> {
                         .sys,
                     "Dia": Provider.of<VillageProvider>(context, listen: false)
                         .dia,
-                    "Haemo": Provider.of<PregDocID>(context, listen: false).hae,
+                    "Haemoglobin":
+                        Provider.of<PregDocID>(context, listen: false).hae,
                     "Urine test": yesno[urine - 1],
                     "Blood test": yesno[blood - 1],
                     "Folic":
                         Provider.of<PregDocID>(context, listen: false).folic,
                     "Iron": Provider.of<PregDocID>(context, listen: false).iron,
                     "Risk": yesno[risk - 1],
-                    "Antenattal risk": m,
+                    "Antenatal risk": m,
                     "Need": yesno[referral - 1],
                     "Type": typeList[type - 1],
                   };

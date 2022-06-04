@@ -49,7 +49,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
   List<String> newList = const [
     "OCPs",
     "Injections",
-    "Sterlizations",
+    "Sterilizations",
     "Devices",
     "Condoms"
   ];
@@ -81,28 +81,28 @@ class _EligibleCoupleState extends State<EligibleCouple> {
     "New mode of contraception"
   ];
 
-  TextEditingController dateTracking = new TextEditingController();
-  TextEditingController lmp = new TextEditingController();
+  TextEditingController dateTracking =  TextEditingController();
+  TextEditingController lmp =  TextEditingController();
 
-  TextEditingController dateSterializ = new TextEditingController();
-  TextEditingController reasonSterializ = new TextEditingController();
+  TextEditingController dateSterializ =  TextEditingController();
+  TextEditingController reasonSterializ =  TextEditingController();
 
-  TextEditingController condom = new TextEditingController();
+  TextEditingController condom =  TextEditingController();
 
-  TextEditingController ocp = new TextEditingController();
-  TextEditingController dateSupply = new TextEditingController();
+  TextEditingController ocp =  TextEditingController();
+  TextEditingController dateSupply =  TextEditingController();
 
-  TextEditingController dateInjection = new TextEditingController();
-  TextEditingController timeInjection = new TextEditingController();
+  TextEditingController dateInjection =  TextEditingController();
+  TextEditingController timeInjection =  TextEditingController();
 
-  TextEditingController dateDiscontinue = new TextEditingController();
+  TextEditingController dateDiscontinue =  TextEditingController();
 
-  TextEditingController dateInsertion = new TextEditingController();
-  TextEditingController ICUD = new TextEditingController();
+  TextEditingController dateInsertion =  TextEditingController();
+  TextEditingController icud =  TextEditingController();
 
-  TextEditingController dateAbortion = new TextEditingController();
+  TextEditingController dateAbortion =  TextEditingController();
 
-  TimeOfDay time = TimeOfDay(hour: 10, minute: 45);
+  TimeOfDay time = const TimeOfDay(hour: 10, minute: 45);
   @override
   Widget build(BuildContext context) {
     a = 0;
@@ -116,9 +116,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               height: 16,
             ),
             topic("Eligible Couple", "Track eligible couple"),
-            EcSearch(),
+            const EcSearch(),
             context.watch<DocID>().doc == ""
-                ? SizedBox()
+                ? const SizedBox()
                 : Cont(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -171,7 +171,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: dateTracking,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -208,7 +208,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.black87,
                               size: 24,
@@ -244,7 +244,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         child: TextFormField(
                           controller: lmp,
                           onChanged: (val) {},
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                             border: InputBorder.none,
@@ -266,7 +266,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 method = int.parse(val.toString());
-                print("$method");
               }),
               selectedButton: method,
             ),
@@ -275,14 +274,13 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                     children: [
                       radioContainer(
                         name:
-                            "If permanent sterlization, \n\nType of sterlization",
+                            "If permanent sterilization, \n\nType of sterilization",
                         num: 2,
                         item: perSterList,
                         height: 120,
                         a: (a++) % 4,
                         press: (val) => setState(() {
                           ster = int.parse(val.toString());
-                          print("$ster");
                         }),
                         selectedButton: ster,
                       ),
@@ -296,7 +294,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                   alignment: Alignment.centerLeft,
                                   padding: const EdgeInsets.only(right: 8),
                                   child: Text(
-                                    "Date of sterlization",
+                                    "Date of sterilization",
                                     style: GoogleFonts.poppins(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
@@ -313,7 +311,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                       borderRadius: BorderRadius.circular(5)),
                                   child: TextFormField(
                                     controller: dateSterializ,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.only(
                                           left: 10, right: 10, bottom: 5),
                                       border: InputBorder.none,
@@ -351,7 +349,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(snackBar);
                                       },
-                                      child: Icon(
+                                      child:const  Icon(
                                         Icons.calendar_today_outlined,
                                         color: Colors.black87,
                                         size: 24,
@@ -371,7 +369,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                   alignment: Alignment.centerLeft,
                                   padding: const EdgeInsets.only(right: 8),
                                   child: Text(
-                                    "Reason of sterlization",
+                                    "Reason of sterilization",
                                     style: GoogleFonts.poppins(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
@@ -386,7 +384,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                       borderRadius: BorderRadius.circular(5)),
                                   child: TextFormField(
                                     controller: reasonSterializ,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       contentPadding:
                                           EdgeInsets.only(left: 10, right: 10),
                                       border: InputBorder.none,
@@ -406,14 +404,13 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                     ? Column(
                         children: [
                           radioContainer(
-                            name: "If temporary sterlization, \n\nMethod used",
+                            name: "If temporary sterilization, \n\nMethod used",
                             num: 4,
                             item: temSterList,
                             height: 240,
                             a: (a++) % 4,
                             press: (val) => setState(() {
                               tempster = int.parse(val.toString());
-                              print("$tempster");
                             }),
                             selectedButton: tempster,
                           ),
@@ -445,7 +442,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                   BorderRadius.circular(5)),
                                           child: TextFormField(
                                             controller: condom,
-                                            decoration: InputDecoration(
+                                            decoration: const InputDecoration(
                                               contentPadding: EdgeInsets.only(
                                                   left: 10, right: 10),
                                               border: InputBorder.none,
@@ -496,7 +493,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                     child: TextFormField(
                                                       controller: ocp,
                                                       decoration:
-                                                          InputDecoration(
+                                                      const InputDecoration(
                                                         contentPadding:
                                                             EdgeInsets.only(
                                                                 left: 10,
@@ -552,7 +549,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                     child: TextFormField(
                                                       controller: dateSupply,
                                                       decoration:
-                                                          InputDecoration(
+                                                      const InputDecoration(
                                                         contentPadding:
                                                             EdgeInsets.only(
                                                                 left: 10,
@@ -611,7 +608,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                               .showSnackBar(
                                                                   snackBar);
                                                         },
-                                                        child: Icon(
+                                                        child: const Icon(
                                                           Icons
                                                               .calendar_today_outlined,
                                                           color: Colors.black87,
@@ -629,7 +626,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                       ? Column(
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.symmetric(
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 24),
                                               child: incDec(
                                                 color: colors[(a++) % 4],
@@ -652,9 +649,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                             ),
                                             Container(
                                               height: 69,
-                                              margin: EdgeInsets.symmetric(
+                                              margin: const EdgeInsets.symmetric(
                                                   vertical: 8, horizontal: 24),
-                                              padding: EdgeInsets.symmetric(
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 16),
                                               decoration: BoxDecoration(
                                                   borderRadius:
@@ -666,14 +663,14 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                           Colors.grey.shade300,
                                                       blurRadius: 5,
                                                       spreadRadius: 1,
-                                                      offset: Offset(1, 2),
+                                                      offset: const Offset(1, 2),
                                                     ),
                                                   ]),
                                               child: Row(
                                                 children: [
                                                   Expanded(
                                                       child: Container(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         top: 8,
                                                         bottom: 8,
                                                         right: 8),
@@ -701,7 +698,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                 flex: 2,
                                                                 child:
                                                                     Container(
-                                                                  padding: EdgeInsets
+                                                                  padding: const EdgeInsets
                                                                       .only(
                                                                           top:
                                                                               8,
@@ -726,7 +723,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                             Expanded(
                                                                 child:
                                                                     Container(
-                                                              padding: EdgeInsets
+                                                              padding: const EdgeInsets
                                                                   .symmetric(
                                                                       vertical:
                                                                           4),
@@ -747,7 +744,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                     spreadRadius:
                                                                         1,
                                                                     offset:
-                                                                        Offset(
+                                                                    const  Offset(
                                                                             1,
                                                                             2),
                                                                   ),
@@ -756,7 +753,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                               child: Transform
                                                                   .translate(
                                                                       offset:
-                                                                          Offset(
+                                                                      const Offset(
                                                                               0,
                                                                               0),
                                                                       child:
@@ -781,7 +778,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                 flex: 2,
                                                                 child:
                                                                     Container(
-                                                                  padding: EdgeInsets
+                                                                  padding: const EdgeInsets
                                                                       .symmetric(
                                                                           vertical:
                                                                               8),
@@ -805,7 +802,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                             Expanded(
                                                                 child:
                                                                     Container(
-                                                              padding: EdgeInsets
+                                                              padding: const EdgeInsets
                                                                   .symmetric(
                                                                       vertical:
                                                                           4),
@@ -826,7 +823,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                     spreadRadius:
                                                                         1,
                                                                     offset:
-                                                                        Offset(
+                                                                    const Offset(
                                                                             1,
                                                                             2),
                                                                   ),
@@ -835,7 +832,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                               child: Transform
                                                                   .translate(
                                                                       offset:
-                                                                          Offset(
+                                                                      const   Offset(
                                                                               0,
                                                                               -4),
                                                                       child:
@@ -871,7 +868,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                 flex: 2,
                                                                 child:
                                                                     Container(
-                                                                  padding: EdgeInsets
+                                                                  padding: const EdgeInsets
                                                                       .only(
                                                                           top:
                                                                               8,
@@ -896,7 +893,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                             Expanded(
                                                                 child:
                                                                     Container(
-                                                              padding: EdgeInsets
+                                                              padding: const EdgeInsets
                                                                   .symmetric(
                                                                       vertical:
                                                                           4),
@@ -917,7 +914,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                     spreadRadius:
                                                                         1,
                                                                     offset:
-                                                                        Offset(
+                                                                    const Offset(
                                                                             1,
                                                                             2),
                                                                   ),
@@ -926,7 +923,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                               child: Transform
                                                                   .translate(
                                                                       offset:
-                                                                          Offset(
+                                                                      const   Offset(
                                                                               0,
                                                                               0),
                                                                       child:
@@ -951,7 +948,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                 flex: 2,
                                                                 child:
                                                                     Container(
-                                                                  padding: EdgeInsets
+                                                                  padding: const EdgeInsets
                                                                       .symmetric(
                                                                           vertical:
                                                                               8),
@@ -975,7 +972,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                             Expanded(
                                                                 child:
                                                                     Container(
-                                                              padding: EdgeInsets
+                                                              padding: const EdgeInsets
                                                                   .symmetric(
                                                                       vertical:
                                                                           4),
@@ -996,7 +993,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                     spreadRadius:
                                                                         1,
                                                                     offset:
-                                                                        Offset(
+                                                                    const Offset(
                                                                             1,
                                                                             2),
                                                                   ),
@@ -1005,7 +1002,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                               child: Transform
                                                                   .translate(
                                                                       offset:
-                                                                          Offset(
+                                                                      const  Offset(
                                                                               0,
                                                                               -4),
                                                                       child:
@@ -1072,7 +1069,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                           controller:
                                                               dateInjection,
                                                           decoration:
-                                                              InputDecoration(
+                                                          const InputDecoration(
                                                             contentPadding:
                                                                 EdgeInsets.only(
                                                                     left: 10,
@@ -1136,7 +1133,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                   .showSnackBar(
                                                                       snackBar);
                                                             },
-                                                            child: Icon(
+                                                            child: const Icon(
                                                               Icons
                                                                   .calendar_today_outlined,
                                                               color: Colors
@@ -1157,7 +1154,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                               a: (a++) % 4,
                                               press: (val) => setState(() {
                                                 inj = int.parse(val.toString());
-                                                print("$inj");
                                               }),
                                               selectedButton: inj,
                                             ),
@@ -1199,7 +1195,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                           controller:
                                                               timeInjection,
                                                           decoration:
-                                                              InputDecoration(
+                                                          const  InputDecoration(
                                                             contentPadding:
                                                                 EdgeInsets.only(
                                                                     left: 10,
@@ -1218,16 +1214,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                     Expanded(
                                                       child: GestureDetector(
                                                         onTap: () async {
-                                                          TimeOfDay? newTime =
-                                                              await showTimePicker(
-                                                            context: context,
-                                                            initialTime:
-                                                                TimeOfDay.now(),
-                                                          ).then((value) {
-                                                            setState(() {
-                                                              time = value!;
-                                                            });
-                                                          });
+
                                                           setState(() {
                                                             String crtTime =
                                                                 time
@@ -1236,7 +1223,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                     .toString();
                                                             timeInjection.text =
                                                                 crtTime;
-                                                            print(crtTime);
                                                           });
 
                                                           final snackBar = SnackBar(
@@ -1250,7 +1236,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                         child: Container(
                                                             alignment: Alignment
                                                                 .centerRight,
-                                                            child: Icon(
+                                                            child: const Icon(
                                                               Icons
                                                                   .watch_later_outlined,
                                                               color: Colors
@@ -1310,7 +1296,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                               controller:
                                                                   dateInsertion,
                                                               decoration:
-                                                                  InputDecoration(
+                                                              const InputDecoration(
                                                                 contentPadding:
                                                                     EdgeInsets.only(
                                                                         left:
@@ -1378,7 +1364,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                           .showSnackBar(
                                                                               snackBar);
                                                                     },
-                                                                    child: Icon(
+                                                                    child: const Icon(
                                                                       Icons
                                                                           .calendar_today_outlined,
                                                                       color: Colors
@@ -1400,7 +1386,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                   press: (val) => setState(() {
                                                     poi = int.parse(
                                                         val.toString());
-                                                    print("$poi");
                                                   }),
                                                   selectedButton: poi,
                                                 ),
@@ -1439,9 +1424,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                             5)),
                                                             child:
                                                                 TextFormField(
-                                                              controller: ICUD,
+                                                              controller: icud,
                                                               decoration:
-                                                                  InputDecoration(
+                                                              const InputDecoration(
                                                                 contentPadding:
                                                                     EdgeInsets.only(
                                                                         left:
@@ -1467,7 +1452,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                     color: colors[(a++) % 4]),
                                               ],
                                             )
-                                          : SizedBox(),
+                                          : const SizedBox(),
                         ],
                       )
                     : method == 3
@@ -1482,7 +1467,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                 a: (a++) % 4,
                                 press: (val) => setState(() {
                                   test = int.parse(val.toString());
-                                  print("$test");
                                 }),
                                 selectedButton: test,
                               ),
@@ -1494,7 +1478,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                 a: (a++) % 4,
                                 press: (val) => setState(() {
                                   result = int.parse(val.toString());
-                                  print("$result");
                                 }),
                                 selectedButton: result,
                               ),
@@ -1533,7 +1516,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                       BorderRadius.circular(5)),
                                               child: TextFormField(
                                                 controller: dateDiscontinue,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   contentPadding:
                                                       EdgeInsets.only(
                                                           left: 10,
@@ -1583,7 +1566,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                             context)
                                                         .showSnackBar(snackBar);
                                                   },
-                                                  child: Icon(
+                                                  child: const Icon(
                                                     Icons
                                                         .calendar_today_outlined,
                                                     color: Colors.black87,
@@ -1625,7 +1608,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                       BorderRadius.circular(5)),
                                               child: TextFormField(
                                                 controller: dateAbortion,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   contentPadding:
                                                       EdgeInsets.only(
                                                           left: 10,
@@ -1675,7 +1658,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                             context)
                                                         .showSnackBar(snackBar);
                                                   },
-                                                  child: Icon(
+                                                  child: const Icon(
                                                     Icons
                                                         .calendar_today_outlined,
                                                     color: Colors.black87,
@@ -1695,7 +1678,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                     a: (a++) % 4,
                                     press: (val) => setState(() {
                                       reason = int.parse(val.toString());
-                                      print("$reason");
                                     }),
                                     selectedButton: reason,
                                   ),
@@ -1709,14 +1691,13 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                           a: (a++) % 4,
                                           press: (val) => setState(() {
                                             newmode = int.parse(val.toString());
-                                            print("$newmode");
                                           }),
                                           selectedButton: newmode,
                                         )
-                                      : SizedBox(),
+                                      : const SizedBox(),
                                 ],
                               )
-                            : SizedBox(),
+                            : const SizedBox(),
             const SizedBox(
               height: 32,
             ),
@@ -1811,7 +1792,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                       Map<String, dynamic> temp = {
                         "Date" : dateInsertion.text,
                         "Place" : placeList[poi-1],
-                        "ICUD" : ICUD.text,
+                        "ICUD" : icud.text,
                       };
 
                       await FirebaseFirestore.instance

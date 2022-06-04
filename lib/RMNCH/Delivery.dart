@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_holo_date_picker/date_picker.dart';
@@ -22,10 +24,10 @@ class Delivery extends StatefulWidget {
   const Delivery({Key? key}) : super(key: key);
 
   @override
-  _DeliveryState createState() => _DeliveryState();
+  DeliveryState createState() => DeliveryState();
 }
 
-class _DeliveryState extends State<Delivery> {
+class DeliveryState extends State<Delivery> {
   int a = 0;
   int outcome = 0;
   int conducted = 0;
@@ -39,16 +41,15 @@ class _DeliveryState extends State<Delivery> {
   int feed = 0;
   int jsy = 0;
 
-  TextEditingController dob = new TextEditingController();
-  TextEditingController date_delivery = new TextEditingController();
-  TextEditingController discharge = new TextEditingController();
-  TextEditingController time_delivery = new TextEditingController();
-  TextEditingController time_discharge = new TextEditingController();
-  TextEditingController date_JSY = new TextEditingController();
-  TextEditingController cheque = new TextEditingController();
+  TextEditingController dob = TextEditingController();
+  TextEditingController dateDelivery = TextEditingController();
+  TextEditingController discharge = TextEditingController();
+  TextEditingController timeDelivery = TextEditingController();
+  TextEditingController timeDischarge = TextEditingController();
+  TextEditingController dateJSY = TextEditingController();
+  TextEditingController cheque = TextEditingController();
 
-  TimeOfDay time = TimeOfDay(hour: 10, minute: 45);
-  TimeOfDay Distime = TimeOfDay(hour: 10, minute: 45);
+  TimeOfDay time = const TimeOfDay(hour: 10, minute: 45);
 
   List<String> outcomeList = const ["Livebirth", "Stillbirth"];
 
@@ -56,7 +57,7 @@ class _DeliveryState extends State<Delivery> {
 
   List<String> conduc = const ["Doctor", "Nurse", "Dhai"];
 
-  List<String> typeList = const ["Normal", "Ceasarean section", "Assisted"];
+  List<String> typeList = const ["Normal", "Cesarean section", "Assisted"];
 
   List<String> sintwi = const ["Singleton", "Twins"];
 
@@ -118,9 +119,9 @@ class _DeliveryState extends State<Delivery> {
               height: 16,
             ),
             topic("Delivery", "Select member"),
-            PregSearch(),
+            const PregSearch(),
             context.watch<PregDocID>().doc == ""
-                ? SizedBox()
+                ? const SizedBox()
                 : Cont(
                     child: Column(
                       children: [
@@ -204,7 +205,7 @@ class _DeliveryState extends State<Delivery> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: dob,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -226,7 +227,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 outcome = int.parse(val.toString());
-                print("$outcome");
               }),
               selectedButton: outcome,
             ),
@@ -256,14 +256,14 @@ class _DeliveryState extends State<Delivery> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          controller: date_delivery,
+                          controller: dateDelivery,
                           onChanged: (val) {
                             dosedates[0] = val;
                             dosedates[1] = val;
                             dosedates[2] = val;
                             dosedates[3] = val;
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -293,14 +293,14 @@ class _DeliveryState extends State<Delivery> {
                               final String formatted =
                                   formatter.format(datePicked!);
                               setState(() {
-                                date_delivery.text = formatted;
+                                dateDelivery.text = formatted;
                               });
                               final snackBar = SnackBar(
                                   content: Text("Date Picked $formatted"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.black87,
                               size: 24,
@@ -336,8 +336,8 @@ class _DeliveryState extends State<Delivery> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          controller: time_delivery,
-                          decoration: InputDecoration(
+                          controller: timeDelivery,
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 7),
                             border: InputBorder.none,
@@ -350,28 +350,19 @@ class _DeliveryState extends State<Delivery> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () async {
-                          TimeOfDay? newTime = await showTimePicker(
-                            context: context,
-                            initialTime: TimeOfDay.now(),
-                          ).then((value) {
-                            setState(() {
-                              time = value!;
-                            });
-                          });
                           setState(() {
                             String crtTime = time.format(context).toString();
-                            time_delivery.text = crtTime;
-                            print(crtTime);
+                            timeDelivery.text = crtTime;
                           });
 
                           final snackBar = SnackBar(
                               content:
-                                  Text("Time Picked ${time_delivery.text}"));
+                                  Text("Time Picked ${timeDelivery.text}"));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                         child: Container(
                             alignment: Alignment.centerRight,
-                            child: Icon(
+                            child: const Icon(
                               Icons.watch_later_outlined,
                               color: Colors.black87,
                               size: 30,
@@ -390,7 +381,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 conducted = int.parse(val.toString());
-                print("$conducted");
               }),
               selectedButton: conducted,
             ),
@@ -402,7 +392,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 type = int.parse(val.toString());
-                print("$type");
               }),
               selectedButton: type,
             ),
@@ -421,7 +410,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 injection = int.parse(val.toString());
-                print("$injection");
               }),
               selectedButton: injection,
             ),
@@ -452,7 +440,7 @@ class _DeliveryState extends State<Delivery> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: discharge,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -489,7 +477,7 @@ class _DeliveryState extends State<Delivery> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.black87,
                               size: 24,
@@ -525,8 +513,8 @@ class _DeliveryState extends State<Delivery> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          controller: time_discharge,
-                          decoration: InputDecoration(
+                          controller: timeDischarge,
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 7),
                             border: InputBorder.none,
@@ -539,28 +527,19 @@ class _DeliveryState extends State<Delivery> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () async {
-                          TimeOfDay? newTime = await showTimePicker(
-                            context: context,
-                            initialTime: TimeOfDay.now(),
-                          ).then((value) {
-                            setState(() {
-                              Distime = value!;
-                            });
-                          });
                           setState(() {
                             String crtTime = time.format(context).toString();
-                            time_discharge.text = crtTime;
-                            print(crtTime);
+                            timeDischarge.text = crtTime;
                           });
 
                           final snackBar = SnackBar(
                               content:
-                                  Text("Time Picked ${time_discharge.text}"));
+                                  Text("Time Picked ${timeDischarge.text}"));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                         child: Container(
                             alignment: Alignment.centerRight,
-                            child: Icon(
+                            child: const Icon(
                               Icons.watch_later_outlined,
                               color: Colors.black87,
                               size: 30,
@@ -579,7 +558,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 preg = int.parse(val.toString());
-                print("$preg");
               }),
               selectedButton: preg,
             ),
@@ -591,7 +569,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 sex = int.parse(val.toString());
-                print("$sex");
               }),
               selectedButton: sex,
             ),
@@ -603,7 +580,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 cried = int.parse(val.toString());
-                print("$cried");
               }),
               selectedButton: cried,
             ),
@@ -615,7 +591,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 management = int.parse(val.toString());
-                print("$management");
               }),
               selectedButton: management,
             ),
@@ -627,12 +602,11 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 defect = int.parse(val.toString());
-                print("$defect");
               }),
               selectedButton: defect,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Birth weight (gm)",
@@ -656,7 +630,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 feed = int.parse(val.toString());
-                print("$feed");
               }),
               selectedButton: feed,
             ),
@@ -677,7 +650,6 @@ class _DeliveryState extends State<Delivery> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 jsy = int.parse(val.toString());
-                print("$jsy");
               }),
               selectedButton: jsy,
             ),
@@ -707,8 +679,8 @@ class _DeliveryState extends State<Delivery> {
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          controller: date_JSY,
-                          decoration: InputDecoration(
+                          controller: dateJSY,
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -738,14 +710,14 @@ class _DeliveryState extends State<Delivery> {
                               final String formatted =
                                   formatter.format(datePicked!);
                               setState(() {
-                                date_JSY.text = formatted;
+                                dateJSY.text = formatted;
                               });
                               final snackBar = SnackBar(
                                   content: Text("Date Picked $formatted"));
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.black87,
                               size: 24,
@@ -782,7 +754,7 @@ class _DeliveryState extends State<Delivery> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: cheque,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 7),
                             border: InputBorder.none,
@@ -801,9 +773,6 @@ class _DeliveryState extends State<Delivery> {
             ),
             GestureDetector(
                 onTap: () async {
-
-
-
                   List<String> m = [];
 
                   for (int i = 0; i < comp.length; i++) {
@@ -821,14 +790,14 @@ class _DeliveryState extends State<Delivery> {
                   Map<String, dynamic> data = {
                     "Visit": dob.text,
                     "Outcome": outcomeList[outcome - 1],
-                    "Delivery": date_delivery.text,
-                    "Time": time_delivery.text,
+                    "Delivery": dateDelivery.text,
+                    "Time": timeDelivery.text,
                     "Conducted": conduc[conducted - 1],
                     "Type": typeList[type - 1],
                     "Complications": m,
                     "Cortico": yesno[injection - 1],
                     "Dis Date": discharge.text,
-                    "Dis Time": time_discharge.text,
+                    "Dis Time": timeDischarge.text,
                     "SingleTwi": sintwi[preg - 1],
                     "Sex": gender[sex - 1],
                     "Baby cried": yesno[cried - 1],
@@ -838,7 +807,7 @@ class _DeliveryState extends State<Delivery> {
                         Provider.of<PregDocID>(context, listen: false).bweight,
                     "BreastFeed": yesno[feed - 1],
                     "JSY received": yesno[jsy - 1],
-                    "JSY Date": date_JSY.text,
+                    "JSY Date": dateJSY.text,
                     "JSY Cheque": cheque.text,
                     "OPV": [yesno[doseint[0] - 1], dosedates[0]],
                     "BCG": [yesno[doseint[1] - 1], dosedates[1]],
@@ -857,6 +826,68 @@ class _DeliveryState extends State<Delivery> {
 
                   Map<String, dynamic>? pregData = ds.data();
 
+                  QuerySnapshot anc = await FirebaseFirestore.instance
+                      .collection("Details")
+                      .doc(Provider.of<Details>(context, listen: false).phone)
+                      .collection("Pregnant")
+                      .doc(Provider.of<PregDocID>(context, listen: false).doc)
+                      .collection("ANC")
+                      .get();
+
+                  anc.docs.forEach((element) async {
+                    Map<String, dynamic> qs = {
+                      "Visit": element["Visit"],
+                      "Weight": element["Weight"],
+                      "Sys": element["Sys"],
+                      "Dia": element["Dia"],
+                      "Haemoglobin": element["Haemoglobin"],
+                      "Urine test": element["Urine test"],
+                      "Blood test": element["Blood test"],
+                      "Folic": element["Folic"],
+                      "Iron": element["Iron"],
+                      "Risk": element["Risk"],
+                      "Antenatal risk": element["Antenatal risk"],
+                      "Need": element["Need"],
+                      "Type": element["Type"],
+                    };
+                    await FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(Provider.of<Details>(context, listen: false).phone)
+                        .collection("Post Pregnancy")
+                        .doc(Provider.of<PregDocID>(context, listen: false).doc)
+                        .collection("ANC")
+                        .doc(element.id)
+                        .set(qs);
+                  });
+
+                  QuerySnapshot det = await FirebaseFirestore.instance
+                      .collection("Details")
+                      .doc(Provider.of<Details>(context, listen: false).phone)
+                      .collection("Pregnant")
+                      .doc(Provider.of<PregDocID>(context, listen: false).doc)
+                      .collection("Details")
+                      .get();
+
+                  det.docs.forEach((element) async {
+                    Map<String, dynamic> qs = {
+                      "JSY": element["JSY"],
+                      "History": element["History"],
+                      "Blood": element["Blood"],
+                      "Complications G": element["Complications G"],
+                      "Outcome G": element["Outcome G"],
+                      "Facility": element["Facility"],
+                      "VDLR": element["VDLR"],
+                      "HIV": element["HIV"],
+                    };
+                    await FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(Provider.of<Details>(context, listen: false).phone)
+                        .collection("Post Pregnancy")
+                        .doc(Provider.of<PregDocID>(context, listen: false).doc)
+                        .collection("Details")
+                        .doc(element.id)
+                        .set(qs);
+                  });
 
                   await FirebaseFirestore.instance
                       .collection("Details")
@@ -876,35 +907,36 @@ class _DeliveryState extends State<Delivery> {
                           .collection("Details")
                           .doc(Provider.of<Details>(context, listen: false)
                               .phone)
-                          .collection("Post Pregnancy")
+                          .collection("Pregnant")
                           .doc(Provider.of<PregDocID>(context, listen: false)
                               .doc)
-                          .collection("Delivery")
-                          .doc(date_delivery.text)
-                          .set(data)
-                          .whenComplete(() async {
-                        if (outcome == 1) {
-                          await FirebaseFirestore.instance
-                              .collection("Details")
-                              .doc(Provider.of<Details>(context, listen: false)
-                                  .phone)
-                              .collection("Post Pregnancy")
-                              .doc(
-                                  Provider.of<PregDocID>(context, listen: false)
-                                      .doc)
-                              .collection("Child Care")
-                              .doc(date_delivery.text)
-                              .set(data)
-                              .whenComplete(() {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PostnatalCare()));
-                          });
-                        } else {
-                          Navigator.pop(context);
+                          .collection("ANC")
+                          .get()
+                          .then((snapshot) {
+                        for (DocumentSnapshot ds in snapshot.docs) {
+                          ds.reference.delete();
                         }
+                      }).whenComplete(() async{
+                        await FirebaseFirestore.instance
+                            .collection("Details")
+                            .doc(Provider.of<Details>(context, listen: false)
+                            .phone)
+                            .collection("Pregnant")
+                            .doc(Provider.of<PregDocID>(context, listen: false)
+                            .doc)
+                            .collection("Details")
+                            .get()
+                            .then((snapshot) {
+                          for (DocumentSnapshot ds in snapshot.docs) {
+                            ds.reference.delete();
+                          }
+                        });
                       });
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => PostnatalCare(
+                                dob: dateDelivery.text,
+                                gender: gender[sex - 1],
+                              )));
                     });
                   });
                 },

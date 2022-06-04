@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class privateSchoolsDetailsDataList
 {
@@ -12,7 +11,7 @@ List<privateSchoolsDetailsDataList> pvtDetailsList()
   // ignore: deprecated_member_use
   List<privateSchoolsDetailsDataList> pvs = <privateSchoolsDetailsDataList>[];
 
-  privateSchoolsDetailsDataList  pw = new privateSchoolsDetailsDataList(name: "Pvt School1 - Name");
+  privateSchoolsDetailsDataList  pw =  privateSchoolsDetailsDataList(name: "Pvt School1 - Name");
   pvs.add(pw);
 
   return pvs;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Other%20pages/NIPI/NIPIpro.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
 import 'package:provider/provider.dart';
 
 class SearchMultiple extends StatefulWidget {
@@ -16,12 +17,11 @@ class SearchMultiple extends StatefulWidget {
 }
 
 class _SearchMultipleState extends State<SearchMultiple> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   Future? resultsloaded;
   List _allResults = [];
   List _resultsList = [];
 
-  List _selected = [];
 
   @override
   void initState() {
@@ -46,12 +46,14 @@ class _SearchMultipleState extends State<SearchMultiple> {
   }
 
   getData() async {
-    var unsold = await FirebaseFirestore.instance.collection("Children").get();
+    var unsold = await FirebaseFirestore.instance
+        .collection("Village Children")
+        .doc(Provider.of<Details>(context, listen: false).phone)
+        .collection("Children").get();
 
     setState(() {
       _allResults = unsold.docs;
     });
-    print(_allResults);
     return "Completed";
   }
 
@@ -65,17 +67,17 @@ class _SearchMultipleState extends State<SearchMultiple> {
     var showResults = [];
     if (_searchController.text != "") {
       for (var i in _allResults) {
-        String sname = i["name"].toString().toLowerCase();
-        String pname = i["age"].toString().toLowerCase();
+        String sName = i["Name"].toString().toLowerCase();
+        String pName = i["Village"].toString().toLowerCase();
 
-        if (sname.contains(_searchController.text.toLowerCase())) {
+        if (sName.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
-        } else if (pname.contains(_searchController.text.toLowerCase())) {
+        } else if (pName.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
         }
         if (Provider.of<nipipro>(context, listen: false)
             .selected
-            .contains(sname + ", " + pname + " years")) {
+            .contains(sName + ", " + pName)) {
           showResults.remove(i);
         }
       }
@@ -92,7 +94,7 @@ class _SearchMultipleState extends State<SearchMultiple> {
   Widget build(BuildContext context) {
     return ExpansionCard(
       backgroundColor: Colors.white,
-      trailing: Icon(
+      trailing: const Icon(
         Icons.search,
         color: Colors.black,
       ),
@@ -109,7 +111,7 @@ class _SearchMultipleState extends State<SearchMultiple> {
           onTap: () {},
           decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
               hintText: "Search",
               errorMaxLines: 1,
               hintStyle: GoogleFonts.poppins(fontSize: 16, color: black),
@@ -119,7 +121,7 @@ class _SearchMultipleState extends State<SearchMultiple> {
       ),
       children: [
         _searchController.text == ""
-            ? SizedBox()
+            ? const SizedBox()
             : Container(
                 height: 250,
                 decoration: BoxDecoration(
@@ -127,8 +129,8 @@ class _SearchMultipleState extends State<SearchMultiple> {
                   color: purple,
                   border: Border.all(width: 0.5, color: white),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16),
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: ListView.builder(
                     itemCount: _resultsList.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -136,21 +138,17 @@ class _SearchMultipleState extends State<SearchMultiple> {
                         onChanged: (val) {
                           setState(
                             () {
-                              print("Hi");
                               _isChecked[index] = val!;
                               val
                                   ? Provider.of<nipipro>(context, listen: false)
-                                      .putselect(_resultsList[index]["name"] +
+                                      .putselect(_resultsList[index]["Name"] +
                                           " ," +
-                                          _resultsList[index]["age"] +
-                                          " years")
+                                          _resultsList[index]["Village"] )
                                   : Provider.of<nipipro>(context, listen: false)
-                                      .removedata(_resultsList[index]["name"] +
+                                      .removedata(_resultsList[index]["Name"] +
                                           " ," +
-                                          _resultsList[index]["age"] +
-                                          " years");
-                              print(Provider.of<nipipro>(context, listen: false)
-                                  .selected);
+                                          _resultsList[index]["Village"] );
+
                               setState(() {});
                             },
                           );
@@ -158,23 +156,22 @@ class _SearchMultipleState extends State<SearchMultiple> {
                         activeColor: white,
                         checkColor: hTxt,
                         value: _isChecked[index],
-                        checkboxShape: CircleBorder(),
+                        checkboxShape: const CircleBorder(),
                         title: Container(
                           alignment: _resultsList == []
                               ? Alignment.center
                               : Alignment.centerLeft,
-                          margin: EdgeInsets.symmetric(horizontal: 16),
+                          margin: const EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
                             _resultsList == []
                                 ? "No result"
-                                : _resultsList[index]["name"] +
+                                : _resultsList[index]["Name"] +
                                     ", " +
-                                    _resultsList[index]["age"] +
-                                    " years",
+                                    _resultsList[index]["Village"] ,
                             textAlign: _resultsList == []
                                 ? TextAlign.center
                                 : TextAlign.left,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: "Grold Regular",
                               fontWeight: FontWeight.w400,
                               fontSize: 16,

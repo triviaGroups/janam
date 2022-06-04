@@ -25,6 +25,9 @@ class _CheckBoxContState extends State<CheckBoxCont> {
 
  @override
   Widget build(BuildContext context) {
+   print(widget.name);
+   print(widget.item.length);
+   print(widget.item);
     return Cont(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +52,7 @@ class _CheckBoxContState extends State<CheckBoxCont> {
                   itemCount: widget.item.length,
                     itemBuilder: ((context, index) {
                   return Container(
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: white,
@@ -69,7 +72,7 @@ class _CheckBoxContState extends State<CheckBoxCont> {
                         Container(
                           width:150,
                           alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 16),
                           child: Text(widget.item[index],
                               textAlign: TextAlign.start,

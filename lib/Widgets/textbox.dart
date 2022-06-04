@@ -12,7 +12,7 @@ Padding textfield(String txt) {
       child: TextFormField(
         onChanged: (val) {},
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 10, right: 10),
+          contentPadding: const EdgeInsets.only(left: 10, right: 10),
           hintText: txt,
           errorMaxLines: 1,
           hintStyle: GoogleFonts.inter(fontSize: 14, color: white),

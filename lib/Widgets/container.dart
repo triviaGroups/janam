@@ -26,7 +26,7 @@ class _ContState extends State<Cont> {
               color: Colors.grey.shade300,
               blurRadius: 5,
               spreadRadius: 1,
-              offset: Offset(1, 2),
+              offset: const Offset(1, 2),
             ),
           ],
         ),

@@ -5,7 +5,7 @@ import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:janam/Home/home_sub.dart';
+import 'package:janam/Login/villageWidget.dart';
 import 'package:janam/Village%20Survey/page3.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
@@ -89,9 +89,9 @@ class _vPage2State extends State<vPage2> {
   List<String> head = ["", "", "", "", "", "", "", "", ""];
   List<String> spouse = ["", "", "", "", "", "", "", "", ""];
 
-  TextEditingController headdob = new TextEditingController();
-  TextEditingController spousedob = new TextEditingController();
-  TextEditingController marriagedate = new TextEditingController();
+  TextEditingController headdob =  TextEditingController();
+  TextEditingController spousedob = TextEditingController();
+  TextEditingController marriagedate = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +140,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Name",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -182,7 +182,7 @@ class _vPage2State extends State<vPage2> {
                                         child: TextFormField(
                                           controller: headdob,
                                           decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.only(
+                                            contentPadding: const EdgeInsets.only(
                                                 left: 10, right: 10),
                                             hintText: "YYYY-MM-DD",
                                             errorMaxLines: 1,
@@ -225,7 +225,7 @@ class _vPage2State extends State<vPage2> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(snackBar);
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.calendar_today_outlined,
                                           color: Colors.black87,
                                           size: 25,
@@ -243,7 +243,7 @@ class _vPage2State extends State<vPage2> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Aadhar Number",
+                                  "Aadhaar Number",
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
@@ -265,8 +265,8 @@ class _vPage2State extends State<vPage2> {
                                     ],
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
-                                      hintText: "Aadhar Number",
+                                      const EdgeInsets.only(left: 10, right: 10),
+                                      hintText: "Aadhaar Number",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.poppins(
                                           fontSize: 14, color: txt),
@@ -308,7 +308,7 @@ class _vPage2State extends State<vPage2> {
                                     ],
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Phone Number",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.poppins(
@@ -347,7 +347,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Gender",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -386,7 +386,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Education",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -425,7 +425,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Occupation",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -465,7 +465,7 @@ class _vPage2State extends State<vPage2> {
                                     keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Family Income per annum",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -504,7 +504,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Yes/No",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -522,11 +522,11 @@ class _vPage2State extends State<vPage2> {
                       height: 92 * 10,
                       color: c1)
                   : Container(),
-              SizedBox(
+                  const SizedBox(
                 height: 20,
               ),
               SwitchMethod("Details of Spouse"),
-              SizedBox(
+                  const SizedBox(
                 height: 20,
               ),
               isSwitched
@@ -562,7 +562,7 @@ class _vPage2State extends State<vPage2> {
                                         child: TextFormField(
                                           controller: marriagedate,
                                           decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.only(
+                                            contentPadding: const EdgeInsets.only(
                                                 left: 10, right: 10),
                                             hintText: "YYYY-MM-DD",
                                             errorMaxLines: 1,
@@ -605,7 +605,7 @@ class _vPage2State extends State<vPage2> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(snackBar);
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.calendar_today_outlined,
                                           color: Colors.black87,
                                           size: 25,
@@ -641,7 +641,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Name",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -683,7 +683,7 @@ class _vPage2State extends State<vPage2> {
                                         child: TextFormField(
                                           controller: spousedob,
                                           decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.only(
+                                            contentPadding: const EdgeInsets.only(
                                                 left: 10, right: 10),
                                             hintText: "YYYY-MM-DD",
                                             errorMaxLines: 1,
@@ -726,7 +726,7 @@ class _vPage2State extends State<vPage2> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(snackBar);
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.calendar_today_outlined,
                                           color: Colors.black87,
                                           size: 25,
@@ -744,7 +744,7 @@ class _vPage2State extends State<vPage2> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Aadhar Number",
+                                  "Aadhaar Number",
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600,
@@ -766,8 +766,8 @@ class _vPage2State extends State<vPage2> {
                                     ],
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
-                                      hintText: "Aadhar Number",
+                                      const EdgeInsets.only(left: 10, right: 10),
+                                      hintText: "Aadhaar Number",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.poppins(
                                           fontSize: 14, color: txt),
@@ -809,7 +809,7 @@ class _vPage2State extends State<vPage2> {
                                     ],
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Phone Number",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.poppins(
@@ -848,7 +848,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Gender",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -887,7 +887,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Education",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -926,7 +926,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Occupation",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -965,7 +965,7 @@ class _vPage2State extends State<vPage2> {
                                     },
                                     decoration: InputDecoration(
                                       contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                      const EdgeInsets.only(left: 10, right: 10),
                                       hintText: "Yes/No",
                                       errorMaxLines: 1,
                                       hintStyle: GoogleFonts.inter(
@@ -983,7 +983,7 @@ class _vPage2State extends State<vPage2> {
                       height: 92 * 10,
                       color: c2)
                   : Container(),
-              SizedBox(
+                  const SizedBox(
                 height: 24,
               ),
               GestureDetector(
@@ -991,15 +991,12 @@ class _vPage2State extends State<vPage2> {
                     setState(() {
                       head[1] = headdob.text;
                     });
-                    print(head);
                     setState(() {
                       spouse[0] = marriagedate.text;
                       spouse[2] = spousedob.text;
                     });
-                    print("Spouse");
-                    print(spouse);
 
-                    DocumentReference doc_ref = await FirebaseFirestore.instance
+                    DocumentReference docRef = FirebaseFirestore.instance
                         .collection("Village Details")
                         .doc(widget.VillageName)
                         .collection("Family")
@@ -1007,7 +1004,7 @@ class _vPage2State extends State<vPage2> {
                         .collection("Household")
                         .doc();
 
-                    DocumentSnapshot docSnap = await doc_ref.get();
+                    DocumentSnapshot docSnap = await docRef.get();
                     var doc = docSnap.reference.id;
 
                     Map<String, dynamic> data = {
@@ -1017,6 +1014,38 @@ class _vPage2State extends State<vPage2> {
                       "spouse": spouse,
                       "docId": doc,
                     };
+
+                    Map<String,dynamic> m1 = {
+                      "Name" : head[0],
+                      "DOB" : head[1],
+                      "Village" : widget.VillageName,
+                      "Gender" : "Male",
+                      "docId" : doc,
+                      "Address" : widget.Address,
+                    };
+
+                    Map<String,dynamic> m2 = {
+                      "Name" : spouse[1],
+                      "DOB" : spouse[2],
+                      "Village" : widget.VillageName,
+                      "Gender" : "Female",
+                      "docId" : doc,
+                      "Address" : widget.Address,
+                    };
+
+                    await FirebaseFirestore.instance
+                        .collection("Village Members")
+                        .doc(Provider.of<Details>(context, listen: false).phone)
+                        .collection("Members")
+                        .doc()
+                        .set(m1).whenComplete(() async{
+                      await FirebaseFirestore.instance
+                          .collection("Village Members")
+                          .doc(Provider.of<Details>(context, listen: false).phone)
+                          .collection("Members")
+                          .doc()
+                          .set(m2);
+                    });
 
                     await FirebaseFirestore.instance
                         .collection("Village Details")
@@ -1040,20 +1069,9 @@ class _vPage2State extends State<vPage2> {
                                   )));
                     });
 
-                    // Navigator.pushReplacement(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => vPage3(
-                    //           docId: widget.docId,
-                    //           VillageName: widget.VillageName,
-                    //           head: head,
-                    //           spouse: spouse,
-                    //           Address: widget.Address,
-                    //           familyId: doc,
-                    //         )));
                   },
                   child: Button("Save")),
-              SizedBox(
+                  const SizedBox(
                 height: 24,
               ),
             ]))));

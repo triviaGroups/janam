@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:janam/Login/villageWidget.dart';
 
 class VillageProvider with ChangeNotifier {
   int _G = 0;
@@ -31,131 +29,130 @@ class VillageProvider with ChangeNotifier {
   int get dia => _dia;
 
   void incG(){
-    this._G++;
-    print(this._G);
+    _G++;
   }
 
   void decG(){
-    this._G--;
-    if(this._G < 0){
-      this._G = 0;
+    _G--;
+    if(_G < 0){
+      _G = 0;
     }
   }
 
   void incP(){
-    this._P++;
+    _P++;
 
   }
 
   void decP(){
-    this._P--;
-    if(this._P < 0){
-      this._P = 0;
+    _P--;
+    if(_P < 0){
+      _P = 0;
     }
   }
 
   void incL1(){
-    this._L1++;
+    _L1++;
 
   }
 
   void decL1(){
-    this._L1--;
-    if(this._L1 < 0){
-      this._L1 = 0;
+    _L1--;
+    if(_L1 < 0){
+      _L1 = 0;
     }
   }
 
   void incL2(){
-    this._L2++;
+    _L2++;
 
   }
 
   void decL2(){
-    this._L2--;
-    if(this._L2 < 0){
-      this._L2 = 0;
+    _L2--;
+    if(_L2 < 0){
+      _L2 = 0;
     }
   }
 
   void incL3(){
-    this._L3++;
+    _L3++;
 
   }
 
   void decL3(){
-    this._L3--;
-    if(this._L3 < 0){
-      this._L3 = 0;
+    _L3--;
+    if(_L3 < 0){
+      _L3 = 0;
     }
   }
 
   void incA1(){
-    this._A1++;
+    _A1++;
 
   }
 
   void decA1(){
-    this._A1--;
-    if(this._A1 < 0){
-      this._A1 = 0;
+    _A1--;
+    if(_A1 < 0){
+      _A1 = 0;
     }
   }
 
   void incA2(){
-    this._A2++;
+    _A2++;
 
   }
 
   void decA2(){
-    this._A2--;
-    if(this._A2 < 0){
-      this._A2 = 0;
+    _A2--;
+    if(_A2 < 0){
+      _A2 = 0;
     }
   }
 
   void incA3(){
-    this._A3++;
+    _A3++;
 
   }
 
   void decA3(){
-    this._A3--;
-    if(this._A3 < 0){
-      this._A3 = 0;
+    _A3--;
+    if(_A3 < 0){
+      _A3 = 0;
     }
   }
 
   void incWeight(){
-    this._weight++;
+    _weight++;
   }
 
   void decWeight(){
-    this._weight--;
-    if(this._weight < 0){
-      this._weight = 0;
+    _weight--;
+    if(_weight < 0){
+      _weight = 0;
     }
   }
 
   void incSys(){
-    this._sys++;
+    _sys++;
   }
 
   void decSys(){
-    this._sys--;
-    if(this._sys < 0){
-      this._sys = 0;
+    _sys--;
+    if(_sys < 0){
+      _sys = 0;
     }
   }
 
   void incDis(){
-    this._dia++;
+    _dia++;
   }
 
   void decDis(){
-    this._dia--;
-    if(this._dia < 0){
-      this._dia = 0;
+    _dia--;
+    if(_dia < 0){
+      _dia = 0;
     }
   }
 

@@ -6,12 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Other%20pages/ORS/ORSpro.dart';
+import 'package:janam/Other%20pages/search_common.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/incDecContainer.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
@@ -28,7 +28,7 @@ class NPCDCS extends StatefulWidget {
 class _NPCDCSState extends State<NPCDCS> {
   int a = 0;
   int tobacco = 0;
-  int tob_smokeless = 0;
+  int tobSmokeless = 0;
   int alcohol = 0;
   int sedentary = 0;
   int history = 0;
@@ -43,7 +43,7 @@ class _NPCDCSState extends State<NPCDCS> {
     "Heart disease (CVD)",
     "Stroke",
     "Kidney disease (CKD)",
-    "COPID",
+    "COVID",
     "Pul. TB",
     "Cancer"
   ];
@@ -52,19 +52,19 @@ class _NPCDCSState extends State<NPCDCS> {
   List<String> cavity = const ["Normal","Abnormal"];
   List<String> historyList = const ["Diabetes","High BP","CVD","Stroke","COPD","CKD","RHD","Pul. TB","Cancer"];
   List<String> statusList = const ["Referred to FU","Lost to FU","Dead"];
-  List<bool> ncdbool = [false,false,false,false,false,false,false,false];
+  List<bool> ncdBool = [false,false,false,false,false,false,false,false];
 
-  TextEditingController name = new TextEditingController();
-  TextEditingController addr = new TextEditingController();
-  TextEditingController dob = new TextEditingController();
+  TextEditingController name =  TextEditingController();
+  TextEditingController addr =  TextEditingController();
+  TextEditingController dob =  TextEditingController();
 
-  TextEditingController fbs = new TextEditingController();
-  TextEditingController rbs = new TextEditingController();
-  TextEditingController other = new TextEditingController();
+  TextEditingController fbs =  TextEditingController();
+  TextEditingController rbs =  TextEditingController();
+  TextEditingController other =  TextEditingController();
 
-  TextEditingController start = new TextEditingController();
-  TextEditingController co = new TextEditingController();
-  TextEditingController remark = new TextEditingController();
+  TextEditingController start =  TextEditingController();
+  TextEditingController co =  TextEditingController();
+  TextEditingController remark =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -78,165 +78,48 @@ class _NPCDCSState extends State<NPCDCS> {
                 const SizedBox(
                   height: 16,
                 ),
-                topic("NPCDCS", "Enter member"),
+                topic("NPCDCS", "Select member"),
+                searchCommon(),
                 Cont(
-                    child: Column(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Expanded(child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Name of member",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: name,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                          ],
-                        ),),
-                        Expanded(child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Address",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                height: 200,
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: addr,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                          ],
-                        ),),
                         Expanded(
-                            child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Date of birth",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Text(
+                              "Name of member",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: black),
                             ),
-                            Expanded(
-                              flex: 4,
-                              child: Container(
-
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: dob,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerRight,
-                                child: GestureDetector(
-                                    onTap: () async{
-                                      var datePicked =
-                                      await DatePicker.showSimpleDatePicker(
-                                        context,
-                                        initialDate: DateTime(1994),
-                                        firstDate: DateTime(1960),
-                                        lastDate: DateTime(2022),
-                                        dateFormat: "dd-MMMM-yyyy",
-                                        locale: DateTimePickerLocale.en_us,
-                                        looping: true,
-                                      );
-                                      final DateFormat formatter = DateFormat('yyyy-MM-dd');
-                                      final String formatted = formatter. format(datePicked!);
-                                      setState((){
-                                        dob.text = formatted;
-                                      });
-                                      final snackBar = SnackBar(
-                                          content:
-                                          Text("Date Picked $formatted"));
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackBar);
-                                    },
-                                    child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
-                              ),
-                            )
-                          ],
-                        )),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              context.watch<orspro>().name,
+                              style:
+                              GoogleFonts.poppins(fontSize: 14, color: black),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    height: 300,
+                    height: 40,
                     color: colors[(a++) % 4]),
                 CheckBoxCont(
                   name: "Known NCD",
                   item: ncd,
                   height: 568,
                   a: (a++) % 4,
-                  boolean: ncdbool,
+                  boolean: ncdBool,
                 ),
                 radioContainer(
                   name: "Tobacco - Smoking",
@@ -246,7 +129,6 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     tobacco = int.parse(val.toString());
-                    print("$tobacco");
                   }),
                   selectedButton: tobacco,
                 ),
@@ -257,10 +139,9 @@ class _NPCDCSState extends State<NPCDCS> {
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    tob_smokeless = int.parse(val.toString());
-                    print("$tob_smokeless");
+                    tobSmokeless = int.parse(val.toString());
                   }),
-                  selectedButton: tob_smokeless,
+                  selectedButton: tobSmokeless,
                 ),
                 radioContainer(
                   name: "Alcohol consumption in last ? months",
@@ -270,7 +151,6 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     alcohol = int.parse(val.toString());
-                    print("$alcohol");
                   }),
                   selectedButton: alcohol,
                 ),
@@ -282,7 +162,6 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     sedentary = int.parse(val.toString());
-                    print("$sedentary");
                   }),
                   selectedButton: sedentary,
                 ),
@@ -294,12 +173,11 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     history = int.parse(val.toString());
-                    print("$history");
                   }),
                   selectedButton: history,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Height",
@@ -320,7 +198,7 @@ class _NPCDCSState extends State<NPCDCS> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Weight (kg)",
@@ -342,9 +220,9 @@ class _NPCDCSState extends State<NPCDCS> {
                 ),
                 Container(
                   height: 69,
-                  margin: EdgeInsets.symmetric(
+                  margin: const EdgeInsets.symmetric(
                       vertical: 8, horizontal: 24),
-                  padding: EdgeInsets.symmetric(
+                  padding:const  EdgeInsets.symmetric(
                       horizontal: 16),
                   decoration: BoxDecoration(
                       borderRadius:
@@ -356,14 +234,14 @@ class _NPCDCSState extends State<NPCDCS> {
                           Colors.grey.shade300,
                           blurRadius: 5,
                           spreadRadius: 1,
-                          offset: Offset(1, 2),
+                          offset: const Offset(1, 2),
                         ),
                       ]),
                   child: Row(
                     children: [
                       Expanded(
                           child: Container(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 8,
                                 bottom: 8,
                                 right: 8),
@@ -391,7 +269,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                     flex: 2,
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding: const EdgeInsets
                                           .only(
                                           top:
                                           8,
@@ -416,7 +294,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 Expanded(
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding: const EdgeInsets
                                           .symmetric(
                                           vertical:
                                           4),
@@ -437,7 +315,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                             spreadRadius:
                                             1,
                                             offset:
-                                            Offset(
+                                            const Offset(
                                                 1,
                                                 2),
                                           ),
@@ -446,7 +324,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                       child: Transform
                                           .translate(
                                           offset:
-                                          Offset(
+                                          const  Offset(
                                               0,
                                               0),
                                           child:
@@ -471,7 +349,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                     flex: 2,
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding: const EdgeInsets
                                           .symmetric(
                                           vertical:
                                           8),
@@ -495,7 +373,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 Expanded(
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding: const EdgeInsets
                                           .symmetric(
                                           vertical:
                                           4),
@@ -516,7 +394,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                             spreadRadius:
                                             1,
                                             offset:
-                                            Offset(
+                                            const Offset(
                                                 1,
                                                 2),
                                           ),
@@ -525,7 +403,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                       child: Transform
                                           .translate(
                                           offset:
-                                          Offset(
+                                          const Offset(
                                               0,
                                               -4),
                                           child:
@@ -561,7 +439,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                     flex: 2,
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding: const EdgeInsets
                                           .only(
                                           top:
                                           8,
@@ -586,7 +464,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 Expanded(
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding:const  EdgeInsets
                                           .symmetric(
                                           vertical:
                                           4),
@@ -607,7 +485,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                             spreadRadius:
                                             1,
                                             offset:
-                                            Offset(
+                                            const Offset(
                                                 1,
                                                 2),
                                           ),
@@ -616,7 +494,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                       child: Transform
                                           .translate(
                                           offset:
-                                          Offset(
+                                          const Offset(
                                               0,
                                               0),
                                           child:
@@ -641,7 +519,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                     flex: 2,
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding: const EdgeInsets
                                           .symmetric(
                                           vertical:
                                           8),
@@ -665,7 +543,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 Expanded(
                                     child:
                                     Container(
-                                      padding: EdgeInsets
+                                      padding:const  EdgeInsets
                                           .symmetric(
                                           vertical:
                                           4),
@@ -686,7 +564,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                             spreadRadius:
                                             1,
                                             offset:
-                                            Offset(
+                                            const Offset(
                                                 1,
                                                 2),
                                           ),
@@ -695,7 +573,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                       child: Transform
                                           .translate(
                                           offset:
-                                          Offset(
+                                          const Offset(
                                               0,
                                               -4),
                                           child:
@@ -746,7 +624,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: fbs,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -784,7 +662,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: rbs,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -806,7 +684,7 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     oral = int.parse(val.toString());
-                    print("$oral");
+
                   }),
                   selectedButton: oral,
                 ),
@@ -818,7 +696,7 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     breast = int.parse(val.toString());
-                    print("$breast");
+
                   }),
                   selectedButton: breast,
                 ),
@@ -830,7 +708,7 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     cervix = int.parse(val.toString());
-                    print("$cervix");
+
                   }),
                   selectedButton: cervix,
                 ),
@@ -857,7 +735,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                              controller: other,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -895,7 +773,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: start,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -916,7 +794,7 @@ class _NPCDCSState extends State<NPCDCS> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     status = int.parse(val.toString());
-                    print("$status");
+
                   }),
                   selectedButton: status,
                 ),
@@ -944,7 +822,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: co,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -982,7 +860,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: remark,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -1004,18 +882,18 @@ class _NPCDCSState extends State<NPCDCS> {
                     List<String> mn = [];
 
                     for(int i=0;i<ncd.length;i++){
-                      if(ncdbool[i]){
+                      if(ncdBool[i]){
                         mn.add(ncd[i]);
                       }
                     }
 
                     Map<String, dynamic> data = {
-                      "Name" : name.text,
+                      "Name" : Provider.of<orspro>(context,listen: false).name,
                       "Address" : addr.text,
                       "DOB" : dob.text,
                       "Known NCD" : mn,
                       "Tobacco smoking" : yn[tobacco-1],
-                      "Tobacco smokeless" : yn[tob_smokeless-1],
+                      "Tobacco smokeless" : yn[tobSmokeless-1],
                       "Alcohol consumption" : yn[alcohol-1],
                       "Sedentary lifestyle" : yn[sedentary-1],
                       "Family history" : historyList[history-1],
@@ -1035,13 +913,13 @@ class _NPCDCSState extends State<NPCDCS> {
                       "Remarks" : remark.text,
                     };
 
-                    var now = new DateTime.now();
-                    var formatter = new DateFormat('yyyy-MM-dd');
+                    var now = DateTime.now();
+                    var formatter = DateFormat('yyyy-MM-dd');
                     String formattedDate = formatter.format(now);
                     await FirebaseFirestore.instance
                         .collection("NPCDCS")
                         .doc(Provider.of<Details>(context, listen: false)
-                        .phone).collection(formattedDate.toString()).doc(name.text)
+                        .phone).collection(formattedDate.toString()).doc(Provider.of<orspro>(context,listen: false).name)
                         .set(data);
                     Navigator.pushReplacement(
                         context,

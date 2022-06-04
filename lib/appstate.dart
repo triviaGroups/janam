@@ -5,6 +5,7 @@ class AppStateNotifier extends ChangeNotifier {
 
   void updateThemeOn(bool isDarkModeOn) {
     this.isDarkModeOn = isDarkModeOn;
+
     notifyListeners();
   }
 }

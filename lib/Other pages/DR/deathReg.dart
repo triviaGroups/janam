@@ -5,9 +5,10 @@ import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:janam/Home/home_sub.dart';
+import 'package:janam/Other%20pages/ORS/ORSpro.dart';
+import 'package:janam/Other%20pages/search_common.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
-import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
@@ -22,15 +23,15 @@ class DeathReg extends StatefulWidget {
 
 class _DeathRegState extends State<DeathReg> {
 
-  TextEditingController name = new TextEditingController();
-  TextEditingController addr = new TextEditingController();
-  TextEditingController dob = new TextEditingController();
+  TextEditingController name =  TextEditingController();
+  TextEditingController addr =  TextEditingController();
+  TextEditingController dob =  TextEditingController();
 
-  TextEditingController dateDeath = new TextEditingController();
-  TextEditingController cause1 = new TextEditingController();
-  TextEditingController cause2 = new TextEditingController();
-  TextEditingController place = new TextEditingController();
-  TextEditingController dateEntry = new TextEditingController();
+  TextEditingController dateDeath =  TextEditingController();
+  TextEditingController cause1 =  TextEditingController();
+  TextEditingController cause2 =  TextEditingController();
+  TextEditingController place =  TextEditingController();
+  TextEditingController dateEntry =  TextEditingController();
 
   int a = 0;
   @override
@@ -45,158 +46,42 @@ class _DeathRegState extends State<DeathReg> {
                 const SizedBox(
                   height: 16,
                 ),
-                topic("Death register", "Enter member"),
+                topic("Death register", "Select member"),
+                searchCommon(),
                 Cont(
-                    child: Column(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Expanded(child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Name of member",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Text(
+                              "Name of member",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: black),
                             ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: name,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                          ],
-                        ),),
-                        Expanded(child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Address",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              context.watch<orspro>().name,
+                              style:
+                              GoogleFonts.poppins(fontSize: 14, color: black),
                             ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                height: 200,
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: addr,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                          ],
-                        ),),
-                        Expanded(child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Date of birth",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 6,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: dob,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerRight,
-                                child: GestureDetector(
-                                    onTap: () async{
-                                      var datePicked =
-                                      await DatePicker.showSimpleDatePicker(
-                                        context,
-                                        initialDate: DateTime(1994),
-                                        firstDate: DateTime(1960),
-                                        lastDate: DateTime(2022),
-                                        dateFormat: "dd-MMMM-yyyy",
-                                        locale: DateTimePickerLocale.en_us,
-                                        looping: true,
-                                      );
-                                      final DateFormat formatter = DateFormat('yyyy-MM-dd');
-                                      final String formatted = formatter. format(datePicked!);
-                                      setState((){
-                                        dob.text = formatted;
-                                      });
-                                      final snackBar = SnackBar(
-                                          content:
-                                          Text("Date Picked $formatted"));
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackBar);
-                                    },
-                                    child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
-                              ),
-                            )
-                          ],
-                        )),
+                          ),
+                        ),
                       ],
                     ),
-                    height: 300,
+                    height: 40,
                     color: colors[(a++) % 4]),
-
                 Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -224,7 +109,7 @@ class _DeathRegState extends State<DeathReg> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: dateDeath,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
@@ -259,7 +144,7 @@ class _DeathRegState extends State<DeathReg> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 },
-                                child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                                child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                           ),
                         )
                       ],
@@ -298,7 +183,7 @@ class _DeathRegState extends State<DeathReg> {
                                       decoration: InputDecoration(
                                           hintText: "",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const  EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -318,7 +203,7 @@ class _DeathRegState extends State<DeathReg> {
                                       decoration: InputDecoration(
                                           hintText: "",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -357,7 +242,7 @@ class _DeathRegState extends State<DeathReg> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: place,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -398,7 +283,7 @@ class _DeathRegState extends State<DeathReg> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: dateEntry,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
@@ -433,7 +318,7 @@ class _DeathRegState extends State<DeathReg> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 },
-                                child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                                child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                           ),
                         )
                       ],
@@ -446,7 +331,7 @@ class _DeathRegState extends State<DeathReg> {
                 GestureDetector(
                   onTap: () async{
                     Map<String, dynamic> data = {
-                      "Name" : name.text,
+                      "Name" : Provider.of<orspro>(context,listen: false).name,
                       "Address" : addr.text,
                       "DOB" : dob.text,
                       "DOD" : dateDeath.text,
@@ -454,13 +339,11 @@ class _DeathRegState extends State<DeathReg> {
                       "Place" : place.text,
                       "DOE" : dateEntry.text,
                     };
-                    var now = new DateTime.now();
-                    var formatter = new DateFormat('yyyy-MM-dd');
-                    String formattedDate = formatter.format(now);
+
                     await FirebaseFirestore.instance
                         .collection("Death")
                         .doc(Provider.of<Details>(context, listen: false)
-                        .phone).collection(dateEntry.text).doc(name.text)
+                        .phone).collection(dateEntry.text).doc(Provider.of<orspro>(context,listen: false).name)
                         .set(data);
                     Navigator.pushReplacement(
                         context,

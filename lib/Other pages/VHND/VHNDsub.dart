@@ -25,6 +25,6 @@ class _VhndsubState extends State<Vhndsub> {
   }
   @override
   Widget build(BuildContext context) {
-    return check ? VHND() : SizedBox();
+    return check ? const VHND() : const SizedBox();
   }
 }

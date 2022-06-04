@@ -10,9 +10,7 @@ class NurseDetails with ChangeNotifier {
 
   void add_file(File file)
   {
-    this._file = file;
-    print("File data here");
-    print(_file);
+    _file = file;
   }
 
   File? get_file(){

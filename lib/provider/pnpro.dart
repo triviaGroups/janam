@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:janam/Login/villageWidget.dart';
 
 class PnPro with ChangeNotifier {
   int _ifa = 0;
@@ -11,24 +9,24 @@ class PnPro with ChangeNotifier {
   int get weight => _weight;
 
   void incIfa(){
-    this._ifa++;
+    _ifa++;
   }
 
   void decIfa(){
-    this._ifa--;
-    if(this._ifa < 0){
-      this._ifa = 0;
+    _ifa--;
+    if(_ifa < 0){
+      _ifa = 0;
     }
   }
 
   void incWeight(){
-    this._weight++;
+    _weight++;
   }
 
   void decWeight(){
-    this._weight--;
-    if(this._weight < 0){
-      this._weight = 0;
+    _weight--;
+    if(_weight < 0){
+      _weight = 0;
     }
   }
 

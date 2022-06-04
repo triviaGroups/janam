@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:janam/Other%20pages/NIPI/NIPI.dart';
 import 'package:janam/Other%20pages/NIPI/NIPIpro.dart';
-import 'package:janam/Other%20pages/NIPI/NIPIpro.dart';
-import 'package:janam/Other%20pages/VHND/VHND.dart';
 import 'package:provider/provider.dart';
 
 class Nipisub extends StatefulWidget {
@@ -27,6 +25,6 @@ class _NipisubState extends State<Nipisub> {
   }
   @override
   Widget build(BuildContext context) {
-    return check ? NIPI() : SizedBox();
+    return check ? const NIPI() : const SizedBox();
   }
 }

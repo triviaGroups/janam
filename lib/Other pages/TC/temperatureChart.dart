@@ -21,11 +21,11 @@ class TempChart extends StatefulWidget {
 
 class _TempChartState extends State<TempChart> {
   int a = 0;
-  int ILR = 0;
-  int ILRsun = 0;
-  int ILRlocked = 0;
-  int ILRdefrost = 0;
-  int ILRsocket = 0;
+  int ilr = 0;
+  int ilrSun = 0;
+  int ilrLocked = 0;
+  int ilrDefrost = 0;
+  int ilrSocket = 0;
   int food = 0;
   int vaccine = 0;
   int rotated = 0;
@@ -35,7 +35,7 @@ class _TempChartState extends State<TempChart> {
 
   List<String> yn = const ["Yes","No"];
 
-  TextEditingController dateCharting = new TextEditingController();
+  TextEditingController dateCharting = TextEditingController();
 
   @override
   void initState() {
@@ -47,8 +47,8 @@ class _TempChartState extends State<TempChart> {
     dateCharting.text = formatted;
   }
 
-  TextEditingController name = new TextEditingController();
-  TextEditingController num = new TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController num = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class _TempChartState extends State<TempChart> {
                             alignment: Alignment.centerLeft,
                             padding: const EdgeInsets.only(right: 8),
                             child: Text(
-                              "Name of ILR",
+                              "Name of ilr",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -86,7 +86,7 @@ class _TempChartState extends State<TempChart> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller:  name,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -124,7 +124,7 @@ class _TempChartState extends State<TempChart> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: dateCharting,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
@@ -139,74 +139,68 @@ class _TempChartState extends State<TempChart> {
                     height: 40,
                     color: colors[(a++) % 4]),
                 radioContainer(
-                  name: "Is the ILR level?",
+                  name: "Is the ilr level?",
                   num: 2,
                   item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    ILR = int.parse(val.toString());
-                    print("$ILR");
+                    ilr = int.parse(val.toString());
                   }),
-                  selectedButton: ILR,
+                  selectedButton: ilr,
                 ),
                 radioContainer(
-                  name: "Is the ILR, away from sun?",
+                  name: "Is the ilr, away from sun?",
                   num: 2,
                   item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    ILRsun = int.parse(val.toString());
-                    print("$ILRsun");
+                    ilrSun = int.parse(val.toString());
                   }),
-                  selectedButton: ILRsun,
+                  selectedButton: ilrSun,
                 ),
                 radioContainer(
-                  name: "Is the ILR, locked?",
+                  name: "Is the ilr, locked?",
                   num: 2,
                   item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    ILRlocked = int.parse(val.toString());
-                    print("$ILRlocked");
+                    ilrLocked = int.parse(val.toString());
                   }),
-                  selectedButton: ILRlocked,
+                  selectedButton: ilrLocked,
                 ),
                 radioContainer(
-                  name: "Is the ILR, defrosted periodically?",
+                  name: "Is the ilr, defrosted periodically?",
                   num: 2,
                   item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    ILRdefrost = int.parse(val.toString());
-                    print("$ILRdefrost");
+                    ilrDefrost = int.parse(val.toString());
                   }),
-                  selectedButton: ILRdefrost,
+                  selectedButton: ilrDefrost,
                 ),
                 radioContainer(
-                  name: "Is the ILR, plugged to socket permanently",
+                  name: "Is the ilr, plugged to socket permanently",
                   num: 2,
                   item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    ILRsocket = int.parse(val.toString());
-                    print("$ILRsocket");
+                    ilrSocket = int.parse(val.toString());
                   }),
-                  selectedButton: ILRsocket,
+                  selectedButton: ilrSocket,
                 ),
                 radioContainer(
-                  name: "Is the ILR, used for food or drinks?",
+                  name: "Is the ilr, used for food or drinks?",
                   num: 2,
                   item: yn,
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     food = int.parse(val.toString());
-                    print("$food");
                   }),
                   selectedButton: food,
                 ),
@@ -218,7 +212,6 @@ class _TempChartState extends State<TempChart> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     vaccine = int.parse(val.toString());
-                    print("$vaccine");
                   }),
                   selectedButton: vaccine,
                 ),
@@ -230,7 +223,6 @@ class _TempChartState extends State<TempChart> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     rotated = int.parse(val.toString());
-                    print("$rotated");
                   }),
                   selectedButton: rotated,
                 ),
@@ -242,7 +234,6 @@ class _TempChartState extends State<TempChart> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     door = int.parse(val.toString());
-                    print("$door");
                   }),
                   selectedButton: door,
                 ),
@@ -254,7 +245,6 @@ class _TempChartState extends State<TempChart> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     frozen = int.parse(val.toString());
-                    print("$frozen");
                   }),
                   selectedButton: frozen,
                 ),
@@ -266,7 +256,6 @@ class _TempChartState extends State<TempChart> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     expiry = int.parse(val.toString());
-                    print("$expiry");
                   }),
                   selectedButton: expiry,
                 ),
@@ -294,7 +283,7 @@ class _TempChartState extends State<TempChart> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller:  num,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -310,8 +299,8 @@ class _TempChartState extends State<TempChart> {
                     color: colors[(a++) % 4]),
                 Container(
                   height: 150,
-                  margin: EdgeInsets.symmetric(vertical: 16,horizontal: 24),
-                  padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+                  margin: const EdgeInsets.symmetric(vertical: 16,horizontal: 24),
+                  padding: const  EdgeInsets.symmetric(horizontal: 16,vertical: 16),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: colors[(a++)%4],
@@ -320,7 +309,7 @@ class _TempChartState extends State<TempChart> {
                           color: Colors.grey.shade300,
                           blurRadius: 5,
                           spreadRadius: 1,
-                          offset: Offset(1, 2),
+                          offset:const  Offset(1, 2),
                         ),
                       ]),
                   child: Column(
@@ -342,10 +331,10 @@ class _TempChartState extends State<TempChart> {
                           Expanded(
                               flex: 2,
                               child: Container(
-                                padding: EdgeInsets.only(top: 8,bottom: 8,right: 8),
+                                padding: const  EdgeInsets.only(top: 8,bottom: 8,right: 8),
                                 color: Colors.transparent,
                                 child: Text(
-                                  "ILR",
+                                  "ilr",
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -364,7 +353,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -373,12 +362,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, 0),
+                                            offset:const  Offset(0, 0),
 
                                               child: const Icon(
                                                 Icons.add,
@@ -390,7 +379,7 @@ class _TempChartState extends State<TempChart> {
                                   Expanded(
                                       flex: 2,
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 8),
+                                        padding: const  EdgeInsets.symmetric(vertical: 8),
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
@@ -410,7 +399,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -419,12 +408,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, -4),
+                                            offset:const  Offset(0, -4),
 
                                               child: const Icon(
                                                 Icons.minimize,
@@ -442,7 +431,7 @@ class _TempChartState extends State<TempChart> {
                           Expanded(
                               flex: 2,
                               child: Container(
-                                padding: EdgeInsets.only(top: 8,bottom: 8,right: 8),
+                                padding: const  EdgeInsets.only(top: 8,bottom: 8,right: 8),
                                 color: Colors.transparent,
                                 child: Text(
                                   "Deep freezer",
@@ -464,7 +453,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -473,12 +462,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, 0),
+                                            offset:const  Offset(0, 0),
 
                                               child: const Icon(
                                                 Icons.add,
@@ -490,7 +479,7 @@ class _TempChartState extends State<TempChart> {
                                   Expanded(
                                       flex: 2,
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 8),
+                                        padding: const  EdgeInsets.symmetric(vertical: 8),
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
@@ -510,7 +499,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -519,12 +508,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, -4),
+                                            offset:const  Offset(0, -4),
 
                                               child: const Icon(
                                                 Icons.minimize,
@@ -542,8 +531,8 @@ class _TempChartState extends State<TempChart> {
                 ),
                 Container(
                   height: 150,
-                  margin: EdgeInsets.symmetric(vertical: 16,horizontal: 24),
-                  padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+                  margin: const EdgeInsets.symmetric(vertical: 16,horizontal: 24),
+                  padding: const  EdgeInsets.symmetric(horizontal: 16,vertical: 16),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: colors[(a++)%4],
@@ -552,7 +541,7 @@ class _TempChartState extends State<TempChart> {
                           color: Colors.grey.shade300,
                           blurRadius: 5,
                           spreadRadius: 1,
-                          offset: Offset(1, 2),
+                          offset:const  Offset(1, 2),
                         ),
                       ]),
                   child: Column(
@@ -574,10 +563,10 @@ class _TempChartState extends State<TempChart> {
                           Expanded(
                               flex: 2,
                               child: Container(
-                                padding: EdgeInsets.only(top: 8,bottom: 8,right: 8),
+                                padding: const  EdgeInsets.only(top: 8,bottom: 8,right: 8),
                                 color: Colors.transparent,
                                 child: Text(
-                                  "ILR",
+                                  "ilr",
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -596,7 +585,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -605,12 +594,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, 0),
+                                            offset:const  Offset(0, 0),
 
                                               child: const Icon(
                                                 Icons.add,
@@ -622,7 +611,7 @@ class _TempChartState extends State<TempChart> {
                                   Expanded(
                                       flex: 2,
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 8),
+                                        padding: const  EdgeInsets.symmetric(vertical: 8),
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
@@ -642,7 +631,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -651,12 +640,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, -4),
+                                            offset:const  Offset(0, -4),
 
                                               child: const Icon(
                                                 Icons.minimize,
@@ -674,7 +663,7 @@ class _TempChartState extends State<TempChart> {
                           Expanded(
                               flex: 2,
                               child: Container(
-                                padding: EdgeInsets.only(top: 8,bottom: 8,right: 8),
+                                padding: const  EdgeInsets.only(top: 8,bottom: 8,right: 8),
                                 color: Colors.transparent,
                                 child: Text(
                                   "Deep freezer",
@@ -696,7 +685,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -705,12 +694,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, 0),
+                                            offset:const  Offset(0, 0),
 
                                               child: const Icon(
                                                 Icons.add,
@@ -722,7 +711,7 @@ class _TempChartState extends State<TempChart> {
                                   Expanded(
                                       flex: 2,
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 8),
+                                        padding: const  EdgeInsets.symmetric(vertical: 8),
                                         alignment: Alignment.center,
                                         color: Colors.transparent,
                                         child: Text(
@@ -742,7 +731,7 @@ class _TempChartState extends State<TempChart> {
                                           });
                                         },
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(vertical: 4),
+                                        padding: const  EdgeInsets.symmetric(vertical: 4),
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(5),
                                           color: white,
@@ -751,12 +740,12 @@ class _TempChartState extends State<TempChart> {
                                               color: Colors.grey.shade300,
                                               blurRadius: 5,
                                               spreadRadius: 1,
-                                              offset: Offset(1, 2),
+                                              offset:const  Offset(1, 2),
                                             ),
                                           ],
                                         ),
                                         child: Transform.translate(
-                                            offset: Offset(0, -4),
+                                            offset:const  Offset(0, -4),
                                               child: const Icon(
                                                 Icons.minimize,
                                                 color: black,
@@ -779,11 +768,11 @@ class _TempChartState extends State<TempChart> {
                     Map<String, dynamic> data = {
                       "Name" : name.text,
                       "Date" : dateCharting.text,
-                      "Level" : yn[ILR-1],
-                      "Away from sun" : yn[ILRsun-1],
-                      "Locked" : yn[ILRlocked-1],
-                      "Defrosted" : yn[ILRdefrost-1],
-                      "Plugged" : yn[ILRsocket-1],
+                      "Level" : yn[ilr-1],
+                      "Away from sun" : yn[ilrSun-1],
+                      "Locked" : yn[ilrLocked-1],
+                      "Defrosted" : yn[ilrDefrost-1],
+                      "Plugged" : yn[ilrSocket-1],
                       "Food or drinks" : yn[food-1],
                       "Stacked" : yn[vaccine-1],
                       "Rotated" : yn[rotated-1],

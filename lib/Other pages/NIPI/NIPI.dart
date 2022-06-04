@@ -9,7 +9,6 @@ import 'package:janam/Other%20pages/NIPI/NIPIpro.dart';
 import 'package:janam/Other%20pages/NIPI/searchchi.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
-import 'package:janam/Other%20pages/VHND/multisearch.dart';
 import 'package:janam/Widgets/radioContainer.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
@@ -25,11 +24,10 @@ class NIPI extends StatefulWidget {
 
 class _NIPIState extends State<NIPI> {
   int a = 0;
-  int children_participated = 0;
-  int awc_name = 0;
+  int awcName = 0;
   int name = 0;
 
-  TextEditingController dateNIPI = new TextEditingController();
+  TextEditingController dateNIPI = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +42,9 @@ class _NIPIState extends State<NIPI> {
               height: 16,
             ),
             topic("NIPI", "Select child"),
-            SearchMultiple(),
+            const SearchMultiple(),
             context.watch<nipipro>().selected.isEmpty
-                ? SizedBox()
+                ? const SizedBox()
                 :  Cont(
                 child: Row(
                   children: [
@@ -68,13 +66,13 @@ class _NIPIState extends State<NIPI> {
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Colors.white
                               ),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 8),
                               margin:
-                              EdgeInsets.only(right: 16, left: 4,top: 4,bottom: 4),
+                              const EdgeInsets.only(right: 16, left: 4,top: 4,bottom: 4),
                               child: Text(
                                 context.watch<nipipro>()
                                     .selected[index],
@@ -124,7 +122,7 @@ class _NIPIState extends State<NIPI> {
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
                           controller: dateNIPI,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
@@ -161,7 +159,7 @@ class _NIPIState extends State<NIPI> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                             },
-                            child: Icon(
+                            child:const  Icon(
                               Icons.calendar_today_outlined,
                               color: Colors.black87,
                               size: 24,
@@ -183,12 +181,12 @@ class _NIPIState extends State<NIPI> {
               press: (val) => setState(() {
                 name = int.parse(val.toString());
                 Provider.of<nipipro>(context, listen: false).getAwc(name - 1);
-                print("$name");
+
               }),
               selectedButton: name,
             ),
             context.watch<nipipro>().awc.isEmpty
-                ? SizedBox()
+                ? const SizedBox()
                 : radioContainer(
                     name: "AWC name",
                     num:
@@ -200,10 +198,9 @@ class _NIPIState extends State<NIPI> {
                         60,
                     a: (a++) % 4,
                     press: (val) => setState(() {
-                      awc_name = int.parse(val.toString());
-                      print("$awc_name");
+                      awcName = int.parse(val.toString());
                     }),
-                    selectedButton: awc_name,
+                    selectedButton: awcName,
                   ),
             const SizedBox(
               height: 32,
@@ -217,7 +214,7 @@ class _NIPIState extends State<NIPI> {
                     "Village": Provider.of<nipipro>(context, listen: false)
                         .village[name - 1],
                     "AWC": Provider.of<nipipro>(context, listen: false)
-                        .awc[awc_name - 1],
+                        .awc[awcName - 1],
                   };
 
                   await FirebaseFirestore.instance

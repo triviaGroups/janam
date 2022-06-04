@@ -5,10 +5,11 @@ import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:janam/Home/home_sub.dart';
+import 'package:janam/Other%20pages/ORS/ORSpro.dart';
+import 'package:janam/Other%20pages/search_common.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
@@ -23,21 +24,21 @@ class AEFI extends StatefulWidget {
 
 class _AEFIState extends State<AEFI> {
   int a = 0;
-  int medical_offer = 0;
+  int medicalOffer = 0;
   int k = 0;
 
   List<String> c = const ["Minor","Severe"];
   List<String> yn = const ["Yes","No"];
 
-  TextEditingController dateVaccine = new TextEditingController();
-  TextEditingController name = new TextEditingController();
-  TextEditingController v1 = new TextEditingController();
-  TextEditingController v2 = new TextEditingController();
-  TextEditingController batch = new TextEditingController();
-  TextEditingController s1 = new TextEditingController();
-  TextEditingController s2 = new TextEditingController();
-  TextEditingController c1 = new TextEditingController();
-  TextEditingController c2 = new TextEditingController();
+  TextEditingController dateVaccine = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController v1 = TextEditingController();
+  TextEditingController v2 = TextEditingController();
+  TextEditingController batch = TextEditingController();
+  TextEditingController s1 = TextEditingController();
+  TextEditingController s2 = TextEditingController();
+  TextEditingController c1 = TextEditingController();
+  TextEditingController c2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,8 @@ class _AEFIState extends State<AEFI> {
                 const SizedBox(
                   height: 16,
                 ),
-                topic("AEFI", "Enter vaccinated child"),
+                topic("AEFI", "Select vaccinated child"),
+                searchCommon(),
                 Cont(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,16 +73,12 @@ class _AEFIState extends State<AEFI> {
                         ),
                         Expanded(
                           child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 8),
                             decoration: BoxDecoration(
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
-                            child: TextFormField(
-                              controller: name,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
-                                border: InputBorder.none,
-                              ),
+                            child: Text(
+                              context.watch<orspro>().name,
                               style:
                               GoogleFonts.poppins(fontSize: 14, color: black),
                             ),
@@ -117,7 +115,7 @@ class _AEFIState extends State<AEFI> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: dateVaccine,
-                              decoration: InputDecoration(
+                              decoration:const  InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10,bottom: 5),
                                 border: InputBorder.none,
@@ -152,7 +150,7 @@ class _AEFIState extends State<AEFI> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 },
-                                child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                                child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                           ),
                         )
                       ],
@@ -191,7 +189,7 @@ class _AEFIState extends State<AEFI> {
                                       decoration: InputDecoration(
                                           hintText: "Vaccine 1",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -211,7 +209,7 @@ class _AEFIState extends State<AEFI> {
                                       decoration: InputDecoration(
                                           hintText: "Vaccine 2",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -250,7 +248,7 @@ class _AEFIState extends State<AEFI> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: batch,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -296,7 +294,7 @@ class _AEFIState extends State<AEFI> {
                                       decoration: InputDecoration(
                                           hintText: "Symptom 1",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -316,7 +314,7 @@ class _AEFIState extends State<AEFI> {
                                       decoration: InputDecoration(
                                           hintText: "Symptom 2",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -339,7 +337,6 @@ class _AEFIState extends State<AEFI> {
                   a: (a++) % 4,
                   press: (val) => setState(() {
                     k = int.parse(val.toString());
-                    print("$k");
                   }),
                   selectedButton:k,
                 ),
@@ -350,10 +347,9 @@ class _AEFIState extends State<AEFI> {
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    medical_offer = int.parse(val.toString());
-                    print("$medical_offer");
+                    medicalOffer = int.parse(val.toString());
                   }),
-                  selectedButton: medical_offer,
+                  selectedButton: medicalOffer,
                 ),
                 Cont(
                     child: Row(
@@ -387,7 +383,7 @@ class _AEFIState extends State<AEFI> {
                                       decoration: InputDecoration(
                                           hintText: "",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -407,7 +403,7 @@ class _AEFIState extends State<AEFI> {
                                       decoration: InputDecoration(
                                           hintText: "",
                                           contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
+                                          const EdgeInsets.only(left: 10, right: 10),
                                           border: InputBorder.none,
                                           hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
                                       ),
@@ -430,22 +426,22 @@ class _AEFIState extends State<AEFI> {
                 GestureDetector(
                   onTap: () async{
                     Map<String, dynamic> data = {
-                      "Name" : name.text,
+                      "Name" : Provider.of<orspro>(context,listen: false).name,
                       "Date" : dateVaccine.text,
                       "Vaccines": [v1.text,v2.text],
                       "Batch" : batch.text,
                       "AEFI noted" : [s1.text,s2.text],
                       "Category" : c[k-1],
-                      "Seen" : yn[medical_offer-1],
+                      "Seen" : yn[medicalOffer-1],
                       "Report" : [c1.text,c2.text],
                     };
-                    var now = new DateTime.now();
-                    var formatter = new DateFormat('yyyy-MM-dd');
+                    var now = DateTime.now();
+                    var formatter = DateFormat('yyyy-MM-dd');
                     String formattedDate = formatter.format(now);
                     await FirebaseFirestore.instance
                         .collection("AEFI")
                         .doc(Provider.of<Details>(context, listen: false)
-                        .phone).collection(formattedDate.toString()).doc(name.text)
+                        .phone).collection(formattedDate.toString()).doc(Provider.of<orspro>(context,listen: false).name)
                         .set(data);
                     Navigator.pushReplacement(
                         context,

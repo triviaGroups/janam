@@ -2,15 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:janam/Other%20pages/ORS/ORSpro.dart';
 import 'package:janam/constants/color_constants.dart';
+import 'package:janam/provider/detailsFetch.dart';
+import 'package:provider/provider.dart';
 
-class searchWidget extends StatefulWidget {
-  
+class searchCommon extends StatefulWidget {
+
   @override
-  State<searchWidget> createState() => _searchWidgetState();
+  State<searchCommon> createState() => _searchCommonState();
 }
 
-class _searchWidgetState extends State<searchWidget> {
+class _searchCommonState extends State<searchCommon> {
 
   TextEditingController _searchController = TextEditingController();
   Future? resultsloaded;
@@ -40,7 +43,11 @@ class _searchWidgetState extends State<searchWidget> {
     super.dispose();
   }
   getData() async{
-    var unsold =   await FirebaseFirestore.instance.collection("Search").doc("preganancy").collection("NameList").get();
+    var unsold = await FirebaseFirestore.instance
+        .collection("Village Members")
+        .doc(Provider.of<Details>(context, listen: false).phone)
+        .collection("Members")
+        .get();
     setState(() {
       _allResults = unsold.docs;
     });
@@ -53,11 +60,14 @@ class _searchWidgetState extends State<searchWidget> {
 
   searchResults(){
     var showResults = [];
-    if(_searchController.text != ""){
-      for(var i in _allResults){
-        String name = i["Name"].toString().toLowerCase();
+    if (_searchController.text != "") {
+      for (var i in _allResults) {
+        String sName = i["Name"].toString().toLowerCase();
+        String pName = i["Village"].toString().toLowerCase();
 
-        if(name.contains(_searchController.text.toLowerCase())){
+        if (sName.contains(_searchController.text.toLowerCase())) {
+          showResults.add(i);
+        } else if (pName.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
         }
       }
@@ -100,31 +110,40 @@ class _searchWidgetState extends State<searchWidget> {
       ),
       children: [
         Container(
-          height: 150,
+          height: 250,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(35),
+            color: purple,
+            border: Border.all(width: 0.5, color: white),
+          ),
           margin: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
           child: ListView.builder(
               itemCount: _resultsList.length,
               itemBuilder: (BuildContext context,int index){
-                return  ListTile(
-                  leading: Container(
-                    alignment: Alignment.center,
-                    height: 50,
-                    width: 50,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.blue
+                return  GestureDetector(
+                  onTap: (){
+                    Provider.of<orspro>(context,listen: false).setName(_resultsList[index]["Name"]);
+                    setState(() {
+
+                    });
+                  },
+                  child: ListTile(
+                    leading: Container(
+                      alignment: Alignment.center,
+                      height: 50,
+                      width: 50,
                     ),
-                  ),
-                  title: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      _searchController.text == "" ? _allResults[index]["Name"] : _resultsList[index]["Name"],
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontFamily: "Grold Regular",
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        color: Colors.black,
+                    title: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        _searchController.text == "" ? _allResults[index]["Name"] : _resultsList[index]["Name"]+", "+_resultsList[index]["Village"],
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          fontFamily: "Grold Regular",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

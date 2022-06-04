@@ -1,11 +1,10 @@
-import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:janam/Home/home_sub.dart';
+import 'package:janam/Login/nurse_details.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:janam/Login/nurseDetails.dart';
 import 'package:janam/constants/color_constants.dart';
 
 class Loading extends StatefulWidget {
@@ -49,13 +48,13 @@ class _LoadingState extends State<Loading> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 25),
+            padding: const EdgeInsets.symmetric(vertical: 25),
             child: Center(
               child: Text("Verify +91-${widget.phone}",style: GoogleFonts.inter(fontSize: 18,fontWeight: FontWeight.w800,color: Colors.black),),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16,vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 5),
             child: PinPut(
               fieldsCount: 6,
               textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
@@ -88,7 +87,7 @@ class _LoadingState extends State<Loading> {
                   });
                 } catch (e) {
                   FocusScope.of(context).unfocus();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("Invalid OTP"),
                   ));
                 }
@@ -121,7 +120,6 @@ class _LoadingState extends State<Loading> {
           });
         },
         verificationFailed: (FirebaseAuthException e) async{
-          print(e.message);
         },
         codeSent: (verificationId, resendingToken) async{
           setState((){
@@ -133,7 +131,7 @@ class _LoadingState extends State<Loading> {
             _verificationCode = verificationId;
           });
         },
-        timeout: Duration(seconds: 120)
+        timeout: const Duration(seconds: 120)
     );
   }
 }

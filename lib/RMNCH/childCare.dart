@@ -23,7 +23,7 @@ class _ChildCareState extends State<ChildCare> {
   int a = 0;
   int aefi = 0;
 
-  TextEditingController dateOfVisit = new TextEditingController();
+  TextEditingController dateOfVisit = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -114,7 +114,7 @@ class _ChildCareState extends State<ChildCare> {
                           borderRadius: BorderRadius.circular(5)),
                       child: TextFormField(
                         controller: dateOfVisit,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding:
                           EdgeInsets.only(left: 10, right: 10,bottom: 5),
                           border: InputBorder.none,
@@ -149,7 +149,7 @@ class _ChildCareState extends State<ChildCare> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           },
-                          child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
+                          child: const Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
                     ),
                   )
                 ],
@@ -163,7 +163,7 @@ class _ChildCareState extends State<ChildCare> {
               num: 4,
               height: 400,
               val: const [1,1,1,1],
-              dates: ["","","",""],
+              dates: const ["","","",""],
             ),
             rowRadioBtnContainer(
                 color: colors[(a++) % 4],
@@ -171,8 +171,8 @@ class _ChildCareState extends State<ChildCare> {
                 item: const ["OPV-1","DPT-1","Hep B-1","PV-1","Rota-1","IPV-1","PCV-1"],
                 num: 7,
                 height: 700,
-              dates: ["","","","","","",""],
-              val: [1,1,1,1,1,1,1],
+              dates: const ["","","","","","",""],
+              val: const  [1,1,1,1,1,1,1],
             ),
             rowRadioBtnContainer(
                 color: colors[(a++) % 4],
@@ -180,8 +180,8 @@ class _ChildCareState extends State<ChildCare> {
                 item: const ["OPV-2","DPT-2","Hep B-2","PV-2","Rota-2"],
                 num: 5,
                 height: 500,
-              val: [1,1,1,1,1],
-              dates: ["","","","","",],
+              val: const [1,1,1,1,1],
+              dates: const ["","","","","",],
             ),
             rowRadioBtnContainer(
                 color: colors[(a++) % 4],
@@ -189,8 +189,8 @@ class _ChildCareState extends State<ChildCare> {
                 item: const ["OPV-3","DPT-3","Hep B-3","PV-3","IPV-2","PCV-2"],
                 num: 6,
                 height: 600,
-              val: [1,1,1,1,1,1],
-              dates: ["","","","","",""],
+              val: const [1,1,1,1,1,1],
+              dates: const ["","","","","",""],
             ),
             radioContainer(
               name: "Adverse event following immunization (AEFI)",
@@ -200,7 +200,6 @@ class _ChildCareState extends State<ChildCare> {
               a: (a++) % 4,
               press: (val) => setState(() {
                 aefi = int.parse(val.toString());
-                print("$aefi");
               }),
               selectedButton: aefi,
             ),

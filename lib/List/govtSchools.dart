@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class govtSchoolsDetailsDataList
 {
@@ -12,7 +11,7 @@ List<govtSchoolsDetailsDataList> govtDetailsList()
   // ignore: deprecated_member_use
   List<govtSchoolsDetailsDataList> gwc = <govtSchoolsDetailsDataList>[];
 
-  govtSchoolsDetailsDataList  gw = new govtSchoolsDetailsDataList(name: "Govt School 1 - Name");
+  govtSchoolsDetailsDataList  gw = govtSchoolsDetailsDataList(name: "Govt School 1 - Name");
   gwc.add(gw);
 
   return gwc;

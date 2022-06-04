@@ -20,8 +20,8 @@ class _incDecState extends State<incDec> {
   Widget build(BuildContext context) {
     return Container(
       height: widget.height,
-      margin: EdgeInsets.symmetric(vertical: 8),
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           color: widget.color,
@@ -30,7 +30,7 @@ class _incDecState extends State<incDec> {
               color: Colors.grey.shade300,
               blurRadius: 5,
               spreadRadius: 1,
-              offset: Offset(1, 2),
+              offset: const Offset(1, 2),
             ),
           ]),
       child: Row(
@@ -38,7 +38,7 @@ class _incDecState extends State<incDec> {
           Expanded(
               flex: 2,
               child: Container(
-                padding: EdgeInsets.only(top: 8,bottom: 8,right: 8),
+                padding: const EdgeInsets.only(top: 8,bottom: 8,right: 8),
                 color: Colors.transparent,
                 child: Text(
                   widget.name,
@@ -53,7 +53,7 @@ class _incDecState extends State<incDec> {
                 children: [
                   Expanded(
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 4),
+                        padding: const EdgeInsets.symmetric(vertical: 4),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: white,
@@ -62,12 +62,12 @@ class _incDecState extends State<incDec> {
                               color: Colors.grey.shade300,
                               blurRadius: 5,
                               spreadRadius: 1,
-                              offset: Offset(1, 2),
+                              offset: const Offset(1, 2),
                             ),
                           ],
                         ),
                         child: Transform.translate(
-                            offset: Offset(0, 0),
+                            offset: const Offset(0, 0),
                             child: GestureDetector(
                               onTap: widget.add,
                               child: const Icon(
@@ -80,7 +80,7 @@ class _incDecState extends State<incDec> {
                   Expanded(
                       flex: 2,
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         alignment: Alignment.center,
                         color: Colors.transparent,
                         child: Text(
@@ -93,7 +93,7 @@ class _incDecState extends State<incDec> {
                       )),
                   Expanded(
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 4),
+                        padding:const  EdgeInsets.symmetric(vertical: 4),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: white,
@@ -102,12 +102,12 @@ class _incDecState extends State<incDec> {
                               color: Colors.grey.shade300,
                               blurRadius: 5,
                               spreadRadius: 1,
-                              offset: Offset(1, 2),
+                              offset: const Offset(1, 2),
                             ),
                           ],
                         ),
                         child: Transform.translate(
-                            offset: Offset(0, -4),
+                            offset: const Offset(0, -4),
                             child: GestureDetector(
                               onTap: widget.sub,
                               child: const Icon(

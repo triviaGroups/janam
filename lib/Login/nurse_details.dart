@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/List/awcList.dart';
-import 'package:janam/List/govtSchhols.dart';
+import 'package:janam/List/govtSchools.dart';
 import 'package:janam/List/privateSchools.dart';
 import 'package:janam/List/villageWidgetList.dart';
 import 'package:janam/Widgets/button.dart';
@@ -15,7 +15,6 @@ import 'package:janam/constants/color_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:janam/provider/nurseProvider.dart';
 import 'package:provider/provider.dart';
-
 import '../List/ashaList.dart';
 import '../List/villageList.dart';
 
@@ -42,35 +41,22 @@ class _nurseDetailsState extends State<nurseDetails> {
   String phcn = "";
   String sub = "";
 
-  @override
-  void initState() {
-    // vilWid = villageWidget();
-    // vil = villageDetailsList();
-    // ash = ashaDetailsList();
-    // awc = awcDetailsList();
-    // gwc = govtDetailsList();
-    // pwc = pvtDetailsList();
-
-    super.initState();
-  }
-
   UploadTask? task;
-  var tecc = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: appBg,
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              height: 180,
+              height: 160,
               width: double.infinity,
               color: purple,
               alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                 child: Text(
                   "Setting your profile",
                   style: GoogleFonts.poppins(
@@ -90,14 +76,14 @@ class _nurseDetailsState extends State<nurseDetails> {
                 width: double.infinity,
                 child: TextFormField(
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w400, fontSize: 16, color: black),
+                      fontWeight: FontWeight.w500, fontSize: 16, color: black),
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Full Name",
                       hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: purple)),
                   onChanged: (val) {
                    setState(() {
@@ -108,7 +94,7 @@ class _nurseDetailsState extends State<nurseDetails> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -119,14 +105,14 @@ class _nurseDetailsState extends State<nurseDetails> {
                 width: double.infinity,
                 child: TextFormField(
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w400, fontSize: 16, color: black),
+                      fontWeight: FontWeight.w500, fontSize: 16, color: black),
                   decoration: InputDecoration(
-                      contentPadding: EdgeInsets.only(left: 8),
+                      contentPadding: const EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Primary Health Center Name",
                       hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: purple)),
                   onChanged: (val) {
                     setState(() {
@@ -148,14 +134,14 @@ class _nurseDetailsState extends State<nurseDetails> {
                 width: double.infinity,
                 child: TextField(
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w400, fontSize: 16, color: black),
+                      fontWeight: FontWeight.w500, fontSize: 16, color: black),
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(left: 8),
                       border: InputBorder.none,
                       hintText: "Sub Center name",
                       hintStyle: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: purple)),
                   onChanged: (val) {
                     setState(() {
@@ -196,20 +182,18 @@ class _nurseDetailsState extends State<nurseDetails> {
                     child: GestureDetector(
                       onTap: () async {
                         await selectFile().whenComplete(() {
-                          final File =
+                          final file =
                               Provider.of<NurseDetails>(context, listen: false)
                                   .get_file()!;
-                          final filename = Path.basename(File.path);
-                          print("Final inga fetch panran");
-                          print(File);
+                          final filename = Path.basename(file.path);
                           final destination = 'files/$filename';
-                          task = FirebaseApi.uploadFile(destination, File);
+                          task = FirebaseApi.uploadFile(destination, file);
                         });
                       },
                       child: Container(
                         alignment: Alignment.center,
                         color: Colors.white,
-                        child: FaIcon(
+                        child: const FaIcon(
                           FontAwesomeIcons.camera,
                           color: Colors.grey,
                           size: 27,
@@ -221,7 +205,7 @@ class _nurseDetailsState extends State<nurseDetails> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              margin:const  EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               width: double.infinity,
               height: 200,
               decoration: BoxDecoration(
@@ -233,7 +217,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                     color: Colors.grey.shade300,
                     blurRadius: 5,
                     spreadRadius: 1,
-                    offset: Offset(1, 2),
+                    offset:const  Offset(1, 2),
                   ),
                 ],
               ),
@@ -247,7 +231,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 16.0),
+                    padding:const  EdgeInsets.only(left: 16.0),
                     child: Text(
                       "List Of Villages",
                       softWrap: false,
@@ -263,9 +247,6 @@ class _nurseDetailsState extends State<nurseDetails> {
                 ),
                 Expanded(
                   child: Container(
-                    // constraints: BoxConstraints(
-                    //   maxHeight: double.infinity,
-                    // ),
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -277,7 +258,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                         Expanded(
                             flex: 3,
                             child: Container(
-                              margin: EdgeInsets.only(top: 15),
+                              margin:const  EdgeInsets.only(top: 15),
                               alignment: Alignment.topCenter,
                               child: Text(
                                 "Village Name",
@@ -291,15 +272,15 @@ class _nurseDetailsState extends State<nurseDetails> {
                             flex: 3,
                             child: Container(
                               alignment: Alignment.topCenter,
-                              margin: EdgeInsets.only(top: 15),
+                              margin: const EdgeInsets.only(top: 15),
                               child: ListView.builder(
                                   itemCount: villageCount,
                                   shrinkWrap: true,
-                                  padding: EdgeInsets.only(bottom: 1),
-                                  physics: ClampingScrollPhysics(),
+                                  padding: const EdgeInsets.only(bottom: 1),
+                                  physics: const ClampingScrollPhysics(),
                                   itemBuilder: (context, index) {
                                     return Padding(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 0.5, vertical: 2.5),
                                       child: Container(
                                         //color: Colors.red,
@@ -335,7 +316,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                                   onTap: () {
                                     villageCount++;
                                     villageName.add("");
-                                    String temp = "Village $villageCount -Name";
+                                    String temp = "Village ${villageCount+1} -Name";
                                     vil.add(villageDetailsDataList(name: temp));
                                     vilWid.add(village(
                                       villagecount: villageCount,
@@ -359,32 +340,55 @@ class _nurseDetailsState extends State<nurseDetails> {
             ),
             GestureDetector(
               onTap: () {
-                Map<String, dynamic> data = {
-                  "Name": name,
-                  "Villages": villageName,
-                  "Phcn": phcn,
-                  "sub": sub,
-                };
-                FirebaseFirestore.instance
-                    .collection("Details")
-                    .doc(widget.number)
-                    .set(data)
-                    .whenComplete(() => Navigator.push(
+                if(name.isEmpty || name == "" || phcn.isEmpty || phcn == "" || sub.isEmpty || sub == ""){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    backgroundColor: Colors.black,
+                    duration: const Duration(seconds: 2),
+                    content: Text(
+                      "No field should be left empty",
+                      style: GoogleFonts.poppins(fontSize: 18),
+                    ),
+                  ));
+                }
+                else{
+                  int k = villageName.length;
+                  bool mn = true;
+                  for(int i=0;i<k;i++){
+                    if(villageName[i] == "" || villageName.isEmpty){
+                      mn = false;
+                    }
+                  }
+                  if(mn){
+                    Map<String, dynamic> data = {
+                      "Name": name,
+                      "Villages": villageName,
+                      "Phcn": phcn,
+                      "sub": sub,
+                    };
+                    FirebaseFirestore.instance
+                        .collection("Details")
+                        .doc(widget.number)
+                        .set(data)
+                        .whenComplete(() => Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => village(
-                                  villagecount: vilWid.length,
-                                  villageName: villageName,
+                              villagecount: vilWid.length,
+                              villageName: villageName,
                               number: widget.number,
-                                ))));
-                // Navigator.push(
-                //             context,
-                //             MaterialPageRoute(
-                //                 builder: (context) => village(
-                //                       villagecount: vilWid.length,
-                //                       villageName: villageName,
-                //                     )));
-
+                            ))));
+                  }
+                  else{
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.black,
+                      duration: const Duration(seconds: 2),
+                      content: Text(
+                        "Enter the village names for the selected villages",
+                        style: GoogleFonts.poppins(fontSize: 18),
+                      ),
+                    ));
+                  }
+                }
               },
               child: Button("Next"),
             ),

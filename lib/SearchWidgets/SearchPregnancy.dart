@@ -19,7 +19,6 @@ class PregSearch extends StatefulWidget {
 class _PregSearchState extends State<PregSearch> {
   TextEditingController _searchController = TextEditingController();
   Future? resultsloaded;
-  String _docid = "";
   List _allResults = [];
   List _resultsList = [];
 
@@ -90,7 +89,7 @@ class _PregSearchState extends State<PregSearch> {
     return ExpansionCard(
       backgroundColor: Colors.white,
       initiallyExpanded: true,
-      trailing: Icon(
+      trailing: const Icon(
         Icons.search,
         color: Colors.black,
       ),
@@ -107,7 +106,7 @@ class _PregSearchState extends State<PregSearch> {
           onTap: () {},
           decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
               hintText: "Search",
               errorMaxLines: 1,
               hintStyle: GoogleFonts.poppins(fontSize: 16, color: black),
@@ -117,7 +116,7 @@ class _PregSearchState extends State<PregSearch> {
       ),
       children: [
         _searchController.text == ""
-            ? SizedBox()
+            ? const SizedBox()
             : Container(
                 height: 250,
                 decoration: BoxDecoration(
@@ -125,8 +124,8 @@ class _PregSearchState extends State<PregSearch> {
                   color: purple,
                   border: Border.all(width: 0.5, color: white),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 16),
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: ListView.builder(
                     itemCount: _resultsList.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -137,11 +136,11 @@ class _PregSearchState extends State<PregSearch> {
                               _resultsList[index]["Address"],
                               _resultsList[index]["G"],
                               _resultsList[index]["Name"],
-                              _resultsList[index]["DOB"]);
+                              _resultsList[index]["DOB"],_resultsList[index]["Village Name"]);
                           setState(() {});
                         },
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             border: Border(
                                 bottom:
                                     BorderSide(width: 1, color: Colors.white)),
@@ -151,7 +150,7 @@ class _PregSearchState extends State<PregSearch> {
                               alignment: _resultsList == []
                                   ? Alignment.center
                                   : Alignment.centerLeft,
-                              margin: EdgeInsets.symmetric(horizontal: 16),
+                              margin: const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
                                 _resultsList == []
                                     ? "No result"
@@ -165,7 +164,7 @@ class _PregSearchState extends State<PregSearch> {
                                 textAlign: _resultsList == []
                                     ? TextAlign.center
                                     : TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: "Grold Regular",
                                   fontWeight: FontWeight.w400,
                                   fontSize: 16,

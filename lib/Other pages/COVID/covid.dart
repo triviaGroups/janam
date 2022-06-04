@@ -5,11 +5,12 @@ import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:janam/Home/home_sub.dart';
+import 'package:janam/Other%20pages/ORS/ORSpro.dart';
+import 'package:janam/Other%20pages/search_common.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/chechboxContainer.dart';
 import 'package:janam/Widgets/container.dart';
 import 'package:janam/Widgets/radioContainer.dart';
-import 'package:janam/SearchWidgets/search.dart';
 import 'package:janam/Widgets/topic.dart';
 import 'package:janam/constants/color_constants.dart';
 import 'package:janam/provider/detailsFetch.dart';
@@ -24,8 +25,8 @@ class Covid extends StatefulWidget {
 
 class _CovidState extends State<Covid> {
   int a = 0;
-  int test_result = 0;
-  int discharge_reason = 0;
+  int testResult = 0;
+  int dischargeReason = 0;
 
   List<String> symp = const [
     "Fever",
@@ -43,18 +44,18 @@ class _CovidState extends State<Covid> {
   List<String> r =  const ["Positive","Negative"];
   List<String> reason = const ["Negative results","Quarantine completion","Dead"];
 
-  TextEditingController name = new TextEditingController();
-  TextEditingController addr = new TextEditingController();
-  TextEditingController dob = new TextEditingController();
+  TextEditingController name =  TextEditingController();
+  TextEditingController addr =  TextEditingController();
+  TextEditingController dob =  TextEditingController();
 
-  TextEditingController test_date = new TextEditingController();
-  TextEditingController result_date = new TextEditingController();
+  TextEditingController testDate =  TextEditingController();
+  TextEditingController resultDate =  TextEditingController();
 
-  TextEditingController source = new TextEditingController();
-  TextEditingController place = new TextEditingController();
+  TextEditingController source =  TextEditingController();
+  TextEditingController place =  TextEditingController();
 
-  TextEditingController adm_date = new TextEditingController();
-  TextEditingController dis_date = new TextEditingController();
+  TextEditingController admDate =  TextEditingController();
+  TextEditingController disDate =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,158 +69,41 @@ class _CovidState extends State<Covid> {
                 const SizedBox(
                   height: 16,
                 ),
-                topic("COVID 19", "Enter member"),
+                topic("COVID 19", "Select member"),
+                searchCommon(),
                 Cont(
-                    child: Column(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Expanded(child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Name of member",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: name,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                          ],
-                        ),),
-                        Expanded(child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Text(
-                                  "Address",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                height: 200,
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: TextFormField(
-                                  controller: addr,
-                                  decoration: InputDecoration(
-                                      hintText: "",
-                                      contentPadding:
-                                      EdgeInsets.only(left: 10, right: 10),
-                                      border: InputBorder.none,
-                                      hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                  ),
-                                  style:
-                                  GoogleFonts.poppins(fontSize: 14, color: black),
-                                ),
-                              ),),
-                          ],
-                        ),),
                         Expanded(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    padding: const EdgeInsets.only(right: 8),
-                                    child: Text(
-                                      "Date of birth",
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: black),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Container(
-
-                                    decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: TextFormField(
-                                      onChanged: (val) {},
-                                      decoration: InputDecoration(
-                                          hintText: "",
-                                          contentPadding:
-                                          EdgeInsets.only(left: 10, right: 10),
-                                          border: InputBorder.none,
-                                          hintStyle: GoogleFonts.poppins(fontSize: 14, color: black)
-                                      ),
-                                      style:
-                                      GoogleFonts.poppins(fontSize: 14, color: black),
-                                    ),
-                                  ),),
-                                Expanded(
-                                  child: Container(
-                                    alignment: Alignment.centerRight,
-                                    child: GestureDetector(
-                                        onTap: () async{
-                                          var datePicked =
-                                          await DatePicker.showSimpleDatePicker(
-                                            context,
-                                            initialDate: DateTime(1994),
-                                            firstDate: DateTime(1960),
-                                            lastDate: DateTime(2022),
-                                            dateFormat: "dd-MMMM-yyyy",
-                                            locale: DateTimePickerLocale.en_us,
-                                            looping: true,
-                                          );
-                                          final DateFormat formatter = DateFormat('yyyy-MM-dd');
-                                          final String formatted = formatter. format(datePicked!);
-                                          setState((){
-                                            dob.text = formatted;
-                                          });
-                                          final snackBar = SnackBar(
-                                              content:
-                                              Text("Date Picked $formatted"));
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(snackBar);
-                                        },
-                                        child: Icon(Icons.calendar_today_outlined,color: Colors.black87,size: 24,)),
-                                  ),
-                                )
-                              ],
-                            )),
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Text(
+                              "Name of member",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: black),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Text(
+                              context.watch<orspro>().name,
+                              style:
+                              GoogleFonts.poppins(fontSize: 14, color: black),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    height: 300,
+                    height: 40,
                     color: colors[(a++) % 4]),
                 CheckBoxCont(
                   name: "Symptoms",
@@ -250,8 +134,8 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              controller: test_date,
-                              decoration: InputDecoration(
+                              controller: testDate,
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -288,8 +172,8 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              controller: result_date,
-                              decoration: InputDecoration(
+                              controller: resultDate,
+                              decoration:const  InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -310,10 +194,9 @@ class _CovidState extends State<Covid> {
                   height: 120,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    test_result = int.parse(val.toString());
-                    print("$test_result");
+                    testResult = int.parse(val.toString());
                   }),
-                  selectedButton: test_result,
+                  selectedButton: testResult,
                 ),
                 Cont(
                     child: Row(
@@ -339,7 +222,7 @@ class _CovidState extends State<Covid> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: source,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -377,7 +260,7 @@ class _CovidState extends State<Covid> {
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
                               controller: place,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -414,8 +297,8 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              controller: adm_date,
-                              decoration: InputDecoration(
+                              controller: admDate,
+                              decoration:const  InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -452,8 +335,8 @@ class _CovidState extends State<Covid> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(5)),
                             child: TextFormField(
-                              controller: dis_date,
-                              decoration: InputDecoration(
+                              controller: disDate,
+                              decoration: const InputDecoration(
                                 contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
                                 border: InputBorder.none,
@@ -474,10 +357,9 @@ class _CovidState extends State<Covid> {
                   height: 180,
                   a: (a++) % 4,
                   press: (val) => setState(() {
-                    discharge_reason = int.parse(val.toString());
-                    print("$discharge_reason");
+                    dischargeReason = int.parse(val.toString());
                   }),
-                  selectedButton: discharge_reason,
+                  selectedButton: dischargeReason,
                 ),
                 const SizedBox(
                   height: 32,
@@ -493,23 +375,23 @@ class _CovidState extends State<Covid> {
                     }
 
                     Map<String, dynamic> data = {
-                      "Name" : name.text,
+                      "Name" : Provider.of<orspro>(context,listen: false).name,
                       "Address" : addr.text,
                       "DOB" : dob.text,
                       "Symptoms" : mn,
-                      "Test date" : test_date.text,
-                      "Result date" : result_date.text,
-                      "Admission date" : adm_date.text,
-                      "Discharge date" : dis_date.text,
-                      "Test result" : r[test_result],
+                      "Test date" : testDate.text,
+                      "Result date" : resultDate.text,
+                      "Admission date" : admDate.text,
+                      "Discharge date" : disDate.text,
+                      "Test result" : r[testResult],
                       "Source" : source.text,
                       "Place" : place.text,
-                      "Reason" : reason[discharge_reason],
+                      "Reason" : reason[dischargeReason],
                     };
                     await FirebaseFirestore.instance
                         .collection("Covid")
                         .doc(Provider.of<Details>(context, listen: false)
-                        .phone).collection(result_date.text).doc(name.text)
+                        .phone).collection(resultDate.text).doc(Provider.of<orspro>(context,listen: false).name)
                         .set(data);
                     Navigator.pushReplacement(
                         context,

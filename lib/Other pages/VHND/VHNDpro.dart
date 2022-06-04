@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:janam/Login/villageWidget.dart';
 
 class vhndpro with ChangeNotifier {
 
@@ -19,43 +18,44 @@ class vhndpro with ChangeNotifier {
   List<String> get selected => _selected;
 
   void putselect(String data){
-    this._selected.add(data);
+    _selected.add(data);
     notifyListeners();
   }
 
   void removedata(String data){
-    this._selected.remove(data);
+    _selected.remove(data);
     notifyListeners();
   }
 
   Future<void> getData(String num) async{
     await FirebaseFirestore.instance.collection("Details").doc(num).get().then((value) => {
-      this._village.add(value['Villages'].toString().substring(1,value['Villages'].toString().length-1)),
+      _village = List.from(value["Villages"])
     });
-    this._len = _village.length;
+
+    _len = _village.length;
     
     notifyListeners();
   }
 
   void incGiven(){
-    this._given++;
+    _given++;
   }
 
   void decGiven(){
-    this._given--;
-    if(this._given < 0){
-      this._given = 0;
+    _given--;
+    if(_given < 0){
+      _given = 0;
     }
   }
 
   void incIssue(){
-    this._issued++;
+    _issued++;
   }
 
   void decIssue(){
-    this._issued--;
-    if(this._issued < 0){
-      this._issued = 0;
+    _issued--;
+    if(_issued < 0){
+      _issued = 0;
     }
   }
 
