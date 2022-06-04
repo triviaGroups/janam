@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Login/login.dart';
 import 'package:janam/Login/nurse_details.dart';
@@ -112,9 +113,16 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
                       );
                     });
               }
-              return const Scaffold(
+              return Scaffold(
+                backgroundColor: purple,
                 body: Center(
-                  child: CircularProgressIndicator(),
+                  child: Text(
+                    "Welcome to Janam!!",
+                    style: GoogleFonts.poppins(
+                        color: white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18),
+                  ),
                 ),
               );
             }),

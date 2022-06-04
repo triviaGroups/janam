@@ -127,22 +127,26 @@ class _searchCommonState extends State<searchCommon> {
 
                     });
                   },
-                  child: ListTile(
-                    leading: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      width: 50,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              width: 1, color: Colors.white)),
                     ),
-                    title: Container(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        _searchController.text == "" ? _allResults[index]["Name"] : _resultsList[index]["Name"]+", "+_resultsList[index]["Village"],
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontFamily: "Grold Regular",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          color: Colors.white,
+                    margin: EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: ListTile(
+                      title: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          _searchController.text == "" ? _allResults[index]["Name"] : _resultsList[index]["Name"]+", "+_resultsList[index]["Village"],
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontFamily: "Grold Regular",
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

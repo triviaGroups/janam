@@ -32,13 +32,7 @@ class _HomeSubState extends State<HomeSub> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,
-        body: check ? Home(num: widget.number,) :  Center(child:Text(
-          "Welcome to Janam!!",
-          style: GoogleFonts.poppins(
-              color: purple,
-              fontWeight: FontWeight.w600,
-              fontSize: 18),
-        ),),
+        body: check ? Home(num: widget.number,) :  const Center(child: CircularProgressIndicator()),
       ),
     );
   }
