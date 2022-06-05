@@ -108,6 +108,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
     a = 0;
     return SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
       backgroundColor: white,
       body: SingleChildScrollView(
         child: Column(

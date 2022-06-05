@@ -56,6 +56,7 @@ class _StockRegState extends State<StockReg> {
     return SafeArea(
         child: Scaffold(
           backgroundColor: white,
+          resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
             child: Column(
               children: [

@@ -33,15 +33,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Details>.value(value: (Details())),
-        ChangeNotifierProvider<NurseDetails>.value(value: (NurseDetails())),
-        ChangeNotifierProvider<VillageProvider>.value(value: (VillageProvider())),
-        ChangeNotifierProvider<DocID>.value(value: (DocID())),
-        ChangeNotifierProvider<PregDocID>.value(value: (PregDocID())),
-        ChangeNotifierProvider<vhndpro>.value(value: vhndpro()),
-        ChangeNotifierProvider<nipipro>.value(value: nipipro()),
-        ChangeNotifierProvider<orspro>.value(value: orspro()),
-        ChangeNotifierProvider<tcpro>.value(value: tcpro()),
-        ChangeNotifierProvider<PnPro>.value(value: PnPro()),
       ],
       child: const MaterialApp(
         home: FireBaseInitialization(),

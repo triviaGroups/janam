@@ -88,7 +88,6 @@ class _EcSearchState extends State<EcSearch> {
   Widget build(BuildContext context) {
     return ExpansionCard(
       backgroundColor: Colors.white,
-      initiallyExpanded: true,
       trailing: const Icon(
         Icons.search,
         color: Colors.black,

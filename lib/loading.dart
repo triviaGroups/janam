@@ -75,7 +75,7 @@ class _LoadingState extends State<Loading> {
                     if (value.user != null) {
                       await FirebaseFirestore.instance.collection("Details").doc(widget.phone).get().then((data){
                         if(data.exists){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeSub(number: widget.phone)));
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeSub(number: widget.phone)));
                         }
                         else{
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => nurseDetails(

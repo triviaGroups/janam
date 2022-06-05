@@ -6,6 +6,7 @@ import 'package:flutter_holo_date_picker/date_picker.dart';
 import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:janam/Home/home_sub.dart';
 import 'package:janam/RMNCH/postnatal.dart';
 import 'package:janam/SearchWidgets/SearchPregnancy.dart';
 import 'package:janam/Widgets/button.dart';
@@ -112,6 +113,7 @@ class DeliveryState extends State<Delivery> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
+          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -788,11 +790,13 @@ class DeliveryState extends State<Delivery> {
                     "VIT": [yesno[doseint[3] - 1], dosedates[3]],
                   };
 
-                  await FirebaseFirestore.instance
-                      .collection("Village Children")
-                      .doc(Provider.of<Details>(context, listen: false)
-                      .phone)
-                      .collection("New born").doc(Provider.of<PregDocID>(context, listen: false).doc).set(newBorn);
+                  if(outcome == 1){
+                    await FirebaseFirestore.instance
+                        .collection("Village Children")
+                        .doc(Provider.of<Details>(context, listen: false)
+                        .phone)
+                        .collection("New born").doc(Provider.of<PregDocID>(context, listen: false).doc).set(newBorn);
+                  }
 
 
 
@@ -955,11 +959,24 @@ class DeliveryState extends State<Delivery> {
                           }
                         });
                       });
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => PostnatalCare(
-                                dob: dateDelivery.text,
-                                gender: gender[sex - 1],
-                              )));
+                      if(outcome == 1){
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => PostnatalCare(
+                              dob: dateDelivery.text,
+                              gender: gender[sex - 1],
+                            )));
+                      }
+                      else{
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeSub(
+                                  number:
+                                  Provider.of<Details>(context, listen: false)
+                                      .phone)),
+                              (Route<dynamic> route) => false,
+                        );
+                      }
                     });
                   });
                 },

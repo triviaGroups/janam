@@ -139,6 +139,7 @@ class _PregnancyState extends State<Pregnancy> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
+          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -497,14 +498,15 @@ class _PregnancyState extends State<Pregnancy> {
                               .phone)
                           .collection("Pregnant")
                           .doc(Provider.of<DocID>(context, listen: false).doc)
-                          .delete()
-                          .whenComplete(() => Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeSub(
-                                      number: Provider.of<Details>(context,
-                                              listen: false)
-                                          .phone))));
+                          .delete();
+
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeSub(
+                                  number: Provider.of<Details>(context,
+                                      listen: false)
+                                      .phone)));
                     }
                   }
                 },

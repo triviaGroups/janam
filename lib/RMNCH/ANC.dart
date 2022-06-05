@@ -100,6 +100,7 @@ class _ANCState extends State<ANC> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
+      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -792,14 +793,15 @@ class _ANCState extends State<ANC> {
                       .doc(Provider.of<PregDocID>(context, listen: false).doc)
                       .collection("ANC")
                       .doc(dob.text)
-                      .set(data)
-                      .whenComplete(() => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeSub(
-                                  number: Provider.of<Details>(context,
-                                          listen: false)
-                                      .phone))));
+                      .set(data);
+
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomeSub(
+                              number: Provider.of<Details>(context,
+                                  listen: false)
+                                  .phone)));
                 },
                 child: Button("Save")),
             const SizedBox(

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:janam/SearchWidgets/SearchFamily.dart';
 import 'package:janam/Widgets/button.dart';
@@ -40,17 +41,18 @@ class _vpage1State extends State<vpage1> {
     villageList = Provider.of<Details>(context, listen: false).village;
   }
 
-  TextEditingController villageName =  TextEditingController();
-  TextEditingController plotNo =  TextEditingController();
-  TextEditingController streetName =  TextEditingController();
-  TextEditingController areaName =  TextEditingController();
-  TextEditingController phoneNumber =  TextEditingController();
+  TextEditingController villageName = TextEditingController();
+  TextEditingController plotNo = TextEditingController();
+  TextEditingController streetName = TextEditingController();
+  TextEditingController areaName = TextEditingController();
+  TextEditingController phoneNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
+          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -219,7 +221,7 @@ class _vpage1State extends State<vpage1> {
                             controller: plotNo,
                             decoration: InputDecoration(
                               contentPadding:
-                              const EdgeInsets.only(left: 16, right: 10),
+                                  const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Plot No",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -242,7 +244,7 @@ class _vpage1State extends State<vpage1> {
                             controller: streetName,
                             decoration: InputDecoration(
                               contentPadding:
-                              const EdgeInsets.only(left: 16, right: 10),
+                                  const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Street Name",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -265,7 +267,7 @@ class _vpage1State extends State<vpage1> {
                             controller: areaName,
                             decoration: InputDecoration(
                               contentPadding:
-                              const EdgeInsets.only(left: 16, right: 10),
+                                  const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Area Name",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -286,10 +288,11 @@ class _vpage1State extends State<vpage1> {
                               color: heading),
                           child: TextFormField(
                             controller: phoneNumber,
+                            inputFormatters: [LengthLimitingTextInputFormatter(10)],
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               contentPadding:
-                              const EdgeInsets.only(left: 16, right: 10),
+                                  const EdgeInsets.only(left: 16, right: 10),
                               hintText: "Phone Number",
                               border: InputBorder.none,
                               errorMaxLines: 1,
@@ -329,13 +332,28 @@ class _vpage1State extends State<vpage1> {
                             backgroundColor: Colors.black,
                             duration: const Duration(seconds: 2),
                             content: Text(
-                              "Enter Mobile Number",
+                              "Select village",
                               style: GoogleFonts.poppins(fontSize: 18),
                             ),
                           ));
                         }
                       : checkValue == "Add new houseHold"
-                          ? _addhousehold()
+                          ? {
+                              if (plotNo.text.isEmpty || streetName.text.isEmpty || areaName.text.isEmpty || phoneNumber.text.isEmpty)
+                                {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    backgroundColor: Colors.black,
+                                    duration: const Duration(seconds: 2),
+                                    content: Text(
+                                      "No field should be left empty",
+                                      style: GoogleFonts.poppins(fontSize: 18),
+                                    ),
+                                  ))
+                                }
+                              else
+                                {_addhousehold()}
+                            }
                           : {};
 
                   //Navigator.of(context).push(MaterialPageRoute(builder: (context)=> vPage2()));
@@ -351,7 +369,7 @@ class _vpage1State extends State<vpage1> {
   }
 
   void _addhousehold() async {
-    DocumentReference docRef =  FirebaseFirestore.instance
+    DocumentReference docRef = FirebaseFirestore.instance
         .collection("Village Details")
         .doc(villagename)
         .collection("Family")

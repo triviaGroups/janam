@@ -996,78 +996,104 @@ class _vPage2State extends State<vPage2> {
                       spouse[2] = spousedob.text;
                     });
 
-                    DocumentReference docRef = FirebaseFirestore.instance
-                        .collection("Village Details")
-                        .doc(widget.VillageName)
-                        .collection("Family")
-                        .doc(widget.docId)
-                        .collection("Household")
-                        .doc();
+                    bool ok = true;
 
-                    DocumentSnapshot docSnap = await docRef.get();
-                    var doc = docSnap.reference.id;
+                    for(int i=0;i<head.length;i++){
+                      if(head[i] == ""){
+                        ok = false;
+                      }
+                    }
 
-                    Map<String, dynamic> data = {
-                      "isHead": isSwitchedHead,
-                      "isSpouse": isSwitched,
-                      "head": head,
-                      "spouse": spouse,
-                      "docId": doc,
-                    };
+                    for(int i=0;i<spouse.length;i++){
+                      if(spouse[i] == ""){
+                        ok = false;
+                      }
+                    }
 
-                    Map<String,dynamic> m1 = {
-                      "Name" : head[0],
-                      "DOB" : head[1],
-                      "Village" : widget.VillageName,
-                      "Gender" : "Male",
-                      "docId" : doc,
-                      "Address" : widget.Address,
-                    };
+                   if(ok){
+                     DocumentReference docRef = FirebaseFirestore.instance
+                         .collection("Village Details")
+                         .doc(widget.VillageName)
+                         .collection("Family")
+                         .doc(widget.docId)
+                         .collection("Household")
+                         .doc();
 
-                    Map<String,dynamic> m2 = {
-                      "Name" : spouse[1],
-                      "DOB" : spouse[2],
-                      "Village" : widget.VillageName,
-                      "Gender" : "Female",
-                      "docId" : doc,
-                      "Address" : widget.Address,
-                    };
+                     DocumentSnapshot docSnap = await docRef.get();
+                     var doc = docSnap.reference.id;
 
-                    await FirebaseFirestore.instance
-                        .collection("Village Members")
-                        .doc(Provider.of<Details>(context, listen: false).phone)
-                        .collection("Members")
-                        .doc()
-                        .set(m1).whenComplete(() async{
-                      await FirebaseFirestore.instance
-                          .collection("Village Members")
-                          .doc(Provider.of<Details>(context, listen: false).phone)
-                          .collection("Members")
-                          .doc()
-                          .set(m2);
-                    });
+                     Map<String, dynamic> data = {
+                       "isHead": isSwitchedHead,
+                       "isSpouse": isSwitched,
+                       "head": head,
+                       "spouse": spouse,
+                       "docId": doc,
+                     };
 
-                    await FirebaseFirestore.instance
-                        .collection("Village Details")
-                        .doc(widget.VillageName)
-                        .collection("Family")
-                        .doc(widget.docId)
-                        .collection("Household")
-                        .doc(doc)
-                        .set(data)
-                        .whenComplete(() {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => vPage3(
-                                    docId: widget.docId,
-                                    VillageName: widget.VillageName,
-                                    head: head,
-                                    spouse: spouse,
-                                    Address: widget.Address,
-                                familyId: doc,
-                                  )));
-                    });
+                     Map<String,dynamic> m1 = {
+                       "Name" : head[0],
+                       "DOB" : head[1],
+                       "Village" : widget.VillageName,
+                       "Gender" : "Male",
+                       "docId" : doc,
+                       "Address" : widget.Address,
+                     };
+
+                     Map<String,dynamic> m2 = {
+                       "Name" : spouse[1],
+                       "DOB" : spouse[2],
+                       "Village" : widget.VillageName,
+                       "Gender" : "Female",
+                       "docId" : doc,
+                       "Address" : widget.Address,
+                     };
+
+                     await FirebaseFirestore.instance
+                         .collection("Village Members")
+                         .doc(Provider.of<Details>(context, listen: false).phone)
+                         .collection("Members")
+                         .doc()
+                         .set(m1).whenComplete(() async{
+                       await FirebaseFirestore.instance
+                           .collection("Village Members")
+                           .doc(Provider.of<Details>(context, listen: false).phone)
+                           .collection("Members")
+                           .doc()
+                           .set(m2);
+                     });
+
+                     await FirebaseFirestore.instance
+                         .collection("Village Details")
+                         .doc(widget.VillageName)
+                         .collection("Family")
+                         .doc(widget.docId)
+                         .collection("Household")
+                         .doc(doc)
+                         .set(data);
+
+                     Navigator.pushReplacement(
+                         context,
+                         MaterialPageRoute(
+                             builder: (context) => vPage3(
+                               docId: widget.docId,
+                               VillageName: widget.VillageName,
+                               head: head,
+                               spouse: spouse,
+                               Address: widget.Address,
+                               familyId: doc,
+                             )));
+                   }
+                   else{
+                     ScaffoldMessenger.of(context)
+                         .showSnackBar(SnackBar(
+                       backgroundColor: Colors.black,
+                       duration: const Duration(seconds: 2),
+                       content: Text(
+                         "No field should be left empty",
+                         style: GoogleFonts.poppins(fontSize: 18),
+                       ),
+                     ));
+                   }
 
                   },
                   child: Button("Save")),

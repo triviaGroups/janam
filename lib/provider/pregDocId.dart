@@ -57,10 +57,30 @@ class PregDocID with ChangeNotifier {
     _name = name;
     _dob = dob;
     _village = vi;
-    _list.add(int.parse(a[0]));
-    _list.add(int.parse(b[0]));
-    _list.add(int.parse(c[0]));
-    _list.add(int.parse(d[0]));
+    if(a[0] == "yes"){
+      _list.add(1);
+    }
+    else{
+      _list.add(0);
+    }
+    if(b[0] == "yes"){
+      _list.add(1);
+    }
+    else{
+      _list.add(0);
+    }
+    if(c[0] == "yes"){
+      _list.add(1);
+    }
+    else{
+      _list.add(0);
+    }
+    if(d[0] == "yes"){
+      _list.add(1);
+    }
+    else{
+      _list.add(0);
+    }
     _birthDoses.add(a[1]);
     _birthDoses.add(b[1]);
     _birthDoses.add(c[1]);
@@ -68,6 +88,7 @@ class PregDocID with ChangeNotifier {
     final birthday = DateTime.parse(_date);
     final date2 = DateTime.now();
     _difference = date2.difference(birthday).inDays;
+    print("Difference" + _difference.toString());
     notifyListeners();
   }
 

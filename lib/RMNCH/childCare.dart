@@ -50,6 +50,7 @@ class _ChildCareState extends State<ChildCare> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
+          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -194,67 +195,71 @@ class _ChildCareState extends State<ChildCare> {
                 ),
                 height: 40,
                 color: colors[(a++) % 4]),
-            context.watch<PregDocID>().diff <= 42
-                ? rowRadioBtnContainer(
-                    color: colors[(a++) % 4],
-                    name: "Birth doses",
-                    item: const ["OPV-Zero", "BCG", "Hep B", "Vit k"],
-                    num: 4,
-                    height: 400,
-                    val: context.watch<PregDocID>().list,
-                    dates: context.watch<PregDocID>().bD,
-                  )
-                : const SizedBox(),
-            context.watch<PregDocID>().diff > 42 &&
+            context.watch<PregDocID>().doc == "" ? const SizedBox() : Column(
+              children: [
+                context.watch<PregDocID>().diff <= 42
+                    ? rowRadioBtnContainer(
+                  color: colors[(a++) % 4],
+                  name: "Birth doses",
+                  item: const ["OPV-Zero", "BCG", "Hep B", "Vit k"],
+                  num: 4,
+                  height: 400,
+                  val: context.watch<PregDocID>().list,
+                  dates: context.watch<PregDocID>().bD,
+                )
+                    : const SizedBox(),
+                context.watch<PregDocID>().diff > 42 &&
                     context.watch<PregDocID>().diff <= 70
-                ? rowRadioBtnContainer(
-                    color: colors[(a++) % 4],
-                    name: "6th week dose",
-                    item: const [
-                      "OPV-1",
-                      "DPT-1",
-                      "Hep B-1",
-                      "PV-1",
-                      "Rota-1",
-                      "IPV-1",
-                      "PCV-1"
-                    ],
-                    num: 7,
-                    height: 700,
-                    dates: fortyList,
-                    val: forty,
-                  )
-                : const SizedBox(),
-            context.watch<PregDocID>().diff > 70 &&
+                    ? rowRadioBtnContainer(
+                  color: colors[(a++) % 4],
+                  name: "6th week dose",
+                  item: const [
+                    "OPV-1",
+                    "DPT-1",
+                    "Hep B-1",
+                    "PV-1",
+                    "Rota-1",
+                    "IPV-1",
+                    "PCV-1"
+                  ],
+                  num: 7,
+                  height: 700,
+                  dates: fortyList,
+                  val: forty,
+                )
+                    : const SizedBox(),
+                context.watch<PregDocID>().diff > 70 &&
                     context.watch<PregDocID>().diff <= 98
-                ? rowRadioBtnContainer(
-                    color: colors[(a++) % 4],
-                    name: "10th week dose",
-                    item: const ["OPV-2", "DPT-2", "Hep B-2", "PV-2", "Rota-2"],
-                    num: 5,
-                    height: 500,
-                    val: seventy,
-                    dates: seventyList,
-                  )
-                : const SizedBox(),
-            context.watch<PregDocID>().diff > 98
-                ? rowRadioBtnContainer(
-                    color: colors[(a++) % 4],
-                    name: "14th week dose",
-                    item: const [
-                      "OPV-3",
-                      "DPT-3",
-                      "Hep B-3",
-                      "PV-3",
-                      "IPV-2",
-                      "PCV-2"
-                    ],
-                    num: 6,
-                    height: 600,
-                    val: ninety,
-                    dates: ninetyList,
-                  )
-                : const SizedBox(),
+                    ? rowRadioBtnContainer(
+                  color: colors[(a++) % 4],
+                  name: "10th week dose",
+                  item: const ["OPV-2", "DPT-2", "Hep B-2", "PV-2", "Rota-2"],
+                  num: 5,
+                  height: 500,
+                  val: seventy,
+                  dates: seventyList,
+                )
+                    : const SizedBox(),
+                context.watch<PregDocID>().diff > 98
+                    ? rowRadioBtnContainer(
+                  color: colors[(a++) % 4],
+                  name: "14th week dose",
+                  item: const [
+                    "OPV-3",
+                    "DPT-3",
+                    "Hep B-3",
+                    "PV-3",
+                    "IPV-2",
+                    "PCV-2"
+                  ],
+                  num: 6,
+                  height: 600,
+                  val: ninety,
+                  dates: ninetyList,
+                )
+                    : const SizedBox(),
+              ],
+            ),
             radioContainer(
               name: "Adverse event following immunization (AEFI)",
               num: 2,

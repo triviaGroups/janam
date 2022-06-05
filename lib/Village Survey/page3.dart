@@ -76,7 +76,7 @@ class _vPage3State extends State<vPage3> {
                     Expanded(
                         flex: 2,
                         child: Padding(
-                          padding:  const EdgeInsets.symmetric(vertical: 8),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Row(
                             children: [
                               Expanded(
@@ -84,7 +84,8 @@ class _vPage3State extends State<vPage3> {
                                 alignment: Alignment.center,
                                 height: 100,
                                 width: 80,
-                                padding: const EdgeInsets.symmetric(horizontal: 40),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 40),
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: white,
@@ -127,7 +128,7 @@ class _vPage3State extends State<vPage3> {
                     Expanded(
                         flex: 2,
                         child: Padding(
-                          padding:  const EdgeInsets.symmetric(vertical: 8),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Row(
                             children: [
                               Expanded(
@@ -135,11 +136,12 @@ class _vPage3State extends State<vPage3> {
                                 alignment: Alignment.center,
                                 height: 100,
                                 width: 80,
-                                padding: const EdgeInsets.symmetric(horizontal: 40),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 40),
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: white,
-                                  image:  DecorationImage(
+                                  image: DecorationImage(
                                     image:
                                         AssetImage("assets/images/female.png"),
                                     fit: BoxFit.cover,
@@ -433,7 +435,7 @@ class _vPage3State extends State<vPage3> {
             Container(
               alignment: Alignment.topLeft,
               margin: const EdgeInsets.symmetric(horizontal: 24),
-              padding:  const EdgeInsets.only(top: 16),
+              padding: const EdgeInsets.only(top: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -454,170 +456,190 @@ class _vPage3State extends State<vPage3> {
                 ],
               ),
             ),
-            Provider.of<VillageProvider>(context, listen: false).L1 > 0 ? Container(
-              height: 300,
-              alignment: Alignment.center,
-              child: PageView.builder(
-                  itemCount:
-                      Provider.of<VillageProvider>(context, listen: false).L1,
-                  itemBuilder: (context, index) {
-                    List<String> mn = ["", "", ""];
-                    children.add(mn);
-                    return Cont(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.topLeft,
-                                margin: const EdgeInsets.symmetric(horizontal: 24),
-                                padding:  const EdgeInsets.only(top: 16),
-                                child: Text(
-                                  "Details of ${index + 1} Child",
-                                  style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: black),
-                                ),
+            Provider.of<VillageProvider>(context, listen: false).L1 > 0
+                ? Container(
+                    height: 300,
+                    alignment: Alignment.center,
+                    child: PageView.builder(
+                        itemCount:
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .L1,
+                        itemBuilder: (context, index) {
+                          List<String> mn = ["", "", ""];
+                          children.add(mn);
+                          return Cont(
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: Container(
+                                      alignment: Alignment.topLeft,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 24),
+                                      padding: const EdgeInsets.only(top: 16),
+                                      child: Text(
+                                        "Details of ${index + 1} Child",
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            color: black),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                      child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          alignment: Alignment.topLeft,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          padding:
+                                              const EdgeInsets.only(top: 16),
+                                          child: Text(
+                                            "Name",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                                color: black),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                              top: 8,
+                                              bottom: 8,
+                                              left: 6,
+                                              right: 4),
+                                          decoration: BoxDecoration(
+                                              color: white,
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: TextFormField(
+                                            onChanged: (val) {
+                                              children[index][0] = val;
+                                            },
+                                            decoration: const InputDecoration(
+                                              contentPadding: EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              border: InputBorder.none,
+                                            ),
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 14, color: black),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                                  Expanded(
+                                      child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          alignment: Alignment.topLeft,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          padding:
+                                              const EdgeInsets.only(top: 16),
+                                          child: Text(
+                                            "Date of Birth",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                                color: black),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                              top: 8,
+                                              bottom: 8,
+                                              left: 6,
+                                              right: 4),
+                                          decoration: BoxDecoration(
+                                              color: white,
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: TextFormField(
+                                            onChanged: (val) {
+                                              children[index][1] = val;
+                                            },
+                                            decoration: const InputDecoration(
+                                              contentPadding: EdgeInsets.only(
+                                                  left: 10, right: 10),
+                                              border: InputBorder.none,
+                                            ),
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 14, color: black),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                                  Expanded(
+                                      child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          alignment: Alignment.topLeft,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          padding:
+                                              const EdgeInsets.only(top: 16),
+                                          child: Text(
+                                            "Sex",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                                color: black),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 3,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                              top: 8,
+                                              bottom: 8,
+                                              left: 6,
+                                              right: 4),
+                                          decoration: BoxDecoration(
+                                              color: white,
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: TextFormField(
+                                            onChanged: (val) {
+                                              children[index][2] = val;
+                                            },
+                                            decoration: InputDecoration(
+                                              hintText: "Male or Female",
+                                              hintStyle: GoogleFonts.poppins(
+                                                  fontSize: 14, color: txt),
+                                              contentPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 10, right: 10),
+                                              border: InputBorder.none,
+                                            ),
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 14, color: black),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                                ],
                               ),
-                            ),
-                            Expanded(
-                                child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    alignment: Alignment.topLeft,
-                                    margin:
-                                        const EdgeInsets.symmetric(horizontal: 24),
-                                    padding:  const EdgeInsets.only(top: 16),
-                                    child: Text(
-                                      "Name",
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: black),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Container(
-                                    margin: const EdgeInsets.only(
-                                        top: 8, bottom: 8, left: 6, right: 4),
-                                    decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: TextFormField(
-                                      onChanged: (val) {
-                                        children[index][0] = val;
-                                      },
-                                      decoration: const InputDecoration(
-                                        contentPadding: EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        border: InputBorder.none,
-                                      ),
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 14, color: black),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )),
-                            Expanded(
-                                child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    alignment: Alignment.topLeft,
-                                    margin:
-                                        const EdgeInsets.symmetric(horizontal: 24),
-                                    padding:  const EdgeInsets.only(top: 16),
-                                    child: Text(
-                                      "Date of Birth",
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: black),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Container(
-                                    margin: const EdgeInsets.only(
-                                        top: 8, bottom: 8, left: 6, right: 4),
-                                    decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: TextFormField(
-                                      onChanged: (val) {
-                                        children[index][1] = val;
-                                      },
-                                      decoration:const  InputDecoration(
-                                        contentPadding:EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        border: InputBorder.none,
-                                      ),
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 14, color: black),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )),
-                            Expanded(
-                                child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    alignment: Alignment.topLeft,
-                                    margin:
-                                        const EdgeInsets.symmetric(horizontal: 24),
-                                    padding:  const EdgeInsets.only(top: 16),
-                                    child: Text(
-                                      "Sex",
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          color: black),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Container(
-                                    margin: const EdgeInsets.only(
-                                        top: 8, bottom: 8, left: 6, right: 4),
-                                    decoration: BoxDecoration(
-                                        color: white,
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: TextFormField(
-                                      onChanged: (val) {
-                                        children[index][2] = val;
-                                      },
-                                      decoration: InputDecoration(
-                                        hintText: "Male or Female",
-                                        hintStyle: GoogleFonts.poppins(
-                                            fontSize: 14, color: txt),
-                                        contentPadding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        border: InputBorder.none,
-                                      ),
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 14, color: black),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )),
-                          ],
-                        ),
-                        height: 250,
-                        color: colors[2]);
-                  }),
-            ) : const SizedBox(),
+                              height: 250,
+                              color: colors[2]);
+                        }),
+                  )
+                : const SizedBox(),
             radioContainer(
               name: "Is the couple fertile?",
               num: 2,
@@ -631,121 +653,175 @@ class _vPage3State extends State<vPage3> {
             ),
             GestureDetector(
                 onTap: () async {
-                  children.length =
-                      Provider.of<VillageProvider>(context, listen: false).L1;
+                  if (reli == 0 ||
+                      caste == 0 ||
+                      eco == 0 ||
+                      elec == 0 ||
+                      house == 0 ||
+                      toilet == 0 ||
+                      caste == 0 ||
+                      waste == 0 ||
+                      fertile == 0) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.black,
+                      duration: const Duration(seconds: 2),
+                      content: Text(
+                        "Make sure you selected everything!",
+                        style: GoogleFonts.poppins(fontSize: 18),
+                      ),
+                    ));
+                  } else {
+                    children.length =
+                        Provider.of<VillageProvider>(context, listen: false).L1;
 
-                  Map<String, dynamic> data = {
-                    "Religion": religion[reli-1],
-                    "Caste": casteList[caste-1],
-                    "EcoStatus": ecoList[eco-1],
-                    "Electricity": yesno[elec-1],
-                    "House": houseType[house-1],
-                    "Toilet": yesno[toilet-1],
-                    "Waste": wasteDis[waste-1],
-                    "Fertile": yesno[fertile-1],
-                    "G": Provider.of<VillageProvider>(context,listen: false).G,
-                    "P": Provider.of<VillageProvider>(context,listen: false).P,
-                    "L1": Provider.of<VillageProvider>(context,listen: false).L1,
-                    "L2": Provider.of<VillageProvider>(context,listen: false).L2,
-                    "L3": Provider.of<VillageProvider>(context,listen: false).L3,
-                    "A1": Provider.of<VillageProvider>(context,listen: false).A1,
-                    "A2": Provider.of<VillageProvider>(context,listen: false).A2,
-                    "A3": Provider.of<VillageProvider>(context,listen: false).A3,
-                  };
-
-                  await FirebaseFirestore.instance
-                      .collection("Village Details")
-                      .doc(widget.VillageName)
-                      .collection("Family")
-                      .doc(widget.docId)
-                      .collection("Household")
-                      .doc(widget.familyId)
-                      .update(data).whenComplete(() async {
-                        for(int i=0;i<children.length;i++){
-
-                          DocumentReference doc_ref =  FirebaseFirestore.instance
-                              .collection("Village Details")
-                              .doc(widget.VillageName)
-                              .collection("Family")
-                              .doc(widget.docId)
-                              .collection("Household")
-                              .doc(widget.familyId).collection("Children").doc();
-
-                          DocumentSnapshot docSnap = await doc_ref.get();
-                          var doc = docSnap.reference.id;
-
-                          List<String> j = children[i];
-                          Map<String, dynamic> h = {
-                            "Name" : j[0],
-                            "DOB" : j[1],
-                            "Gender" : j[2],
-                            "ChildId" : doc,
-                            "docID" : widget.docId,
-                            "Address" : widget.Address,
-                            "Village" : widget.VillageName,
-                          };
-
-                          await FirebaseFirestore.instance
-                              .collection("Village Details")
-                              .doc(widget.VillageName)
-                              .collection("Family")
-                              .doc(widget.docId)
-                              .collection("Household")
-                              .doc(widget.familyId).collection("Children").doc(doc).set(h).whenComplete(() async{
-                            await FirebaseFirestore.instance
-                                .collection("Village Members")
-                                .doc(Provider.of<Details>(context, listen: false).phone)
-                                .collection("Members")
-                                .doc()
-                                .set(h).whenComplete(() async{
-                                  int k = int.parse(j[1].substring(0,4));
-                                  if((2022-k)<5){
-                                    await FirebaseFirestore.instance
-                                        .collection("Village Children")
-                                        .doc(Provider.of<Details>(context, listen: false).phone)
-                                        .collection("Children")
-                                        .doc()
-                                        .set(h);
-                                  }
-                            });
-                          });
-
-                        }
-                  });
-
-                  if(fertile == 1){
-                    Map<String, dynamic> detail = {
-                      "Name": widget.spouse[1],
-                      "DOB": widget.spouse[2],
-                      "Village Name" : widget.VillageName,
-                      "Address": widget.Address + ", Tamilnadu, India.",
-                      "DocId": widget.docId,
-                      "FamilyId": widget.familyId,
-                      "G": Provider.of<VillageProvider>(context,listen: false).G,
-                      "P": Provider.of<VillageProvider>(context,listen: false).P,
-                      "L1": Provider.of<VillageProvider>(context,listen: false).L1,
-                      "L2": Provider.of<VillageProvider>(context,listen: false).L2,
-                      "L3": Provider.of<VillageProvider>(context,listen: false).L3,
-                      "A1": Provider.of<VillageProvider>(context,listen: false).A1,
-                      "A2": Provider.of<VillageProvider>(context,listen: false).A2,
-                      "A3": Provider.of<VillageProvider>(context,listen: false).A3,
+                    Map<String, dynamic> data = {
+                      "Religion": religion[reli - 1],
+                      "Caste": casteList[caste - 1],
+                      "EcoStatus": ecoList[eco - 1],
+                      "Electricity": yesno[elec - 1],
+                      "House": houseType[house - 1],
+                      "Toilet": yesno[toilet - 1],
+                      "Waste": wasteDis[waste - 1],
+                      "Fertile": yesno[fertile - 1],
+                      "G": Provider.of<VillageProvider>(context, listen: false)
+                          .G,
+                      "P": Provider.of<VillageProvider>(context, listen: false)
+                          .P,
+                      "L1": Provider.of<VillageProvider>(context, listen: false)
+                          .L1,
+                      "L2": Provider.of<VillageProvider>(context, listen: false)
+                          .L2,
+                      "L3": Provider.of<VillageProvider>(context, listen: false)
+                          .L3,
+                      "A1": Provider.of<VillageProvider>(context, listen: false)
+                          .A1,
+                      "A2": Provider.of<VillageProvider>(context, listen: false)
+                          .A2,
+                      "A3": Provider.of<VillageProvider>(context, listen: false)
+                          .A3,
                     };
 
                     await FirebaseFirestore.instance
-                        .collection("Details")
-                        .doc(Provider.of<Details>(context,listen: false).phone)
-                        .collection("Eligible Couples")
+                        .collection("Village Details")
+                        .doc(widget.VillageName)
+                        .collection("Family")
                         .doc(widget.docId)
-                        .set(detail)
-                        .whenComplete(() => Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => HomeSub(
-                              number:
-                              Provider.of<Details>(context,listen: false)
-                                  .phone)),
-                          (Route<dynamic> route) => false,
-                    ));
+                        .collection("Household")
+                        .doc(widget.familyId)
+                        .update(data)
+                        .whenComplete(() async {
+                      for (int i = 0; i < children.length; i++) {
+                        DocumentReference doc_ref = FirebaseFirestore.instance
+                            .collection("Village Details")
+                            .doc(widget.VillageName)
+                            .collection("Family")
+                            .doc(widget.docId)
+                            .collection("Household")
+                            .doc(widget.familyId)
+                            .collection("Children")
+                            .doc();
+
+                        DocumentSnapshot docSnap = await doc_ref.get();
+                        var doc = docSnap.reference.id;
+
+                        List<String> j = children[i];
+                        Map<String, dynamic> h = {
+                          "Name": j[0],
+                          "DOB": j[1],
+                          "Gender": j[2],
+                          "ChildId": doc,
+                          "docID": widget.docId,
+                          "Address": widget.Address,
+                          "Village": widget.VillageName,
+                        };
+
+                        await FirebaseFirestore.instance
+                            .collection("Village Details")
+                            .doc(widget.VillageName)
+                            .collection("Family")
+                            .doc(widget.docId)
+                            .collection("Household")
+                            .doc(widget.familyId)
+                            .collection("Children")
+                            .doc(doc)
+                            .set(h)
+                            .whenComplete(() async {
+                          await FirebaseFirestore.instance
+                              .collection("Village Members")
+                              .doc(Provider.of<Details>(context, listen: false)
+                                  .phone)
+                              .collection("Members")
+                              .doc()
+                              .set(h)
+                              .whenComplete(() async {
+                            int k = int.parse(j[1].substring(0, 4));
+                            if ((2022 - k) < 5) {
+                              await FirebaseFirestore.instance
+                                  .collection("Village Children")
+                                  .doc(Provider.of<Details>(context,
+                                          listen: false)
+                                      .phone)
+                                  .collection("Children")
+                                  .doc()
+                                  .set(h);
+                            }
+                          });
+                        });
+                      }
+                    });
+
+                    if (fertile == 1) {
+                      Map<String, dynamic> detail = {
+                        "Name": widget.spouse[1],
+                        "DOB": widget.spouse[2],
+                        "Village Name": widget.VillageName,
+                        "Address": widget.Address + ", Tamilnadu, India.",
+                        "DocId": widget.docId,
+                        "FamilyId": widget.familyId,
+                        "G":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .G,
+                        "P":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .P,
+                        "L1":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .L1,
+                        "L2":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .L2,
+                        "L3":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .L3,
+                        "A1":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .A1,
+                        "A2":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .A2,
+                        "A3":
+                            Provider.of<VillageProvider>(context, listen: false)
+                                .A3,
+                      };
+
+                      await FirebaseFirestore.instance
+                          .collection("Details")
+                          .doc(Provider.of<Details>(context, listen: false)
+                              .phone)
+                          .collection("Eligible Couples")
+                          .doc(widget.docId)
+                          .set(detail);
+
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeSub(
+                                number:
+                                    Provider.of<Details>(context, listen: false)
+                                        .phone)),
+                        (Route<dynamic> route) => false,
+                      );
+                    }
                   }
                 },
                 child: Button("Save")),

@@ -63,6 +63,7 @@ class _CovidState extends State<Covid> {
     return SafeArea(
         child: Scaffold(
           backgroundColor: white,
+          resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
             child: Column(
               children: [
