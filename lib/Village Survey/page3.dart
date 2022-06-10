@@ -813,6 +813,16 @@ class _vPage3State extends State<vPage3> {
                           .doc(widget.docId)
                           .set(detail);
 
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(
+                        backgroundColor: Colors.black,
+                        duration: const Duration(seconds: 2),
+                        content: Text(
+                          "The details are registered successfully!",
+                          style: GoogleFonts.poppins(fontSize: 18),
+                        ),
+                      ));
+
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

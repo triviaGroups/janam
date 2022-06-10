@@ -333,6 +333,15 @@ class _StockRegState extends State<StockReg> {
                         .doc(Provider.of<Details>(context, listen: false)
                         .phone).collection(selected).doc(dateEntry.text)
                         .set(data);
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                      backgroundColor: Colors.black,
+                      duration: const Duration(seconds: 2),
+                      content: Text(
+                        "The details are registered successfully!",
+                        style: GoogleFonts.poppins(fontSize: 18),
+                      ),
+                    ));
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

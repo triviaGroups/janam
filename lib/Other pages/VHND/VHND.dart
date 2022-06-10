@@ -349,6 +349,15 @@ class _VHNDState extends State<VHND> {
                           .doc(dateVHND.text)
                           .update(d);
                     }
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                      backgroundColor: Colors.black,
+                      duration: const Duration(seconds: 2),
+                      content: Text(
+                        "The details are registered successfully!",
+                        style: GoogleFonts.poppins(fontSize: 18),
+                      ),
+                    ));
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

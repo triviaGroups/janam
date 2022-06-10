@@ -280,6 +280,15 @@ class _IDSPState extends State<IDSP> {
                     .doc(Provider.of<Details>(context, listen: false)
                     .phone).collection(formattedDate.toString()).doc(Provider.of<orspro>(context,listen: false).name)
                     .set(data);
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
+                  backgroundColor: Colors.black,
+                  duration: const Duration(seconds: 2),
+                  content: Text(
+                    "The details are registered successfully!",
+                    style: GoogleFonts.poppins(fontSize: 18),
+                  ),
+                ));
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(

@@ -499,7 +499,15 @@ class _PregnancyState extends State<Pregnancy> {
                           .collection("Pregnant")
                           .doc(Provider.of<DocID>(context, listen: false).doc)
                           .delete();
-
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(
+                        backgroundColor: Colors.black,
+                        duration: const Duration(seconds: 2),
+                        content: Text(
+                          "The details are registered successfully!",
+                          style: GoogleFonts.poppins(fontSize: 18),
+                        ),
+                      ));
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(

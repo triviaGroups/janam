@@ -1859,7 +1859,15 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         .doc(dateTracking.text).collection("Permanent").doc(dateTracking.text)
                         .set(details);
                   }
-
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(
+                    backgroundColor: Colors.black,
+                    duration: const Duration(seconds: 2),
+                    content: Text(
+                      "The details are registered successfully!",
+                      style: GoogleFonts.poppins(fontSize: 18),
+                    ),
+                  ));
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeSub(number: Provider.of<Details>(context, listen: false).phone,)));
 
                 },

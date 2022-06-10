@@ -787,6 +787,15 @@ class _TempChartState extends State<TempChart> {
                         .doc(Provider.of<Details>(context, listen: false)
                         .phone).collection(dateCharting.text).doc(name.text)
                         .set(data);
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                      backgroundColor: Colors.black,
+                      duration: const Duration(seconds: 2),
+                      content: Text(
+                        "The details are registered successfully!",
+                        style: GoogleFonts.poppins(fontSize: 18),
+                      ),
+                    ));
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

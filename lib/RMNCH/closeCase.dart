@@ -868,6 +868,16 @@ class _CloseCaseState extends State<CloseCase> {
                         .doc(Provider.of<PregDocID>(context).doc)
                         .update(r);
 
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(
+                      backgroundColor: Colors.black,
+                      duration: const Duration(seconds: 2),
+                      content: Text(
+                        "The details are registered successfully!",
+                        style: GoogleFonts.poppins(fontSize: 18),
+                      ),
+                    ));
+
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

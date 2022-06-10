@@ -960,6 +960,16 @@ class DeliveryState extends State<Delivery> {
                         });
                       });
                       if(outcome == 1){
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(
+                          backgroundColor: Colors.black,
+                          duration: const Duration(seconds: 2),
+                          content: Text(
+                            "The details are registered successfully!",
+                            style: GoogleFonts.poppins(fontSize: 18),
+                          ),
+                        ));
+
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => PostnatalCare(
                               dob: dateDelivery.text,
@@ -967,6 +977,15 @@ class DeliveryState extends State<Delivery> {
                             )));
                       }
                       else{
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(
+                          backgroundColor: Colors.black,
+                          duration: const Duration(seconds: 2),
+                          content: Text(
+                            "The details are registered successfully!",
+                            style: GoogleFonts.poppins(fontSize: 18),
+                          ),
+                        ));
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(

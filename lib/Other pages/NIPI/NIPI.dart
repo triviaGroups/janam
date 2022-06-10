@@ -226,6 +226,15 @@ class _NIPIState extends State<NIPI> {
                           .village[name - 1])
                       .doc(dateNIPI.text)
                       .set(data);
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(
+                    backgroundColor: Colors.black,
+                    duration: const Duration(seconds: 2),
+                    content: Text(
+                      "The details are registered successfully!",
+                      style: GoogleFonts.poppins(fontSize: 18),
+                    ),
+                  ));
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

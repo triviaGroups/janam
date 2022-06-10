@@ -496,8 +496,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -580,8 +580,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -728,7 +728,7 @@ class _villageState extends State<village> {
                                   ),
                                   Container(
                                       alignment: Alignment.center,
-                                      margin: EdgeInsets.only(right: 8),
+                                      margin: const EdgeInsets.only(right: 8),
                                       child: GestureDetector(
                                         onTap: () {
                                           awcCount[index]++;
@@ -904,8 +904,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -988,8 +988,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1075,8 +1075,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1222,7 +1222,7 @@ class _villageState extends State<village> {
                                   ),
                                   Container(
                                       alignment: Alignment.center,
-                                      margin: EdgeInsets.only(right: 8),
+                                      margin: const EdgeInsets.only(right: 8),
                                       child: GestureDetector(
                                         onTap: () {
                                           govtCount[index]++;
@@ -1405,8 +1405,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1487,8 +1487,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1571,8 +1571,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1658,8 +1658,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -1762,7 +1762,7 @@ class _villageState extends State<village> {
                                   ),
                                   Container(
                                       alignment: Alignment.center,
-                                      margin: EdgeInsets.only(right: 8),
+                                      margin: const EdgeInsets.only(right: 8),
                                       child: GestureDetector(
                                         onTap: () {
                                           pvtCount[index]++;
@@ -1944,8 +1944,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -2026,8 +2026,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -2110,8 +2110,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -2197,8 +2197,8 @@ class _villageState extends State<village> {
                                                       alignment:
                                                           Alignment.center,
                                                       padding:
-                                            EdgeInsets.symmetric(vertical: 4),
-                                                      margin:EdgeInsets.only(right:8),
+                                            const EdgeInsets.symmetric(vertical: 4),
+                                                      margin:const EdgeInsets.only(right:8),
                                                       child: TextFormField(
                                                         style:
                                                             GoogleFonts.poppins(
@@ -2593,14 +2593,23 @@ class _villageState extends State<village> {
                                   ));
                                 } else {
                                   EnterData(asha, awc, gvt, pvt,
-                                          widget.villageName[index])
-                                      .whenComplete(
-                                          () => Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) => HomeSub(
-                                                        number: widget.number,
-                                                      ))));
+                                          widget.villageName[index]);
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    backgroundColor: Colors.black,
+                                    duration: const Duration(seconds: 2),
+                                    content: Text(
+                                      "The details are registered successfully!",
+                                      style: GoogleFonts.poppins(fontSize: 18),
+                                    ),
+                                  ));
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeSub(
+                                            number: widget.number,
+                                          )));
+
                                 }
                               }
                             },
@@ -2733,7 +2742,7 @@ class _villageState extends State<village> {
                                   EnterData(asha, awc, gvt, pvt,
                                           widget.villageName[index])
                                       .whenComplete(() => controller.nextPage(
-                                          duration: Duration(milliseconds: 10),
+                                          duration: const Duration(milliseconds: 10),
                                           curve: Curves.easeIn));
                                 }
                               }
