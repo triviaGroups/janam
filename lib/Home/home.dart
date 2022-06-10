@@ -95,13 +95,12 @@ class _HomeState extends State<Home> {
                     alignment: Alignment.center,
                     height: 100,
                     width: 80,
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
                       image: DecorationImage(
                           image: AssetImage("assets/images/nurse.png"),
-                          fit: BoxFit.fill),
+                          fit: BoxFit.cover),
                     ),
                   ))
                 ],
@@ -135,6 +134,7 @@ class _HomeState extends State<Home> {
                                 crossAxisCount: 3,
                                 mainAxisSpacing: 20,
                                 crossAxisSpacing: 20),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: 6,
                         itemBuilder: (BuildContext ctx, index) {
                           return GestureDetector(

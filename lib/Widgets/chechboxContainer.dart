@@ -50,6 +50,7 @@ class _CheckBoxContState extends State<CheckBoxCont> {
                 flex: 2,
                 child: ListView.builder(
                   itemCount: widget.item.length,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: ((context, index) {
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 8),
