@@ -57,11 +57,13 @@ class _villageState extends State<village> {
     pwc = pvtDetailsList();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      for (int i = 0; i < widget.villagecount; i++) {
-        ashaCount.add(0);
-        awcCount.add(0);
-        govtCount.add(0);
-        pvtCount.add(0);
+      for (int i = 0; i <= widget.villagecount; i++) {
+        setState(() {
+          ashaCount.add(0);
+          awcCount.add(0);
+          govtCount.add(0);
+          pvtCount.add(0);
+        });
       }
       setState(() {});
     });
@@ -69,9 +71,9 @@ class _villageState extends State<village> {
     super.initState();
   }
 
+  final PageController controller = PageController();
   @override
   Widget build(BuildContext context) {
-    final PageController controller = PageController();
     return SafeArea(
       child: Scaffold(
         backgroundColor: white,
@@ -680,7 +682,7 @@ class _villageState extends State<village> {
                         Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 40, vertical: 10),
-                          height: awcCount[index] == 0 || awcCount[index] == 1 ? 126 : awcCount[index]*60,
+                          height: awcCount[index] == 0 || awcCount[index] == 1 ? 126 : awcCount[index]*70,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             border:
@@ -2841,10 +2843,6 @@ class _villageState extends State<village> {
             .collection("Village Details")
             .doc(villageName))
         .whenComplete(() {
-          ashaCount = [];
-          awcCount = [];
-          govtCount = [];
-          pvtCount = [];
 
           villageName = "";
           pop = "";
