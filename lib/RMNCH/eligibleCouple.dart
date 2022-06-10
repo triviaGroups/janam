@@ -81,6 +81,8 @@ class _EligibleCoupleState extends State<EligibleCouple> {
     "New mode of contraception"
   ];
 
+  TextEditingController bweight = TextEditingController();
+
   TextEditingController dateTracking =  TextEditingController();
   TextEditingController lmp =  TextEditingController();
 
@@ -632,16 +634,22 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                               child: incDec(
                                                 color: colors[(a++) % 4],
                                                 name: "Body weight (kg)",
+                                                tec: bweight,
+                                                fun: (val){
+                                                  Provider.of<VillageProvider>(context,listen: false).setWeight(bweight.text);
+                                                },
                                                 count: Provider.of<VillageProvider>(context,listen: false).weight,
                                                 height: 60,
                                                 add: () {
                                                   Provider.of<VillageProvider>(context,listen: false).incWeight();
+                                                  bweight.text = Provider.of<VillageProvider>(context,listen: false).weight.toString();
                                                   setState(() {
 
                                                   });
                                                 },
                                                 sub: () {
                                                   Provider.of<VillageProvider>(context,listen: false).decWeight();
+                                                  bweight.text = Provider.of<VillageProvider>(context,listen: false).weight.toString();
                                                   setState(() {
 
                                                   });

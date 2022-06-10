@@ -84,6 +84,11 @@ class _ANCState extends State<ANC> {
     false
   ];
 
+  TextEditingController weight = TextEditingController();
+  TextEditingController hae = TextEditingController();
+  TextEditingController folic = TextEditingController();
+  TextEditingController iron = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -213,14 +218,20 @@ class _ANCState extends State<ANC> {
               child: incDec(
                   color: colors[(a++) % 4],
                   name: "Current weight (kg)",
+                  tec: weight,
+                  fun: (val){
+                    Provider.of<PregDocID>(context, listen: false).setWeight(weight.text);
+                  },
                   count: Provider.of<PregDocID>(context, listen: false).weight,
                   height: 60,
                   add: () {
                     Provider.of<PregDocID>(context, listen: false).incWeight();
+                    weight.text = Provider.of<PregDocID>(context, listen: false).weight.toString();
                     setState(() {});
                   },
                   sub: () {
                     Provider.of<PregDocID>(context, listen: false).decWeight();
+                    weight.text = Provider.of<PregDocID>(context, listen: false).weight.toString();
                     setState(() {});
                   }),
             ),
@@ -467,14 +478,20 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Haemoglobin",
+                tec: hae,
+                fun: (val){
+                  Provider.of<PregDocID>(context, listen: false).setHae(hae.text);
+                },
                 count: Provider.of<PregDocID>(context, listen: false).hae,
                 height: 60,
                 add: () {
                   Provider.of<PregDocID>(context, listen: false).incHae();
+                  hae.text = Provider.of<PregDocID>(context, listen: false).hae.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<PregDocID>(context, listen: false).decHae();
+                  hae.text = Provider.of<PregDocID>(context, listen: false).hae.toString();
                   setState(() {});
                 },
               ),
@@ -656,14 +673,20 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of folic acid tablets given",
+                tec: folic,
+                fun: (val){
+                  Provider.of<PregDocID>(context, listen: false).setFolic(folic.text);
+                },
                 count: Provider.of<PregDocID>(context, listen: false).folic,
                 height: 80,
                 add: () {
                   Provider.of<PregDocID>(context, listen: false).incFolic();
+                  folic.text = Provider.of<PregDocID>(context, listen: false).folic.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<PregDocID>(context, listen: false).decFolic();
+                  folic.text = Provider.of<PregDocID>(context, listen: false).folic.toString();
                   setState(() {});
                 },
               ),
@@ -673,14 +696,20 @@ class _ANCState extends State<ANC> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of iron folic acid tablets given",
+                tec: iron,
+                fun: (val){
+                  Provider.of<PregDocID>(context, listen: false).setIron(iron.text);
+                },
                 count: Provider.of<PregDocID>(context, listen: false).iron,
                 height: 80,
                 add: () {
                   Provider.of<PregDocID>(context, listen: false).incIron();
+                  iron.text = Provider.of<PregDocID>(context, listen: false).iron.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<PregDocID>(context, listen: false).decIron();
+                  iron.text = Provider.of<PregDocID>(context, listen: false).iron.toString();
                   setState(() {});
                 },
               ),

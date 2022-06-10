@@ -29,6 +29,9 @@ class _ORSState extends State<ORS> {
   TextEditingController a1 = TextEditingController();
   TextEditingController a2 = TextEditingController();
 
+  TextEditingController height =  TextEditingController();
+  TextEditingController weight =  TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     a = 0;
@@ -83,15 +86,25 @@ class _ORSState extends State<ORS> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Height",
-                count: Provider.of<orspro>(context, listen: false).height,
+                tec: height,
+                fun: (val){
+                Provider.of<orspro>(context,listen: false).setHeight(height.text);
+              },
+                count: Provider.of<orspro>(context,listen: false).height,
                 height: 60,
-                add: () {
-                  Provider.of<orspro>(context, listen: false).incHeight();
-                  setState(() {});
+                add: (){
+                  Provider.of<orspro>(context,listen: false).incHeight();
+                  height.text = Provider.of<orspro>(context,listen: false).height.toString();
+                  setState(() {
+
+                  });
                 },
-                sub: () {
-                  Provider.of<orspro>(context, listen: false).decHeight();
-                  setState(() {});
+                sub: (){
+                  Provider.of<orspro>(context,listen: false).decHeight();
+                  height.text = Provider.of<orspro>(context,listen: false).height.toString();
+                  setState(() {
+
+                  });
                 },
               ),
             ),
@@ -99,16 +112,26 @@ class _ORSState extends State<ORS> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
                 color: colors[(a++) % 4],
+                tec: weight,
                 name: "Weight (kg)",
-                count: Provider.of<orspro>(context, listen: false).weight,
-                height: 60,
-                add: () {
-                  Provider.of<orspro>(context, listen: false).incWeight();
-                  setState(() {});
+                fun: (val){
+                  Provider.of<orspro>(context,listen: false).setWeight(weight.text);
                 },
-                sub: () {
-                  Provider.of<orspro>(context, listen: false).decWeight();
-                  setState(() {});
+                count: Provider.of<orspro>(context,listen: false).weight,
+                height: 60,
+                add: (){
+                  Provider.of<orspro>(context,listen: false).incWeight();
+                  weight.text = Provider.of<orspro>(context,listen: false).weight.toString();
+                  setState(() {
+
+                  });
+                },
+                sub: (){
+                  Provider.of<orspro>(context,listen: false).decWeight();
+                  weight.text = Provider.of<orspro>(context,listen: false).weight.toString();
+                  setState(() {
+
+                  });
                 },
               ),
             ),

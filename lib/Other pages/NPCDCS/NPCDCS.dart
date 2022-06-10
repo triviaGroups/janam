@@ -47,6 +47,9 @@ class _NPCDCSState extends State<NPCDCS> {
     "Pul. TB",
     "Cancer"
   ];
+
+  TextEditingController height =  TextEditingController();
+  TextEditingController weight =  TextEditingController();
   
   List<String> yn =  const ["Yes", "No"];
   List<String> cavity = const ["Normal","Abnormal"];
@@ -183,16 +186,22 @@ class _NPCDCSState extends State<NPCDCS> {
                   child: incDec(
                     color: colors[(a++) % 4],
                     name: "Height",
+                    fun: (val){
+                      Provider.of<orspro>(context,listen: false).setHeight(height.text);
+                    },
+                    tec: height,
                     count: Provider.of<orspro>(context,listen: false).height,
                     height: 60,
                     add: (){
                       Provider.of<orspro>(context,listen: false).incHeight();
+                      height.text = Provider.of<orspro>(context,listen: false).height.toString();
                       setState(() {
 
                       });
                     },
                     sub: (){
                       Provider.of<orspro>(context,listen: false).decHeight();
+                      height.text = Provider.of<orspro>(context,listen: false).height.toString();
                       setState(() {
 
                       });
@@ -203,17 +212,23 @@ class _NPCDCSState extends State<NPCDCS> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: incDec(
                     color: colors[(a++) % 4],
+                    tec: weight,
                     name: "Weight (kg)",
+                    fun: (val){
+                      Provider.of<orspro>(context,listen: false).setWeight(weight.text);
+                  },
                     count: Provider.of<orspro>(context,listen: false).weight,
                     height: 60,
                     add: (){
                       Provider.of<orspro>(context,listen: false).incWeight();
+                      weight.text = Provider.of<orspro>(context,listen: false).weight.toString();
                       setState(() {
 
                       });
                     },
                     sub: (){
                       Provider.of<orspro>(context,listen: false).decWeight();
+                      weight.text = Provider.of<orspro>(context,listen: false).weight.toString();
                       setState(() {
 
                       });

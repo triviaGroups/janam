@@ -127,6 +127,11 @@ class VillageProvider with ChangeNotifier {
     _weight++;
   }
 
+  void setWeight(String n){
+    _weight = int.parse(n);
+    notifyListeners();
+  }
+
   void decWeight(){
     _weight--;
     if(_weight < 0){

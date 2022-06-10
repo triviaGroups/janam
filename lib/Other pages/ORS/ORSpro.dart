@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 
 class orspro with ChangeNotifier {
 
-  int _weight = 50;
-  int _height = 170;
+  int _weight = 0;
+  int _height = 0;
 
   String _name = "";
 
@@ -14,6 +14,16 @@ class orspro with ChangeNotifier {
 
   void setName(String nam){
     _name = nam;
+    notifyListeners();
+  }
+
+  void setHeight(String h){
+    _height = int.parse(h);
+    notifyListeners();
+  }
+
+  void setWeight(String w){
+    _weight = int.parse(w);
     notifyListeners();
   }
 

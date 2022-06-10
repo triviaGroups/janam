@@ -54,6 +54,17 @@ class _vPage3State extends State<vPage3> {
   int waste = 0;
   int fertile = 0;
 
+  TextEditingController G = TextEditingController();
+  TextEditingController P = TextEditingController();
+
+  TextEditingController A1 = TextEditingController();
+  TextEditingController A2 = TextEditingController();
+  TextEditingController A3 = TextEditingController();
+
+  TextEditingController L1 = TextEditingController();
+  TextEditingController L2 = TextEditingController();
+  TextEditingController L3 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     a = 0;
@@ -288,24 +299,34 @@ class _vPage3State extends State<vPage3> {
                     incDec(
                       color: colors[(a++) % 4],
                       name: "G - No. of times pregnant",
+                      tec: G,
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .G,
                       height: 60,
+                      fun: (val){
+
+                      },
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incG();
+                        G.text = Provider.of<VillageProvider>(context, listen: false).G.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decG();
+                        G.text = Provider.of<VillageProvider>(context, listen: false).G.toString();
                         setState(() {});
                       },
                     ),
                     incDec(
                       color: colors[(a++) % 4],
                       name: "P - No. of times delivered",
+                      tec: P,
+                      fun: (val){
+
+                      },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .P,
@@ -313,17 +334,23 @@ class _vPage3State extends State<vPage3> {
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incP();
+                        P.text = Provider.of<VillageProvider>(context, listen: false).P.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decP();
+                        P.text = Provider.of<VillageProvider>(context, listen: false).P.toString();
                         setState(() {});
                       },
                     ),
                     incDec(
                       color: colors[(a++) % 4],
                       name: "L - No. of living children",
+                      tec: L1,
+                      fun: (val){
+
+                      },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .L1,
@@ -331,17 +358,23 @@ class _vPage3State extends State<vPage3> {
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incL1();
+                        L1.text = Provider.of<VillageProvider>(context, listen: false).L1.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decL1();
+                        L1.text = Provider.of<VillageProvider>(context, listen: false).L1.toString();
                         setState(() {});
                       },
                     ),
                     incDec(
                       color: colors[(a++) % 4],
                       name: "L - No. of male children",
+                      tec:  L2,
+                      fun: (val){
+
+                      },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .L2,
@@ -349,17 +382,23 @@ class _vPage3State extends State<vPage3> {
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incL2();
+                        L2.text = Provider.of<VillageProvider>(context, listen: false).L2.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decL2();
+                        L2.text = Provider.of<VillageProvider>(context, listen: false).L2.toString();
                         setState(() {});
                       },
                     ),
                     incDec(
                       color: colors[(a++) % 4],
                       name: "L - No. of female children",
+                      tec: L3,
+                      fun: (val){
+
+                      },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .L3,
@@ -367,17 +406,23 @@ class _vPage3State extends State<vPage3> {
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incL3();
+                        L3.text = Provider.of<VillageProvider>(context, listen: false).L3.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decL3();
+                        L3.text = Provider.of<VillageProvider>(context, listen: false).L3.toString();
                         setState(() {});
                       },
                     ),
                     incDec(
                       color: colors[(a++) % 4],
                       name: "A- No. of abortions",
+                      tec: A1,
+                      fun: (val){
+
+                      },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .A1,
@@ -385,35 +430,47 @@ class _vPage3State extends State<vPage3> {
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incA1();
+                        A1.text = Provider.of<VillageProvider>(context, listen: false).A1.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decA1();
+                        A1.text = Provider.of<VillageProvider>(context, listen: false).A1.toString();
                         setState(() {});
                       },
                     ),
                     incDec(
                       color: colors[(a++) % 4],
                       name: "A- No. of spontaneous abortions",
+                      tec: A2,
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .A2,
+                      fun: (val){
+
+                      },
                       height: 60,
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incA2();
+                        A2.text = Provider.of<VillageProvider>(context, listen: false).A2.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decA2();
+                        A2.text = Provider.of<VillageProvider>(context, listen: false).A2.toString();
                         setState(() {});
                       },
                     ),
                     incDec(
                       color: colors[(a++) % 4],
+                      tec: A3,
                       name: "A- No. of medical termination (MTP)",
+                      fun: (val){
+
+                      },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
                               .A3,
@@ -421,11 +478,13 @@ class _vPage3State extends State<vPage3> {
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .incA3();
+                        A3.text = Provider.of<VillageProvider>(context, listen: false).A3.toString();
                         setState(() {});
                       },
                       sub: () {
                         Provider.of<VillageProvider>(context, listen: false)
                             .decA3();
+                        A3.text = Provider.of<VillageProvider>(context, listen: false).A3.toString();
                         setState(() {});
                       },
                     ),

@@ -9,7 +9,9 @@ class incDec extends StatefulWidget {
   final double height;
   final Function() add;
   final Function() sub;
-  const incDec({Key? key, required this.color, required this.name, required this.count, required this.height, required this.add, required this.sub}) : super(key: key);
+  final Function(String val) fun;
+  final TextEditingController tec;
+  const incDec({Key? key, required this.color, required this.name, required this.count, required this.height, required this.add, required this.sub, required this.tec, required this.fun}) : super(key: key);
 
   @override
   _incDecState createState() => _incDecState();
@@ -80,14 +82,26 @@ class _incDecState extends State<incDec> {
                   Expanded(
                       flex: 2,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
                         alignment: Alignment.center,
-                        color: Colors.transparent,
-                        child: Text(
-                          widget.count.toString(),
+                        color: Colors.white,
+                        margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                        child: TextFormField(
+                          controller: widget.tec,
+                          onChanged: widget.fun,
+                          maxLines: 1,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            isDense: true,
+                            hintStyle: GoogleFonts.poppins(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: black),
+                          ),
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
                               color: black),
                         ),
                       )),

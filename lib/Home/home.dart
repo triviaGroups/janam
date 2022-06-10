@@ -53,6 +53,7 @@ class _HomeState extends State<Home> {
     return SafeArea(
         child: Scaffold(
           backgroundColor: appBg,
+          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -12,6 +12,11 @@ class PnPro with ChangeNotifier {
     _ifa++;
   }
 
+  void setIfa(String n){
+    _ifa = int.parse(n);
+    notifyListeners();
+  }
+
   void decIfa(){
     _ifa--;
     if(_ifa < 0){
@@ -21,6 +26,11 @@ class PnPro with ChangeNotifier {
 
   void incWeight(){
     _weight++;
+  }
+
+  void setWeight(String n){
+    _weight = int.parse(n);
+    notifyListeners();
   }
 
   void decWeight(){

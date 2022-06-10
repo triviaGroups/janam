@@ -10,6 +10,14 @@ class vhndpro with ChangeNotifier {
   int _issued = 0;
   List<String> _selected = [];
 
+  void setGiven(String n){
+    _given = int.parse(n);
+  }
+
+  void setIssued(String n){
+    _issued = int.parse(n);
+  }
+
 
   List<String> get village => _village;
   int get given => _given;

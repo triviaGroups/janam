@@ -96,6 +96,10 @@ class PregDocID with ChangeNotifier {
     _weight++;
   }
 
+  void setWeight(String n){
+    _weight = int.parse(n);
+  }
+
   void decWeight(){
     _weight--;
     if(_weight < 0){
@@ -105,6 +109,10 @@ class PregDocID with ChangeNotifier {
 
   void incHeight(){
     _height++;
+  }
+
+  void setHeight(String n){
+    _height = int.parse(n);
   }
 
   void decHeight(){
@@ -118,6 +126,10 @@ class PregDocID with ChangeNotifier {
     _hae++;
   }
 
+  void setHae(String n){
+    _hae = int.parse(n);
+  }
+
   void decHae(){
     _hae--;
     if(_hae < 0){
@@ -127,6 +139,10 @@ class PregDocID with ChangeNotifier {
 
   void incFolic(){
     _folic++;
+  }
+
+  void setFolic(String n){
+    _folic = int.parse(n);
   }
 
   void decFolic(){
@@ -140,6 +156,10 @@ class PregDocID with ChangeNotifier {
     _iron++;
   }
 
+  void setIron(String n){
+    _iron = int.parse(n);
+  }
+
   void decIron(){
     _iron--;
     if(_iron < 0){
@@ -149,6 +169,10 @@ class PregDocID with ChangeNotifier {
 
   void incbWei(){
     _bwieght++;
+  }
+
+  void setWei(String n){
+    _bwieght = int.parse(n);
   }
 
   void decbWei(){

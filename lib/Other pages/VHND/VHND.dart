@@ -35,6 +35,11 @@ class _VHNDState extends State<VHND> {
   TextEditingController topicc = TextEditingController();
   TextEditingController other = TextEditingController();
 
+
+
+  TextEditingController given =  TextEditingController();
+  TextEditingController issued =  TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -280,14 +285,20 @@ class _VHNDState extends State<VHND> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of IFA tablets given in VHNDs",
+                tec: given,
+                fun: (val){
+                  Provider.of<vhndpro>(context, listen: false).setGiven(given.text);
+                },
                 count: Provider.of<vhndpro>(context, listen: false).given,
                 height: 60,
                 add: () {
                   Provider.of<vhndpro>(context, listen: false).incGiven();
+                  given.text = Provider.of<vhndpro>(context, listen: false).given.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<vhndpro>(context, listen: false).decGiven();
+                  given.text = Provider.of<vhndpro>(context, listen: false).given.toString();
                   setState(() {});
                 },
               ),
@@ -297,14 +308,20 @@ class _VHNDState extends State<VHND> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "No. of IFA tablets issued by AWW",
+                tec: issued,
                 count: Provider.of<vhndpro>(context, listen: false).issued,
+                fun: (val){
+                  Provider.of<vhndpro>(context, listen: false).setIssued(issued.text);
+                },
                 height: 60,
                 add: () {
                   Provider.of<vhndpro>(context, listen: false).incIssue();
+                  issued.text = Provider.of<vhndpro>(context, listen: false).issued.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<vhndpro>(context, listen: false).decIssue();
+                  issued.text = Provider.of<vhndpro>(context, listen: false).issued.toString();
                   setState(() {});
                 },
               ),

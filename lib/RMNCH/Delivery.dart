@@ -107,6 +107,8 @@ class DeliveryState extends State<Delivery> {
   List<String> dosedates = ["", "", "", ""];
   List<int> doseint = [1, 1, 1, 1];
 
+  TextEditingController bweight = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     a = 0;
@@ -612,14 +614,20 @@ class DeliveryState extends State<Delivery> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Birth weight (gm)",
+                tec: bweight,
+                fun: (val){
+                  Provider.of<PregDocID>(context, listen: false).setWei(bweight.text);
+                },
                 count: Provider.of<PregDocID>(context, listen: false).bweight,
                 height: 60,
                 add: () {
                   Provider.of<PregDocID>(context, listen: false).incbWei();
+                  bweight.text =  Provider.of<PregDocID>(context, listen: false).bweight.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<PregDocID>(context, listen: false).decbWei();
+                  bweight.text =  Provider.of<PregDocID>(context, listen: false).bweight.toString();
                   setState(() {});
                 },
               ),

@@ -75,6 +75,9 @@ class _PregnancyState extends State<Pregnancy> {
     "Not done"
   ];
 
+  TextEditingController height = TextEditingController();
+  TextEditingController weight = TextEditingController();
+
   List<String> facilityList = const [
     "District hospital",
     "Other Govt. hospital",
@@ -402,17 +405,25 @@ class _PregnancyState extends State<Pregnancy> {
                         child: incDec(
                           color: colors[(a++) % 4],
                           name: "Current weight (kg)",
+                          tec: weight,
+                          fun: (val){
+                      Provider.of<PregDocID>(context, listen: false).setWeight(weight.text);
+                      },
                           count: Provider.of<PregDocID>(context, listen: false)
                               .weight,
                           height: 60,
                           add: () {
                             Provider.of<PregDocID>(context, listen: false)
                                 .incWeight();
+
+                            weight.text = Provider.of<PregDocID>(context, listen: false).weight.toString();
                             setState(() {});
                           },
                           sub: () {
                             Provider.of<PregDocID>(context, listen: false)
                                 .decWeight();
+
+                            weight.text = Provider.of<PregDocID>(context, listen: false).weight.toString();
                             setState(() {});
                           },
                         ),
@@ -422,17 +433,23 @@ class _PregnancyState extends State<Pregnancy> {
                         child: incDec(
                           color: colors[(a++) % 4],
                           name: "Height (cm)",
+                          tec: height,
+                          fun: (val){
+                            Provider.of<PregDocID>(context, listen: false).setHeight(height.text);
+                          },
                           count: Provider.of<PregDocID>(context, listen: false)
                               .height,
                           height: 60,
                           add: () {
                             Provider.of<PregDocID>(context, listen: false)
                                 .incHeight();
+                            height.text = Provider.of<PregDocID>(context, listen: false).height.toString();
                             setState(() {});
                           },
                           sub: () {
                             Provider.of<PregDocID>(context, listen: false)
                                 .decHeight();
+                            height.text = Provider.of<PregDocID>(context, listen: false).height.toString();
                             setState(() {});
                           },
                         ),

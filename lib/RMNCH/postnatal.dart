@@ -77,6 +77,10 @@ class _PostnatalCareState extends State<PostnatalCare> {
   ];
   List<String> ster = const ["Sterilization", "Nil"];
 
+
+  TextEditingController given = TextEditingController();
+  TextEditingController weight = TextEditingController();
+
   TextEditingController dateVisit = TextEditingController();
   TextEditingController mother = TextEditingController();
   TextEditingController infant = TextEditingController();
@@ -160,15 +164,21 @@ class _PostnatalCareState extends State<PostnatalCare> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: incDec(
                 color: colors[(a++) % 4],
+                tec: given,
                 name: "No. of IFA tablets given",
+                fun: (val){
+                  Provider.of<PnPro>(context, listen: false).setIfa(given.text);
+                },
                 count: Provider.of<PnPro>(context, listen: false).ifa,
                 height: 60,
                 add: () {
                   Provider.of<PnPro>(context, listen: false).incIfa();
+                  given.text = Provider.of<PnPro>(context, listen: false).ifa.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<PnPro>(context, listen: false).decIfa();
+                  given.text = Provider.of<PnPro>(context, listen: false).ifa.toString();
                   setState(() {});
                 },
               ),
@@ -196,14 +206,20 @@ class _PostnatalCareState extends State<PostnatalCare> {
               child: incDec(
                 color: colors[(a++) % 4],
                 name: "Weight of the child",
+                tec: weight,
+                fun: (val){
+                  Provider.of<PnPro>(context, listen: false).setWeight(weight.text);
+                },
                 count: Provider.of<PnPro>(context, listen: false).weight,
                 height: 60,
                 add: () {
                   Provider.of<PnPro>(context, listen: false).incWeight();
+                  weight.text = Provider.of<PnPro>(context, listen: false).weight.toString();
                   setState(() {});
                 },
                 sub: () {
                   Provider.of<PnPro>(context, listen: false).decWeight();
+                  weight.text = Provider.of<PnPro>(context, listen: false).weight.toString();
                   setState(() {});
                 },
               ),
