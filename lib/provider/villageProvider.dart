@@ -173,6 +173,11 @@ class VillageProvider with ChangeNotifier {
     _sys++;
   }
 
+  void setSys(String n){
+    _sys = int.parse(n);
+    notifyListeners();
+  }
+
   void decSys(){
     _sys--;
     if(_sys < 0){
@@ -182,6 +187,11 @@ class VillageProvider with ChangeNotifier {
 
   void incDis(){
     _dia++;
+  }
+
+  void setDia(String n){
+    _dia = int.parse(n);
+    notifyListeners();
   }
 
   void decDis(){

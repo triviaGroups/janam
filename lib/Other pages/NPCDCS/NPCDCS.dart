@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_holo_date_picker/date_picker.dart';
-import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:janam/Home/home_sub.dart';
@@ -56,6 +54,10 @@ class _NPCDCSState extends State<NPCDCS> {
   List<String> historyList = const ["Diabetes","High BP","CVD","Stroke","COPD","CKD","RHD","Pul. TB","Cancer"];
   List<String> statusList = const ["Referred to FU","Lost to FU","Dead"];
   List<bool> ncdBool = [false,false,false,false,false,false,false,false];
+
+
+  TextEditingController sys =  TextEditingController();
+  TextEditingController dia =  TextEditingController();
 
   TextEditingController name =  TextEditingController();
   TextEditingController addr =  TextEditingController();
@@ -373,6 +375,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                           GestureDetector(
                                             onTap: (){
                                               Provider.of<VillageProvider>(context,listen: false).incSys();
+                                              sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
                                               setState(() {
 
                                               });
@@ -389,27 +392,30 @@ class _NPCDCSState extends State<NPCDCS> {
                                     )),
                                 Expanded(
                                     flex: 2,
-                                    child:
-                                    Container(
-                                      padding: const EdgeInsets
-                                          .symmetric(
-                                          vertical:
-                                          8),
-                                      alignment:
-                                      Alignment
-                                          .center,
-                                      color: Colors
-                                          .transparent,
-                                      child: Text(
-                                        Provider.of<VillageProvider>(context,listen: false).sys.toString(),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                                      alignment: Alignment.center,
+                                      color: Colors.white,
+                                      margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                                      child: TextFormField(
+                                        controller: sys,
+                                        onChanged: (val){
+                                          Provider.of<VillageProvider>(context, listen: false).setSys(val);
+                                        },
+                                        maxLines: 1,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          isDense: true,
+                                          hintStyle: GoogleFonts.poppins(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: black),
+                                        ),
                                         style: GoogleFonts.poppins(
-                                            fontSize:
-                                            16,
-                                            fontWeight:
-                                            FontWeight
-                                                .w600,
-                                            color:
-                                            black),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: black),
                                       ),
                                     )),
                                 Expanded(
@@ -452,6 +458,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                           GestureDetector(
                                             onTap: (){
                                               Provider.of<VillageProvider>(context,listen: false).decSys();
+                                              sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
                                               setState(() {
 
                                               });
@@ -543,6 +550,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                           GestureDetector(
                                             onTap: (){
                                               Provider.of<VillageProvider>(context,listen: false).incDis();
+                                              dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
                                               setState(() {
 
                                               });
@@ -559,27 +567,30 @@ class _NPCDCSState extends State<NPCDCS> {
                                     )),
                                 Expanded(
                                     flex: 2,
-                                    child:
-                                    Container(
-                                      padding: const EdgeInsets
-                                          .symmetric(
-                                          vertical:
-                                          8),
-                                      alignment:
-                                      Alignment
-                                          .center,
-                                      color: Colors
-                                          .transparent,
-                                      child: Text(
-                                        Provider.of<VillageProvider>(context,listen: false).dia.toString(),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                                      alignment: Alignment.center,
+                                      color: Colors.white,
+                                      margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                                      child: TextFormField(
+                                        controller: dia,
+                                        onChanged: (val){
+                                          Provider.of<VillageProvider>(context, listen: false).setDia(val);
+                                        },
+                                        maxLines: 1,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          isDense: true,
+                                          hintStyle: GoogleFonts.poppins(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: black),
+                                        ),
                                         style: GoogleFonts.poppins(
-                                            fontSize:
-                                            16,
-                                            fontWeight:
-                                            FontWeight
-                                                .w600,
-                                            color:
-                                            black),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: black),
                                       ),
                                     )),
                                 Expanded(
@@ -622,6 +633,7 @@ class _NPCDCSState extends State<NPCDCS> {
                                           GestureDetector(
                                             onTap: (){
                                               Provider.of<VillageProvider>(context,listen: false).decDis();
+                                              dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
                                               setState(() {
 
                                               });

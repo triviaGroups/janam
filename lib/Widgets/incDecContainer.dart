@@ -82,10 +82,10 @@ class _incDecState extends State<incDec> {
                   Expanded(
                       flex: 2,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
                         alignment: Alignment.center,
                         color: Colors.white,
-                        margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                        margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
                         child: TextFormField(
                           controller: widget.tec,
                           onChanged: widget.fun,
