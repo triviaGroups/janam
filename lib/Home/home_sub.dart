@@ -39,6 +39,7 @@ class _HomeSubState extends State<HomeSub> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
+      resizeToAvoidBottomInset: false,
       body: check ? Dummy(num: widget.number) :  const Center(child: CircularProgressIndicator()),
     );
   }

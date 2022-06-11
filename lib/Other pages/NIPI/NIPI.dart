@@ -223,7 +223,7 @@ class _NIPIState extends State<NIPI> {
                     "Date": dateNIPI.text,
                     "Children":
                         Provider.of<nipipro>(context, listen: false).selected,
-                    "Village": Provider.of<nipipro>(context, listen: false)
+                    "Village Name": Provider.of<nipipro>(context, listen: false)
                         .village[name - 1],
                     "AWC": Provider.of<nipipro>(context, listen: false)
                         .awc[awcName - 1],

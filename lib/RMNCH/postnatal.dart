@@ -357,14 +357,14 @@ class _PostnatalCareState extends State<PostnatalCare> {
                 onTap: () async {
 
                   Map<String,dynamic> newBorn = {
-                    "Child name" : name.text,
+                    "Name" : name.text,
                   };
 
                   await FirebaseFirestore.instance
                       .collection("Village Children")
                       .doc(Provider.of<Details>(context, listen: false)
                       .phone)
-                      .collection("New born").doc(Provider.of<PregDocID>(context, listen: false).doc).update(newBorn);
+                      .collection("Children").doc(Provider.of<PregDocID>(context, listen: false).doc).update(newBorn);
 
                   List<String> mn = [];
 
@@ -401,7 +401,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                     "docID": Provider.of<PregDocID>(context, listen: false).doc,
                     "Address":
                         Provider.of<PregDocID>(context, listen: false).address,
-                    "Village":
+                    "Village Name":
                         Provider.of<PregDocID>(context, listen: false).village,
                   };
 
@@ -426,7 +426,7 @@ class _PostnatalCareState extends State<PostnatalCare> {
                           .doc(Provider.of<Details>(context, listen: false)
                               .phone)
                           .collection("Children")
-                          .doc()
+                          .doc(Provider.of<PregDocID>(context, listen: false).doc)
                           .set(h);
                     });
                   });

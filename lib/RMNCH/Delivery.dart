@@ -840,11 +840,9 @@ class DeliveryState extends State<Delivery> {
                 onTap: () async {
 
                   Map<String,dynamic> newBorn = {
-                    "Name" : Provider.of<PregDocID>(context, listen: false).name,
-                    "DOB" : Provider.of<PregDocID>(context, listen: false).dob,
+                    "DOB" : dateDelivery.text,
                     "Address" : Provider.of<PregDocID>(context, listen: false).address,
-                    "DocId" : Provider.of<PregDocID>(context, listen: false).doc,
-                    "Delivery date" : dateDelivery.text,
+                    "docID" : Provider.of<PregDocID>(context, listen: false).doc,
                     "Village Name" : Provider.of<PregDocID>(context, listen: false).village,
                     "Birth dose" : true,
                     "OPV": [yesno[doseint[0] - 1], dosedates[0]],
@@ -858,7 +856,7 @@ class DeliveryState extends State<Delivery> {
                         .collection("Village Children")
                         .doc(Provider.of<Details>(context, listen: false)
                         .phone)
-                        .collection("New born").doc(Provider.of<PregDocID>(context, listen: false).doc).set(newBorn);
+                        .collection("Children").doc(Provider.of<PregDocID>(context, listen: false).doc).set(newBorn);
                   }
 
 

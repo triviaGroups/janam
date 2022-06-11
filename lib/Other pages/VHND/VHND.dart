@@ -348,7 +348,7 @@ class _VHNDState extends State<VHND> {
                 onTap: () async {
                   Map<String, dynamic> data = {
                     "Date": dateVHND.text,
-                    "Village name": Provider.of<vhndpro>(context, listen: false)
+                    "Village Name": Provider.of<vhndpro>(context, listen: false)
                         .village[name - 1],
                     "Place": placeList[place - 1],
                     "Topic": topicc.text,

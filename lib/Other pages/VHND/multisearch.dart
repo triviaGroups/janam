@@ -67,7 +67,7 @@ class _SearchMultiState extends State<SearchMulti> {
     if (_searchController.text != "") {
       for (var i in _allResults) {
         String sName = i["Name"].toString().toLowerCase();
-        String pName = i["Village"].toString().toLowerCase();
+        String pName = i["Village Name"].toString().toLowerCase();
 
         if (sName.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
@@ -182,7 +182,7 @@ class _SearchMultiState extends State<SearchMulti> {
                                                 .substring(0, 4))))
                                         .toString() +
                                     " years, " +
-                                    _resultsList[index]["Village"],
+                                    _resultsList[index]["Village Name"],
                             textAlign: _resultsList == []
                                 ? TextAlign.center
                                 : TextAlign.left,

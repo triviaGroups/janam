@@ -71,7 +71,6 @@ class _vPage3State extends State<vPage3> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -832,7 +831,7 @@ class _vPage3State extends State<vPage3> {
                           "ChildId": doc,
                           "docID": widget.docId,
                           "Address": widget.Address,
-                          "Village": widget.VillageName,
+                          "Village Name": widget.VillageName,
                         };
 
                         await FirebaseFirestore.instance
@@ -862,7 +861,7 @@ class _vPage3State extends State<vPage3> {
                                           listen: false)
                                       .phone)
                                   .collection("Children")
-                                  .doc()
+                                  .doc(doc_ref.id)
                                   .set(h);
                             }
                           });

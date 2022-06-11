@@ -99,7 +99,6 @@ class _vPage2State extends State<vPage2> {
     return SafeArea(
         child: Scaffold(
             backgroundColor: white,
-            resizeToAvoidBottomInset: false,
             body: SingleChildScrollView(
                 child: Column(children: [
               const SizedBox(
@@ -1034,7 +1033,7 @@ class _vPage2State extends State<vPage2> {
                      Map<String,dynamic> m1 = {
                        "Name" : head[0],
                        "DOB" : head[1],
-                       "Village" : widget.VillageName,
+                       "Village Name" : widget.VillageName,
                        "Gender" : "Male",
                        "docId" : doc,
                        "Address" : widget.Address,
@@ -1043,7 +1042,7 @@ class _vPage2State extends State<vPage2> {
                      Map<String,dynamic> m2 = {
                        "Name" : spouse[1],
                        "DOB" : spouse[2],
-                       "Village" : widget.VillageName,
+                       "Village Name" : widget.VillageName,
                        "Gender" : "Female",
                        "docId" : doc,
                        "Address" : widget.Address,

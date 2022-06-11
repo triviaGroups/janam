@@ -48,7 +48,7 @@ class _ChildSearchState extends State<ChildSearch> {
     var unsold = await FirebaseFirestore.instance
         .collection("Village Children")
         .doc(Provider.of<Details>(context, listen: false).phone)
-        .collection("New born")
+        .collection("Children")
         .get();
 
     setState(() {
@@ -133,16 +133,11 @@ class _ChildSearchState extends State<ChildSearch> {
                       return GestureDetector(
                         onTap: () {
                           Provider.of<PregDocID>(context, listen: false).setCc(
-                              _resultsList[index]["DocId"],
+                              _resultsList[index]["docID"],
                               _resultsList[index]["Address"],
-                              _resultsList[index]["Delivery date"],
                               _resultsList[index]["Name"],
                               _resultsList[index]["DOB"],
-                              _resultsList[index]["Village Name"],
-                              List.from(_resultsList[index]["OPV"]),
-                              List.from(_resultsList[index]["BCG"]),
-                              List.from(_resultsList[index]["HEP"]),
-                              List.from(_resultsList[index]["VIT"]));
+                              _resultsList[index]["Village Name"]);
                           setState(() {});
                         },
                         child: Container(

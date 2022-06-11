@@ -63,11 +63,13 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
+                          resizeToAvoidBottomInset: false,
         body: FutureBuilder(
             future: _initialization,
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Scaffold(
+                          resizeToAvoidBottomInset: false,
                   body: Center(
                     child: Text("Error: ${snapshot.error}"),
                   ),
@@ -80,6 +82,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
                     builder: (context, streamSnapshot) {
                       if (streamSnapshot.hasError) {
                         return Scaffold(
+                          resizeToAvoidBottomInset: false,
                           body: Center(
                             child: Text("Error: ${streamSnapshot.hasError}"),
                           ),
@@ -98,6 +101,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
 
                       }
                       return const Scaffold(
+                          resizeToAvoidBottomInset: false,
                         body: Center(
                           child: CircularProgressIndicator()
                         ),
@@ -105,6 +109,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
                     });
               }
               return Scaffold(
+                          resizeToAvoidBottomInset: false,
                 backgroundColor: purple,
                 body: Center(
                   child: Text(

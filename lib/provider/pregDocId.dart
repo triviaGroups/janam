@@ -9,8 +9,6 @@ class PregDocID with ChangeNotifier {
   String _dob = "";
   int _bwieght = 3000;
   String _village = "";
-  List<int> _list = [];
-  List<String> _birthDoses = [];
 
   int _weight = 0;
   int _height = 0;
@@ -18,14 +16,10 @@ class PregDocID with ChangeNotifier {
   int _difference = 0;
   int _folic = 0;
   int _iron = 0;
-  String _date = "";
 
   String get doc => _doc;
   String get address => _address;
-  String get date => _date;
   String get village => _village;
-  List<int> get list => _list;
-  List<String> get bD => _birthDoses;
   int get diff => _difference;
 
 
@@ -50,42 +44,13 @@ class PregDocID with ChangeNotifier {
     notifyListeners();
   }
 
-  void setCc(String val,String add,String da,String name,String dob,String vi,List<String> a,List<String> b,List<String> c,List<String> d){
+  void setCc(String val,String add,String name,String dob,String vi){
     _doc = val;
     _address = add;
-    _date = da;
     _name = name;
     _dob = dob;
     _village = vi;
-    if(a[0] == "yes"){
-      _list.add(1);
-    }
-    else{
-      _list.add(0);
-    }
-    if(b[0] == "yes"){
-      _list.add(1);
-    }
-    else{
-      _list.add(0);
-    }
-    if(c[0] == "yes"){
-      _list.add(1);
-    }
-    else{
-      _list.add(0);
-    }
-    if(d[0] == "yes"){
-      _list.add(1);
-    }
-    else{
-      _list.add(0);
-    }
-    _birthDoses.add(a[1]);
-    _birthDoses.add(b[1]);
-    _birthDoses.add(c[1]);
-    _birthDoses.add(d[1]);
-    final birthday = DateTime.parse(_date);
+    final birthday = DateTime.parse(_dob);
     final date2 = DateTime.now();
     _difference = date2.difference(birthday).inDays;
     print("Difference" + _difference.toString());

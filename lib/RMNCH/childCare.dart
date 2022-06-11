@@ -49,8 +49,8 @@ class _ChildCareState extends State<ChildCare> {
     a = 0;
     return SafeArea(
         child: Scaffold(
-      backgroundColor: white,
           resizeToAvoidBottomInset: false,
+      backgroundColor: white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -197,17 +197,6 @@ class _ChildCareState extends State<ChildCare> {
                 color: colors[(a++) % 4]),
             context.watch<PregDocID>().doc == "" ? const SizedBox() : Column(
               children: [
-                context.watch<PregDocID>().diff <= 42
-                    ? rowRadioBtnContainer(
-                  color: colors[(a++) % 4],
-                  name: "Birth doses",
-                  item: const ["OPV-Zero", "BCG", "Hep B", "Vit k"],
-                  num: 4,
-                  height: 400,
-                  val: context.watch<PregDocID>().list,
-                  dates: context.watch<PregDocID>().bD,
-                )
-                    : const SizedBox(),
                 context.watch<PregDocID>().diff > 42 &&
                     context.watch<PregDocID>().diff <= 70
                     ? rowRadioBtnContainer(

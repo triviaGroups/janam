@@ -68,7 +68,7 @@ class _SearchMultipleState extends State<SearchMultiple> {
     if (_searchController.text != "") {
       for (var i in _allResults) {
         String sName = i["Name"].toString().toLowerCase();
-        String pName = i["Village"].toString().toLowerCase();
+        String pName = i["Village Name"].toString().toLowerCase();
 
         if (sName.contains(_searchController.text.toLowerCase())) {
           showResults.add(i);
@@ -143,11 +143,11 @@ class _SearchMultipleState extends State<SearchMultiple> {
                                   ? Provider.of<nipipro>(context, listen: false)
                                       .putselect(_resultsList[index]["Name"] +
                                           " ," +
-                                          _resultsList[index]["Village"] )
+                                          _resultsList[index]["Village Name"] )
                                   : Provider.of<nipipro>(context, listen: false)
                                       .removedata(_resultsList[index]["Name"] +
                                           " ," +
-                                          _resultsList[index]["Village"] );
+                                          _resultsList[index]["Village Name"] );
 
                               setState(() {});
                             },
@@ -167,7 +167,7 @@ class _SearchMultipleState extends State<SearchMultiple> {
                                 ? "No result"
                                 : _resultsList[index]["Name"] +
                                     ", " +
-                                    _resultsList[index]["Village"] ,
+                                    _resultsList[index]["Village Name"] ,
                             textAlign: _resultsList == []
                                 ? TextAlign.center
                                 : TextAlign.left,
