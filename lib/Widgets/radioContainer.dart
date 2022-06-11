@@ -35,7 +35,7 @@ class _radioContainerState extends State<radioContainer> {
                   child: Text(
                     widget.name,
                     style: GoogleFonts.inter(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: black),
                   ),

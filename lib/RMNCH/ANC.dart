@@ -274,7 +274,7 @@ class _ANCState extends State<ANC> {
                   }),
             ),
             Container(
-              height: 69,
+              height: 150,
               margin: const EdgeInsets.symmetric(
                   vertical: 8, horizontal: 24),
               padding:const  EdgeInsets.symmetric(
@@ -313,355 +313,361 @@ class _ANCState extends State<ANC> {
                         ),
                       )),
                   Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding:
-                        const EdgeInsets
-                            .only(right: 8),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child:
-                                Container(
-                                  padding: const EdgeInsets
-                                      .only(
-                                      top:
-                                      8,
-                                      bottom:
-                                      8,
-                                      right:
-                                      8),
-                                  color: Colors
-                                      .transparent,
-                                  child: Text(
-                                    "Sys",
-                                    style: GoogleFonts.poppins(
-                                        fontSize:
-                                        16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        color:
-                                        black),
-                                  ),
-                                )),
-                            Expanded(
-                                child:
-                                Container(
-                                  padding: const EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        const Offset(
-                                            1,
-                                            2),
+                    flex: 3,
+                      child: Column(
+                    children: [
+                      Expanded(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .only(left: 8),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 2,
+                                    child:
+                                    Container(
+                                      padding: const EdgeInsets
+                                          .only(
+                                          top:
+                                          8,
+                                          bottom:
+                                          8,
+                                          right:
+                                          8),
+                                      color: Colors
+                                          .transparent,
+                                      child: Text(
+                                        "Sys",
+                                        style: GoogleFonts.poppins(
+                                            fontSize:
+                                            16,
+                                            fontWeight:
+                                            FontWeight
+                                                .w600,
+                                            color:
+                                            black),
                                       ),
-                                    ],
-                                  ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      const  Offset(
-                                          0,
-                                          0),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).incSys();
-                                          sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
-                                          setState(() {
-
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons
-                                              .add,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
-                                        ),
-                                      )),
-                                )),
-                            Expanded(
-                                flex: 2,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                                  alignment: Alignment.center,
-                                  color: Colors.white,
-                                  margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
-                                  child: TextFormField(
-                                    controller: sys,
-                                    onChanged: (val){
-                                      Provider.of<VillageProvider>(context, listen: false).setSys(val);
-                                    },
-                                    maxLines: 1,
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      isDense: true,
-                                      hintStyle: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: black),
-                                    ),
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                        color: black),
-                                  ),
-                                )),
-                            Expanded(
-                                child:
-                                Container(
-                                  padding: const EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        const Offset(
+                                    )),
+                                Expanded(
+                                    child:
+                                    Container(
+                                      padding: const EdgeInsets
+                                          .symmetric(
+                                          vertical:
+                                          8),
+                                      decoration:
+                                      BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            5),
+                                        color: white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors
+                                                .grey
+                                                .shade300,
+                                            blurRadius:
+                                            5,
+                                            spreadRadius:
                                             1,
-                                            2),
+                                            offset:
+                                            const Offset(
+                                                1,
+                                                2),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      const Offset(
-                                          0,
-                                          -4),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).decSys();
-                                          sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
-                                          setState(() {
+                                      child: Transform
+                                          .translate(
+                                          offset:
+                                          const  Offset(
+                                              0,
+                                              0),
+                                          child:
+                                          GestureDetector(
+                                            onTap: (){
+                                              Provider.of<VillageProvider>(context,listen: false).incSys();
+                                              sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
+                                              setState(() {
 
-                                          });
+                                              });
+                                            },
+                                            child: const Icon(
+                                              Icons
+                                                  .add,
+                                              color:
+                                              black,
+                                              size:
+                                              16,
+                                            ),
+                                          )),
+                                    )),
+                                Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                                      alignment: Alignment.center,
+                                      color: Colors.white,
+                                      margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                                      child: TextFormField(
+                                        controller: sys,
+                                        onChanged: (val){
+                                          Provider.of<VillageProvider>(context, listen: false).setSys(val);
                                         },
-                                        child: const Icon(
-                                          Icons
-                                              .minimize,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          isDense: true,
+                                          hintStyle: GoogleFonts.poppins(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: black),
                                         ),
-                                      )),
-                                )),
-                          ],
-                        ),
-                      )),
-                  Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding:
-                        const EdgeInsets
-                            .only(left: 8),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child:
-                                Container(
-                                  padding: const EdgeInsets
-                                      .only(
-                                      top:
-                                      8,
-                                      bottom:
-                                      8,
-                                      right:
-                                      8),
-                                  color: Colors
-                                      .transparent,
-                                  child: Text(
-                                    "Dia",
-                                    style: GoogleFonts.poppins(
-                                        fontSize:
-                                        16,
-                                        fontWeight:
-                                        FontWeight
-                                            .w600,
-                                        color:
-                                        black),
-                                  ),
-                                )),
-                            Expanded(
-                                child:
-                                Container(
-                                  padding:const  EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        const Offset(
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            color: black),
+                                      ),
+                                    )),
+                                Expanded(
+                                    child:
+                                    Container(
+                                      padding: const EdgeInsets
+                                          .symmetric(
+                                          vertical:
+                                          4),
+                                      decoration:
+                                      BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            5),
+                                        color: white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors
+                                                .grey
+                                                .shade300,
+                                            blurRadius:
+                                            5,
+                                            spreadRadius:
                                             1,
-                                            2),
+                                            offset:
+                                            const Offset(
+                                                1,
+                                                2),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      const Offset(
-                                          0,
-                                          0),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).incDis();
-                                          dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
-                                          setState(() {
+                                      child: Transform
+                                          .translate(
+                                          offset:
+                                          const Offset(
+                                              0,
+                                              -4),
+                                          child:
+                                          GestureDetector(
+                                            onTap: (){
+                                              Provider.of<VillageProvider>(context,listen: false).decSys();
+                                              sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
+                                              setState(() {
 
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons
-                                              .add,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
-                                        ),
-                                      )),
-                                )),
-                            Expanded(
-                                flex: 2,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                                  alignment: Alignment.center,
-                                  color: Colors.white,
-                                  margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
-                                  child: TextFormField(
-                                    controller: dia,
-                                    onChanged: (val){
-                                      Provider.of<VillageProvider>(context, listen: false).setDia(val);
-                                    },
-                                    maxLines: 1,
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      isDense: true,
-                                      hintStyle: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: black),
-                                    ),
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                        color: black),
-                                  ),
-                                )),
-                            Expanded(
-                                child:
-                                Container(
-                                  padding:const  EdgeInsets
-                                      .symmetric(
-                                      vertical:
-                                      4),
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        5),
-                                    color: white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors
-                                            .grey
-                                            .shade300,
-                                        blurRadius:
-                                        5,
-                                        spreadRadius:
-                                        1,
-                                        offset:
-                                        const Offset(
+                                              });
+                                            },
+                                            child: const Icon(
+                                              Icons
+                                                  .minimize,
+                                              color:
+                                              black,
+                                              size:
+                                              16,
+                                            ),
+                                          )),
+                                    )),
+                              ],
+                            ),
+                          )),
+                      Expanded(
+                          child: Padding(
+                            padding:
+                            const EdgeInsets
+                                .only(left: 8),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    flex: 2,
+                                    child:
+                                    Container(
+                                      padding: const EdgeInsets
+                                          .only(
+                                          top:
+                                          8,
+                                          bottom:
+                                          8,
+                                          right:
+                                          8),
+                                      color: Colors
+                                          .transparent,
+                                      child: Text(
+                                        "Dia",
+                                        style: GoogleFonts.poppins(
+                                            fontSize:
+                                            16,
+                                            fontWeight:
+                                            FontWeight
+                                                .w600,
+                                            color:
+                                            black),
+                                      ),
+                                    )),
+                                Expanded(
+                                    child:
+                                    Container(
+                                      padding:const  EdgeInsets
+                                          .symmetric(
+                                          vertical:
+                                          4),
+                                      decoration:
+                                      BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            5),
+                                        color: white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors
+                                                .grey
+                                                .shade300,
+                                            blurRadius:
+                                            5,
+                                            spreadRadius:
                                             1,
-                                            2),
+                                            offset:
+                                            const Offset(
+                                                1,
+                                                2),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  child: Transform
-                                      .translate(
-                                      offset:
-                                      const Offset(
-                                          0,
-                                          -4),
-                                      child:
-                                      GestureDetector(
-                                        onTap: (){
-                                          Provider.of<VillageProvider>(context,listen: false).decDis();
-                                          dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
-                                          setState(() {
+                                      child: Transform
+                                          .translate(
+                                          offset:
+                                          const Offset(
+                                              0,
+                                              0),
+                                          child:
+                                          GestureDetector(
+                                            onTap: (){
+                                              Provider.of<VillageProvider>(context,listen: false).incDis();
+                                              dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
+                                              setState(() {
 
-                                          });
+                                              });
+                                            },
+                                            child: const Icon(
+                                              Icons
+                                                  .add,
+                                              color:
+                                              black,
+                                              size:
+                                              16,
+                                            ),
+                                          )),
+                                    )),
+                                Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                                      alignment: Alignment.center,
+                                      color: Colors.white,
+                                      margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                                      child: TextFormField(
+                                        controller: dia,
+                                        onChanged: (val){
+                                          Provider.of<VillageProvider>(context, listen: false).setDia(val);
                                         },
-                                        child: const Icon(
-                                          Icons
-                                              .minimize,
-                                          color:
-                                          black,
-                                          size:
-                                          16,
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          isDense: true,
+                                          hintStyle: GoogleFonts.poppins(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: black),
                                         ),
-                                      )),
-                                )),
-                          ],
-                        ),
-                      )),
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                            color: black),
+                                      ),
+                                    )),
+                                Expanded(
+                                    child:
+                                    Container(
+                                      padding:const  EdgeInsets
+                                          .symmetric(
+                                          vertical:
+                                          4),
+                                      decoration:
+                                      BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius
+                                            .circular(
+                                            5),
+                                        color: white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors
+                                                .grey
+                                                .shade300,
+                                            blurRadius:
+                                            5,
+                                            spreadRadius:
+                                            1,
+                                            offset:
+                                            const Offset(
+                                                1,
+                                                2),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Transform
+                                          .translate(
+                                          offset:
+                                          const Offset(
+                                              0,
+                                              -4),
+                                          child:
+                                          GestureDetector(
+                                            onTap: (){
+                                              Provider.of<VillageProvider>(context,listen: false).decDis();
+                                              dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
+                                              setState(() {
+
+                                              });
+                                            },
+                                            child: const Icon(
+                                              Icons
+                                                  .minimize,
+                                              color:
+                                              black,
+                                              size:
+                                              16,
+                                            ),
+                                          )),
+                                    )),
+                              ],
+                            ),
+                          )),
+                    ],
+                  ))
                 ],
               ),
             ),
@@ -946,7 +952,7 @@ class _ANCState extends State<ANC> {
                     "Antenatal Risk Score",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
-                        fontSize: 28,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: black),
                   ),
@@ -960,7 +966,7 @@ class _ANCState extends State<ANC> {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: Image.asset(
                   "assets/images/risk.png",
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
               ),
               height: 200,
