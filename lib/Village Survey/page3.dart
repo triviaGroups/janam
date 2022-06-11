@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_holo_date_picker/date_picker.dart';
+import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:janam/Home/home_sub.dart';
 import 'package:janam/Widgets/button.dart';
 import 'package:janam/Widgets/container.dart';
@@ -673,6 +676,40 @@ class _vPage3State extends State<vPage3> {
                                           ),
                                         ),
                                       ),
+                                      Expanded(
+                                        child: Container(
+                                          alignment: Alignment.centerRight,
+                                          child: GestureDetector(
+                                              onTap: () async {
+                                                var datePicked =
+                                                await DatePicker.showSimpleDatePicker(
+                                                  context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime(1960, 1),
+                                                  lastDate: DateTime(2022, 12),
+                                                  dateFormat: "dd-MMMM-yyyy",
+                                                  locale: DateTimePickerLocale.en_us,
+                                                  looping: true,
+                                                );
+                                                final DateFormat formatter =
+                                                DateFormat('yyyy-MM-dd');
+                                                final String formatted =
+                                                formatter.format(datePicked!);
+                                                setState(() {
+                                                  children[index][1] = formatted;
+                                                });
+                                                final snackBar = SnackBar(
+                                                    content: Text("Date Picked $formatted"));
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(snackBar);
+                                              },
+                                              child: const Icon(
+                                                Icons.calendar_today_outlined,
+                                                color: Colors.black87,
+                                                size: 24,
+                                              )),
+                                        ),
+                                      )
                                     ],
                                   )),
                                   Expanded(

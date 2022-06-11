@@ -165,9 +165,9 @@ class _ChildCareState extends State<ChildCare> {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                initialDate: DateTime(1994),
-                                firstDate: DateTime(1960),
-                                lastDate: DateTime(2022),
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960,1),
+                                    lastDate: DateTime(2022,12),
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,

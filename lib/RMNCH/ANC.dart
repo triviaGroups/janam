@@ -183,6 +183,7 @@ class _ANCState extends State<ANC> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 3,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
@@ -196,6 +197,7 @@ class _ANCState extends State<ANC> {
                       ),
                     ),
                     Expanded(
+                      flex: 3,
                       child: Container(
                         decoration: BoxDecoration(
                             color: white,
@@ -212,6 +214,40 @@ class _ANCState extends State<ANC> {
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async {
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1960, 1),
+                                lastDate: DateTime(2022, 12),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter =
+                              DateFormat('yyyy-MM-dd');
+                              final String formatted =
+                              formatter.format(datePicked!);
+                              setState(() {
+                                dob.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content: Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: const Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.black87,
+                              size: 24,
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -730,9 +766,9 @@ class _ANCState extends State<ANC> {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                initialDate: DateTime(1994),
-                                firstDate: DateTime(1960),
-                                lastDate: DateTime(2022),
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960,1),
+                                    lastDate: DateTime(2022,12),
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,
@@ -805,9 +841,9 @@ class _ANCState extends State<ANC> {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                initialDate: DateTime(1994),
-                                firstDate: DateTime(1960),
-                                lastDate: DateTime(2022),
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960,1),
+                                    lastDate: DateTime(2022,12),
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,

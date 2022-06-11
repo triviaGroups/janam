@@ -112,6 +112,9 @@ class DeliveryState extends State<Delivery> {
   @override
   Widget build(BuildContext context) {
     a = 0;
+    var cur = DateTime.now();
+
+    TimeOfDay time = TimeOfDay(hour: cur.hour, minute: cur.minute);
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
@@ -190,6 +193,7 @@ class DeliveryState extends State<Delivery> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 3,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
@@ -203,6 +207,7 @@ class DeliveryState extends State<Delivery> {
                       ),
                     ),
                     Expanded(
+                      flex: 3,
                       child: Container(
                         decoration: BoxDecoration(
                             color: white,
@@ -219,6 +224,40 @@ class DeliveryState extends State<Delivery> {
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async {
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1960, 1),
+                                lastDate: DateTime(2022, 12),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter =
+                              DateFormat('yyyy-MM-dd');
+                              final String formatted =
+                              formatter.format(datePicked!);
+                              setState(() {
+                                dob.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content: Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: const Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.black87,
+                              size: 24,
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -290,9 +329,9 @@ class DeliveryState extends State<Delivery> {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                initialDate: DateTime(1994),
-                                firstDate: DateTime(1960),
-                                lastDate: DateTime(2022),
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960,1),
+                                    lastDate: DateTime(2022,12),
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,
@@ -359,15 +398,20 @@ class DeliveryState extends State<Delivery> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () async {
-                          setState(() {
-                            String crtTime = time.format(context).toString();
-                            timeDelivery.text = crtTime;
-                          });
-
-                          final snackBar = SnackBar(
-                              content:
+                          showTimePicker(
+                              context: context,
+                              initialTime: time
+                          ).then((value){
+                            setState((){
+                              time = value!;
+                              String crtTime = time.format(context).toString();
+                              timeDelivery.text = crtTime;
+                              final snackBar = SnackBar(
+                                  content:
                                   Text("Time Picked ${timeDelivery.text}"));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            });
+                          });
                         },
                         child: Container(
                             alignment: Alignment.centerRight,
@@ -482,9 +526,9 @@ class DeliveryState extends State<Delivery> {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                initialDate: DateTime(1994),
-                                firstDate: DateTime(1960),
-                                lastDate: DateTime(2022),
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960,1),
+                                    lastDate: DateTime(2022,12),
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,
@@ -551,15 +595,20 @@ class DeliveryState extends State<Delivery> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () async {
-                          setState(() {
-                            String crtTime = time.format(context).toString();
-                            timeDischarge.text = crtTime;
+                          showTimePicker(
+                              context: context,
+                              initialTime: time
+                          ).then((value){
+                            setState((){
+                              time = value!;
+                              String crtTime = time.format(context).toString();
+                              timeDischarge.text = crtTime;
+                              final snackBar = SnackBar(
+                                  content:
+                                  Text("Time Picked ${timeDelivery.text}"));
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            });
                           });
-
-                          final snackBar = SnackBar(
-                              content:
-                                  Text("Time Picked ${timeDischarge.text}"));
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                         child: Container(
                             alignment: Alignment.centerRight,
@@ -763,9 +812,9 @@ class DeliveryState extends State<Delivery> {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                initialDate: DateTime(1994),
-                                firstDate: DateTime(1960),
-                                lastDate: DateTime(2022),
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960,1),
+                                    lastDate: DateTime(2022,12),
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,

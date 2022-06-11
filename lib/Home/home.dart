@@ -96,12 +96,10 @@ class _HomeState extends State<Home> {
                     alignment: Alignment.center,
                     height: 100,
                     width: 80,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/nurse.png"),
-                          fit: BoxFit.cover),
+                      image: DecorationImage(image: NetworkImage("")),
                     ),
                   ))
                 ],

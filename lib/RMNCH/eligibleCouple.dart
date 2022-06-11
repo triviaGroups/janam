@@ -83,9 +83,6 @@ class _EligibleCoupleState extends State<EligibleCouple> {
 
   TextEditingController bweight = TextEditingController();
 
-  TextEditingController sys = TextEditingController();
-  TextEditingController dia = TextEditingController();
-
   TextEditingController dateTracking =  TextEditingController();
   TextEditingController lmp =  TextEditingController();
 
@@ -107,9 +104,12 @@ class _EligibleCoupleState extends State<EligibleCouple> {
 
   TextEditingController dateAbortion =  TextEditingController();
 
-  TimeOfDay time = const TimeOfDay(hour: 10, minute: 45);
   @override
   Widget build(BuildContext context) {
+    var cur = DateTime.now();
+
+    TimeOfDay time = TimeOfDay(hour: cur.hour, minute: cur.minute);
+
     a = 0;
     return SafeArea(
         child: Scaffold(
@@ -195,9 +195,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                               var datePicked =
                                   await DatePicker.showSimpleDatePicker(
                                 context,
-                                initialDate: DateTime(1994),
-                                firstDate: DateTime(1960),
-                                lastDate: DateTime(2022),
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960,1),
+                                    lastDate: DateTime(2022,12),
                                 dateFormat: "dd-MMMM-yyyy",
                                 locale: DateTimePickerLocale.en_us,
                                 looping: true,
@@ -260,6 +260,40 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async {
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1960,1),
+                                lastDate: DateTime(2022,12),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter =
+                              DateFormat('yyyy-MM-dd');
+                              final String formatted =
+                              formatter.format(datePicked!);
+                              setState(() {
+                                lmp.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content: Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: const Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.black87,
+                              size: 24,
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -273,12 +307,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
               press: (val) => setState(() {
                 method = int.parse(val.toString());
               }),
-              selectedButton: method,
-              fun: (val){
-                setState(() {
-                  method = val;
-                });
-              },
+              selectedButton: method, fun: (int k) {  },
             ),
             method == 1
                 ? Column(
@@ -294,11 +323,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                           ster = int.parse(val.toString());
                         }),
                         selectedButton: ster,
-                        fun: (val){
-                          setState(() {
-                            ster = val;
-                          });
-                        },
+                        fun: (int k) {  },
                       ),
                       Cont(
                           child: Row(
@@ -345,9 +370,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                         var datePicked = await DatePicker
                                             .showSimpleDatePicker(
                                           context,
-                                          initialDate: DateTime(1994),
-                                          firstDate: DateTime(1960),
-                                          lastDate: DateTime(2022),
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(1960,1),
+                                          lastDate: DateTime(2022,12),
                                           dateFormat: "dd-MMMM-yyyy",
                                           locale: DateTimePickerLocale.en_us,
                                           looping: true,
@@ -428,12 +453,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                             press: (val) => setState(() {
                               tempster = int.parse(val.toString());
                             }),
-                            selectedButton: tempster,
-                            fun: (val){
-                              setState(() {
-                                tempster = val;
-                              });
-                            },
+                            selectedButton: tempster, fun: (int k) {  },
                           ),
                           tempster == 1
                               ? Cont(
@@ -596,12 +616,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                               await DatePicker
                                                                   .showSimpleDatePicker(
                                                             context,
-                                                            initialDate:
-                                                                DateTime(1994),
-                                                            firstDate:
-                                                                DateTime(1960),
-                                                            lastDate:
-                                                                DateTime(2022),
+                                                                initialDate: DateTime.now(),
+                                                                firstDate: DateTime(1960,1),
+                                                                lastDate: DateTime(2022,12),
                                                             dateFormat:
                                                                 "dd-MMMM-yyyy",
                                                             locale:
@@ -678,16 +695,16 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                               height: 69,
                                               margin: const EdgeInsets.symmetric(
                                                   vertical: 8, horizontal: 24),
-                                              padding:const  EdgeInsets.symmetric(
+                                              padding: const EdgeInsets.symmetric(
                                                   horizontal: 16),
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(5),
+                                                      BorderRadius.circular(5),
                                                   color: colors[(a++) % 4],
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color:
-                                                      Colors.grey.shade300,
+                                                          Colors.grey.shade300,
                                                       blurRadius: 5,
                                                       spreadRadius: 1,
                                                       offset: const Offset(1, 2),
@@ -697,194 +714,189 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                 children: [
                                                   Expanded(
                                                       child: Container(
-                                                        padding: const EdgeInsets.only(
-                                                            top: 8,
-                                                            bottom: 8,
-                                                            right: 8),
-                                                        color: Colors.transparent,
-                                                        child: Text(
-                                                          "BP",
-                                                          style:
+                                                    padding: const EdgeInsets.only(
+                                                        top: 8,
+                                                        bottom: 8,
+                                                        right: 8),
+                                                    color: Colors.transparent,
+                                                    child: Text(
+                                                      "BP",
+                                                      style:
                                                           GoogleFonts.poppins(
                                                               fontSize: 16,
                                                               fontWeight:
-                                                              FontWeight
-                                                                  .w600,
+                                                                  FontWeight
+                                                                      .w600,
                                                               color: black),
-                                                        ),
-                                                      )),
+                                                    ),
+                                                  )),
                                                   Expanded(
                                                       flex: 3,
                                                       child: Padding(
                                                         padding:
-                                                        const EdgeInsets
-                                                            .only(right: 8),
+                                                            const EdgeInsets
+                                                                .only(right: 8),
                                                         child: Row(
                                                           children: [
                                                             Expanded(
                                                                 flex: 2,
                                                                 child:
-                                                                Container(
+                                                                    Container(
                                                                   padding: const EdgeInsets
                                                                       .only(
-                                                                      top:
-                                                                      8,
-                                                                      bottom:
-                                                                      8,
-                                                                      right:
-                                                                      8),
+                                                                          top:
+                                                                              8,
+                                                                          bottom:
+                                                                              8,
+                                                                          right:
+                                                                              8),
                                                                   color: Colors
                                                                       .transparent,
                                                                   child: Text(
                                                                     "Sys",
                                                                     style: GoogleFonts.poppins(
                                                                         fontSize:
-                                                                        16,
+                                                                            16,
                                                                         fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
+                                                                            FontWeight
+                                                                                .w600,
                                                                         color:
-                                                                        black),
+                                                                            black),
                                                                   ),
                                                                 )),
                                                             Expanded(
                                                                 child:
-                                                                Container(
-                                                                  padding: const EdgeInsets
-                                                                      .symmetric(
+                                                                    Container(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
                                                                       vertical:
-                                                                      4),
-                                                                  decoration:
+                                                                          4),
+                                                              decoration:
                                                                   BoxDecoration(
-                                                                    borderRadius:
+                                                                borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                        5),
-                                                                    color: white,
-                                                                    boxShadow: [
-                                                                      BoxShadow(
-                                                                        color: Colors
-                                                                            .grey
-                                                                            .shade300,
-                                                                        blurRadius:
+                                                                            5),
+                                                                color: white,
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300,
+                                                                    blurRadius:
                                                                         5,
-                                                                        spreadRadius:
+                                                                    spreadRadius:
                                                                         1,
-                                                                        offset:
-                                                                        const Offset(
+                                                                    offset:
+                                                                    const  Offset(
                                                                             1,
                                                                             2),
-                                                                      ),
-                                                                    ],
                                                                   ),
-                                                                  child: Transform
-                                                                      .translate(
-                                                                      offset:
-                                                                      const  Offset(
-                                                                          0,
-                                                                          0),
-                                                                      child:
-                                                                      GestureDetector(
-                                                                        onTap: (){
-                                                                          Provider.of<VillageProvider>(context,listen: false).incSys();
-                                                                          sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
-                                                                          setState(() {
-
-                                                                          });
-                                                                        },
-                                                                        child: const Icon(
-                                                                          Icons
-                                                                              .add,
-                                                                          color:
-                                                                          black,
-                                                                          size:
-                                                                          16,
-                                                                        ),
-                                                                      )),
-                                                                )),
-                                                            Expanded(
-                                                                flex: 2,
-                                                                child: Container(
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                                                                  alignment: Alignment.center,
-                                                                  color: Colors.white,
-                                                                  margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
-                                                                  child: TextFormField(
-                                                                    controller: sys,
-                                                                    onChanged: (val){
-                                                                      Provider.of<VillageProvider>(context, listen: false).setSys(val);
-                                                                    },
-                                                                    maxLines: 1,
-                                                                    keyboardType: TextInputType.number,
-                                                                    decoration: InputDecoration(
-                                                                      border: InputBorder.none,
-                                                                      isDense: true,
-                                                                      hintStyle: GoogleFonts.poppins(
-                                                                          fontSize: 14,
-                                                                          fontWeight: FontWeight.w600,
-                                                                          color: black),
-                                                                    ),
-                                                                    style: GoogleFonts.poppins(
-                                                                        fontSize: 10,
-                                                                        fontWeight: FontWeight.w400,
-                                                                        color: black),
-                                                                  ),
-                                                                )),
-                                                            Expanded(
-                                                                child:
-                                                                Container(
-                                                                  padding: const EdgeInsets
-                                                                      .symmetric(
-                                                                      vertical:
-                                                                      4),
-                                                                  decoration:
-                                                                  BoxDecoration(
-                                                                    borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                        5),
-                                                                    color: white,
-                                                                    boxShadow: [
-                                                                      BoxShadow(
-                                                                        color: Colors
-                                                                            .grey
-                                                                            .shade300,
-                                                                        blurRadius:
-                                                                        5,
-                                                                        spreadRadius:
-                                                                        1,
-                                                                        offset:
-                                                                        const Offset(
-                                                                            1,
-                                                                            2),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  child: Transform
-                                                                      .translate(
+                                                                ],
+                                                              ),
+                                                              child: Transform
+                                                                  .translate(
                                                                       offset:
                                                                       const Offset(
-                                                                          0,
-                                                                          -4),
+                                                                              0,
+                                                                              0),
                                                                       child:
-                                                                      GestureDetector(
-                                                                        onTap: (){
-                                                                          Provider.of<VillageProvider>(context,listen: false).decSys();
-                                                                          sys.text = Provider.of<VillageProvider>(context,listen: false).sys.toString();
-                                                                          setState(() {
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).incSys();
+                                                                              setState(() {
 
-                                                                          });
-                                                                        },
-                                                                        child: const Icon(
-                                                                          Icons
-                                                                              .minimize,
-                                                                          color:
-                                                                          black,
-                                                                          size:
-                                                                          16,
-                                                                        ),
-                                                                      )),
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
+                                                                        Icons
+                                                                              .add,
+                                                                        color:
+                                                                              black,
+                                                                        size:
+                                                                              16,
+                                                                      ),
+                                                                          )),
+                                                            )),
+                                                            Expanded(
+                                                                flex: 2,
+                                                                child:
+                                                                    Container(
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                          vertical:
+                                                                              8),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  child: Text(
+                                                                    Provider.of<VillageProvider>(context,listen: false).sys.toString(),
+                                                                    style: GoogleFonts.poppins(
+                                                                        fontSize:
+                                                                            16,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        color:
+                                                                            black),
+                                                                  ),
                                                                 )),
+                                                            Expanded(
+                                                                child:
+                                                                    Container(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          4),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                color: white,
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300,
+                                                                    blurRadius:
+                                                                        5,
+                                                                    spreadRadius:
+                                                                        1,
+                                                                    offset:
+                                                                    const Offset(
+                                                                            1,
+                                                                            2),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              child: Transform
+                                                                  .translate(
+                                                                      offset:
+                                                                      const   Offset(
+                                                                              0,
+                                                                              -4),
+                                                                      child:
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).decSys();
+                                                                              setState(() {
+
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
+                                                                        Icons
+                                                                              .minimize,
+                                                                        color:
+                                                                              black,
+                                                                        size:
+                                                                              16,
+                                                                      ),
+                                                                          )),
+                                                            )),
                                                           ],
                                                         ),
                                                       )),
@@ -892,174 +904,169 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                       flex: 3,
                                                       child: Padding(
                                                         padding:
-                                                        const EdgeInsets
-                                                            .only(left: 8),
+                                                            const EdgeInsets
+                                                                .only(left: 8),
                                                         child: Row(
                                                           children: [
                                                             Expanded(
                                                                 flex: 2,
                                                                 child:
-                                                                Container(
+                                                                    Container(
                                                                   padding: const EdgeInsets
                                                                       .only(
-                                                                      top:
-                                                                      8,
-                                                                      bottom:
-                                                                      8,
-                                                                      right:
-                                                                      8),
+                                                                          top:
+                                                                              8,
+                                                                          bottom:
+                                                                              8,
+                                                                          right:
+                                                                              8),
                                                                   color: Colors
                                                                       .transparent,
                                                                   child: Text(
                                                                     "Dia",
                                                                     style: GoogleFonts.poppins(
                                                                         fontSize:
-                                                                        16,
+                                                                            16,
                                                                         fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
+                                                                            FontWeight
+                                                                                .w600,
                                                                         color:
-                                                                        black),
+                                                                            black),
                                                                   ),
                                                                 )),
                                                             Expanded(
                                                                 child:
-                                                                Container(
-                                                                  padding:const  EdgeInsets
-                                                                      .symmetric(
+                                                                    Container(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
                                                                       vertical:
-                                                                      4),
-                                                                  decoration:
+                                                                          4),
+                                                              decoration:
                                                                   BoxDecoration(
-                                                                    borderRadius:
+                                                                borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                        5),
-                                                                    color: white,
-                                                                    boxShadow: [
-                                                                      BoxShadow(
-                                                                        color: Colors
-                                                                            .grey
-                                                                            .shade300,
-                                                                        blurRadius:
+                                                                            5),
+                                                                color: white,
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300,
+                                                                    blurRadius:
                                                                         5,
-                                                                        spreadRadius:
+                                                                    spreadRadius:
                                                                         1,
-                                                                        offset:
-                                                                        const Offset(
+                                                                    offset:
+                                                                    const Offset(
                                                                             1,
                                                                             2),
-                                                                      ),
-                                                                    ],
                                                                   ),
-                                                                  child: Transform
-                                                                      .translate(
+                                                                ],
+                                                              ),
+                                                              child: Transform
+                                                                  .translate(
                                                                       offset:
-                                                                      const Offset(
-                                                                          0,
-                                                                          0),
+                                                                      const   Offset(
+                                                                              0,
+                                                                              0),
                                                                       child:
-                                                                      GestureDetector(
-                                                                        onTap: (){
-                                                                          Provider.of<VillageProvider>(context,listen: false).incDis();
-                                                                          dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
-                                                                          setState(() {
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).incDis();
+                                                                              setState(() {
 
-                                                                          });
-                                                                        },
-                                                                        child: const Icon(
-                                                                          Icons
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
+                                                                        Icons
                                                                               .add,
-                                                                          color:
-                                                                          black,
-                                                                          size:
-                                                                          16,
-                                                                        ),
-                                                                      )),
-                                                                )),
+                                                                        color:
+                                                                              black,
+                                                                        size:
+                                                                              16,
+                                                                      ),
+                                                                          )),
+                                                            )),
                                                             Expanded(
                                                                 flex: 2,
-                                                                child: Container(
-                                                                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                                                                  alignment: Alignment.center,
-                                                                  color: Colors.white,
-                                                                  margin: const EdgeInsets.symmetric(horizontal: 8,vertical: 16),
-                                                                  child: TextFormField(
-                                                                    controller: dia,
-                                                                    onChanged: (val){
-                                                                      Provider.of<VillageProvider>(context, listen: false).setDia(val);
-                                                                    },
-                                                                    maxLines: 1,
-                                                                    keyboardType: TextInputType.number,
-                                                                    decoration: InputDecoration(
-                                                                      border: InputBorder.none,
-                                                                      isDense: true,
-                                                                      hintStyle: GoogleFonts.poppins(
-                                                                          fontSize: 14,
-                                                                          fontWeight: FontWeight.w600,
-                                                                          color: black),
-                                                                    ),
+                                                                child:
+                                                                    Container(
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                          vertical:
+                                                                              8),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  child: Text(
+                                                                    Provider.of<VillageProvider>(context,listen: false).dia.toString(),
                                                                     style: GoogleFonts.poppins(
-                                                                        fontSize: 10,
-                                                                        fontWeight: FontWeight.w400,
-                                                                        color: black),
+                                                                        fontSize:
+                                                                            16,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        color:
+                                                                            black),
                                                                   ),
                                                                 )),
                                                             Expanded(
                                                                 child:
-                                                                Container(
-                                                                  padding:const  EdgeInsets
-                                                                      .symmetric(
+                                                                    Container(
+                                                              padding: const EdgeInsets
+                                                                  .symmetric(
                                                                       vertical:
-                                                                      4),
-                                                                  decoration:
+                                                                          4),
+                                                              decoration:
                                                                   BoxDecoration(
-                                                                    borderRadius:
+                                                                borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                        5),
-                                                                    color: white,
-                                                                    boxShadow: [
-                                                                      BoxShadow(
-                                                                        color: Colors
-                                                                            .grey
-                                                                            .shade300,
-                                                                        blurRadius:
+                                                                            5),
+                                                                color: white,
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    color: Colors
+                                                                        .grey
+                                                                        .shade300,
+                                                                    blurRadius:
                                                                         5,
-                                                                        spreadRadius:
+                                                                    spreadRadius:
                                                                         1,
-                                                                        offset:
-                                                                        const Offset(
+                                                                    offset:
+                                                                    const Offset(
                                                                             1,
                                                                             2),
-                                                                      ),
-                                                                    ],
                                                                   ),
-                                                                  child: Transform
-                                                                      .translate(
+                                                                ],
+                                                              ),
+                                                              child: Transform
+                                                                  .translate(
                                                                       offset:
-                                                                      const Offset(
-                                                                          0,
-                                                                          -4),
+                                                                      const  Offset(
+                                                                              0,
+                                                                              -4),
                                                                       child:
-                                                                      GestureDetector(
-                                                                        onTap: (){
-                                                                          Provider.of<VillageProvider>(context,listen: false).decDis();
-                                                                          dia.text = Provider.of<VillageProvider>(context,listen: false).dia.toString();
-                                                                          setState(() {
+                                                                          GestureDetector(
+                                                                            onTap: (){
+                                                                              Provider.of<VillageProvider>(context,listen: false).decDis();
+                                                                              setState(() {
 
-                                                                          });
-                                                                        },
-                                                                        child: const Icon(
-                                                                          Icons
+                                                                              });
+                                                                            },
+                                                                            child: const Icon(
+                                                                        Icons
                                                                               .minimize,
-                                                                          color:
-                                                                          black,
-                                                                          size:
-                                                                          16,
-                                                                        ),
-                                                                      )),
-                                                                )),
+                                                                        color:
+                                                                              black,
+                                                                        size:
+                                                                              16,
+                                                                      ),
+                                                                          )),
+                                                            )),
                                                           ],
                                                         ),
                                                       )),
@@ -1132,15 +1139,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                   await DatePicker
                                                                       .showSimpleDatePicker(
                                                                 context,
-                                                                initialDate:
-                                                                    DateTime(
-                                                                        1994),
-                                                                firstDate:
-                                                                    DateTime(
-                                                                        1960),
-                                                                lastDate:
-                                                                    DateTime(
-                                                                        2022),
+                                                                    initialDate: DateTime.now(),
+                                                                    firstDate: DateTime(1960,1),
+                                                                    lastDate: DateTime(2022,12),
                                                                 dateFormat:
                                                                     "dd-MMMM-yyyy",
                                                                 locale:
@@ -1192,12 +1193,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                               press: (val) => setState(() {
                                                 inj = int.parse(val.toString());
                                               }),
-                                              selectedButton: inj,
-                                              fun: (val){
-                                                setState(() {
-                                                  inj = val;
-                                                });
-                                              },
+                                              selectedButton: inj, fun: (int k) {  },
                                             ),
                                             Cont(
                                                 child: Row(
@@ -1256,24 +1252,20 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                     Expanded(
                                                       child: GestureDetector(
                                                         onTap: () async {
-
-                                                          setState(() {
-                                                            String crtTime =
-                                                                time
-                                                                    .format(
-                                                                        context)
-                                                                    .toString();
-                                                            timeInjection.text =
-                                                                crtTime;
+                                                          showTimePicker(
+                                                              context: context,
+                                                              initialTime: time
+                                                          ).then((value){
+                                                            setState((){
+                                                              time = value!;
+                                                              String crtTime = time.format(context).toString();
+                                                              timeInjection.text = crtTime;
+                                                              final snackBar = SnackBar(
+                                                                  content:
+                                                                  Text("Time Picked ${timeInjection.text}"));
+                                                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                                            });
                                                           });
-
-                                                          final snackBar = SnackBar(
-                                                              content: Text(
-                                                                  "Time Picked ${timeInjection.text}"));
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                                  snackBar);
                                                         },
                                                         child: Container(
                                                             alignment: Alignment
@@ -1372,12 +1364,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                                           await DatePicker
                                                                               .showSimpleDatePicker(
                                                                         context,
-                                                                        initialDate:
-                                                                            DateTime(1994),
-                                                                        firstDate:
-                                                                            DateTime(1960),
-                                                                        lastDate:
-                                                                            DateTime(2022),
+                                                                            initialDate: DateTime.now(),
+                                                                            firstDate: DateTime(1960,1),
+                                                                            lastDate: DateTime(2022,12),
                                                                         dateFormat:
                                                                             "dd-MMMM-yyyy",
                                                                         locale:
@@ -1429,12 +1418,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                     poi = int.parse(
                                                         val.toString());
                                                   }),
-                                                  selectedButton: poi,
-                                                  fun: (val){
-                                                    setState(() {
-                                                      poi = val;
-                                                    });
-                                                  },
+                                                  selectedButton: poi, fun: (int k) {  },
                                                 ),
                                                 Cont(
                                                     child: Row(
@@ -1515,12 +1499,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                 press: (val) => setState(() {
                                   test = int.parse(val.toString());
                                 }),
-                                selectedButton: test,
-                                fun: (val){
-                                  setState(() {
-                                    test = val;
-                                  });
-                                },
+                                selectedButton: test, fun: (int k) {  },
                               ),
                               radioContainer(
                                 name: "Pregnancy test result",
@@ -1531,12 +1510,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                 press: (val) => setState(() {
                                   result = int.parse(val.toString());
                                 }),
-                                selectedButton: result,
-                                fun: (val){
-                                  setState(() {
-                                    result = val;
-                                  });
-                                },
+                                selectedButton: result, fun: (int k) {  },
                               ),
                             ],
                           )
@@ -1595,10 +1569,9 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                         await DatePicker
                                                             .showSimpleDatePicker(
                                                       context,
-                                                      initialDate:
-                                                          DateTime(1994),
-                                                      firstDate: DateTime(1960),
-                                                      lastDate: DateTime(2022),
+                                                          initialDate: DateTime.now(),
+                                                          firstDate: DateTime(1960,1),
+                                                          lastDate: DateTime(2022,12),
                                                       dateFormat:
                                                           "dd-MMMM-yyyy",
                                                       locale:
@@ -1736,12 +1709,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                     press: (val) => setState(() {
                                       reason = int.parse(val.toString());
                                     }),
-                                    selectedButton: reason,
-                                    fun: (val){
-                                      setState(() {
-                                        reason = val;
-                                      });
-                                    },
+                                    selectedButton: reason, fun: (int k) {  },
                                   ),
                                   reason == 3
                                       ? radioContainer(
@@ -1754,12 +1722,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                           press: (val) => setState(() {
                                             newmode = int.parse(val.toString());
                                           }),
-                                          selectedButton: newmode,
-                                    fun: (val){
-                                      setState(() {
-                                        newmode = val;
-                                      });
-                                    },
+                                          selectedButton: newmode, fun: (int k) {  },
                                         )
                                       : const SizedBox(),
                                 ],

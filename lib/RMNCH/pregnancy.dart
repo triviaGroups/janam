@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_holo_date_picker/date_picker.dart';
+import 'package:flutter_holo_date_picker/i18n/date_picker_i18n.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:janam/Home/home_sub.dart';
@@ -125,6 +127,7 @@ class _PregnancyState extends State<Pregnancy> {
   List<String> gpreg = const ["Live birth", "Stillbirth", "Abortion"];
 
   TextEditingController dob = TextEditingController();
+  TextEditingController lmdDate = TextEditingController();
 
   @override
   void initState() {
@@ -215,6 +218,7 @@ class _PregnancyState extends State<Pregnancy> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 3,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
@@ -228,6 +232,7 @@ class _PregnancyState extends State<Pregnancy> {
                       ),
                     ),
                     Expanded(
+                      flex: 3,
                       child: Container(
                         decoration: BoxDecoration(
                             color: white,
@@ -244,6 +249,40 @@ class _PregnancyState extends State<Pregnancy> {
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async {
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1960, 1),
+                                lastDate: DateTime(2022, 12),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter =
+                              DateFormat('yyyy-MM-dd');
+                              final String formatted =
+                              formatter.format(datePicked!);
+                              setState(() {
+                                dob.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content: Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: const Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.black87,
+                              size: 24,
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 height: 40,
@@ -253,6 +292,7 @@ class _PregnancyState extends State<Pregnancy> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 3,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
@@ -267,12 +307,13 @@ class _PregnancyState extends State<Pregnancy> {
                       ),
                     ),
                     Expanded(
+                      flex: 3,
                       child: Container(
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          onChanged: (val) {},
+                          controller: lmdDate,
                           decoration: const InputDecoration(
                             contentPadding:
                                 EdgeInsets.only(left: 10, right: 10),
@@ -283,6 +324,40 @@ class _PregnancyState extends State<Pregnancy> {
                         ),
                       ),
                     ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            onTap: () async {
+                              var datePicked =
+                              await DatePicker.showSimpleDatePicker(
+                                context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1960, 1),
+                                lastDate: DateTime(2022, 12),
+                                dateFormat: "dd-MMMM-yyyy",
+                                locale: DateTimePickerLocale.en_us,
+                                looping: true,
+                              );
+                              final DateFormat formatter =
+                              DateFormat('yyyy-MM-dd');
+                              final String formatted =
+                              formatter.format(datePicked!);
+                              setState(() {
+                                lmdDate.text = formatted;
+                              });
+                              final snackBar = SnackBar(
+                                  content: Text("Date Picked $formatted"));
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: const Icon(
+                              Icons.calendar_today_outlined,
+                              color: Colors.black87,
+                              size: 24,
+                            )),
+                      ),
+                    )
                   ],
                 ),
                 height: 50,
