@@ -21,9 +21,9 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.janam.anmandroid.application'
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.janam.anmgoogle.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 
@@ -69,6 +69,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation platform('com.janam.anmgoogle.firebase:firebase-bom:30.0.1')
-    implementation 'com.janam.anmgoogle.firebase:firebase-analytics'
+    implementation platform('com.google.firebase:firebase-bom:30.0.1')
+    implementation 'com.google.firebase:firebase-analytics'
 }

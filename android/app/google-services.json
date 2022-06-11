@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:683360805215:android:b0cf3adacfbe27ce3496ea",
         "android_client_info": {
-          "package_name": "com.example.janam"
+          "package_name": "com.janam.anm"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "683360805215-cdvbfmda5dp6vh0qi3eism0h3ql4grud.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.janam",
+            "package_name": "com.janam.anm",
             "certificate_hash": "a93752f5b4401ed32fbae9ba39c9814b9e0eea0e"
           }
         },
