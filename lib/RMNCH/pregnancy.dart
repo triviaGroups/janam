@@ -25,14 +25,14 @@ class Pregnancy extends StatefulWidget {
 
 class _PregnancyState extends State<Pregnancy> {
   int a = 0;
-  int test = 0;
-  int result = 0;
-  int jsy = 0;
-  int blood = 0;
-  int gravida = 0;
-  int facility = 0;
-  int rpr = 0;
-  int hiv = 0;
+  int test = 1;
+  int result = 1;
+  int jsy = 1;
+  int blood = 1;
+  int gravida = 1;
+  int facility = 1;
+  int rpr = 1;
+  int hiv = 1;
 
   List<String> testList = const ["Positive", "Negative", "Test not done"];
 

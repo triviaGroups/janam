@@ -30,17 +30,17 @@ class Delivery extends StatefulWidget {
 
 class DeliveryState extends State<Delivery> {
   int a = 0;
-  int outcome = 0;
-  int conducted = 0;
-  int type = 0;
-  int injection = 0;
-  int preg = 0;
-  int sex = 0;
-  int cried = 0;
-  int management = 0;
-  int defect = 0;
-  int feed = 0;
-  int jsy = 0;
+  int outcome = 1;
+  int conducted = 1;
+  int type = 1;
+  int injection = 1;
+  int preg = 1;
+  int sex = 1;
+  int cried = 1;
+  int management = 1;
+  int defect = 1;
+  int feed = 1;
+  int jsy = 1;
 
   TextEditingController dob = TextEditingController();
   TextEditingController dateDelivery = TextEditingController();

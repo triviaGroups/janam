@@ -45,14 +45,14 @@ class _vPage3State extends State<vPage3> {
 
   List<List<String>> children = [];
 
-  int reli = 0;
-  int eco = 0;
-  int elec = 0;
-  int house = 0;
-  int toilet = 0;
-  int caste = 0;
-  int waste = 0;
-  int fertile = 0;
+  int reli = 1;
+  int eco = 1;
+  int elec = 1;
+  int house = 1;
+  int toilet = 1;
+  int caste = 1;
+  int waste = 1;
+  int fertile = 1;
 
   TextEditingController G = TextEditingController();
   TextEditingController P = TextEditingController();

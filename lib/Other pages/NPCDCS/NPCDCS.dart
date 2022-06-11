@@ -25,15 +25,15 @@ class NPCDCS extends StatefulWidget {
 
 class _NPCDCSState extends State<NPCDCS> {
   int a = 0;
-  int tobacco = 0;
-  int tobSmokeless = 0;
-  int alcohol = 0;
-  int sedentary = 0;
-  int history = 0;
-  int oral = 0;
-  int breast = 0;
-  int cervix = 0;
-  int status = 0;
+  int tobacco = 1;
+  int tobSmokeless = 1;
+  int alcohol = 1;
+  int sedentary = 1;
+  int history = 1;
+  int oral = 1;
+  int breast = 1;
+  int cervix = 1;
+  int status = 1;
 
   List<String> ncd = const [
     "Diabetes mellitus",

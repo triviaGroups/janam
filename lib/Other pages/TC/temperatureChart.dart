@@ -21,17 +21,17 @@ class TempChart extends StatefulWidget {
 
 class _TempChartState extends State<TempChart> {
   int a = 0;
-  int ilr = 0;
-  int ilrSun = 0;
-  int ilrLocked = 0;
-  int ilrDefrost = 0;
-  int ilrSocket = 0;
-  int food = 0;
-  int vaccine = 0;
-  int rotated = 0;
-  int door = 0;
-  int frozen = 0;
-  int expiry = 0;
+  int ilr = 1;
+  int ilrSun = 1;
+  int ilrLocked = 1;
+  int ilrDefrost = 1;
+  int ilrSocket = 1;
+  int food = 1;
+  int vaccine = 1;
+  int rotated = 1;
+  int door = 1;
+  int frozen = 1;
+  int expiry = 1;
 
   List<String> yn = const ["Yes","No"];
 
@@ -52,6 +52,7 @@ class _TempChartState extends State<TempChart> {
 
   @override
   Widget build(BuildContext context) {
+    a = 0;
     return SafeArea(
         child: Scaffold(
           backgroundColor: white,

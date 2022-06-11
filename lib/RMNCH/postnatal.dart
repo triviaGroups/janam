@@ -26,7 +26,7 @@ class PostnatalCare extends StatefulWidget {
 
 class _PostnatalCareState extends State<PostnatalCare> {
   int a = 0;
-  int method = 0;
+  int method = 1;
 
   List<String> signs = const [
     "Bleeding",

@@ -23,7 +23,7 @@ class StockReg extends StatefulWidget {
 
 class _StockRegState extends State<StockReg> {
   int a = 0;
-  int f = 0;
+  int f = 1;
   List<String> list = ["Incoming","Issue"];
   String selected = "";
   List<String> stockList = ["Folic acid",

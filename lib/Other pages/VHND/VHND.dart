@@ -23,10 +23,10 @@ class VHND extends StatefulWidget {
 
 class _VHNDState extends State<VHND> {
   int a = 0;
-  int name = 0;
-  int place = 0;
-  int attendee = 0;
-  int conducted = 0;
+  int name = 1;
+  int place = 1;
+  int attendee = 1;
+  int conducted = 1;
 
   List<String> placeList = const ["PHC", "SC", "Others"];
   List<String> conduct = const ["ANM","Nurse","AWW","ASHA","Teacher","Medical Officer"];

@@ -11,9 +11,9 @@ class VillageProvider with ChangeNotifier {
   int _A2 = 0;
   int _A3 = 0;
 
-  int _weight = 60;
-  int _sys = 120;
-  int _dia = 80;
+  int _weight = 0;
+  int _sys = 0;
+  int _dia = 0;
 
   int get G => _G;
   int get P => _P;

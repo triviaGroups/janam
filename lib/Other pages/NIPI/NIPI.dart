@@ -24,8 +24,8 @@ class NIPI extends StatefulWidget {
 
 class _NIPIState extends State<NIPI> {
   int a = 0;
-  int awcName = 0;
-  int name = 0;
+  int awcName = 1;
+  int name = 1;
 
   TextEditingController dateNIPI = TextEditingController();
 

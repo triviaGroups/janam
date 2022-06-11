@@ -22,10 +22,10 @@ class IDSP extends StatefulWidget {
 
 class _IDSPState extends State<IDSP> {
   int a = 0;
-  int fever = 0;
-  int f = 0;
-  int l = 0;
-  int cough = 0;
+  int fever = 1;
+  int f = 1;
+  int l = 1;
+  int cough = 1;
 
   List<String> feverList = const [
     "Only fever",

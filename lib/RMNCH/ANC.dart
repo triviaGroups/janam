@@ -27,11 +27,11 @@ class ANC extends StatefulWidget {
 
 class _ANCState extends State<ANC> {
   int a = 0;
-  int urine = 0;
-  int blood = 0;
-  int risk = 0;
-  int referral = 0;
-  int type = 0;
+  int urine = 1;
+  int blood = 1;
+  int risk = 1;
+  int referral = 1;
+  int type = 1;
 
   TextEditingController dob = TextEditingController();
   TextEditingController fttDose = TextEditingController();

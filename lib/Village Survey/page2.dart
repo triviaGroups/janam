@@ -1034,7 +1034,7 @@ class _vPage2State extends State<vPage2> {
                        "Name" : head[0],
                        "DOB" : head[1],
                        "Village Name" : widget.VillageName,
-                       "Gender" : "Male",
+                       "Gender" : head[4],
                        "docId" : doc,
                        "Address" : widget.Address,
                      };
@@ -1043,7 +1043,7 @@ class _vPage2State extends State<vPage2> {
                        "Name" : spouse[1],
                        "DOB" : spouse[2],
                        "Village Name" : widget.VillageName,
-                       "Gender" : "Female",
+                       "Gender" : spouse[5],
                        "docId" : doc,
                        "Address" : widget.Address,
                      };

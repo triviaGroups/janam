@@ -25,8 +25,8 @@ class Covid extends StatefulWidget {
 
 class _CovidState extends State<Covid> {
   int a = 0;
-  int testResult = 0;
-  int dischargeReason = 0;
+  int testResult = 1;
+  int dischargeReason = 1;
 
   List<String> symp = const [
     "Fever",

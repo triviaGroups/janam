@@ -7,7 +7,7 @@ class PregDocID with ChangeNotifier {
   int _G = 0;
   String _name = "";
   String _dob = "";
-  int _bwieght = 3000;
+  int _bwieght = 0;
   String _village = "";
 
   int _weight = 0;

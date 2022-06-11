@@ -24,8 +24,8 @@ class AEFI extends StatefulWidget {
 
 class _AEFIState extends State<AEFI> {
   int a = 0;
-  int medicalOffer = 0;
-  int k = 0;
+  int medicalOffer = 1;
+  int k = 1;
 
   List<String> c = const ["Minor","Severe"];
   List<String> yn = const ["Yes","No"];

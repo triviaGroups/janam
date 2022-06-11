@@ -27,15 +27,15 @@ class EligibleCouple extends StatefulWidget {
 class _EligibleCoupleState extends State<EligibleCouple> {
   int a = 0;
 
-  int method = 0;
-  int ster = 0;
-  int tempster = 0;
-  int test = 0;
-  int result = 0;
-  int reason = 0;
-  int poi = 0;
-  int newmode = 0;
-  int inj = 0;
+  int method = 1;
+  int ster = 1;
+  int tempster = 1;
+  int test = 1;
+  int result = 1;
+  int reason = 1;
+  int poi = 1;
+  int newmode = 1;
+  int inj = 1;
 
   String docId = "";
 

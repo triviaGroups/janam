@@ -25,7 +25,7 @@ class ChildCare extends StatefulWidget {
 
 class _ChildCareState extends State<ChildCare> {
   int a = 0;
-  int aefi = 0;
+  int aefi = 1;
 
   List<String> yn = const ["Yes", "No"];
   List<String> fortyList = ["", "", "", "", "", "", ""];

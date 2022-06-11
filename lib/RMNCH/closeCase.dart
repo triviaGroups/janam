@@ -24,12 +24,12 @@ class CloseCase extends StatefulWidget {
 
 class _CloseCaseState extends State<CloseCase> {
   int a = 0;
-  int close = 0;
-  int reason = 0;
-  int place = 0;
-  int cause = 0;
-  int death = 0;
-  int dc = 0;
+  int close = 1;
+  int reason = 1;
+  int place = 1;
+  int cause = 1;
+  int death = 1;
+  int dc = 1;
 
   List<String> h = const ["Home", "Hospital", "In transit"];
 
