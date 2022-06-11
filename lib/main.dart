@@ -84,7 +84,7 @@ class _FireBaseInitializationState extends State<FireBaseInitialization> {
                         return Scaffold(
                           resizeToAvoidBottomInset: false,
                           body: Center(
-                            child: Text("Error: ${streamSnapshot.hasError}"),
+                            child: Text("Errors: ${streamSnapshot.hasError}"),
                           ),
                         );
                       }
