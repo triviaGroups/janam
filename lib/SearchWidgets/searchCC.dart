@@ -158,12 +158,6 @@ class _ChildSearchState extends State<ChildSearch> {
                                     ? "No result"
                                     : _resultsList[index]["Name"] +
                                         ", " +
-                                        (2021 -
-                                                (int.parse(_resultsList[index]
-                                                        ["DOB"]
-                                                    .substring(0, 4))))
-                                            .toString() +
-                                        ", " +
                                         _resultsList[index]["Village Name"],
                                 textAlign: _resultsList == []
                                     ? TextAlign.center

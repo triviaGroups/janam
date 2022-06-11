@@ -24,7 +24,7 @@ class NIPI extends StatefulWidget {
 
 class _NIPIState extends State<NIPI> {
   int a = 0;
-  int awcName = 1;
+  int awcName = 0;
   int name = 1;
 
   TextEditingController dateNIPI = TextEditingController();
@@ -223,7 +223,7 @@ class _NIPIState extends State<NIPI> {
                         Provider.of<nipipro>(context, listen: false).selected,
                     "Village Name": Provider.of<nipipro>(context, listen: false)
                         .village[name - 1],
-                    "AWC": Provider.of<nipipro>(context, listen: false)
+                    "AWC": awcName == 0 ? "" : Provider.of<nipipro>(context, listen: false)
                         .awc[awcName - 1],
                   };
 
@@ -234,6 +234,7 @@ class _NIPIState extends State<NIPI> {
                           .village[name - 1])
                       .doc(dateNIPI.text)
                       .set(data);
+
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(
                     backgroundColor: Colors.black,

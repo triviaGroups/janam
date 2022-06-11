@@ -74,26 +74,12 @@ class _ChildCareState extends State<ChildCare> {
                                   fontWeight: FontWeight.w600,
                                   color: black),
                             ),
-                            Text(
-                              ", Female, " +
-                                  (2021 -
-                                          (int.parse(Provider.of<PregDocID>(
-                                                  context,
-                                                  listen: false)
-                                              .dob
-                                              .substring(0, 4))))
-                                      .toString(),
-                              style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  color: txt),
-                            ),
                           ],
                         )),
                         Expanded(
                             flex: 2,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -105,7 +91,7 @@ class _ChildCareState extends State<ChildCare> {
                                 ),
                                 Text(
                                   Provider.of<PregDocID>(context, listen: false)
-                                      .address,
+                                      .address+", Puducherry, India",
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,

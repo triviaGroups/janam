@@ -53,7 +53,8 @@ class PregDocID with ChangeNotifier {
     final birthday = DateTime.parse(_dob);
     final date2 = DateTime.now();
     _difference = date2.difference(birthday).inDays;
-    print("Difference" + _difference.toString());
+    print(_dob);
+    print("Difference " + _difference.toString());
     notifyListeners();
   }
 
