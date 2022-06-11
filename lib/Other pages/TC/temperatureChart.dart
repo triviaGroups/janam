@@ -72,7 +72,7 @@ class _TempChartState extends State<TempChart> {
                             alignment: Alignment.centerLeft,
                             padding: const EdgeInsets.only(right: 8),
                             child: Text(
-                              "Name of ilr",
+                              "Name of ILR",
                               style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -140,7 +140,7 @@ class _TempChartState extends State<TempChart> {
                     height: 40,
                     color: colors[(a++) % 4]),
                 radioContainer(
-                  name: "Is the ilr level?",
+                  name: "Is the ILR level?",
                   num: 2,
                   item: yn,
                   height: 120,
@@ -156,7 +156,7 @@ class _TempChartState extends State<TempChart> {
                   },
                 ),
                 radioContainer(
-                  name: "Is the ilr, away from sun?",
+                  name: "Is the ILR, away from sun?",
                   num: 2,
                   item: yn,
                   height: 120,
@@ -172,7 +172,7 @@ class _TempChartState extends State<TempChart> {
                   },
                 ),
                 radioContainer(
-                  name: "Is the ilr, locked?",
+                  name: "Is the ILR, locked?",
                   num: 2,
                   item: yn,
                   height: 120,
@@ -188,7 +188,7 @@ class _TempChartState extends State<TempChart> {
                   },
                 ),
                 radioContainer(
-                  name: "Is the ilr, defrosted periodically?",
+                  name: "Is the ILR, defrosted periodically?",
                   num: 2,
                   item: yn,
                   height: 120,
@@ -204,7 +204,7 @@ class _TempChartState extends State<TempChart> {
                   },
                 ),
                 radioContainer(
-                  name: "Is the ilr, plugged to socket permanently",
+                  name: "Is the ILR, plugged to socket permanently",
                   num: 2,
                   item: yn,
                   height: 120,
@@ -220,7 +220,7 @@ class _TempChartState extends State<TempChart> {
                   },
                 ),
                 radioContainer(
-                  name: "Is the ilr, used for food or drinks?",
+                  name: "Is the ILR, used for food or drinks?",
                   num: 2,
                   item: yn,
                   height: 120,
@@ -390,7 +390,7 @@ class _TempChartState extends State<TempChart> {
                                 padding: const  EdgeInsets.only(top: 8,bottom: 8,right: 8),
                                 color: Colors.transparent,
                                 child: Text(
-                                  "ilr",
+                                  "ILR",
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,
@@ -622,7 +622,7 @@ class _TempChartState extends State<TempChart> {
                                 padding: const  EdgeInsets.only(top: 8,bottom: 8,right: 8),
                                 color: Colors.transparent,
                                 child: Text(
-                                  "ilr",
+                                  "ILR",
                                   style: GoogleFonts.poppins(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400,

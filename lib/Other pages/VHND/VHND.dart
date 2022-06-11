@@ -29,7 +29,7 @@ class _VHNDState extends State<VHND> {
   int conducted = 0;
 
   List<String> placeList = const ["PHC", "SC", "Others"];
-  List<String> conduct = const ["Dr. Manoj, MO, PHC - 1", "Ms. Amala, AWC - 3"];
+  List<String> conduct = const ["ANM","Nurse","AWW","ASHA","Teacher","Medical Officer"];
 
   TextEditingController dateVHND = TextEditingController();
   TextEditingController topicc = TextEditingController();
