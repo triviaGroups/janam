@@ -57,6 +57,7 @@ class _CovidState extends State<Covid> {
   TextEditingController admDate =  TextEditingController();
   TextEditingController disDate =  TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
     a = 0;
@@ -118,6 +119,7 @@ class _CovidState extends State<Covid> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
+                          flex: 3,
                           child: Container(
                             alignment: Alignment.centerLeft,
                             padding: const EdgeInsets.only(right: 8),
@@ -130,6 +132,7 @@ class _CovidState extends State<Covid> {
                           ),
                         ),
                         Expanded(
+                          flex: 3,
                           child: Container(
                             decoration: BoxDecoration(
                                 color: white,
@@ -146,6 +149,40 @@ class _CovidState extends State<Covid> {
                             ),
                           ),
                         ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                                onTap: () async {
+                                  var datePicked =
+                                  await DatePicker.showSimpleDatePicker(
+                                    context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(1960, 1),
+                                    lastDate: DateTime(2022, 12),
+                                    dateFormat: "dd-MMMM-yyyy",
+                                    locale: DateTimePickerLocale.en_us,
+                                    looping: true,
+                                  );
+                                  final DateFormat formatter =
+                                  DateFormat('yyyy-MM-dd');
+                                  final String formatted =
+                                  formatter.format(datePicked!);
+                                  setState(() {
+                                    testDate.text = formatted;
+                                  });
+                                  final snackBar = SnackBar(
+                                      content: Text("Date Picked $formatted"));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                },
+                                child: const Icon(
+                                  Icons.calendar_today_outlined,
+                                  color: Colors.black87,
+                                  size: 24,
+                                )),
+                          ),
+                        )
                       ],
                     ),
                     height: 60,

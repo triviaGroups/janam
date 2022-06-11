@@ -230,33 +230,36 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
+                      flex: 3,
                       child: Container(
                         alignment: Alignment.centerLeft,
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          "LMP",
+                          "Last menstrual period (LMP)",
+                          maxLines: 2,
                           style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: black),
                         ),
                       ),
                     ),
                     Expanded(
+                      flex: 3,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                             color: white,
                             borderRadius: BorderRadius.circular(5)),
                         child: TextFormField(
-                          controller: lmp,
-                          onChanged: (val) {},
+                          controller: dateTracking,
                           decoration: const InputDecoration(
                             contentPadding:
-                                EdgeInsets.only(left: 10, right: 10),
+                            EdgeInsets.only(left: 10, right: 10, bottom: 5),
                             border: InputBorder.none,
                           ),
                           style:
-                              GoogleFonts.poppins(fontSize: 14, color: black),
+                          GoogleFonts.poppins(fontSize: 14, color: black),
                         ),
                       ),
                     ),
@@ -412,7 +415,7 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                   child: Text(
                                     "Reason of sterilization",
                                     style: GoogleFonts.poppins(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w600,
                                         color: black),
                                   ),
