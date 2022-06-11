@@ -32,6 +32,10 @@ class VillageProvider with ChangeNotifier {
     _G++;
   }
 
+  void setG(String n){
+    _G = int.parse(n);
+  }
+
   void decG(){
     _G--;
     if(_G < 0){
@@ -42,6 +46,10 @@ class VillageProvider with ChangeNotifier {
   void incP(){
     _P++;
 
+  }
+
+  void setP(String n){
+    _P = int.parse(n);
   }
 
   void decP(){
@@ -56,6 +64,10 @@ class VillageProvider with ChangeNotifier {
 
   }
 
+  void setL1(String n){
+    _L1 = int.parse(n);
+  }
+
   void decL1(){
     _L1--;
     if(_L1 < 0){
@@ -66,6 +78,10 @@ class VillageProvider with ChangeNotifier {
   void incL2(){
     _L2++;
 
+  }
+
+  void setL2(String n){
+    _L2 = int.parse(n);
   }
 
   void decL2(){
@@ -80,6 +96,10 @@ class VillageProvider with ChangeNotifier {
 
   }
 
+  void setL3(String n){
+    _L3 = int.parse(n);
+  }
+
   void decL3(){
     _L3--;
     if(_L3 < 0){
@@ -89,7 +109,10 @@ class VillageProvider with ChangeNotifier {
 
   void incA1(){
     _A1++;
+  }
 
+  void setA1(String n){
+    _A1 = int.parse(n);
   }
 
   void decA1(){
@@ -101,7 +124,10 @@ class VillageProvider with ChangeNotifier {
 
   void incA2(){
     _A2++;
+  }
 
+  void setA2(String n){
+    _A2 = int.parse(n);
   }
 
   void decA2(){
@@ -114,6 +140,10 @@ class VillageProvider with ChangeNotifier {
   void incA3(){
     _A3++;
 
+  }
+
+  void setA3(String n){
+    _A3 = int.parse(n);
   }
 
   void decA3(){

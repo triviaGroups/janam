@@ -270,6 +270,12 @@ class _ChildCareState extends State<ChildCare> {
                 aefi = int.parse(val.toString());
               }),
               selectedButton: aefi,
+              fun: (val){
+                setState(() {
+                  aefi = val;
+                });
+              },
+
             ),
             const SizedBox(
               height: 32,

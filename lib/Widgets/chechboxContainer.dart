@@ -25,9 +25,6 @@ class _CheckBoxContState extends State<CheckBoxCont> {
 
  @override
   Widget build(BuildContext context) {
-   print(widget.name);
-   print(widget.item.length);
-   print(widget.item);
     return Cont(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,39 +49,51 @@ class _CheckBoxContState extends State<CheckBoxCont> {
                   itemCount: widget.item.length,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: ((context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: white,
-                    ),
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          checkColor: white,
-                          activeColor:hTxt,
-                          value: widget.boolean[index],
-                          onChanged: (value) {
-                            setState(() {
-                              widget.boolean[index] = value!;
-                            });
-                          },
-                        ),
-                        Container(
-                          width:150,
-                          alignment: Alignment.centerLeft,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 16),
-                          child: Text(widget.item[index],
-                              textAlign: TextAlign.start,
-                              softWrap: true,
-                              maxLines: 2,
-                              style: GoogleFonts.inter(
-                                fontSize: 14,
-                                color: hTxt,
-                              )),
-                        ),
-                      ],
+                  return GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        if(widget.boolean[index]){
+                          widget.boolean[index] = false;
+                        }
+                        else{
+                          widget.boolean[index] = true;
+                        }
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: white,
+                      ),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                            checkColor: white,
+                            activeColor:hTxt,
+                            value: widget.boolean[index],
+                            onChanged: (value) {
+                              setState(() {
+                                widget.boolean[index] = value!;
+                              });
+                            },
+                          ),
+                          Container(
+                            width:150,
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 16),
+                            child: Text(widget.item[index],
+                                textAlign: TextAlign.start,
+                                softWrap: true,
+                                maxLines: 2,
+                                style: GoogleFonts.inter(
+                                  fontSize: 14,
+                                  color: hTxt,
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }))),

@@ -149,6 +149,11 @@ class _TempChartState extends State<TempChart> {
                     ilr = int.parse(val.toString());
                   }),
                   selectedButton: ilr,
+                  fun: (val){
+                    setState(() {
+                      ilr = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Is the ilr, away from sun?",
@@ -160,6 +165,11 @@ class _TempChartState extends State<TempChart> {
                     ilrSun = int.parse(val.toString());
                   }),
                   selectedButton: ilrSun,
+                  fun: (val){
+                    setState(() {
+                      ilrSun = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Is the ilr, locked?",
@@ -171,6 +181,11 @@ class _TempChartState extends State<TempChart> {
                     ilrLocked = int.parse(val.toString());
                   }),
                   selectedButton: ilrLocked,
+                  fun: (val){
+                    setState(() {
+                      ilrLocked = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Is the ilr, defrosted periodically?",
@@ -182,6 +197,11 @@ class _TempChartState extends State<TempChart> {
                     ilrDefrost = int.parse(val.toString());
                   }),
                   selectedButton: ilrDefrost,
+                  fun: (val){
+                    setState(() {
+                      ilrDefrost = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Is the ilr, plugged to socket permanently",
@@ -193,6 +213,11 @@ class _TempChartState extends State<TempChart> {
                     ilrSocket = int.parse(val.toString());
                   }),
                   selectedButton: ilrSocket,
+                  fun: (val){
+                    setState(() {
+                      ilrSocket = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Is the ilr, used for food or drinks?",
@@ -204,6 +229,11 @@ class _TempChartState extends State<TempChart> {
                     food = int.parse(val.toString());
                   }),
                   selectedButton: food,
+                  fun: (val){
+                    setState(() {
+                      food = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Are the vaccines, stacked neatly?",
@@ -215,6 +245,11 @@ class _TempChartState extends State<TempChart> {
                     vaccine = int.parse(val.toString());
                   }),
                   selectedButton: vaccine,
+                  fun: (val){
+                    setState(() {
+                      vaccine = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Are the vaccines, rotated?",
@@ -226,6 +261,11 @@ class _TempChartState extends State<TempChart> {
                     rotated = int.parse(val.toString());
                   }),
                   selectedButton: rotated,
+                  fun: (val){
+                    setState(() {
+                      rotated = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Are the vaccines, kept in the door?",
@@ -237,6 +277,11 @@ class _TempChartState extends State<TempChart> {
                     door = int.parse(val.toString());
                   }),
                   selectedButton: door,
+                  fun: (val){
+                    setState(() {
+                      door = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Are the vaccines, frozen?",
@@ -248,6 +293,11 @@ class _TempChartState extends State<TempChart> {
                     frozen = int.parse(val.toString());
                   }),
                   selectedButton: frozen,
+                  fun: (val){
+                    setState(() {
+                      frozen = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Are the vaccines, date expired?",
@@ -259,6 +309,11 @@ class _TempChartState extends State<TempChart> {
                     expiry = int.parse(val.toString());
                   }),
                   selectedButton: expiry,
+                  fun: (val){
+                    setState(() {
+                      expiry = val;
+                    });
+                  },
                 ),
                 Cont(
                     child: Row(

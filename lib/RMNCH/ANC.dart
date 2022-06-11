@@ -506,6 +506,11 @@ class _ANCState extends State<ANC> {
                 urine = int.parse(val.toString());
               }),
               selectedButton: urine,
+              fun: (val){
+                setState(() {
+                  urine = val;
+                });
+              },
             ),
             radioContainer(
               name: "Blood test",
@@ -517,6 +522,11 @@ class _ANCState extends State<ANC> {
                 blood = int.parse(val.toString());
               }),
               selectedButton: blood,
+              fun: (val){
+                setState(() {
+                  blood = val;
+                });
+              },
             ),
             Cont(
                 child: Row(
@@ -724,6 +734,11 @@ class _ANCState extends State<ANC> {
                 risk = int.parse(val.toString());
               }),
               selectedButton: risk,
+              fun: (val){
+                setState(() {
+                  risk = val;
+                });
+              },
             ),
             CheckBoxCont(
               name: "Antenatal Risk Factors",
@@ -769,6 +784,11 @@ class _ANCState extends State<ANC> {
                 referral = int.parse(val.toString());
               }),
               selectedButton: referral,
+              fun: (val){
+                setState(() {
+                  referral = val;
+                });
+              },
             ),
             radioContainer(
               name: "Type of referral facility",
@@ -780,6 +800,11 @@ class _ANCState extends State<ANC> {
                 type = int.parse(val.toString());
               }),
               selectedButton: type,
+              fun: (val){
+                setState(() {
+                  type = val;
+                });
+              },
             ),
             const SizedBox(
               height: 32,

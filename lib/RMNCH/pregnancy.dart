@@ -297,6 +297,11 @@ class _PregnancyState extends State<Pregnancy> {
                 test = int.parse(val.toString());
               }),
               selectedButton: test,
+              fun: (val){
+                setState(() {
+                  test = val;
+                });
+              },
             ),
             radioContainer(
               name: "Pregnancy test result",
@@ -308,6 +313,11 @@ class _PregnancyState extends State<Pregnancy> {
                 result = int.parse(val.toString());
               }),
               selectedButton: result,
+              fun: (val){
+                setState(() {
+                  result = val;
+                });
+              },
             ),
             result == 1
                 ? Column(
@@ -322,6 +332,11 @@ class _PregnancyState extends State<Pregnancy> {
                           jsy = int.parse(val.toString());
                         }),
                         selectedButton: jsy,
+                        fun: (val){
+                          setState(() {
+                            jsy = val;
+                          });
+                        },
                       ),
                       CheckBoxCont(
                         name: "Past history of illness",
@@ -329,6 +344,7 @@ class _PregnancyState extends State<Pregnancy> {
                         height: 700,
                         a: (a++) % 4,
                         boolean: historybool,
+
                       ),
                       radioContainer(
                         name: "Blood grouping",
@@ -340,6 +356,11 @@ class _PregnancyState extends State<Pregnancy> {
                           blood = int.parse(val.toString());
                         }),
                         selectedButton: blood,
+                        fun: (val){
+                          setState(() {
+                            blood = val;
+                          });
+                        },
                       ),
                       context.watch<DocID>().G > 0
                           ? Column(
@@ -363,6 +384,11 @@ class _PregnancyState extends State<Pregnancy> {
                                     gravida = int.parse(val.toString());
                                   }),
                                   selectedButton: gravida,
+                                  fun: (val){
+                                    setState(() {
+                                      gravida = val;
+                                    });
+                                  },
                                 ),
                               ],
                             )
@@ -377,6 +403,11 @@ class _PregnancyState extends State<Pregnancy> {
                           facility = int.parse(val.toString());
                         }),
                         selectedButton: facility,
+                        fun: (val){
+                          setState(() {
+                            facility = val;
+                          });
+                        },
                       ),
                       radioContainer(
                         name: "VDRL / RPR Test",
@@ -388,6 +419,11 @@ class _PregnancyState extends State<Pregnancy> {
                           rpr = int.parse(val.toString());
                         }),
                         selectedButton: rpr,
+                        fun: (val){
+                          setState(() {
+                            rpr = val;
+                          });
+                        },
                       ),
                       radioContainer(
                         name: "HIV",
@@ -399,6 +435,11 @@ class _PregnancyState extends State<Pregnancy> {
                           hiv = int.parse(val.toString());
                         }),
                         selectedButton: hiv,
+                        fun: (val){
+                          setState(() {
+                            hiv = val;
+                          });
+                        },
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24),

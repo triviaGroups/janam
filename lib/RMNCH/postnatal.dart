@@ -193,6 +193,11 @@ class _PostnatalCareState extends State<PostnatalCare> {
                 method = int.parse(val.toString());
               }),
               selectedButton: method,
+              fun: (val){
+                setState(() {
+                  method = val;
+                });
+              },
             ),
             CheckBoxCont(
               name: "Mother danger signs",

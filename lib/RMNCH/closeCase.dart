@@ -148,6 +148,11 @@ class _CloseCaseState extends State<CloseCase> {
                 close = int.parse(val.toString());
               }),
               selectedButton: close,
+              fun: (val){
+                setState(() {
+                  close = val;
+                });
+              },
             ),
             close == 1
                 ? Column(
@@ -162,6 +167,11 @@ class _CloseCaseState extends State<CloseCase> {
                           reason = int.parse(val.toString());
                         }),
                         selectedButton: reason,
+                        fun: (val){
+                          setState(() {
+                            reason = val;
+                          });
+                        },
                       ),
                       reason == 3
                           ? Column(
@@ -217,6 +227,11 @@ class _CloseCaseState extends State<CloseCase> {
                                     place = int.parse(val.toString());
                                   }),
                                   selectedButton: place,
+                                  fun: (val){
+                                    setState(() {
+                                      place = val;
+                                    });
+                                  },
                                 ),
                                 Cont(
                                     child: Row(
@@ -318,6 +333,11 @@ class _CloseCaseState extends State<CloseCase> {
                                         cause = int.parse(val.toString());
                                       }),
                                       selectedButton: cause,
+                                      fun: (val){
+                                        setState(() {
+                                          cause = val;
+                                        });
+                                      },
                                     ),
                                     cause == 6
                                         ? Cont(
@@ -384,6 +404,11 @@ class _CloseCaseState extends State<CloseCase> {
                                         death = int.parse(val.toString());
                                       }),
                                       selectedButton: death,
+                                      fun: (val){
+                                        setState(() {
+                                          death = val;
+                                        });
+                                      },
                                     ),
                                     Cont(
                                         child: Row(
@@ -610,6 +635,11 @@ class _CloseCaseState extends State<CloseCase> {
                                             dc = int.parse(val.toString());
                                           }),
                                           selectedButton: dc,
+                                          fun: (val){
+                                            setState(() {
+                                              dc = val;
+                                            });
+                                          },
                                         ),
                                         dc == 1
                                             ? Column(

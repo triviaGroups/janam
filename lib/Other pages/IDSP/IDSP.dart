@@ -108,6 +108,11 @@ class _IDSPState extends State<IDSP> {
                 f = int.parse(val.toString());
               }),
               selectedButton: f,
+              fun: (val){
+                setState(() {
+                  f = val;
+                });
+              },
             ),
             radioContainer(
               name: "Fever > 7 days",
@@ -119,6 +124,11 @@ class _IDSPState extends State<IDSP> {
                 fever = int.parse(val.toString());
               }),
               selectedButton: fever,
+              fun: (val){
+                setState(() {
+                  fever = val;
+                });
+              },
             ),
             radioContainer(
               name: "Cough with or without fever",
@@ -130,6 +140,11 @@ class _IDSPState extends State<IDSP> {
                 cough = int.parse(val.toString());
               }),
               selectedButton: cough,
+              fun: (val){
+                setState(() {
+                  cough = val;
+                });
+              },
             ),
             radioContainer(
               name: "Loose watery stools of less than 2 weeks",
@@ -141,6 +156,11 @@ class _IDSPState extends State<IDSP> {
                 l = int.parse(val.toString());
               }),
               selectedButton: l,
+              fun: (val){
+                setState(() {
+                  l = val;
+                });
+              },
             ),
 
             Cont(

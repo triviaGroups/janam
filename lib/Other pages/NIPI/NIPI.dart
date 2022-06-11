@@ -186,6 +186,11 @@ class _NIPIState extends State<NIPI> {
 
               }),
               selectedButton: name,
+              fun: (val){
+                setState(() {
+                  name = val;
+                });
+              },
             ),
             context.watch<nipipro>().awc.isEmpty
                 ? const SizedBox()
@@ -203,6 +208,11 @@ class _NIPIState extends State<NIPI> {
                       awcName = int.parse(val.toString());
                     }),
                     selectedButton: awcName,
+              fun: (val){
+                setState(() {
+                  awcName = val;
+                });
+              },
                   ),
             const SizedBox(
               height: 32,

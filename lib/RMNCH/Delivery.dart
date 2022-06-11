@@ -233,6 +233,11 @@ class DeliveryState extends State<Delivery> {
                 outcome = int.parse(val.toString());
               }),
               selectedButton: outcome,
+              fun: (val){
+                setState(() {
+                  outcome = val;
+                });
+              },
             ),
             Cont(
                 child: Row(
@@ -387,6 +392,11 @@ class DeliveryState extends State<Delivery> {
                 conducted = int.parse(val.toString());
               }),
               selectedButton: conducted,
+              fun: (val){
+                setState(() {
+                  conducted = val;
+                });
+              },
             ),
             radioContainer(
               name: "Type of delivery",
@@ -398,6 +408,11 @@ class DeliveryState extends State<Delivery> {
                 type = int.parse(val.toString());
               }),
               selectedButton: type,
+              fun: (val){
+                setState(() {
+                  type = val;
+                });
+              },
             ),
             CheckBoxCont(
               name: "Complications during delivery",
@@ -416,6 +431,11 @@ class DeliveryState extends State<Delivery> {
                 injection = int.parse(val.toString());
               }),
               selectedButton: injection,
+              fun: (val){
+                setState(() {
+                  injection = val;
+                });
+              },
             ),
             Cont(
                 child: Row(
@@ -564,6 +584,11 @@ class DeliveryState extends State<Delivery> {
                 preg = int.parse(val.toString());
               }),
               selectedButton: preg,
+              fun: (val){
+                setState(() {
+                  preg = val;
+                });
+              },
             ),
             radioContainer(
               name: "Sex of the infant",
@@ -575,6 +600,11 @@ class DeliveryState extends State<Delivery> {
                 sex = int.parse(val.toString());
               }),
               selectedButton: sex,
+              fun: (val){
+                setState(() {
+                  sex = val;
+                });
+              },
             ),
             radioContainer(
               name: "Baby cried at birth",
@@ -586,6 +616,11 @@ class DeliveryState extends State<Delivery> {
                 cried = int.parse(val.toString());
               }),
               selectedButton: cried,
+              fun: (val){
+                setState(() {
+                  cried = val;
+                });
+              },
             ),
             radioContainer(
               name: "Referred to higher centre for management",
@@ -597,6 +632,11 @@ class DeliveryState extends State<Delivery> {
                 management = int.parse(val.toString());
               }),
               selectedButton: management,
+              fun: (val){
+                setState(() {
+                  management = val;
+                });
+              },
             ),
             radioContainer(
               name: "Any defect seen at birth",
@@ -608,6 +648,11 @@ class DeliveryState extends State<Delivery> {
                 defect = int.parse(val.toString());
               }),
               selectedButton: defect,
+              fun: (val){
+                setState(() {
+                  defect = val;
+                });
+              },
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -642,6 +687,11 @@ class DeliveryState extends State<Delivery> {
                 feed = int.parse(val.toString());
               }),
               selectedButton: feed,
+              fun: (val){
+                setState(() {
+                  feed = val;
+                });
+              },
             ),
             rowRadioBtnContainer(
               color: colors[(a++) % 4],
@@ -662,6 +712,11 @@ class DeliveryState extends State<Delivery> {
                 jsy = int.parse(val.toString());
               }),
               selectedButton: jsy,
+              fun: (val){
+                setState(() {
+                  jsy = val;
+                });
+              },
             ),
             Cont(
                 child: Row(

@@ -271,6 +271,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                 method = int.parse(val.toString());
               }),
               selectedButton: method,
+              fun: (val){
+                setState(() {
+                  method = val;
+                });
+              },
             ),
             method == 1
                 ? Column(
@@ -286,6 +291,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                           ster = int.parse(val.toString());
                         }),
                         selectedButton: ster,
+                        fun: (val){
+                          setState(() {
+                            ster = val;
+                          });
+                        },
                       ),
                       Cont(
                           child: Row(
@@ -416,6 +426,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                               tempster = int.parse(val.toString());
                             }),
                             selectedButton: tempster,
+                            fun: (val){
+                              setState(() {
+                                tempster = val;
+                              });
+                            },
                           ),
                           tempster == 1
                               ? Cont(
@@ -1165,6 +1180,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                 inj = int.parse(val.toString());
                                               }),
                                               selectedButton: inj,
+                                              fun: (val){
+                                                setState(() {
+                                                  inj = val;
+                                                });
+                                              },
                                             ),
                                             Cont(
                                                 child: Row(
@@ -1397,6 +1417,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                                         val.toString());
                                                   }),
                                                   selectedButton: poi,
+                                                  fun: (val){
+                                                    setState(() {
+                                                      poi = val;
+                                                    });
+                                                  },
                                                 ),
                                                 Cont(
                                                     child: Row(
@@ -1478,6 +1503,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                   test = int.parse(val.toString());
                                 }),
                                 selectedButton: test,
+                                fun: (val){
+                                  setState(() {
+                                    test = val;
+                                  });
+                                },
                               ),
                               radioContainer(
                                 name: "Pregnancy test result",
@@ -1489,6 +1519,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                   result = int.parse(val.toString());
                                 }),
                                 selectedButton: result,
+                                fun: (val){
+                                  setState(() {
+                                    result = val;
+                                  });
+                                },
                               ),
                             ],
                           )
@@ -1689,6 +1724,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                       reason = int.parse(val.toString());
                                     }),
                                     selectedButton: reason,
+                                    fun: (val){
+                                      setState(() {
+                                        reason = val;
+                                      });
+                                    },
                                   ),
                                   reason == 3
                                       ? radioContainer(
@@ -1702,6 +1742,11 @@ class _EligibleCoupleState extends State<EligibleCouple> {
                                             newmode = int.parse(val.toString());
                                           }),
                                           selectedButton: newmode,
+                                    fun: (val){
+                                      setState(() {
+                                        newmode = val;
+                                      });
+                                    },
                                         )
                                       : const SizedBox(),
                                 ],

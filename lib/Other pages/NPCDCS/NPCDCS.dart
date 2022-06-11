@@ -136,6 +136,11 @@ class _NPCDCSState extends State<NPCDCS> {
                     tobacco = int.parse(val.toString());
                   }),
                   selectedButton: tobacco,
+                  fun: (val){
+                    setState(() {
+                      tobacco = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Tobacco - Smokeless (Chewing / snuffing)",
@@ -147,6 +152,11 @@ class _NPCDCSState extends State<NPCDCS> {
                     tobSmokeless = int.parse(val.toString());
                   }),
                   selectedButton: tobSmokeless,
+                  fun: (val){
+                    setState(() {
+                      tobSmokeless = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Alcohol consumption in last ? months",
@@ -158,6 +168,11 @@ class _NPCDCSState extends State<NPCDCS> {
                     alcohol = int.parse(val.toString());
                   }),
                   selectedButton: alcohol,
+                  fun: (val){
+                    setState(() {
+                      alcohol = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Sedentary lifestyle",
@@ -169,6 +184,11 @@ class _NPCDCSState extends State<NPCDCS> {
                     sedentary = int.parse(val.toString());
                   }),
                   selectedButton: sedentary,
+                  fun: (val){
+                    setState(() {
+                      sedentary = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Family history",
@@ -180,6 +200,11 @@ class _NPCDCSState extends State<NPCDCS> {
                     history = int.parse(val.toString());
                   }),
                   selectedButton: history,
+                  fun: (val){
+                    setState(() {
+                      history = val;
+                    });
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -704,6 +729,11 @@ class _NPCDCSState extends State<NPCDCS> {
 
                   }),
                   selectedButton: oral,
+                  fun: (val){
+                    setState(() {
+                      oral = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Breast examination",
@@ -716,6 +746,11 @@ class _NPCDCSState extends State<NPCDCS> {
 
                   }),
                   selectedButton: breast,
+                  fun: (val){
+                    setState(() {
+                      breast = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Visual examination of cervix",
@@ -728,6 +763,11 @@ class _NPCDCSState extends State<NPCDCS> {
 
                   }),
                   selectedButton: cervix,
+                  fun: (val){
+                    setState(() {
+                      cervix = val;
+                    });
+                  },
                 ),
                 Cont(
                     child: Row(
@@ -814,6 +854,11 @@ class _NPCDCSState extends State<NPCDCS> {
 
                   }),
                   selectedButton: status,
+                  fun: (val){
+                    setState(() {
+                      status = val;
+                    });
+                  },
                 ),
                 Cont(
                     child: Row(

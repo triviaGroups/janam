@@ -114,6 +114,11 @@ class _VHNDState extends State<VHND> {
                 name = int.parse(val.toString());
               }),
               selectedButton: name,
+              fun: (val){
+                setState(() {
+                  name = val;
+                });
+              },
             ),
             radioContainer(
               name: "Place of VHND",
@@ -125,6 +130,11 @@ class _VHNDState extends State<VHND> {
                 place = int.parse(val.toString());
               }),
               selectedButton: place,
+              fun: (val){
+                setState(() {
+                  place = val;
+                });
+              },
             ),
             place == 3
                 ? Cont(
@@ -279,6 +289,11 @@ class _VHNDState extends State<VHND> {
                 conducted = int.parse(val.toString());
               }),
               selectedButton: conducted,
+              fun: (val){
+                setState(() {
+                  conducted = val;
+                });
+              },
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),

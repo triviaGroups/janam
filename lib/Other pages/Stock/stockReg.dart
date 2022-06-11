@@ -169,6 +169,11 @@ class _StockRegState extends State<StockReg> {
                     f = int.parse(val.toString());
                   }),
                   selectedButton: f,
+                  fun: (val){
+                    setState(() {
+                      f = val;
+                    });
+                  },
                 ),
                 Cont(
                     child: Row(

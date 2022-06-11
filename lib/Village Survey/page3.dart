@@ -226,6 +226,11 @@ class _vPage3State extends State<vPage3> {
                 reli = int.parse(val.toString());
               }),
               selectedButton: reli,
+              fun: (val){
+                setState(() {
+                  reli = val;
+                });
+              },
             ),
             radioContainer(
               name: "Caste",
@@ -237,6 +242,11 @@ class _vPage3State extends State<vPage3> {
                 caste = int.parse(val.toString());
               }),
               selectedButton: caste,
+              fun: (val){
+                setState(() {
+                  caste = val;
+                });
+              },
             ),
             radioContainer(
               name: "Economic Status",
@@ -248,6 +258,11 @@ class _vPage3State extends State<vPage3> {
                 eco = int.parse(val.toString());
               }),
               selectedButton: eco,
+              fun: (val){
+                setState(() {
+                  eco = val;
+                });
+              },
             ),
             radioContainer(
               name: "Electricity",
@@ -259,6 +274,11 @@ class _vPage3State extends State<vPage3> {
                 elec = int.parse(val.toString());
               }),
               selectedButton: elec,
+              fun: (val){
+                setState(() {
+                  elec = val;
+                });
+              },
             ),
             radioContainer(
               name: "House Type",
@@ -270,6 +290,11 @@ class _vPage3State extends State<vPage3> {
                 house = int.parse(val.toString());
               }),
               selectedButton: house,
+              fun: (val){
+                setState(() {
+                  house = val;
+                });
+              },
             ),
             radioContainer(
               name: "Toilet facility",
@@ -281,6 +306,11 @@ class _vPage3State extends State<vPage3> {
                 toilet = int.parse(val.toString());
               }),
               selectedButton: toilet,
+              fun: (val){
+                setState(() {
+                  toilet = val;
+                });
+              },
             ),
             radioContainer(
               name: "Waste disposal",
@@ -292,6 +322,11 @@ class _vPage3State extends State<vPage3> {
                 waste = int.parse(val.toString());
               }),
               selectedButton: waste,
+              fun: (val){
+                setState(() {
+                  waste = val;
+                });
+              },
             ),
             Cont(
                 child: Column(
@@ -305,7 +340,7 @@ class _vPage3State extends State<vPage3> {
                               .G,
                       height: 60,
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setG(G.text);
                       },
                       add: () {
                         Provider.of<VillageProvider>(context, listen: false)
@@ -325,7 +360,7 @@ class _vPage3State extends State<vPage3> {
                       name: "P - No. of times delivered",
                       tec: P,
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setP(P.text);
                       },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
@@ -349,7 +384,7 @@ class _vPage3State extends State<vPage3> {
                       name: "L - No. of living children",
                       tec: L1,
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setL1(L1.text);
                       },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
@@ -373,7 +408,7 @@ class _vPage3State extends State<vPage3> {
                       name: "L - No. of male children",
                       tec:  L2,
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setL2(L2.text);
                       },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
@@ -397,7 +432,7 @@ class _vPage3State extends State<vPage3> {
                       name: "L - No. of female children",
                       tec: L3,
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setL3(L3.text);
                       },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
@@ -421,7 +456,7 @@ class _vPage3State extends State<vPage3> {
                       name: "A- No. of abortions",
                       tec: A1,
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setA1(A1.text);
                       },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
@@ -448,7 +483,7 @@ class _vPage3State extends State<vPage3> {
                           Provider.of<VillageProvider>(context, listen: false)
                               .A2,
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setA2(A2.text);
                       },
                       height: 60,
                       add: () {
@@ -469,7 +504,7 @@ class _vPage3State extends State<vPage3> {
                       tec: A3,
                       name: "A- No. of medical termination (MTP)",
                       fun: (val){
-
+                        Provider.of<VillageProvider>(context, listen: false).setA3(A3.text);
                       },
                       count:
                           Provider.of<VillageProvider>(context, listen: false)
@@ -710,6 +745,11 @@ class _vPage3State extends State<vPage3> {
                 fertile = int.parse(val.toString());
               }),
               selectedButton: fertile,
+              fun: (val){
+                setState(() {
+                  fertile = val;
+                });
+              },
             ),
             GestureDetector(
                 onTap: () async {

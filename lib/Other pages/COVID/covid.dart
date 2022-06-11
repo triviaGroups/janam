@@ -198,6 +198,11 @@ class _CovidState extends State<Covid> {
                     testResult = int.parse(val.toString());
                   }),
                   selectedButton: testResult,
+                  fun: (val){
+                    setState(() {
+                      testResult = val;
+                    });
+                  },
                 ),
                 Cont(
                     child: Row(
@@ -361,6 +366,11 @@ class _CovidState extends State<Covid> {
                     dischargeReason = int.parse(val.toString());
                   }),
                   selectedButton: dischargeReason,
+                  fun: (val){
+                    setState(() {
+                      dischargeReason = val;
+                    });
+                  },
                 ),
                 const SizedBox(
                   height: 32,

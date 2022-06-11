@@ -340,6 +340,11 @@ class _AEFIState extends State<AEFI> {
                     k = int.parse(val.toString());
                   }),
                   selectedButton:k,
+                  fun: (val){
+                    setState(() {
+                      k = val;
+                    });
+                  },
                 ),
                 radioContainer(
                   name: "Case seen by medical officer",
@@ -351,6 +356,11 @@ class _AEFIState extends State<AEFI> {
                     medicalOffer = int.parse(val.toString());
                   }),
                   selectedButton: medicalOffer,
+                  fun: (val){
+                    setState(() {
+                      medicalOffer = val;
+                    });
+                  },
                 ),
                 Cont(
                     child: Row(
