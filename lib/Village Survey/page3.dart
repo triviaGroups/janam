@@ -57,6 +57,9 @@ class _vPage3State extends State<vPage3> {
   int waste = 1;
   int fertile = 1;
 
+
+  TextEditingController cDate = TextEditingController();
+
   TextEditingController G = TextEditingController();
   TextEditingController P = TextEditingController();
 
@@ -70,7 +73,7 @@ class _vPage3State extends State<vPage3> {
 
   @override
   Widget build(BuildContext context) {
-    a = 0;
+    a= 0;
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
@@ -553,14 +556,12 @@ class _vPage3State extends State<vPage3> {
                 ],
               ),
             ),
-            Provider.of<VillageProvider>(context, listen: false).L1 > 0
+            L1.text!= ""
                 ? Container(
                     height: 300,
                     alignment: Alignment.center,
                     child: PageView.builder(
-                        itemCount:
-                            Provider.of<VillageProvider>(context, listen: false)
-                                .L1,
+                        itemCount:int.parse(L1.text),
                         itemBuilder: (context, index) {
                           List<String> mn = ["", "", ""];
                           children.add(mn);
@@ -663,8 +664,11 @@ class _vPage3State extends State<vPage3> {
                                               borderRadius:
                                                   BorderRadius.circular(5)),
                                           child: TextFormField(
+                                            controller: cDate,
                                             onChanged: (val) {
-                                              children[index][1] = val;
+                                              setState(() {
+                                                children[index][1] = cDate.text;
+                                              });
                                             },
                                             decoration: const InputDecoration(
                                               contentPadding: EdgeInsets.only(
@@ -696,7 +700,7 @@ class _vPage3State extends State<vPage3> {
                                                 final String formatted =
                                                 formatter.format(datePicked!);
                                                 setState(() {
-                                                  children[index][1] = formatted;
+                                                  cDate.text = formatted;
                                                 });
                                                 final snackBar = SnackBar(
                                                     content: Text("Date Picked $formatted"));

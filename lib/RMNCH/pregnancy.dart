@@ -145,7 +145,6 @@ class _PregnancyState extends State<Pregnancy> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
-          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [

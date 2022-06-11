@@ -65,6 +65,7 @@ class VillageProvider with ChangeNotifier {
   }
 
   void setL1(String n){
+    print("HI  "+n);
     _L1 = int.parse(n);
   }
 

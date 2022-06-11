@@ -118,7 +118,6 @@ class DeliveryState extends State<Delivery> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
-          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [

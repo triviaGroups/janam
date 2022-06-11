@@ -41,7 +41,6 @@ class _DeathRegState extends State<DeathReg> {
         child: Scaffold(
           backgroundColor: white,
 
-          resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
             child: Column(
               children: [

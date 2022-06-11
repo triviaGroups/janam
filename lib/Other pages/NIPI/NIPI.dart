@@ -35,8 +35,6 @@ class _NIPIState extends State<NIPI> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
-
-          resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [

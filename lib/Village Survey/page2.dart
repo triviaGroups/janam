@@ -86,8 +86,8 @@ class _vPage2State extends State<vPage2> {
   String _spouseDob = '';
   String _marraigeDate = '';
 
-  List<String> head = ["", "", "", "", "", "", "", "", ""];
-  List<String> spouse = ["", "", "", "", "", "", "", "", ""];
+  List<String> head = ["", "", "", "", "Male", "", "", "", "No"];
+  List<String> spouse = ["", "", "", "", "", "Male", "", "", "No"];
 
   TextEditingController headdob =  TextEditingController();
   TextEditingController spousedob = TextEditingController();
@@ -325,7 +325,7 @@ class _vPage2State extends State<vPage2> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 16, horizontal: 8),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
@@ -336,25 +336,33 @@ class _vPage2State extends State<vPage2> {
                                       color: black),
                                 ),
                                 Container(
+                                  alignment: Alignment.centerLeft,
+                                  padding: const EdgeInsets.only(left: 8),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: TextFormField(
-                                    onChanged: (val) {
+                                  child: DropdownButton(
+
+                                    // Initial Value
+                                    value: head[4],
+                                    isExpanded: true,
+                                    // Down Arrow Icon
+                                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                                    // Array list of items
+                                    items: ["Male","Female","Others"].map((String items) {
+                                      return DropdownMenuItem(
+                                        value: items,
+                                        child: Text(items),
+                                      );
+                                    }).toList(),
+                                    // After selecting the desired option,it will
+                                    // change button value to selected value
+                                    onChanged: (String? newValue) {
                                       setState(() {
-                                        head[4] = val;
+                                        head[4] = newValue!;
                                       });
                                     },
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                      const EdgeInsets.only(left: 10, right: 10),
-                                      hintText: "Gender",
-                                      errorMaxLines: 1,
-                                      hintStyle: GoogleFonts.inter(
-                                          fontSize: 14, color: txt),
-                                    ),
-                                    style: GoogleFonts.inter(
-                                        fontSize: 14, color: black),
                                   ),
                                 )
                               ],
@@ -493,25 +501,33 @@ class _vPage2State extends State<vPage2> {
                                       color: black),
                                 ),
                                 Container(
+                                  alignment: Alignment.centerLeft,
+                                  padding: const EdgeInsets.only(left: 8),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: TextFormField(
-                                    onChanged: (val) {
+                                  child: DropdownButton(
+
+                                    // Initial Value
+                                    value: head[8],
+                                    isExpanded: true,
+                                    // Down Arrow Icon
+                                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                                    // Array list of items
+                                    items: ["No","Yes"].map((String items) {
+                                      return DropdownMenuItem(
+                                        value: items,
+                                        child: Text(items),
+                                      );
+                                    }).toList(),
+                                    // After selecting the desired option,it will
+                                    // change button value to selected value
+                                    onChanged: (String? newValue) {
                                       setState(() {
-                                        head[8] = val;
+                                        head[8] = newValue!;
                                       });
                                     },
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                      const EdgeInsets.only(left: 10, right: 10),
-                                      hintText: "Yes/No",
-                                      errorMaxLines: 1,
-                                      hintStyle: GoogleFonts.inter(
-                                          fontSize: 14, color: txt),
-                                    ),
-                                    style: GoogleFonts.inter(
-                                        fontSize: 14, color: black),
                                   ),
                                 )
                               ],
@@ -837,25 +853,33 @@ class _vPage2State extends State<vPage2> {
                                       color: black),
                                 ),
                                 Container(
+                                  alignment: Alignment.centerLeft,
+                                  padding: const EdgeInsets.only(left: 8),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: TextFormField(
-                                    onChanged: (val) {
+                                  child: DropdownButton(
+
+                                    // Initial Value
+                                    value: spouse[5],
+                                    isExpanded: true,
+                                    // Down Arrow Icon
+                                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                                    // Array list of items
+                                    items: ["Male","Female","Others"].map((String items) {
+                                      return DropdownMenuItem(
+                                        value: items,
+                                        child: Text(items),
+                                      );
+                                    }).toList(),
+                                    // After selecting the desired option,it will
+                                    // change button value to selected value
+                                    onChanged: (String? newValue) {
                                       setState(() {
-                                        spouse[5] = val;
+                                        spouse[5] = newValue!;
                                       });
                                     },
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                      const EdgeInsets.only(left: 10, right: 10),
-                                      hintText: "Gender",
-                                      errorMaxLines: 1,
-                                      hintStyle: GoogleFonts.inter(
-                                          fontSize: 14, color: txt),
-                                    ),
-                                    style: GoogleFonts.inter(
-                                        fontSize: 14, color: black),
                                   ),
                                 )
                               ],
@@ -954,25 +978,33 @@ class _vPage2State extends State<vPage2> {
                                       color: black),
                                 ),
                                 Container(
+                                  alignment: Alignment.centerLeft,
+                                  padding: const EdgeInsets.only(left: 8),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
                                   ),
-                                  child: TextFormField(
-                                    onChanged: (val) {
+                                  child: DropdownButton(
+
+                                    // Initial Value
+                                    value: spouse[8],
+                                    isExpanded: true,
+                                    // Down Arrow Icon
+                                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                                    // Array list of items
+                                    items: ["No","Yes"].map((String items) {
+                                      return DropdownMenuItem(
+                                        value: items,
+                                        child: Text(items),
+                                      );
+                                    }).toList(),
+                                    // After selecting the desired option,it will
+                                    // change button value to selected value
+                                    onChanged: (String? newValue) {
                                       setState(() {
-                                        spouse[8] = val;
+                                        spouse[8] = newValue!;
                                       });
                                     },
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                      const EdgeInsets.only(left: 10, right: 10),
-                                      hintText: "Yes/No",
-                                      errorMaxLines: 1,
-                                      hintStyle: GoogleFonts.inter(
-                                          fontSize: 14, color: txt),
-                                    ),
-                                    style: GoogleFonts.inter(
-                                        fontSize: 14, color: black),
                                   ),
                                 )
                               ],

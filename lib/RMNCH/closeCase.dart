@@ -66,8 +66,6 @@ class _CloseCaseState extends State<CloseCase> {
     a = 0;
     return SafeArea(
         child: Scaffold(
-
-          resizeToAvoidBottomInset: false,
       backgroundColor: white,
       body: SingleChildScrollView(
         child: Column(

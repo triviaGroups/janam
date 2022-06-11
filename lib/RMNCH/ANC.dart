@@ -108,7 +108,6 @@ class _ANCState extends State<ANC> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: white,
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -309,12 +308,12 @@ class _ANCState extends State<ANC> {
                               fontSize: 16,
                               fontWeight:
                               FontWeight
-                                  .w600,
+                                  .w500,
                               color: black),
                         ),
                       )),
                   Expanded(
-                      flex: 3,
+                      flex: 5,
                       child: Padding(
                         padding:
                         const EdgeInsets
@@ -489,7 +488,7 @@ class _ANCState extends State<ANC> {
                         ),
                       )),
                   Expanded(
-                      flex: 3,
+                      flex: 5,
                       child: Padding(
                         padding:
                         const EdgeInsets
