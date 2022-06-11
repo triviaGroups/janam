@@ -391,7 +391,7 @@ class _nurseDetailsState extends State<nurseDetails> {
                         .doc(widget.number)
                         .set(data);
 
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => village(
