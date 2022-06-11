@@ -1,4 +1,4 @@
-package com.example.janam
+package com.janam.anm
 
 import io.flutter.embedding.android.FlutterActivity
 
